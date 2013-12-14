@@ -42,7 +42,7 @@ If slideshow or caption animation is running, it will freeze when touch by finge
 
 - **continue or rollback slideshow/caption animation when touch is released**
 
-**responsive at realtime, scale smoothly with no delay**
+- **responsive at realtime, scale smoothly with no delay**
 
 If responsive feature is enabled, when window of browser resize, the slider size will respond to window width at real time with no delay, no stop of animation.
 
