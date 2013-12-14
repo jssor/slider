@@ -26,96 +26,96 @@ Why jssor slider?
 
 Features:
 --------------------------------------
-**both jQuery Plugin, No-jQuery Version available**
+- **both jQuery Plugin, No-jQuery Version available**
 
 Query plugin slider and No-jQuery version slider work almost the same, both are for image slider, content slider. Slideshow and caption slide animation are all available for both version.
 
 jQuery developers benifit on jQuery js library. No-jQuery version is slider without jQuery. Non-jQuery developers benifite on light weight cut/paste code snipet, which is eligible for eBay listing, blogger post, or embed into any web page freely.
 
-**touch + drag navigation**
+- **touch + drag navigation**
 
 When touch and drag the slider with finger on a touch device like Samsung mobile, iPhone, iPad, HTC, Blackberry (iOS, Android, Windows Surface), the slider will move left/right or up/down.
 
-**freeze slideshow/caption animation when touch**
+- **freeze slideshow/caption animation when touch**
 
 If slideshow or caption animation is running, it will freeze when touch by finger or mouse down.
 
-**continue or rollback slideshow/caption animation when touch is released**
+- **continue or rollback slideshow/caption animation when touch is released**
 
 **responsive at realtime, scale smoothly with no delay**
 
 If responsive feature is enabled, when window of browser resize, the slider size will respond to window width at real time with no delay, no stop of animation.
 
-**instant interaction, action at realtime**
+- **instant interaction, action at realtime**
 
 Touch, drag or click bullets/arrows/thumbnails anytime, no need to wait for the end of animation, slider will act instantly.
 
-**best performance slider**
+- **best performance slider**
 
 Jssor slider is announced as one of the best performance sliders. It is one of the lowest CPU comsuming slider. slider (~1%), slider with caption (~4%), slider with slideshow (~4%)
 
-**390+ caption effects/transitions**
+- **390+ caption effects/transitions**
 
-**Jssor slider comes with 390+ impressive caption effects/transitions**
+Jssor slider comes with 390+ impressive caption effects/transitions
 
-**360+ slideshow effects/transitions**
+- **360+ slideshow effects/transitions**
 
 Jssor slider comes with 360+ impressive slideshow effects/transitions
 
-**most smooth animation engine with performance balance**
+- **most smooth animation engine with performance balance**
 
-**horizontal/vertical drag by auto detect**
+- **horizontal/vertical drag by auto detect**
 
 Jssor slider auto detect drag orientation, when an user touches and drag the slider, it will move horizontal or vertical according to the drag orientation.
 
-**most reliable slider**
+- **most reliable slider**
 
 Jssor slider is cross browser slider, it supports wide range of browsers, Chrome 3+, Firefox 2+, IE 6+, Safari 3.1+, Opera 10+. Jssor slider is also cross plat form browser, iOS, Android, Windows, Windows Surface and Mac are all supported.
 
-**most scalable slider**
+- **most scalable slider**
 
 Jssor slider is one of most scalable slider. It comes with 30+ (continuous growing) professional themes. All UI is fully under control by html + css code. User can add any html code to each slide, and user can customize 'navigator', 'thumbnail navigator' to any format.
 
-**optional thumbnails, tabs or bullets navigation**
+- **optional thumbnails, tabs or bullets navigation**
 
-**position of thumbnails, tabs and bullets are adjustable, can be vertical or horizontal**
+- **position of thumbnails, tabs and bullets are adjustable, can be vertical or horizontal**
 
-**touch drag navigation for thumbnail navigator is allowed**
+- **touch drag navigation for thumbnail navigator is allowed**
 
-**use any html/css code to customize thumbnail to anyformat**
+- **use any html/css code to customize thumbnail to anyformat**
 
-**multiple sliders in one page**
+- **multiple sliders in one page**
 
-**any html code can be placed inside slide**
+- **any html code can be placed inside slide**
 
-**unlimited captions**
+- **unlimited captions**
 
-**rollback caption animation when touch end/mouse up**
+- **rollback caption animation when touch end/mouse up**
 
-**move, fade, clip, zoom and rotation transitions are all supported for all browsers**
+- **move, fade, clip, zoom and rotation transitions are all supported for all browsers**
 
-**composite move, fade, clip, zoom and rotation in one transition is allowed**
+- **composite move, fade, clip, zoom and rotation in one transition is allowed**
 
-**javascript code deep compression by smart compression engine**
+- **javascript code deep compression by smart compression engine**
 
-**arrow key navitation, navigate slider by click keyboard arrow left/right**
+- **arrow key navitation, navigate slider by click keyboard arrow left/right**
 
-**html caption with animation (390+ caption transitions)**
+- **html caption with animation (390+ caption transitions)**
 
-**caption animation speed adjustable**
+- **caption animation speed adjustable**
 
-**can add static content to slide**
+- **can add static content to slide**
 
-**disable drag is optional**
+- **disable drag is optional**
 
-**auto play slideshow with optional pause on hover**
+- **auto play slideshow with optional pause on hover**
 
-**cap put slider anywhere (light box, or any container)**
+- **cap put slider anywhere (light box, or any container)**
 
-**optional spacing between slides**
+- **optional spacing between slides**
 
-**cut/paste slider code snippet**
+- **cut/paste slider code snippet**
 
-**ebay friendly, eligible for ebay store, ebay listing**
+- **ebay friendly, eligible for ebay store, ebay listing**
 
-**blogger friendly, just copy/paste code snippet to publish blogger post**
+- **blogger friendly, just copy/paste code snippet to publish blogger post**
