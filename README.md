@@ -6,6 +6,7 @@ Overview
 
 1. [30+ Live Demos](http://www.jssor.com)
 2. [Documentation](http://www.jssor.com/developement/index.html)
+3. Support: [Ask question on StackOverflow](http://stackoverflow.com/questions/tagged/jssor)
 
 What you get with jssor slider?
 --------------------------------------
