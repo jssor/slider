@@ -1,6 +1,9 @@
 [slider.js](http://www.jssor.com/) - Touch Swipe, Responsive Slider
 ==================================================
 
+Prepare for new version, all files had been cleared
+--------------------------------------
+
 Overview
 --------------------------------------
 
@@ -110,7 +113,7 @@ Jssor slider is one of most scalable slider. It comes with 30+ (continuous growi
 
 - **auto play slideshow with optional pause on hover**
 
-- **cap put slider anywhere (light box, or any container)**
+- **can put slider anywhere (light box, or any container)**
 
 - **optional spacing between slides**
 
