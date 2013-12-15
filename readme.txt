@@ -7,8 +7,6 @@
         Reference http://www.jssor.com/developement/index.html
 
 
-        Note that 'jssor.compress' runs on windows system with .NET 2.0 installed.
-
 
         Resources:
         Top Wordpress Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=wordpress

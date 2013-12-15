@@ -51,7 +51,7 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider1_starter = function (containerId) {
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -82,14 +82,15 @@
                     $Orientation: 2,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
                     $DisableDrag: false                             //[Optional] Disable drag or not, default value is false
                 }
-            });
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
         };
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
-    <div style="position: relative; width: 810px; height: 300px;background:#191919;">
-        <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;
-        height: 300px;">
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 810px;
+        height: 300px;background:#191919;">
 
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">
@@ -250,10 +251,5 @@
             jssor_slider1_starter('slider1_container');
         </script>
     </div>
-    </div>
-    <!-- Jssor Slider End -->
-<img width=0 height=0 />
-
-<!--<div id="debuginfo" style="width:300px;height:300px;background-color:Red;color:White;Padding:5px;"></div>-->
 </body>
 </html>

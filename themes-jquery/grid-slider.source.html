@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Grid Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!-- it works the same with all jquery version from 1.3.1 to 2.0.3 -->
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- use jssor.slider.mini.js (39KB) or jssor.sliderc.mini.js (31KB, with caption, no slideshow) or jssor.sliders.mini.js (26KB, no caption, no slideshow) instead for release -->
+    <!-- jssor.slider.mini.js = jssor.sliderc.mini.js = jssor.sliders.mini.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+
+        jQuery(document).ready(function ($) {
+
+            var nestedSliders = [];
+
+            $.each(["sliderh1_container", "sliderh2_container", "sliderh3_container", "sliderh4_container"], function (index, value) {
+
+                var sliderhOptions = {
+                    $SlideDuration: 300,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                    $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                    $SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                    //$SlideHeight: 150,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                    $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
+                    $DisplayPieces: 4,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                    $ParkingPosition: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                    $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
+
+                    $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                        $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                        $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                        $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+                        $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                        $SpacingX: 0,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                        $SpacingY: 0,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                        $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                    }
+                }
+                var jssor_sliderh = new $JssorSlider$(value, sliderhOptions);
+            });
+
+            var options = {
+                $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
+                $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 0,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
+
+                $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                $SlideDuration: 300,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $MinDragOffsetToSlide: 80,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                $SlideHeight: 150,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
+                $DisplayPieces: 3,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
+                $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
+                $DragOrientation: 2,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0),
+
+                $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 2,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $SpacingY: 5,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                    $Orientation: 2                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                }
+            };
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+        });
+    </script>
+    <!-- sliderh style begin -->
+    <style>
+        /* jssor slider navigator skin 03 css */
+        /*
+        .jssorn03 div           (normal)
+        .jssorn03 div:hover     (normal mouseover)
+        .jssorn03 .av           (active)
+        .jssorn03 .av:hover     (active mouseover)
+        .jssorn03 .dn           (mousedown)
+        */
+        .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+        {
+            background: url(../img/n03.png) no-repeat;
+            overflow:hidden;
+            cursor: pointer;
+        }
+        .jssorn03 div { background-position: -5px -4px; }
+        .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
+        .jssorn03 .av { background-position: -65px -4px; }
+        .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+    </style>
+    <!-- sliderh style end -->
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+        height: 456px;">
+            <!-- Slides Container -->
+            <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 456px;
+                overflow: hidden;">
+                <div>
+                    <div id="sliderh1_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                        height: 150px;">
+
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                            overflow: hidden;">
+                            <div><img u="image" src="../img/ancient-lady/005.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/006.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
+                        </div>
+                        <!-- Navigator Skin Begin -->
+                        <!-- navigator container -->
+                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- navigator item prototype -->
+                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+                        </div>
+                        <!-- Navigator Skin End -->
+                    </div>
+                </div>
+                <div>
+                    <div id="sliderh2_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                        height: 150px;">
+
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                            overflow: hidden;">
+                            <div><img u="image" src="../img/ancient-lady/020.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/021.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/022.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/024.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
+                        </div>
+                        <!-- Navigator Skin Begin -->
+                        <!-- navigator container -->
+                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- navigator item prototype -->
+                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+                        </div>
+                        <!-- Navigator Skin End -->
+                    </div>
+                </div>
+                <div>
+                    <div id="sliderh3_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                        height: 150px;">
+
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                            overflow: hidden;">
+                            <div><img u="image" src="../img/ancient-lady/029.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/030.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/031.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/032.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
+                        </div>
+                        <!-- Navigator Skin Begin -->
+                        <!-- navigator container -->
+                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- navigator item prototype -->
+                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+                        </div>
+                        <!-- Navigator Skin End -->
+                    </div>
+                </div>
+                <div>
+                    <div id="sliderh4_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                        height: 150px;">
+
+                        <!-- Slides Container -->
+                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                            overflow: hidden;">
+                            <div><img u="image" src="../img/ancient-lady/039.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/043.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
+                        </div>
+                        <!-- Navigator Skin Begin -->
+                        <!-- navigator container -->
+                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- navigator item prototype -->
+                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+                        </div>
+                        <!-- Navigator Skin End -->
+                    </div>
+                </div>
+            </div>
+        <!-- Navigator Skin Begin -->
+        <!-- jssor slider navigator skin 02 -->
+        <style>
+            /*
+            .jssorn02 div           (normal)
+            .jssorn02 div:hover     (normal mouseover)
+            .jssorn02 .av           (active)
+            .jssorn02 .av:hover     (active mouseover)
+            .jssorn02 .dn           (mousedown)
+            */
+            .jssorn02 div, .jssorn02 div:hover, .jssorn02 .av
+            {
+                background: url(../img/n02.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorn02 div { background-position: -5px -5px; }
+            .jssorn02 div:hover, .jssorn02 .av:hover { background-position: -35px -5px; }
+            .jssorn02 .av { background-position: -65px -5px; }
+            .jssorn02 .dn, .jssorn02 .dn:hover { background-position: -95px -5px; }
+        </style>
+        <!-- navigator container -->
+        <div u="navigator" class="jssorn02" style="position: absolute; bottom: 8px; left: 6px;">
+            <!-- navigator item prototype -->
+            <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+        </div>
+        <!-- Navigator Skin End -->
+            <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

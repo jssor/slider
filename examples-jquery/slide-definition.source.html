@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide Definition Example - Jssor Slider, Slideshow</title>
+</head>
+<body>
+    <!-- it works the same with all jquery version from 1.3.1 to 2.0.3 -->
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- use jssor.slider.mini.js (39KB) or jssor.sliderc.mini.js (31KB, with caption, no slideshow) or jssor.sliders.mini.js (26KB, no caption, no slideshow) instead for release -->
+    <!-- jssor.slider.mini.js = jssor.sliderc.mini.js = jssor.sliders.mini.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var _CaptionTransitions = [];
+            //Left to Right
+            _CaptionTransitions["L"] = { $Duration: 800, $FlyDirection: 1 };
+            //Right to Left
+            _CaptionTransitions["R"] = { $Duration: 800, $FlyDirection: 2 };
+            //Top to Bottom
+            _CaptionTransitions["T"] = { $Duration: 800, $FlyDirection: 4 };
+            //Bottom to Top
+            _CaptionTransitions["B"] = { $Duration: 800, $FlyDirection: 8 };
+            //Reference http://www.jssor.com/developement/caption-transition-viewer.html
+
+            var options = {
+                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
+                $CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
+                    $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
+                    $CaptionTransitions: _CaptionTransitions,       //[Required] An array of caption transitions to play caption, see caption transition section at jssor slideshow transition builder
+                    $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
+                    $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+        });
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" style="position: relative; width: 600px; height: 300px;">
+    
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width:600px; height:300px; overflow: hidden;">
+            <div><img u="image" src="../img/landscape/01.jpg" /></div>
+            <div><a u=image href="
+http://www.jssor.com" target="_blank"><img src="../img/landscape/02.jpg"/></a></div>
+            <div><img u="image" src="../img/landscape/03.jpg"/>
+               <div style="position: absolute; top: 125px; left: 125px; width: 350px; height: 50px;text-align:center;line-height:50px;background:#fff;">
+                            This is static content, can be any html
+                </div>
+            </div>
+            <div><img u="image" src="../img/landscape/04.jpg"/>
+                <div u="caption" t="T" style="position: absolute; top: 125px; left: 125px; width: 350px;height: 50px;text-align:center;line-height:50px;background:#fff;">
+                            This is caption, can be any html
+                </div>
+            </div>
+        </div>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

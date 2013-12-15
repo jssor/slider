@@ -3,47 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Tab Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
+    <title>Vertical Tab Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
 </head>
 <body style="background:#fff;">
-    <!-- Caption Style -->
-    <style> 
-        .captionOrange, .captionBlack
-        {
-            color: #fff;
-            font-size: 20px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 4px;
-        }
-        .captionOrange
-        {
-            background: #EB5100;
-            background-color: rgba(235, 81, 0, 0.6);
-        }
-        .captionBlack
-        {
-        	font-size:16px;
-            background: #000;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
-        {
-        	color: #ffffff;
-        	text-decoration: none;
-        }
-        a.captionOrange:hover
-        {
-            color: #eb5100;
-            text-decoration: underline;
-            background-color: #eeeeee;
-            background-color: rgba(238, 238, 238, 0.7);
-        }
-        .bricon
-        {
-            background: url(../img/browser-icons.png);
-        }
-    </style>
     <!-- use jssor.slider.min.js instead for release -->
     <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="../js/jssor.core.js"></script>
@@ -51,7 +13,7 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider3_starter = function (containerId) {
-            var jssor_slider3 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -83,7 +45,9 @@
                     $Orientation: 2,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
                     $DisableDrag: true                              //[Optional] Disable drag or not, default value is false
                 }
-            });
+            };
+
+            var jssor_slider3 = new $JssorSlider$(containerId, options);
         };
     </script>
     <!-- Jssor Slider Begin -->

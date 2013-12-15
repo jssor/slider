@@ -17,7 +17,7 @@
             var nestedSliders = [];
 
             $JssorUtils$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
-                nestedSliders.push(new $JssorSlider$(containerId, {
+                var nestedSliderOptions = {
                     $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                     $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                     //$SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
@@ -37,10 +37,12 @@
                         $SpacingY: 0,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                         $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                     }
-                }));
+                };
+
+                nestedSliders.push(new $JssorSlider$(containerId, nestedSliderOptions));
             });
 
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $AutoPlayInterval: 2000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -65,7 +67,9 @@
                     $SpacingY: 5,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                     $Orientation: 2                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                 }
-            });
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
 
             function OnMainSliderPark(currentIndex, fromIndex) {
                 $JssorUtils$.$Each(nestedSliders, function (nestedSlider) {
@@ -79,7 +83,6 @@
 
             jssor_slider1.$On($JssorSlider$.$EVT_PARK, OnMainSliderPark);
             OnMainSliderPark(0, 0);
-
         };
     </script>
     <!-- sliderh style begin -->

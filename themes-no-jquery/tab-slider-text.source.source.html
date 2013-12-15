@@ -51,7 +51,7 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider2_starter = function (containerId) {
-            var jssor_slider2 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -83,7 +83,9 @@
                     $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
                     $DisableDrag: true                              //[Optional] Disable drag or not, default value is false
                 }
-            });
+            };
+
+            var jssor_slider2 = new $JssorSlider$(containerId, options);
         };
     </script>
     <!-- Jssor Slider Begin -->

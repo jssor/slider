@@ -51,7 +51,7 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider1_starter = function (containerId) {
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -76,11 +76,12 @@
                     $SpacingY: 5,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                     $Orientation: 2                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                 }
-            });
+            };
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
         };
 
         jssor_sliderh_starter = function (containerId) {
-            var jssor_sliderh = new $JssorSlider$(containerId, {
+            var sliderhOptions = {
                 $SlideDuration: 300,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                 $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                 $SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
@@ -89,7 +90,7 @@
                 $DisplayPieces: 4,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
                 $ParkingPosition: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
                 $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
-                
+
                 $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
@@ -100,7 +101,8 @@
                     $SpacingY: 0,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                     $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                 }
-            });
+            }
+            var jssor_sliderh = new $JssorSlider$(containerId, sliderhOptions);
         };
     </script>
     <!-- sliderh style begin -->

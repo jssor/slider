@@ -63,44 +63,6 @@
     </style>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff; background-image: url(../img/back.jpg);">
-    <!-- Caption Style -->
-    <style> 
-        .captionOrange, .captionBlack
-        {
-            color: #fff;
-            font-size: 20px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 4px;
-        }
-        .captionOrange
-        {
-            background: #EB5100;
-            background-color: rgba(235, 81, 0, 0.6);
-        }
-        .captionBlack
-        {
-        	font-size:16px;
-            background: #000;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
-        {
-        	color: #ffffff;
-        	text-decoration: none;
-        }
-        a.captionOrange:hover
-        {
-            color: #eb5100;
-            text-decoration: underline;
-            background-color: #eeeeee;
-            background-color: rgba(238, 238, 238, 0.7);
-        }
-        .bricon
-        {
-            background: url(../img/browser-icons.png);
-        }
-    </style>
     <!-- use jssor.slider.min.js instead for release -->
     <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="../js/jssor.core.js"></script>
@@ -108,14 +70,16 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider1_starter = function (containerId) {
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 1,                                  //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $SpacingX: 25                                   //[Optional] Horizontal space between each item in pixel, default value is 0
                 }
-            });
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
             function ScaleSlider() {

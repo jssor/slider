@@ -2937,11 +2937,11 @@ new function () {
     //    };
     //})(jQuery);
 
-    window.jQuery && (jQuery.fn.jssorSlider = function (options) {
-        return this.each(function () {
-            return jQuery(this).data('jssorSlider') || jQuery(this).data('jssorSlider', new JssorSlider(this, options));
-        });
-    });
+    //window.jQuery && (jQuery.fn.jssorSlider = function (options) {
+    //    return this.each(function () {
+    //        return jQuery(this).data('jssorSlider') || jQuery(this).data('jssorSlider', new JssorSlider(this, options));
+    //    });
+    //});
 };
 
 //$JssorNavigator$

@@ -22,9 +22,9 @@
             _CaptionTransitions["T"] = { $Duration: 800, $FlyDirection: 4 };
             //Bottom to Top
             _CaptionTransitions["B"] = { $Duration: 800, $FlyDirection: 8 };
-        //Reference http://www.jssor.com/developement/caption-transition-viewer.html
+            //Reference http://www.jssor.com/developement/caption-transition-viewer.html
 
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
@@ -35,7 +35,9 @@
                     $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
                     $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
                 }
-            });
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
         }
     </script>
     <!-- Jssor Slider Begin -->
