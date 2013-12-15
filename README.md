@@ -1,9 +1,6 @@
 [slider.js](http://www.jssor.com/) - Touch Swipe, Responsive Slider
 ==================================================
 
-Prepare for new version, all files had been cleared, [simple slideshow maker](http://www.jssor.com/slideshow.maker.zip) is available.
---------------------------------------
-
 Overview
 --------------------------------------
 
