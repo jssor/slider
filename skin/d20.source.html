@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Direction Navigator Skin 20 - Jssor Slider, Slideshow with Javascript Source Code</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+        jssor_slider1_starter = function (containerId) {
+
+            var options = {
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $DirectionNavigatorOptions: {                       //[Optional] Options to specify and enable direction navigator or not
+                    $Class: $JssorDirectionNavigator$,              //[Requried] Class to create direction navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. --> 
+    <div id="slider1_container" style="position: relative; width: 960px;
+        height: 380px; overflow: hidden;">
+ 
+        <!-- Slides Container --> 
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 960px; height: 380px;
+            overflow: hidden;">
+            <div><img u="image" src="../img/home/01.jpg" /></div>
+            <div><img u="image" src="../img/home/02.jpg" /></div>
+            <div><img u="image" src="../img/home/03.jpg" /></div>
+            <div><img u="image" src="../img/home/04.jpg" /></div>
+        </div> 
+        
+        <!-- Direction Navigator Skin Begin -->
+        <style>
+            /* jssor slider direction navigator skin 20 css */
+            /*
+            .jssord20l              (normal)
+            .jssord20r              (normal)
+            .jssord20l:hover        (normal mouseover)
+            .jssord20r:hover        (normal mouseover)
+            .jssord20ldn            (mousedown)
+            .jssord20rdn            (mousedown)
+            */
+            .jssord20l, .jssord20r, .jssord20ldn, .jssord20rdn
+            {
+            	position: absolute;
+            	cursor: pointer;
+            	display: block;
+                background: url(../img/d20.png) no-repeat;
+                overflow:hidden;
+            }
+            .jssord20l { background-position: -3px -33px; }
+            .jssord20r { background-position: -63px -33px; }
+            .jssord20l:hover { background-position: -123px -33px; }
+            .jssord20r:hover { background-position: -183px -33px; }
+            .jssord20ldn { background-position: -243px -33px; }
+            .jssord20rdn { background-position: -303px -33px; }
+        </style>
+        <!-- Arrow Left -->
+        <span u="arrowleft" class="jssord20l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+        </span>
+        <!-- Arrow Right -->
+        <span u="arrowright" class="jssord20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+        </span>
+        <!-- Direction Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

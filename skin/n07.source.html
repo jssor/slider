@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"> 
+    <title>Navigator Skin 07 - Jssor Slider, Slideshow with Javascript Source Code</title>
+</head> 
+<body style="margin:0;padding:0; background:#fff; font-family: Arial, Verdana, Sans-Serif;">
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+        jssor_slider1_starter = function (containerId) {
+
+            var options = {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $SlideSpacing: 5, 					                //[Optional] Space between each slide in pixels, default value is 0
+
+                $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+                    $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                    $SpacingX: 8,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                    $SpacingY: 8,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                    $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        }
+    </script>
+
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. --> 
+    <div id="slider1_container" style="position: relative; width: 960px;
+        height: 380px; overflow: hidden;">
+ 
+        <!-- Slides Container --> 
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 960px; height: 380px;
+            overflow: hidden;">
+            <div style="background-color:#181818;"></div>
+            <div style="background-color:#181818;"></div>
+            <div style="background-color:#181818;"></div>
+            <div style="background-color:#181818;"></div>
+        </div> 
+ 
+        <!-- Navigator Skin Begin -->
+        <!-- jssor slider navigator skin 07 -->
+        <style>
+            /*
+            .jssorn07 div           (normal)
+            .jssorn07 div:hover     (normal mouseover)
+            .jssorn07 .av           (active)
+            .jssorn07 .av:hover     (active mouseover)
+            .jssorn07 .dn           (mousedown)
+            */
+            .jssorn07 div, .jssorn07 div:hover, .jssorn07 .av
+            {
+                background: url(../img/n07.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorn07 div { background-position: -5px -5px; }
+            .jssorn07 div:hover, .jssorn07 .av:hover { background-position: -35px -5px; }
+            .jssorn07 .av { background-position: -65px -5px; }
+            .jssorn07 .dn, .jssorn07 .dn:hover { background-position: -95px -5px; }
+        </style>
+        <!-- navigator container -->
+        <div u="navigator" class="jssorn07" style="position: absolute; bottom: 16px; left: 6px;">
+            <!-- navigator item prototype -->
+            <div u="prototype" style="POSITION: absolute; WIDTH: 20px; HEIGHT: 20px;"></div>
+        </div>
+        <!-- Navigator Skin End -->
+
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a> 
+        <!-- Trigger --> 
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script> 
+    </div> 
+    <!-- Jssor Slider End --> 
+</body> 
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Thumbnail Navigator Skin 03 - Jssor Slider, Slideshow with Javascript Source Code</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+
+        jssor_slider1_starter = function (containerId) {
+            var jssor_slider = new $JssorSlider$(containerId, {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $AutoCenter: 3,                                 //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
+                    $Lanes: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                    $SpacingX: 3,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingY: 3,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                    $DisplayPieces: 9,                              //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 260,                          //[Optional] The offset position to park thumbnail
+                    $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                    $DisableDrag: false                            //[Optional] Disable drag or not, default value is false
+                }
+            });
+        };
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
+        height: 300px;">
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
+            <div>
+                <img u="image" src="../img/photography/002.jpg" />
+                <img u="thumb" src="../img/photography/thumb-002.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/003.jpg" />
+                <img u="thumb" src="../img/photography/thumb-003.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/004.jpg" />
+                <img u="thumb" src="../img/photography/thumb-004.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/005.jpg" />
+                <img u="thumb" src="../img/photography/thumb-005.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/006.jpg" />
+                <img u="thumb" src="../img/photography/thumb-006.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/007.jpg" />
+                <img u="thumb" src="../img/photography/thumb-007.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/008.jpg" />
+                <img u="thumb" src="../img/photography/thumb-008.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/009.jpg" />
+                <img u="thumb" src="../img/photography/thumb-009.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/010.jpg" />
+                <img u="thumb" src="../img/photography/thumb-010.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/011.jpg" />
+                <img u="thumb" src="../img/photography/thumb-011.jpg" />
+            </div>
+        </div>
+        
+        <!-- ThumbnailNavigator Skin Begin -->
+        <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0px; bottom: 0px;">
+            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
+
+            <!-- Thumbnail Item Skin Begin -->
+            <style>
+                /* jssor slider thumbnail navigator skin 03 css */
+                /*
+                .jssort03 .p            (normal)
+                .jssort03 .p:hover      (normal mouseover)
+                .jssort03 .pav          (active)
+                .jssort03 .pav:hover    (active mouseover)
+                .jssort03 .pdn          (mousedown)
+                */
+                .jssort03 .w, .jssort03 .pav:hover .w
+                {
+                	position: absolute;
+                	width: 60px;
+                	height: 30px;
+                	border: white 1px dashed;
+                }
+                * html .jssort03 .w
+                {
+                	width /**/: 62px;
+                	height /**/: 32px;
+                }
+                .jssort03 .pdn .w, .jssort03 .pav .w { border-style: solid; }
+                .jssort03 .c
+                {
+                	width: 62px;
+                	height: 32px;
+                	filter:  alpha(opacity=45);
+                	opacity: .45;
+                	
+                	transition: opacity .6s;
+                    -moz-transition: opacity .6s;
+                    -webkit-transition: opacity .6s;
+                    -o-transition: opacity .6s;
+                }
+                .jssort03 .p:hover .c, .jssort03 .pav .c
+                {
+                	filter:  alpha(opacity=0);
+                	opacity: 0;
+                }
+                .jssort03 .p:hover .c
+                {
+                	transition: none;
+                    -moz-transition: none;
+                    -webkit-transition: none;
+                    -o-transition: none;
+                }
+            </style>
+            <div u="slides" style="cursor: move;">
+                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
+                    <div class=w><ThumbnailTemplate style=" WIDTH: 100%; HEIGHT: 100%; border: none;position:absolute; TOP: 0; LEFT: 0;"></ThumbnailTemplate></div>
+                    <div class=c style="POSITION: absolute; BACKGROUND-COLOR: #000; TOP: 0; LEFT: 0">
+                    </div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!-- ThumbnailNavigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+<img width=0 height=0 />
+
+<!--<div id="debuginfo" style="width:300px;height:300px;background-color:Red;color:White;Padding:5px;"></div>-->
+</body>
+</html>
