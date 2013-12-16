@@ -53,14 +53,14 @@
                 }
             };
 
-            var jssor_slider = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
             function ScaleSlider() {
-                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
-                if (parentWidth)
-                    jssor_slider.$SetScaleWidth(Math.min(parentWidth, 960));
+                var bodyWidth = document.body.clientWidth;
+                if (bodyWidth)
+                    jssor_slider1.$SetScaleWidth(Math.min(bodyWidth, 960));
                 else
                     $JssorUtils$.$Delay(ScaleSlider, 30);
             }
