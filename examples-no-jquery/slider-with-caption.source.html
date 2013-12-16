@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Slide with Caption Example - Jssor Slider, Slideshow</title>
+</head>
+<body>
+
+    <!-- Caption Style -->
+    <style> 
+        .captionOrange, .captionBlack
+        {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .captionOrange
+        {
+            background: #EB5100;
+            background-color: rgba(235, 81, 0, 0.6);
+        }
+        .captionBlack
+        {
+        	font-size:16px;
+            background: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
+        {
+        	color: #ffffff;
+        	text-decoration: none;
+        }
+        a.captionOrange:hover
+        {
+            color: #eb5100;
+            text-decoration: underline;
+            background-color: #eeeeee;
+            background-color: rgba(238, 238, 238, 0.7);
+        }
+        .bricon
+        {
+            background: url(../img/browser-icons.png);
+        }
+    </style>
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+        //Reference http://www.jssor.com/developement/slider-with-caption.html
+        //Reference http://www.jssor.com/developement/reference-ui-definition.html#captiondefinition
+        //Reference http://www.jssor.com/developement/tool-caption-transition-viewer.html
+
+        jssor_slider1_starter = function (containerId) {
+            var _CaptionTransitions = [];
+            _CaptionTransitions["L"] = { $Duration: 800, $FlyDirection: 1, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["R"] = { $Duration: 800, $FlyDirection: 2, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["T"] = { $Duration: 800, $FlyDirection: 4, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["B"] = { $Duration: 800, $FlyDirection: 8, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["TL"] = { $Duration: 800, $FlyDirection: 5, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["TR"] = { $Duration: 800, $FlyDirection: 6, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["BL"] = { $Duration: 800, $FlyDirection: 9, $Easing: $JssorEasing$.$EaseInCubic };
+            _CaptionTransitions["BR"] = { $Duration: 800, $FlyDirection: 10, $Easing: $JssorEasing$.$EaseInCubic };
+
+            _CaptionTransitions["WAVE|L"] = { $Duration: 1500, $FlyDirection: 5, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseOutWave }, $ScaleVertical: 0.4, $Round: { $Top: 2.5} };
+            _CaptionTransitions["MCLIP|B"] = { $Duration: 600, $Clip: 8, $Move: true, $Easing: $JssorEasing$.$EaseOutExpo };
+
+            var options = {
+                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
+                    $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
+                    $CaptionTransitions: _CaptionTransitions,       //[Required] An array of caption transitions to play caption, see caption transition section at jssor slideshow transition builder
+                    $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
+                    $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        }
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" style="position: relative; width: 600px; height: 300px;">
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width:600px; height:300px; overflow: hidden;">
+            <!-- Slide -->
+            <div>
+                <img u="image" src="../img/landscape/01.jpg" />
+                <div u="caption" t="MCLIP|B" style="position: absolute; top: 250px; left: 0px;
+                    width: 600px; height: 50px;">
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        background-color: Black; opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        color: White; font-size: 16px; font-weight: bold; line-height: 50px; text-align: center;">
+                        Simple Caption Definition: &lt;div u="caption" t="MCLIP|B" ...&gt;&lt;div/&gt;
+                    </div>
+                </div>
+            </div>
+            <!-- Slide -->
+            <div>
+                <img u="image" src="../img/landscape/02.jpg" />
+                <div u="caption" t="MCLIP|B" t2="T" style="position: absolute; top: 250px; left: 0px;
+                    width: 600px; height: 50px;">
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        background-color: Black; opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        color: White; font-size: 16px; font-weight: bold; line-height: 50px; text-align: center;">
+                        Define both 't' and 't2': &lt;div u="caption" t="MCLIP|B" t2="T" ...&gt;&lt;div/&gt;
+                    </div>
+                </div>
+            </div>
+            <!-- Slide -->
+            <div>
+                <img u="image" src="../img/landscape/03.jpg" />
+                <div u="caption" t="NO" t2="MCLIP|B" style="position: absolute; top: 250px; left: 0px;
+                    width: 600px; height: 50px;">
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        background-color: Black; opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        color: White; font-size: 16px; font-weight: bold; line-height: 50px; text-align: center;">
+                        Disable 'Play In': &lt;div u="caption" t="NO" t2="MCLIP|B" ...&gt;&lt;div/&gt;
+                    </div>
+                </div>
+            </div>
+            <!-- Slide -->
+            <div>
+                <img u="image" src="../img/landscape/04.jpg" />
+                <div u="caption" t="MCLIP|B" t2="NO" style="position: absolute; top: 250px; left: 0px;
+                    width: 600px; height: 50px;">
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        background-color: Black; opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div style="position: absolute; top: 0px; left: 0px; width: 600px; height: 50px;
+                        color: White; font-size: 16px; font-weight: bold; line-height: 50px; text-align: center;">
+                        Disable 'Play Out': &lt;div u="caption" t="MCLIP|B" t2="NO" ...&gt;&lt;div/&gt;
+                    </div>
+                </div>
+            </div>
+            <!-- Slide -->
+            <div>
+                <img u="image" src="../img/landscape/05.jpg" />
+                <div u="caption" t="WAVE|L" class=bricon style="position:absolute; top:160px; left: 520px; width:30px; height:30px; background-position: -120px 0px;"></div>
+                <div u="caption" t="WAVE|L" d="-1350" class=bricon style="position:absolute; top:160px; left: 470px; width:30px; height:30px; background-position: -90px 0px;"></div>
+                <div u="caption" t="WAVE|L" d="-1350" class=bricon style="position:absolute; top:160px; left: 420px; width:30px; height:30px; background-position: -60px 0px;"></div>
+                <div u="caption" t="WAVE|L" d="-1350" class=bricon style="position:absolute; top:160px; left: 370px; width:30px; height:30px; background-position: -30px 0px;"></div>
+                <div u="caption" t="WAVE|L" d="-1350" class=bricon style="position:absolute; top:160px; left: 320px; width:30px; height:30px; background-position: 0px 0px;"></div>
+                
+            </div>
+        </div>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

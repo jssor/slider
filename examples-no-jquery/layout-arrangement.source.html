@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Layout Arrangement Example - Jssor Slider, Slideshow</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script>
+        jssor_slider1_starter = function (containerId) {
+            var options = {
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $NavigatorOptions: {
+                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2                                //[Required] 0 Never, 1 Mouse Over, 2 Always
+                },
+
+                $DirectionNavigatorOptions: {
+                    $Class: $JssorDirectionNavigator$,              //[Required] Class to create direction navigator instance
+                    $ChanceToShow: 2                                //[Required] 0 Never, 1 Mouse Over, 2 Always
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        }
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" class=slider1 title="Outer Container" style="position: relative; width: 800px; height: 400px; background-color: Gray;">
+
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div u="slides" title="Slides Container" style="cursor: move; position: absolute; left: 100px; top: 50px; width: 600px;
+            height: 300px; overflow: hidden;">
+            <!-- Slide -->
+            <div style="position: absolute; overflow: hidden; background-color: Navy; line-height: 300px;
+                font-size: 16px; font-weight: bold; line-height: 300px; text-align: center; color: White">
+                Animation plays in "Slides Container"
+            </div>
+            <!-- Slide -->
+            <div style="position: absolute; overflow: hidden; background-color: Navy; line-height: 300px;
+                font-size: 16px; font-weight: bold; line-height: 300px; text-align: center; color: White">
+                Animation plays in "Slides Container"
+            </div>
+            <!-- Slide -->
+            <div style="position: absolute; overflow: hidden; background-color: Navy; line-height: 300px;
+                font-size: 16px; font-weight: bold; line-height: 300px; text-align: center; color: White">
+                Animation plays in "Slides Container"
+            </div>
+            <!-- Slide -->
+            <div style="position: absolute; overflow: hidden; background-color: Navy; line-height: 300px;
+                font-size: 16px; font-weight: bold; line-height: 300px; text-align: center; color: White">
+                Animation plays in "Slides Container"
+            </div>
+        </div>
+        
+        <!-- Navigator Skin Begin -->
+        <style>
+            /* jssor slider navigator skin 04 css */
+            /*
+            .jssorn03 div           (normal)
+            .jssorn03 div:hover     (normal mouseover)
+            .jssorn03 .av           (active)
+            .jssorn03 .av:hover     (active mouseover)
+            .jssorn03 .dn           (mousedown)
+            */
+            .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+            {
+                background: url(../img/n03.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorn03 div { background-position: -5px -4px; }
+            .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
+            .jssorn03 .av { background-position: -65px -4px; }
+            .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+        </style>
+        <!-- navigator container -->
+        <div u="navigator" class="jssorn03" title="This is navigator" style="position: absolute; bottom: 4px; left: 6px; background-color: #ff0000;">
+            <!-- navigator item prototype -->
+            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+        </div>
+        <!-- Navigator Skin End -->
+        
+        <!-- DirectionNavigator Skin Begin -->
+        <style>
+            /* jssor slider direction navigator skin 03 css */
+            /*
+            .jssord03l              (normal)
+            .jssord03r              (normal)
+            .jssord03l:hover        (normal mouseover)
+            .jssord03r:hover        (normal mouseover)
+            .jssord03ldn            (mousedown)
+            .jssord03rdn            (mousedown)
+            */
+            .jssord03l, .jssord03r, .jssord03ldn, .jssord03rdn
+            {
+            	position: absolute;
+            	cursor: pointer;
+            	display: block;
+                background: url(../img/d03.png) no-repeat;
+                overflow:hidden;
+            }
+            .jssord03l { background-position: -3px -33px; }
+            .jssord03r { background-position: -63px -33px; }
+            .jssord03l:hover { background-position: -123px -33px; }
+            .jssord03r:hover { background-position: -183px -33px; }
+            .jssord03ldn { background-position: -243px -33px; }
+            .jssord03rdn { background-position: -303px -33px; }
+        </style>
+        <!-- Arrow Left -->
+        <span u="arrowleft" class="jssord03l" title="This is arrowleft" style="width: 55px; height: 55px; bottom: 10px; right: 150px;background-color:darkgreen;">
+        </span>
+        <!-- Arrow Right -->
+        <span u="arrowright" class="jssord03r" title="This is arrow right" style="width: 55px; height: 55px; bottom: 10px; right: 50px;background-color:darkgreen;">
+        </span>
+        <!-- DirectionNavigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

@@ -19,7 +19,7 @@
 
             var nestedSliders = [];
 
-            $JssorUtils$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
+            $.each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (index, containerId) {
                 var nestedSliderOptions = {
                     $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                     $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
@@ -75,7 +75,7 @@
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
 
             function OnMainSliderPark(currentIndex, fromIndex) {
-                $JssorUtils$.$Each(nestedSliders, function (nestedSlider) {
+                $.each(nestedSliders, function (index, nestedSlider) {
                     nestedSlider.$Pause();
                 });
 

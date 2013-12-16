@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Youtube Video Gallery Slider Example - Jssor Slider, Slideshow</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.core.js"></script>
+    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <!-- use jssor.slider.player.ytiframe.min.js for release -->
+    <script type="text/javascript" src="../js/jssor.player.ytiframe.js"></script>
+    <script>
+        jssor_slider1_starter = function (containerId) {
+            var options = {
+                $AutoPlay: true,                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $DragOrientation: 3,                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $AutoPlayInterval: 4000,            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 3,                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
+                $ArrowKeyNavigation: true,   		//[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+
+                $NavigatorOptions: {                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorNavigator$,       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2,               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $ActionMode: 1,                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $AutoCenter: 1,                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1,                      //[Optional] Steps to go for each navigation request, default value is 1
+                    $Lanes: 1,                      //[Optional] Specify lanes to arrange items, default value is 1
+                    $SpacingX: 10,                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                    $SpacingY: 0,                   //[Optional] Vertical space between each item in pixel, default value is 0
+                    $Orientation: 1                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 640));
+                else
+                    $JssorUtils$.$Delay(ScaleSlider, 30);
+            }
+
+            //Scale slider immediately
+            ScaleSlider();
+            //Scale slider after window load
+            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
+
+            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+            }
+            //responsive code end
+
+            //fetch and initialize youtube players
+            $JssorPlayer$.$FetchPlayers(document.body);
+        };
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 640px;
+        height: 390px;">
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 640px; height: 390px;
+            overflow: hidden;">
+            <div>
+                <div u="player" style="position: relative; top: 0px; left: 0px; width: 640px; height: 390px; overflow: hidden;">
+                    <!-- iframe in ebay page is not allowed, youtube iframe video is not supported for ebay listing -->
+                    <iframe pHandler="ytiframe" pHideControls="0" width="640" height="390" style="z-index: 0;" url="http://www.youtube.com/embed/H7jtC8vjXw8?enablejsapi=1&version=3&playerapiid=ytplayer&fs=1&wmode=transparent" frameborder="0" scrolling="no"></iframe>
+                    <!-- play cover begin (optional, can remove play cover) -->
+                    <div u="cover" class="videoCover" style="position: absolute; top: 0px; left: 0px; background-color: #000; background-image: url(../img/play.png); background-position: center center; background-repeat: no-repeat; filter: alpha(opacity=40); opacity: .4; cursor: pointer; display: none; z-index: 1;"></div>
+                    <!-- play cover end -->
+                    <!-- close button begin (optional, can remove close button) -->
+                    <style>
+                        .closeButton { background-image: url(../img/close.png); }
+                        .closeButton:hover { background-position: -30px 0px; }
+                    </style>
+                    <div u="close" class="closeButton" style="position: absolute; top: 0px; right: 1px;
+                        width: 30px; height: 30px; background-color: #000; cursor: pointer; display: none; z-index: 2;">
+                    </div>
+                    <!-- close button end -->
+                </div>
+            </div>
+            <div>
+                <div u="player" style="position: relative; top: 0px; left: 0px; width: 640px; height: 390px; overflow: hidden;">
+                    <!-- iframe in ebay page is not allowed, youtube iframe video is not supported for ebay listing -->
+                    <iframe pHandler="ytiframe" pHideControls="0" width="640" height="390" style="z-index: 0;" url="http://www.youtube.com/embed/QjKO10hKtYw?enablejsapi=1&version=3&playerapiid=ytplayer&fs=1&wmode=transparent" frameborder="0" scrolling="no"></iframe>
+                    <!-- play cover begin (optional, can remove play cover) -->
+                    <div u="cover" class="videoCover" style="position: absolute; top: 0px; left: 0px; background-color: #000; background-image: url(../img/play.png); background-position: center center; background-repeat: no-repeat; filter: alpha(opacity=40); opacity: .4; cursor: pointer; display: none; z-index: 1;"></div>
+                    <!-- play cover end -->
+                    <!-- close button begin (optional, can remove close button) -->
+                    <style>
+                        .closeButton { background-image: url(../img/close.png); }
+                        .closeButton:hover { background-position: -30px 0px; }
+                    </style>
+                    <div u="close" class="closeButton" style="position: absolute; top: 0px; right: 1px;
+                        width: 30px; height: 30px; background-color: #000; cursor: pointer; display: none; z-index: 2;">
+                    </div>
+                    <!-- close button end -->
+                </div>
+            </div>
+            <div>
+                <div u="player" style="position: relative; top: 0px; left: 0px; width: 640px; height: 390px; overflow: hidden;">
+                    <!-- iframe in ebay page is not allowed, youtube iframe video is not supported for ebay listing -->
+                    <iframe pHandler="ytiframe" pHideControls="0" width="640" height="390" style="z-index: 0;" url="http://www.youtube.com/embed/b-3BI9AspYc?enablejsapi=1&version=3&playerapiid=ytplayer&fs=1&wmode=transparent" frameborder="0" scrolling="no"></iframe>
+                    <!-- play cover begin (optional, can remove play cover) -->
+                    <div u="cover" class="videoCover" style="position: absolute; top: 0px; left: 0px; background-color: #000; background-image: url(../img/play.png); background-position: center center; background-repeat: no-repeat; filter: alpha(opacity=40); opacity: .4; cursor: pointer; display: none; z-index: 1;"></div>
+                    <!-- play cover end -->
+                    <!-- close button begin (optional, can remove close button) -->
+                    <style>
+                        .closeButton { background-image: url(../img/close.png); }
+                        .closeButton:hover { background-position: -30px 0px; }
+                    </style>
+                    <div u="close" class="closeButton" style="position: absolute; top: 0px; right: 1px;
+                        width: 30px; height: 30px; background-color: #000; cursor: pointer; display: none; z-index: 2;">
+                    </div>
+                    <!-- close button end -->
+                </div>
+            </div>
+            <div>
+                <div u="player" style="position: relative; top: 0px; left: 0px; width: 640px; height: 390px; overflow: hidden;">
+                    <!-- iframe in ebay page is not allowed, youtube iframe video is not supported for ebay listing -->
+                    <iframe pHandler="ytiframe" pHideControls="0" width="640" height="390" style="z-index: 0;" url="http://www.youtube.com/embed/YbT0xy_Jai0?enablejsapi=1&version=3&playerapiid=ytplayer&fs=1&wmode=transparent" frameborder="0" scrolling="no"></iframe>
+                    <!-- play cover begin (optional, can remove play cover) -->
+                    <div u="cover" class="videoCover" style="position: absolute; top: 0px; left: 0px; background-color: #000; background-image: url(../img/play.png); background-position: center center; background-repeat: no-repeat; filter: alpha(opacity=40); opacity: .4; cursor: pointer; display: none; z-index: 1;"></div>
+                    <!-- play cover end -->
+                    <!-- close button begin (optional, can remove close button) -->
+                    <style>
+                        .closeButton { background-image: url(../img/close.png); }
+                        .closeButton:hover { background-position: -30px 0px; }
+                    </style>
+                    <div u="close" class="closeButton" style="position: absolute; top: 0px; right: 1px;
+                        width: 30px; height: 30px; background-color: #000; cursor: pointer; display: none; z-index: 2;">
+                    </div>
+                    <!-- close button end -->
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Navigator Skin Begin -->
+        <style>
+            /* jssor slider navigator skin 03 css */
+            /*
+            .jssorn03 div           (normal)
+            .jssorn03 div:hover     (normal mouseover)
+            .jssorn03 .av           (active)
+            .jssorn03 .av:hover     (active mouseover)
+            .jssorn03 .dn           (mousedown)
+            */
+            .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+            {
+                background: url(../img/n03.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorn03 div { background-position: -5px -4px; }
+            .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
+            .jssorn03 .av { background-position: -65px -4px; }
+            .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+        </style>
+        <!-- navigator container -->
+        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 6px; left: 6px;">
+            <!-- navigator item prototype -->
+            <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><NumberTemplate></NumberTemplate></div>
+        </div>
+        <!-- Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slideshow</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

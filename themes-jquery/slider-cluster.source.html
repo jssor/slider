@@ -335,7 +335,24 @@
 
             var jssorSlider3 = new $JssorSlider$("slider3_container", slider3Options);
 
-            var sliderClusterSlideshowOptions = ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserEngineVersion() < 8) ? null : {                                //[Optional] Options to specify and enable slideshow or not
+            function IsBrowserIe8Earlier() {
+                var isBrowserIe8Earlier;
+
+                var app = navigator.appName;
+                var ua = navigator.userAgent;
+
+                if (app == "Microsoft Internet Explorer" &&
+                !!window.attachEvent && !!window.ActiveXObject) {
+
+                    var ieOffset = ua.indexOf("MSIE");
+
+                    browserRuntimeVersion = document.documentMode || parseFloat(ua.substring(ieOffset + 5, ua.indexOf(";", ieOffset)));
+
+                    isBrowserIe8Earlier = browserRuntimeVersion < 8;
+                }
+            }
+
+            var sliderClusterSlideshowOptions = IsBrowserIe8Earlier ? null : {                                //[Optional] Options to specify and enable slideshow or not
                 $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
                 $Transitions: slideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
                 $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
@@ -381,11 +398,11 @@
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
             function ScaleSlider() {
-                var windowWidth = $JssorUtils$.$GetWindowSize(window).x;
-                if (windowWidth)
-                    jssorSliderc.$SetScaleWidth(Math.max(Math.min(windowWidth, 960), 300));
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssorSliderc.$SetScaleWidth(Math.max(Math.min(parentWidth, 960), 300));
                 else
-                    $JssorUtils$.$Delay(ScaleSlider, 30);
+                    window.setTimeout(ScaleSlider, 30);
             }
 
             ScaleSlider();
