@@ -10,7 +10,7 @@ Overview
 
 What you get with jssor slider?
 --------------------------------------
-image slider, content slider, slideshow, image gallery, banner rotator, banner slider, grid slider, list slider
+[image slider](http://www.jssor.com/demos/image-slider.html), [content slider](http://www.jssor.com/demos/content-slider.html), [image gallery](http://www.jssor.com/demos/image-gallery.html), [banner slider](http://www.jssor.com/demos/banner-slider.html), [grid slider](http://www.jssor.com/demos/grid-slider.html), [list slider](http://www.jssor.com/demos/list-slider.html), [banner rotator](http://www.jssor.com/demos/banner-rotator.html), [photo slideshow](http://www.jssor.com/demos/x-fade.html)
 
 Why jssor slider?
 --------------------------------------
