@@ -2472,7 +2472,7 @@ new function () {
             if (displayIndex > _DisplayPieces) {
                 if (index - _CurrentSlideIndex > _SlideCount / 2)
                     index -= _SlideCount;
-                else
+                else if(index - _CurrentSlideIndex <= -_SlideCount / 2)
                     index += _SlideCount;
             }
             else {
@@ -2929,13 +2929,13 @@ new function () {
 
     window.$JssorSlider$ = $JssorSlider$ = JssorSlider;
 
-    //(function ($) {
-    //    jQuery.fn.jssorSlider = function (options) {
-    //        return this.each(function () {
-    //            return $(this).data('jssorSlider') || $(this).data('jssorSlider', new JssorSlider(this, options));
-    //        });
-    //    };
-    //})(jQuery);
+    (function ($) {
+        jQuery.fn.jssorSlider = function (options) {
+            return this.each(function () {
+                return $(this).data('jssorSlider') || $(this).data('jssorSlider', new JssorSlider(this, options));
+            });
+        };
+    })(jQuery);
 
     //window.jQuery && (jQuery.fn.jssorSlider = function (options) {
     //    return this.each(function () {
