@@ -216,9 +216,9 @@
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
             function ScaleSlider() {
-                var windowWidth = $JssorUtils$.$GetWindowSize(window).x;
-                if (windowWidth)
-                    jssor_slider1.$SetScaleWidth(Math.min(windowWidth, 600));
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 600));
                 else
                     $JssorUtils$.$Delay(ScaleSlider, 30);
             }
