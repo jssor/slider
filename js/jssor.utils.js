@@ -1123,11 +1123,13 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$EnableHWA = function (elmt) {
-        elmt.style[GetTransformProperty(elmt)] = "perspective(2000px)";
+        if (!elmt.style[GetTransformProperty(elmt)] || elmt.style[GetTransformProperty(elmt)] == "none")
+            elmt.style[GetTransformProperty(elmt)] = "perspective(2000px)";
     };
 
     self.$DisableHWA = function (elmt) {
-        elmt.style[GetTransformProperty(elmt)] = "none";
+        if (elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
+            elmt.style[GetTransformProperty(elmt)] = "none";
     };
 
     self.$GetStyleFloat = function (elmt) {
