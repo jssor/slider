@@ -1128,8 +1128,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$DisableHWA = function (elmt) {
-        if (elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
-            elmt.style[GetTransformProperty(elmt)] = "none";
+        //if (force || elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
+        elmt.style[GetTransformProperty(elmt)] = "none";
     };
 
     self.$GetStyleFloat = function (elmt) {
