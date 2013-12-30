@@ -1066,8 +1066,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     function SetStyleTransformInternal(elmt, transform) {
         var rotate = transform.$Rotate || 0;
         var scale = transform.$Scale || 1;
-        //var rotate = Math.round((transform.$Rotate || 0) * 100) / 100;
-        //var scale = Math.round((transform.$Scale == 0 ? 0 : (transform.$Scale || 1)) * 2000) / 2000;
 
         if (IsBrowserIe9Earlier()) {
             var matrix = self.$CreateMatrix(rotate / 180 * Math.PI, scale, scale);
@@ -1079,13 +1077,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             if (transformProperty) {
                 var transformValue = "rotate(" + rotate % 360 + "deg) scale(" + scale + ")";
                 if ($JssorUtils$.$IsBrowserChrome() && webkitVersion > 535)
-                    transformValue += "perspective(2000px)";
-
-                //var oldTransformValue = elmt.style[transformProperty];
-                //var rotateReg = new RegExp(/[\s]*rotate\(.*?\)/g);
-                //var scaleReg = new RegExp(/[\s]*scale\(.*?\)/g);
-
-                //var newTransformValue = BuildNewCss(oldTransformValue, [rotateReg, scaleReg], transformValue);
+                    transformValue += " perspective(2000px)";
 
                 elmt.style[transformProperty] = transformValue;
             }
@@ -1697,7 +1689,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$SetStyleTop = function (elmt, top) {
-        elmt.style.top = Math.round(top * 100) / 100 + "px";
+        elmt.style.top = top + "px";
     };
 
     self.$GetStyleRight = function (elmt) {
@@ -1721,7 +1713,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$SetStyleLeft = function (elmt, left) {
-        elmt.style.left = Math.round(left * 100) / 100 + "px";
+        elmt.style.left = left + "px";
     };
 
     self.$GetStyleWidth = function (elmt) {
@@ -2453,7 +2445,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     function PlayFrame() {
         if (_AutoPlay) {
             var now = $JssorUtils$.$GetNow();
-            var timeOffset = Math.min(now - _TimeStampLastFrame, 30);
+            var timeOffset = Math.min(now - _TimeStampLastFrame, $JssorUtils$.$IsBrowserOpera() ? 80 : 20);
             var timePosition = _Position_Current + timeOffset * _PlayDirection;
             _TimeStampLastFrame = now;
 

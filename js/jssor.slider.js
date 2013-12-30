@@ -1583,7 +1583,10 @@ new function () {
                         $JssorUtils$.$SetStyleZIndex(elmt, $JssorUtils$.$GetStyleZIndex(elmt) + 1);
                     }
                     if ($JssorUtils$.$GetWebKitVersion() > 0) {
-                        if ((_HandleTouchEventOnly && ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $JssorUtils$.$GetWebKitVersion() < 535)) {
+                        //if ((_HandleTouchEventOnly && ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $JssorUtils$.$GetWebKitVersion() < 535)) {
+                        //    $JssorUtils$.$EnableHWA(elmt);
+                        //}
+                        if (!_HandleTouchEventOnly || ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) {
                             $JssorUtils$.$EnableHWA(elmt);
                         }
                     }
@@ -1894,9 +1897,20 @@ new function () {
 
         function SetPosition(elmt, position) {
             var orientation = _DragOrientation > 0 ? _DragOrientation : _Options.$PlayOrientation;
+            var x = Math.round(_StepLengthX * position * (orientation & 1));
+            var y = Math.round(_StepLengthY * position * ((orientation >> 1) & 1));
 
-            $JssorUtils$.$SetStyleLeft(elmt, Math.round(_StepLengthX * position * (orientation & 1)));
-            $JssorUtils$.$SetStyleTop(elmt, Math.round(_StepLengthY * position * ((orientation >> 1) & 1)));
+            if ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserVersion() >= 10 && $JssorUtils$.$GetBrowserVersion() < 11) {
+                elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
+            }
+            else if ($JssorUtils$.$IsBrowserChrome() && $JssorUtils$.$GetBrowserVersion() >= 30) {
+                elmt.style.WebkitTransition = "transform 0s";
+                elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
+            }
+            else {
+                $JssorUtils$.$SetStyleLeft(elmt, x);
+                $JssorUtils$.$SetStyleTop(elmt, y);
+            }
         }
 
         //Event handling begin
@@ -2472,7 +2486,7 @@ new function () {
             if (displayIndex > _DisplayPieces) {
                 if (index - _CurrentSlideIndex > _SlideCount / 2)
                     index -= _SlideCount;
-                else if(index - _CurrentSlideIndex <= -_SlideCount / 2)
+                else if (index - _CurrentSlideIndex <= -_SlideCount / 2)
                     index += _SlideCount;
             }
             else {
@@ -2929,13 +2943,13 @@ new function () {
 
     window.$JssorSlider$ = $JssorSlider$ = JssorSlider;
 
-    (function ($) {
-        jQuery.fn.jssorSlider = function (options) {
-            return this.each(function () {
-                return $(this).data('jssorSlider') || $(this).data('jssorSlider', new JssorSlider(this, options));
-            });
-        };
-    })(jQuery);
+    //(function ($) {
+    //    jQuery.fn.jssorSlider = function (options) {
+    //        return this.each(function () {
+    //            return $(this).data('jssorSlider') || $(this).data('jssorSlider', new JssorSlider(this, options));
+    //        });
+    //    };
+    //})(jQuery);
 
     //window.jQuery && (jQuery.fn.jssorSlider = function (options) {
     //    return this.each(function () {
@@ -3641,7 +3655,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             $Easing: transition.$Easing,
             $Round: transition.$Round,
             $During: transition.$During,
-            $Reverse: playIn,
+            $Reverse: playIn && !immediateOut,
             $Optimize: true
         };
 
