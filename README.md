@@ -6,11 +6,11 @@ Overview
 
 1. [30+ Live Demos](http://www.jssor.com)
 2. [Documentation](http://www.jssor.com/developement/index.html)
-3. Support: [Ask question on StackOverflow](http://stackoverflow.com/questions/tagged/jssor)
+3. Support: [Ask question on StackOverflow](http://stackoverflow.com/search?tab=relevance&q=jssor)
 
 What you get with jssor slider?
 --------------------------------------
-image slider, content slider, slideshow, image gallery, banner rotator, banner slider, grid slider, list slider
+image slider, content slider, image gallery, banner slider, grid slider, list slider, banner rotator, photo slideshow
 
 Why jssor slider?
 --------------------------------------
