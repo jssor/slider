@@ -64,7 +64,7 @@
                 if (bodyWidth)
                     jssor_slider1.$SetScaleWidth(Math.min(bodyWidth, 960));
                 else
-                    $JssorUtils$.$Delay(ScaleSlider, 30);
+                    window.setTimeout(ScaleSlider, 30);
             }
 
             ScaleSlider();

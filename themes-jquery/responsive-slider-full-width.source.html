@@ -83,14 +83,13 @@
                 if (bodyWidth)
                     jssor_slider1.$SetScaleWidth(Math.min(bodyWidth, 1920));
                 else
-                    $JssorUtils$.$Delay(ScaleSlider, 30);
+                    window.setTimeout(ScaleSlider, 30);
             }
 
             ScaleSlider();
-            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+                $(window).bind('resize', ScaleSlider);
             }
             //responsive code end
         });
