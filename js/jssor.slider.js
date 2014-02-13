@@ -1833,6 +1833,10 @@ new function () {
                     var stateEvent = JssorSlider.$EVT_STATE_CHANGE;
 
                     if (currentPosition == _ProgressEnd) {
+
+                        if (_IdleEnd == _ProgressEnd)
+                            _SelfProcessor.$GoToPosition(_IdleBegin);
+
                         return slideItem.$GoForNextSlide();
                     }
                     else if (currentPosition == _IdleEnd) {
@@ -2382,6 +2386,13 @@ new function () {
             return _IsSliding;
         };
 
+        _SelfSlider.$IsMouseOver = function () {
+            ///	<summary>
+            ///		instance.$IsMouseOver();   //Retrieve mouse over status of the slider.
+            ///	</summary>
+            return !_HoverStatus;
+        };
+
         _SelfSlider.$LastDragSucceded = function () {
             ///	<summary>
             ///		instance.$IsLastDragSucceded();   //Retrieve last drag succeded status, returns 0 if failed, returns drag offset if succeded
@@ -2427,77 +2438,76 @@ new function () {
                 }
             });
 
-            if (!_SlideshowEnabled || !$JssorUtils$.$IsBrowserIE() || $JssorUtils$.$GetBrowserVersion() >= 8) {
-                if (!_ScaleWrapper) {
-                    $JssorDebug$.$Execute(function () {
-                        var originalWidthStr = elmt.style.width;
-                        var originalHeightStr = elmt.style.height;
-                        var originalWidth = $JssorUtils$.$GetStyleWidth(elmt);
-                        var originalHeight = $JssorUtils$.$GetStyleHeight(elmt);
-
-                        if (!originalWidthStr) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not specified. Please specify 'width' in pixel.");
-                        }
-
-                        if (!originalHeightStr) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not specified. Please specify 'height' in pixel.");
-                        }
-
-                        if (originalWidthStr.indexOf('%') != -1) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. Please specify 'width' in pixel.");
-                        }
-
-                        if (originalHeightStr.indexOf('%') != -1) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not valid. Please specify 'height' in pixel.");
-                        }
-
-                        if (!originalWidth) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. 'width' of 'outer container' should be positive.");
-                        }
-
-                        if (!originalHeight) {
-                            $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not valid. 'height' of 'outer container' should be positive.");
-                        }
-                    });
-
-                    var innerWrapper = $JssorUtils$.$CloneNode(elmt, false);
-                    $JssorUtils$.$RemoveAttribute(innerWrapper, "id");
-                    $JssorUtils$.$SetStylePosition(innerWrapper, "relative");
-                    $JssorUtils$.$SetStyleTop(innerWrapper, 0);
-                    $JssorUtils$.$SetStyleLeft(innerWrapper, 0);
-
-                    _ScaleWrapper = $JssorUtils$.$CloneNode(elmt, false);
-                    $JssorUtils$.$RemoveAttribute(_ScaleWrapper, "id");
-                    $JssorUtils$.$SetStyleCssText(_ScaleWrapper, "");
-                    $JssorUtils$.$SetStylePosition(_ScaleWrapper, "absolute");
-                    $JssorUtils$.$SetStyleTop(_ScaleWrapper, 0);
-                    $JssorUtils$.$SetStyleLeft(_ScaleWrapper, 0);
-                    $JssorUtils$.$SetStyleWidth(_ScaleWrapper, $JssorUtils$.$GetStyleWidth(elmt));
-                    $JssorUtils$.$SetStyleHeight(_ScaleWrapper, $JssorUtils$.$GetStyleHeight(elmt));
-                    $JssorUtils$.$SetStyleTransformOrigin(_ScaleWrapper, "0 0");
-
-                    $JssorUtils$.$AppendChild(_ScaleWrapper, innerWrapper);
-
-                    var children = $JssorUtils$.$GetChildren(elmt);
-                    $JssorUtils$.$AppendChild(elmt, _ScaleWrapper);
-                    $JssorUtils$.$AppendChildren(innerWrapper, children);
-
-                    $JssorUtils$.$ShowElement(innerWrapper);
-                    $JssorUtils$.$ShowElement(_ScaleWrapper);
-                }
-
+            if (!_ScaleWrapper) {
                 $JssorDebug$.$Execute(function () {
-                    if (!_InitialScrollWidth) {
-                        _InitialScrollWidth = _SelfSlider.$Elmt.scrollWidth;
+                    var originalWidthStr = elmt.style.width;
+                    var originalHeightStr = elmt.style.height;
+                    var originalWidth = $JssorUtils$.$GetStyleWidth(elmt);
+                    var originalHeight = $JssorUtils$.$GetStyleHeight(elmt);
+
+                    if (!originalWidthStr) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not specified. Please specify 'width' in pixel.");
+                    }
+
+                    if (!originalHeightStr) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not specified. Please specify 'height' in pixel.");
+                    }
+
+                    if (originalWidthStr.indexOf('%') != -1) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. Please specify 'width' in pixel.");
+                    }
+
+                    if (originalHeightStr.indexOf('%') != -1) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not valid. Please specify 'height' in pixel.");
+                    }
+
+                    if (!originalWidth) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. 'width' of 'outer container' should be positive.");
+                    }
+
+                    if (!originalHeight) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not valid. 'height' of 'outer container' should be positive.");
                     }
                 });
 
-                _ScaleRatio = width / $JssorUtils$.$GetStyleWidth(_ScaleWrapper);
-                $JssorUtils$.$SetStyleScale(_ScaleWrapper, _ScaleRatio);
+                var innerWrapper = $JssorUtils$.$CloneNode(elmt, false);
+                $JssorUtils$.$RemoveAttribute(innerWrapper, "id");
+                $JssorUtils$.$SetStylePosition(innerWrapper, "relative");
+                $JssorUtils$.$SetStyleTop(innerWrapper, 0);
+                $JssorUtils$.$SetStyleLeft(innerWrapper, 0);
+                $JssorUtils$.$SetStyleOverflow(innerWrapper, "visible");
 
-                $JssorUtils$.$SetStyleWidth(elmt, width);
-                $JssorUtils$.$SetStyleHeight(elmt, _ScaleRatio * $JssorUtils$.$GetStyleHeight(_ScaleWrapper));
+                _ScaleWrapper = $JssorUtils$.$CloneNode(elmt, false);
+                $JssorUtils$.$RemoveAttribute(_ScaleWrapper, "id");
+                $JssorUtils$.$SetStyleCssText(_ScaleWrapper, "");
+                $JssorUtils$.$SetStylePosition(_ScaleWrapper, "absolute");
+                $JssorUtils$.$SetStyleTop(_ScaleWrapper, 0);
+                $JssorUtils$.$SetStyleLeft(_ScaleWrapper, 0);
+                $JssorUtils$.$SetStyleWidth(_ScaleWrapper, $JssorUtils$.$GetStyleWidth(elmt));
+                $JssorUtils$.$SetStyleHeight(_ScaleWrapper, $JssorUtils$.$GetStyleHeight(elmt));
+                $JssorUtils$.$SetStyleTransformOrigin(_ScaleWrapper, "0 0");
+
+                $JssorUtils$.$AppendChild(_ScaleWrapper, innerWrapper);
+
+                var children = $JssorUtils$.$GetChildren(elmt);
+                $JssorUtils$.$AppendChild(elmt, _ScaleWrapper);
+                $JssorUtils$.$AppendChildren(innerWrapper, children);
+
+                $JssorUtils$.$ShowElement(innerWrapper);
+                $JssorUtils$.$ShowElement(_ScaleWrapper);
             }
+
+            $JssorDebug$.$Execute(function () {
+                if (!_InitialScrollWidth) {
+                    _InitialScrollWidth = _SelfSlider.$Elmt.scrollWidth;
+                }
+            });
+
+            _ScaleRatio = width / $JssorUtils$.$GetStyleWidth(_ScaleWrapper);
+            $JssorUtils$.$SetStyleScale(_ScaleWrapper, _ScaleRatio);
+
+            $JssorUtils$.$SetStyleWidth(elmt, width);
+            $JssorUtils$.$SetStyleHeight(elmt, _ScaleRatio * $JssorUtils$.$GetStyleHeight(_ScaleWrapper));
         };
 
         _SelfSlider.$GetVirtualIndex = function (index) {
@@ -2785,7 +2795,7 @@ new function () {
                     }
                 });
 
-                _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass;
+                _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass && (!$JssorUtils$.$IsBrowserIE() || $JssorUtils$.$GetBrowserVersion() >= 8);
             }
 
             _ParkingPosition = (_SlideshowEnabled || _DisplayPieces >= _SlideCount) ? 0 : _Options.$ParkingPosition;

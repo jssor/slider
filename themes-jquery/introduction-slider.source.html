@@ -4,44 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"> 
     <title>Introduction Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
-    <!-- Caption Style -->
-    <style> 
-        .captionOrange, .captionBlack
-        {
-            color: #fff;
-            font-size: 20px;
-            line-height: 30px;
-            text-align: center;
-            border-radius: 4px;
-        }
-        .captionOrange
-        {
-            background: #EB5100;
-            background-color: rgba(235, 81, 0, 0.6);
-        }
-        .captionBlack
-        {
-        	font-size:16px;
-            background: #000;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
-        {
-        	color: #ffffff;
-        	text-decoration: none;
-        }
-        a.captionOrange:hover
-        {
-            color: #eb5100;
-            text-decoration: underline;
-            background-color: #eeeeee;
-            background-color: rgba(238, 238, 238, 0.7);
-        }
-        .bricon
-        {
-            background: url(../img/browser-icons.png);
-        }
-    </style>
 </head> 
 <body style="margin:0;padding:0; background:#fff; font-family: Arial, Verdana, Sans-Serif;"> 
     <!-- Caption Style -->
@@ -243,7 +205,7 @@
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth)
-                    jssor_slider1.$SetScaleWidth(Math.max(Math.min(parentWidth, 960), 300));
+                    jssor_slider1.$SetScaleWidth(Math.max(Math.min(parentWidth, 980), 300));
                 else
                     window.setTimeout(ScaleSlider, 30);
             }
@@ -259,7 +221,7 @@
 
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. --> 
-    <div id="slider1_container" style="position: relative; width: 960px;
+    <div id="slider1_container" style="position: relative; width: 980px;
         height: 380px; overflow: hidden;">
         <style>
             /* this line can be removed, but it really helps in case of css conflicts in your page */
@@ -279,7 +241,7 @@
         </div> 
  
         <!-- Slides Container --> 
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 960px; height: 380px;
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
             overflow: hidden;">
             <div>
                 <img u="image" src="../img/home/01.jpg" />
@@ -301,9 +263,9 @@
                 <div u=caption t="T|IE*IE" d=-1600 du=3800 t2="B" class="captionOrange"  style="position:absolute; left:20px; top: 310px; width:300px; height:30px;"> 
                 tab slider and menu slider ...
                 </div>
-                <div u="caption" t="ZMF|10" t2="B" d=-1300 style="position:absolute;left:400px;top:280px;width:90px;height:40px;font-size:36px;color:#fff;line-height:40px;">390+</div>
-                <div u="caption" t="CLIP|L" d=-300 style="position:absolute;left:500px;top:280px;width:160px;height:40px;font-size:36px;color:#fff;line-height:40px; text-align: center;">caption</div>
-                <a class="captionOrange" u="caption" t="CLIP|L" d=-300 href="http://www.jssor.com/developement/tool-caption-transition-viewer.html" style="position:absolute;left:700px;top:280px;width:220px;height:40px;font-size:36px;color:#fff;line-height:40px;">transitions</a>
+                <div u="caption" t="ZMF|10" t2="B" d=-1300 style="position:absolute;left:420px;top:280px;width:90px;height:40px;font-size:36px;color:#fff;line-height:40px;">390+</div>
+                <div u="caption" t="CLIP|L" d=-300 style="position:absolute;left:520px;top:280px;width:160px;height:40px;font-size:36px;color:#fff;line-height:40px; text-align: center;">caption</div>
+                <a class="captionOrange" u="caption" t="CLIP|L" d=-300 href="http://www.jssor.com/developement/tool-caption-transition-viewer.html" style="position:absolute;left:720px;top:280px;width:220px;height:40px;font-size:36px;color:#fff;line-height:40px;">transitions</a>
             </div>
             <div> 
                 <img u="image" src="../img/home/02.jpg" />
