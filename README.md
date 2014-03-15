@@ -1,11 +1,11 @@
-[slider.js](http://www.jssor.com/) - Touch Swipe, Responsive Slider
+[slider.js](http://www.jssor.com/) - Touch Swipe, Responsive Slider [jssor.com](http://www.jssor.com)
 ==================================================
 
 Overview
 --------------------------------------
 
 1. [30+ Live Demos](http://www.jssor.com)
-2. [Documentation](http://www.jssor.com/developement/index.html)
+2. [Documentation](http://www.jssor.com/development/index.html)
 3. Support: [Ask question on StackOverflow](http://stackoverflow.com/search?tab=relevance&q=jssor)
 
 What you get with jssor slider?

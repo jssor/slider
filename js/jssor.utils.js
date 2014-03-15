@@ -2630,7 +2630,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
             $Interval: 15
         }, options);
 
-        //Sodo statement, for developement time intellisence only
+        //Sodo statement, for development time intellisence only
         $JssorDebug$.$Execute(function () {
             options = $JssorUtils$.$Extend({
                 $LoopLength: undefined,

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html> 
 <head> 
     <meta charset="utf-8">
@@ -51,8 +51,8 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider1_starter = function (containerId) {
-            //Reference http://www.jssor.com/developement/slider-with-slideshow.html
-            //Reference http://www.jssor.com/developement/tool-slideshow-transition-viewer.html
+            //Reference http://www.jssor.com/development/slider-with-slideshow.html
+            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
 
             var _SlideshowTransitions = [
             //Collapse Random
@@ -64,7 +64,7 @@
             //Swing Inside in Stairs
             , { $Duration: 1200, $Delay: 20, $Cols: 10, $Rows: 4, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $FlyDirection: 9, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseInWave, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.2, $ScaleVertical: 0.1, $Round: { $Left: 1.3, $Top: 2.5} }
             //Zoom HDouble+ out
-            , { $Duration: 1200, $Cols: 2, $Zoom: 21, $SlideOut: true, $FlyDirection: 1, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $JssorEasing$.$EaseInExpo, $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $ScaleHorizontal: 4, $Opacity: 2 }
+            , { $Duration: 1200, $Cols: 2, $Zoom: 11, $SlideOut: true, $FlyDirection: 1, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $JssorEasing$.$EaseInExpo, $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $ScaleHorizontal: 4, $Opacity: 2 }
             //Dodge Pet Inside in Stairs
             , { $Duration: 1500, $Delay: 20, $Cols: 10, $Rows: 4, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $FlyDirection: 9, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseInWave, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.2, $ScaleVertical: 0.1, $Round: { $Left: 0.8, $Top: 2.5} }
             //Rotate Zoom+ out BL
@@ -95,9 +95,9 @@
             , { $Duration: 1500, $Delay: 80, $Cols: 10, $Rows: 4, $Clip: 15, $During: { $Left: [0.2, 0.8], $Top: [0.2, 0.8] }, $FlyDirection: 9, $ChessMode: { $Column: 15, $Row: 15 }, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseInWave, $Clip: $JssorEasing$.$EaseLinear }, $ScaleHorizontal: 0.2, $ScaleVertical: 0.1, $Round: { $Left: 0.8, $Top: 2.5} }
             ];
 
-            //Reference http://www.jssor.com/developement/slider-with-caption.html
-            //Reference http://www.jssor.com/developement/reference-ui-definition.html#captiondefinition
-            //Reference http://www.jssor.com/developement/tool-caption-transition-viewer.html
+            //Reference http://www.jssor.com/development/slider-with-caption.html
+            //Reference http://www.jssor.com/development/reference-ui-definition.html#captiondefinition
+            //Reference http://www.jssor.com/development/tool-caption-transition-viewer.html
 
             var _CaptionTransitions = [];
             _CaptionTransitions["L"] = { $Duration: 900, $FlyDirection: 1, $Easing: { $Left: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.6, $Opacity: 2 };
@@ -251,22 +251,22 @@
                 <div u=caption t="RTT|360" d=-200 class="captionBlack"  style="position:absolute; left:360px; top: 180px; width:60px; height:30px;"> 
                 with
                 </div>
-                <div u=caption t="DDGDANCE|RB" t2="RTT|10" d=-1800 du=3800 class="captionOrange"  style="position:absolute; left:560px; top: 110px; width:200px; height:120px; text-align: left;"> 
-                &nbsp; Banner Slider<br /> 
-                &nbsp; Image Gallery Slider<br /> 
-                &nbsp; Image Slider<br /> 
-                &nbsp; List Slider
-                </div> 
-                <div u=caption t="T|IE*IE" d=-1600 du=3800 t2="B" class="captionOrange"  style="position:absolute; left:20px; top: 310px; width:300px; height:30px;"> 
-                tab slider and menu slider ...
+                <div u=caption t="DDGDANCE|RB" t2="RTT|10" d=-1800 du=3800 class="captionOrange" style="position:absolute; left:560px; top: 110px; width:200px; height:120px; text-align: left;">
+                    &nbsp; Banner Slider<br />
+                    &nbsp; Image Gallery Slider<br />
+                    &nbsp; Image Slider<br />
+                    &nbsp; Carousel Slider
+                </div>
+                <div u=caption t="T|IE*IE" d=-1600 du=3800 t2="B" class="captionOrange" style="position:absolute; left:20px; top: 310px; width:330px; height:30px;">
+                    slideshow and responsive slider ...
                 </div>
                 <div u="caption" t="ZMF|10" t2="B" d=-1300 style="position:absolute;left:420px;top:280px;width:90px;height:40px;font-size:36px;color:#fff;line-height:40px;">390+</div>
                 <div u="caption" t="CLIP|L" d=-300 style="position:absolute;left:520px;top:280px;width:160px;height:40px;font-size:36px;color:#fff;line-height:40px; text-align: center;">caption</div>
-                <a class="captionOrange" u="caption" t="CLIP|L" d=-300 href="http://www.jssor.com/developement/tool-caption-transition-viewer.html" style="position:absolute;left:720px;top:280px;width:220px;height:40px;font-size:36px;color:#fff;line-height:40px;">transitions</a>
+                <a class="captionOrange" u="caption" t="CLIP|L" d=-300 href="http://www.jssor.com/development/tool-caption-transition-viewer.html" style="position:absolute;left:720px;top:280px;width:220px;height:40px;font-size:36px;color:#fff;line-height:40px;">transitions</a>
             </div>
             <div> 
                 <img u="image" src="../img/home/02.jpg" />
-                <a class="captionOrange" href="http://www.jssor.com/developement/tool-slideshow-transition-viewer.html" style="position: absolute; top: 300px; left: 630px; width: 250px; height: 30px;">360+ Slideshow Transitions</a>
+                <a class="captionOrange" href="http://www.jssor.com/development/tool-slideshow-transition-viewer.html" style="position: absolute; top: 300px; left: 630px; width: 250px; height: 30px;">360+ Slideshow Transitions</a>
                 <div u=caption t="CLIP|LR" t2="B" du="2000" class="captionOrange"  style="position:absolute; left:20px; top: 300px; width:500px; height:30px;"> 
                 Jssor Slider is one of best performance sliders
                 </div>
@@ -419,7 +419,7 @@
         <span u="arrowright" class="jssord20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Direction Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">Responsive Slider</a> 
+        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a> 
         <!-- Trigger --> 
         <script>
             jssor_slider1_starter('slider1_container');

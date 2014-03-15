@@ -2569,7 +2569,7 @@ new function () {
 
         }, options);
 
-        //Sodo statement for developement time intelligence only
+        //Sodo statement for development time intelligence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $ArrowKeyNavigation: undefined,
@@ -3116,7 +3116,7 @@ var $JssorNavigator$ = window.$JssorNavigator$ = function (elmt, options) {
             $ActionMode: 1
         }, options);
 
-        //Sodo statement for developement time intelligence only
+        //Sodo statement for development time intelligence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $Steps: undefined,
@@ -3436,7 +3436,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             $ActionMode: 1
         }, options);
 
-        //Sodo statement for developement time intelligence only
+        //Sodo statement for development time intelligence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $Lanes: undefined,
@@ -3898,4 +3898,4 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 //$EVT_SLIDESHOW_START = 206;   function(slideIndex[, progressBegin, slideshowBegin, slideshowEnd, progressEnd])
 //$EVT_SLIDESHOW_END = 207;     function(slideIndex[, progressBegin, slideshowBegin, slideshowEnd, progressEnd])
 
-//http://www.jssor.com/developement/reference-api.html
+//http://www.jssor.com/development/reference-api.html
