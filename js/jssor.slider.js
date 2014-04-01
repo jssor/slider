@@ -3658,7 +3658,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
                             if (!k) {
                                 if (rawTransition.$BeginTime)
-                                    transitionsWithTuning.$BeginTime = rawTransition.$BeginTime.$Value || 0;
+                                    transitionWithTuning.$BeginTime = rawTransition.$BeginTime.$Value || 0;
                                 else if ((playIn ? captionSlideOptions.$PlayInMode : captionSlideOptions.$PlayOutMode) & 2)
                                     transitionWithTuning.$BeginTime = 0;
                             }

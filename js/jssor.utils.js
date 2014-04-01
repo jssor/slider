@@ -2333,42 +2333,47 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
             if (!_Hooked || _NoStop || force || positionToDisplay != _Position_Display) {
                 if (toStyles) {
-                    var interPosition = (positionToDisplay - _Position_InnerBegin) / duration;
-                    if (options.$Optimize && $JssorUtils$.$IsBrowserChrome())
-                        interPosition = Math.round(interPosition * duration / 16) / duration * 16;
-                    if (options.$Reverse)
-                        interPosition = 1 - interPosition;
-                    var currentStyles = {};
+                    var currentStyles = toStyles;
 
-                    for (var key in toStyles) {
-                        var round = _SubRounds[key] || 1;
-                        var during = _SubDurings[key] || [0, 1];
-                        var propertyInterPosition = (interPosition - during[0]) / during[1];
-                        propertyInterPosition = Math.min(Math.max(propertyInterPosition, 0), 1);
-                        propertyInterPosition = propertyInterPosition * round;
-                        var floorPosition = Math.floor(propertyInterPosition);
-                        if (propertyInterPosition != floorPosition)
-                            propertyInterPosition -= floorPosition;
+                    if (fromStyles) {
+                        var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
+                        if (options.$Optimize && $JssorUtils$.$IsBrowserChrome() && duration)
+                            interPosition = Math.round(interPosition * duration / 16) / duration * 16;
+                        if (options.$Reverse)
+                            interPosition = 1 - interPosition;
 
-                        var easing = _SubEasings[key] || _SubEasings.$Default;
-                        var easingValue = easing(propertyInterPosition);
-                        var currentPropertyValue;
-                        var value = fromStyles[key];
-                        var toValue = toStyles[key];
+                        currentStyles = {};
 
-                        if ($JssorUtils$.$IsNumeric(toValue)) {
-                            currentPropertyValue = value + (toValue - value) * easingValue;
+                        for (var key in toStyles) {
+                            var round = _SubRounds[key] || 1;
+                            var during = _SubDurings[key] || [0, 1];
+                            var propertyInterPosition = (interPosition - during[0]) / during[1];
+                            propertyInterPosition = Math.min(Math.max(propertyInterPosition, 0), 1);
+                            propertyInterPosition = propertyInterPosition * round;
+                            var floorPosition = Math.floor(propertyInterPosition);
+                            if (propertyInterPosition != floorPosition)
+                                propertyInterPosition -= floorPosition;
+
+                            var easing = _SubEasings[key] || _SubEasings.$Default;
+                            var easingValue = easing(propertyInterPosition);
+                            var currentPropertyValue;
+                            var value = fromStyles[key];
+                            var toValue = toStyles[key];
+
+                            if ($JssorUtils$.$IsNumeric(toValue)) {
+                                currentPropertyValue = value + (toValue - value) * easingValue;
+                            }
+                            else {
+                                currentPropertyValue = $JssorUtils$.$Extend({ $Offset: {} }, fromStyles[key]);
+
+                                $JssorUtils$.$Each(toValue.$Offset, function (rectX, n) {
+                                    var offsetValue = rectX * easingValue;
+                                    currentPropertyValue.$Offset[n] = offsetValue;
+                                    currentPropertyValue[n] += offsetValue;
+                                });
+                            }
+                            currentStyles[key] = currentPropertyValue;
                         }
-                        else {
-                            currentPropertyValue = $JssorUtils$.$Extend({ $Offset: {} }, fromStyles[key]);
-
-                            $JssorUtils$.$Each(toValue.$Offset, function (rectX, n) {
-                                var offsetValue = rectX * easingValue;
-                                currentPropertyValue.$Offset[n] = offsetValue;
-                                currentPropertyValue[n] += offsetValue;
-                            });
-                        }
-                        currentStyles[key] = currentPropertyValue;
                     }
 
                     if (fromStyles.$Zoom) {
