@@ -1175,7 +1175,7 @@ new function () {
             //Carousel Constructor
             {
                 $JssorUtils$.$Each(_SlideItems, function (slideItem) {
-                    slideItem.$SetLoopLength(_SlideCount);
+                    _Options.$Loop && slideItem.$SetLoopLength(_SlideCount);
                     _SelfCarousel.$Chain(slideItem);
                     slideItem.$Shift(_ParkingPosition / _StepLength);
                 });
@@ -1675,6 +1675,7 @@ new function () {
 
             _SelfSlideItem.$OnInnerOffsetChange = function (oldOffset, newOffset) {
                 var slidePosition = _DisplayPieces - newOffset;
+
                 SetPosition(_Wrapper, slidePosition);
 
                 //following lines are for future usage, not ready yet
@@ -2027,20 +2028,31 @@ new function () {
                     }
 
                     if (_DragOrientation) {
-                        //if (distance > 0 && !_CurrentSlideIndex) {
-                        //    distance = Math.sqrt(distance) * 5;
-                        //}
-
-                        //if (distance < 0 && _CurrentSlideIndex >= _SlideCount - 1) {
-                        //    distance = -Math.sqrt(-distance) * 5;
-                        //}
-
                         var distance = distanceY;
                         var stepLength = _StepLengthY;
 
                         if (_DragOrientation == 1) {
                             distance = distanceX;
                             stepLength = _StepLengthX;
+                        }
+
+                        if (!_Options.$Loop) {
+                            if (distance > 0) {
+                                var normalDistance = stepLength * _CurrentSlideIndex;
+                                var sqrtDistance = distance - normalDistance;
+                                if (sqrtDistance > 0) {
+                                    distance = normalDistance + Math.sqrt(sqrtDistance) * 5;
+                                }
+                            }
+
+                            if (distance < 0) {
+                                var normalDistance = stepLength * ( _SlideCount - _DisplayPieces - _CurrentSlideIndex);
+                                var sqrtDistance = -distance - normalDistance;
+                                
+                                if (sqrtDistance > 0) {
+                                    distance = -normalDistance - Math.sqrt(sqrtDistance) * 5;
+                                }
+                            }
                         }
 
                         if (_DragOffsetTotal - _DragOffsetLastTime < -2) {
@@ -2099,6 +2111,10 @@ new function () {
                 if (Math.abs(_DragOffsetTotal) >= _Options.$MinDragOffsetToSlide) {
                     toPosition = Math.floor(currentPosition);
                     toPosition += _DragIndexAdjust;
+                }
+
+                if (!_Options.$Loop) {
+                    toPosition = Math.min(_SlideCount - _DisplayPieces, Math.max(toPosition, 0));
                 }
 
                 var t = Math.abs(toPosition - currentPosition);
@@ -2267,6 +2283,10 @@ new function () {
                             positionTo = Math.ceil(positionTo);
                         else
                             positionTo = Math.floor(positionTo);
+                    }
+
+                    if (!_Options.$Loop) {
+                        positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
 
                     var positionOffset = (positionTo - positionDisplay) % _SlideCount;
@@ -2551,6 +2571,7 @@ new function () {
             //But an integer value (maybe 1, 2 or 3) indicates that how far of nearby slides should be loaded immediately as well, default value is 1.
             $StartIndex: 0,                 //[Optional] Index of slide to display when initialize, default value is 0
             $AutoPlay: false,               //[Optional] Whether to auto play, default value is false
+            $Loop: true,                    //[Optional] Enable loop(circular) of carousel or not, default value is true
             $NaviQuitDrag: true,
             $AutoPlaySteps: 1,              //[Optional] Steps to go of every play (this options applys only when slideshow disabled), default value is 1
             $AutoPlayInterval: 3000,        //[Optional] Interval to play next slide since the previous stopped if a slideshow is auto playing, default value is 3000
@@ -2569,7 +2590,7 @@ new function () {
 
         }, options);
 
-        //Sodo statement for development time intelligence only
+        //Sodo statement for development time intellisence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $ArrowKeyNavigation: undefined,
@@ -2681,6 +2702,9 @@ new function () {
             if (_Options.$ParkingPosition && _Options.$DragOrientation && _Options.$DragOrientation != _Options.$PlayOrientation)
                 $JssorDebug$.$Fail("Option $DragOrientation error, it should be 0 or the same of $PlayOrientation when $ParkingPosition is not equal to 0.");
         });
+
+        if (!_Options.$Loop)
+            _Options.$ParkingPosition = 0;
 
         if (_Options.$DisplayPieces > 1 || _Options.$ParkingPosition)
             _Options.$DragOrientation &= _Options.$PlayOrientation;
@@ -3116,7 +3140,7 @@ var $JssorNavigator$ = window.$JssorNavigator$ = function (elmt, options) {
             $ActionMode: 1
         }, options);
 
-        //Sodo statement for development time intelligence only
+        //Sodo statement for development time intellisence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $Steps: undefined,
@@ -3436,7 +3460,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             $ActionMode: 1
         }, options);
 
-        //Sodo statement for development time intelligence only
+        //Sodo statement for development time intellisence only
         $JssorDebug$.$Execute(function () {
             _Options = $JssorUtils$.$Extend({
                 $Lanes: undefined,
