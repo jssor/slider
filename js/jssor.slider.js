@@ -2160,9 +2160,12 @@ new function () {
 
         function RegisterDrag() {
             var dragRegistry = JssorSlider.$DragRegistry || 0;
-            JssorSlider.$DragRegistry |= _Options.$DragOrientation;
+            var dragOrientation = _Options.$DragOrientation;
+            if (_HandleTouchEventOnly)
+                (dragOrientation & 1) && (dragOrientation &= 1);
+            JssorSlider.$DragRegistry |= dragOrientation;
 
-            return (_DragOrientationRegistered = _Options.$DragOrientation & ~dragRegistry);
+            return (_DragOrientationRegistered = dragOrientation & ~dragRegistry);
         }
 
         function UnregisterDrag() {
