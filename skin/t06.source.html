@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         jssor_slider1_starter = function (containerId) {
-            var jssor_slider1 = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 
@@ -28,21 +28,15 @@
                     $ParkingPosition: 156,                          //[Optional] The offset position to park thumbnail
                     $Orientation: 2                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
                 }
-            });
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
         };
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
     <div id="slider1_container" style="position: relative; padding: 0px; margin: 0 auto; top: 0px; left: 0px; width: 960px;
         height: 480px; background: #24262e;">
-
-        <style>
-            .slider1 div, .slider1 img
-            {
-            	padding: 0;
-            	margin: 0;
-            }
-        </style>
 
         <!-- Loading Screen -->
         <div u="loading" style="position: absolute; top: 0px; left: 0px;">

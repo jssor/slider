@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
     <script>
 
         jssor_slider1_starter = function (containerId) {
-            var jssor_slider = new $JssorSlider$(containerId, {
+            var options = {
                 $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 
@@ -32,7 +32,9 @@
                     $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
                     $DisableDrag: false                            //[Optional] Disable drag or not, default value is false
                 }
-            });
+            };
+
+            var jssor_slider = new $JssorSlider$(containerId, options);
         };
     </script>
     <!-- Jssor Slider Begin -->

@@ -2198,7 +2198,7 @@ new function () {
 
         //Navigation Request Handler
         function NavigationClickHandler(index, relative) {
-            PlayTo(index, _Options.$SlideDuration, relative);
+            PlayTo(_Options.$Loop ? index : GetRealIndex(index), _Options.$SlideDuration, relative);
         }
 
         function ShowNavigators() {
@@ -2288,7 +2288,9 @@ new function () {
                             positionTo = Math.floor(positionTo);
                     }
 
+
                     if (!_Options.$Loop) {
+                        positionTo = GetRealIndex(positionTo);
                         positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
 
