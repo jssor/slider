@@ -1453,7 +1453,7 @@ new function () {
             function ParkEventHandler(currentIndex, previousIndex) {
                 if (currentIndex == slideIndex) {
 
-                    if (currentIndex != previousIndex || _SlideCount == 1)
+                    if (currentIndex != previousIndex)
                         _SlideItems[previousIndex] && _SlideItems[previousIndex].$ParkOut();
 
                     _PlayerInstance && _PlayerInstance.$Enable();
@@ -2046,9 +2046,9 @@ new function () {
                             }
 
                             if (distance < 0) {
-                                var normalDistance = stepLength * ( _SlideCount - _DisplayPieces - _CurrentSlideIndex);
+                                var normalDistance = stepLength * (_SlideCount - _DisplayPieces - _CurrentSlideIndex);
                                 var sqrtDistance = -distance - normalDistance;
-                                
+
                                 if (sqrtDistance > 0) {
                                     distance = -normalDistance - Math.sqrt(sqrtDistance) * 5;
                                 }
@@ -2297,7 +2297,7 @@ new function () {
                     var positionOffset = (positionTo - positionDisplay) % _SlideCount;
                     positionTo = positionDisplay + positionOffset;
 
-                    var duration = positionDisplay == positionTo ? slideDuration : slideDuration * Math.abs(positionOffset);
+                    var duration = positionDisplay == positionTo ? 0 : slideDuration * Math.abs(positionOffset);
                     duration = Math.min(duration, slideDuration * _DisplayPieces * 1.5);
 
                     _CarouselPlayer.$PlayCarousel(positionDisplay, positionTo, duration);
@@ -2769,8 +2769,8 @@ new function () {
 
         var _SlideshowEnabled;
         var _ParkingPosition;
-        var _CarouselEnabled = true;
-        var _DragEnabled = _DisplayPieces < _SlideCount && _Options.$DragOrientation;
+        var _CarouselEnabled = _DisplayPieces < _SlideCount;
+        var _DragEnabled = _CarouselEnabled && _Options.$DragOrientation;
         var _LastDragSucceded;
 
         var _HoverStatus = 1;   //0 Hovering, 1 Not hovering
@@ -3759,7 +3759,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             toStyles.$Rotate = rotate * 360;
             fromStyles.$Rotate = 0;
         }
-        //Clip
+            //Clip
         else if (transition.$Clip) {
             var fromStyleClip = { $Top: 0, $Right: captionItemWidth, $Bottom: captionItemHeight, $Left: 0 };
             var toStyleClip = $JssorUtils$.$Extend({}, fromStyleClip);
