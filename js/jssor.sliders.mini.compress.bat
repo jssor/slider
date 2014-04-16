@@ -5,13 +5,13 @@ SET RESERVE_MEMBERNAMES=%RESERVE_MEMBERNAMES%,$Interval,$Duration,$Delay,$Cols,$
 
 SET RESERVE_MEMBERNAMES2=$On,$Off,$Elmt,$Play,$Pause,$Lock,$Unlock,$GoTo,$PlayTo,$Next,$Prev,$SetScaleWidth,$GetScaleWidth,$GetScaleHeight,$GetOriginalWidth,$GetOriginalHeight,$SetSlideshowTransitions,$SetCaptionTransitions,$SlidesCount,$CurrentIndex,$IsAutoPlaying,$IsDragging,$IsSliding,$IsMouseOver,$LastDragSucceded
 SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$FillMode,$LazyLoading,$StartIndex,$PauseOnHover,$AutoPlay,$Loop,$AutoPlaySteps,$AutoPlayInterval,$ArrowKeyNavigation,$SlideDuration,$SlideEasing,$MinDragOffsetToSlide,$SlideWidth,$SlideHeight,$SlideSpacing,$DisplayPieces,$ParkingPosition,$UISearchMode,$PlayOrientation,$DragOrientation,$LoadNearby,$NaviQuitDrag,$HwaMode
-SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$NavigatorOptions,$Class,$ChanceToShow,$ActionMode,$AutoCenter,$Steps,$Lanes,$SpacingX,$SpacingY,$Orientation
+SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$BulletNavigatorOptions,$Class,$ChanceToShow,$ActionMode,$AutoCenter,$Steps,$Lanes,$SpacingX,$SpacingY,$Orientation
 
 SET RESERVE_MEMBERNAMES3=$JssorPlayer$,$Play,$Pause,$SeekTo,$Enter,$Quit,$Enable,$Disable,$IsPlaying,$IsEntered,$Remove,$FetchPlayers
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$DirectionNavigatorOptions
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ArrowNavigatorOptions
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ThumbnailNavigatorOptions,$DisableDrag
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$SlideshowOptions,$Transitions,$TransitionsOrder,$ShowLink
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorNavigator$,$JssorDirectionNavigator$,$JssorThumbnailNavigator$
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorBulletNavigator$,$JssorArrowNavigator$,$JssorThumbnailNavigator$
 
 SET RESERVE_MEMBERS=%RESERVE_MEMBERNAMES%
 SET RESERVE_MEMBERS2=%RESERVE_MEMBERNAMES2%
@@ -88,4 +88,4 @@ ECHO -RENAME:%RENAME%,%RENAME2%,%RENAME3%
 ECHO -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3%
 
 "..\tool\Jssor.Compress.exe" -JS -AWRAP -OVERWRITE -RENAME:%RENAME%,%RENAME2%,%RENAME3% -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3% -ENCOUT:UTF-8 -NOREMOVE:GlobalVariable "jssor.core.js" "jssor.utils.js" "jssor.slider.js" -OUT "jssor.sliders.mini.js"
-PAUSE
+REM PAUSE

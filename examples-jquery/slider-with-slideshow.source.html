@@ -14,16 +14,15 @@
     <script type="text/javascript" src="../js/jssor.utils.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
-        //Reference http://www.jssor.com/development/slider-with-slideshow.html
-        //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
-
-        var _SlideshowTransitions = [
-        //Fade
-        {$Duration: 1200, $Opacity: 2 }
-        ];
-    </script>
-    <script>
         jQuery(document).ready(function ($) {
+            //Reference http://www.jssor.com/development/slider-with-slideshow.html
+            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+
+            var _SlideshowTransitions = [
+            //Fade
+            { $Duration: 1500, $Opacity: 2 }
+            ];
+
             var options = {
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
@@ -71,6 +70,6 @@
                 <a u=image href="#"><img src="../img/landscape/04.jpg" /></a>
             </div>
         </div>
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
 </body>
 </html>

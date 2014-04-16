@@ -103,8 +103,8 @@
                     $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
                 },
 
-                $DirectionNavigatorOptions: {                       //[Optional] Options to specify and enable direction navigator or not
-                    $Class: $JssorDirectionNavigator$,              //[Requried] Class to create direction navigator instance
+                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 2,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
@@ -219,18 +219,18 @@
             </div>
         </div>
         
-        <!-- Direction Navigator Skin Begin -->
+        <!-- Arrow Navigator Skin Begin -->
         <style>
-            /* jssor slider direction navigator skin 05 css */
+            /* jssor slider arrow navigator skin 05 css */
             /*
-            .jssord05l              (normal)
-            .jssord05r              (normal)
-            .jssord05l:hover        (normal mouseover)
-            .jssord05r:hover        (normal mouseover)
-            .jssord05ldn            (mousedown)
-            .jssord05rdn            (mousedown)
+            .jssora05l              (normal)
+            .jssora05r              (normal)
+            .jssora05l:hover        (normal mouseover)
+            .jssora05r:hover        (normal mouseover)
+            .jssora05ldn            (mousedown)
+            .jssora05rdn            (mousedown)
             */
-            .jssord05l, .jssord05r, .jssord05ldn, .jssord05rdn
+            .jssora05l, .jssora05r, .jssora05ldn, .jssora05rdn
             {
             	position: absolute;
             	cursor: pointer;
@@ -238,20 +238,20 @@
                 background: url(../img/d17.png) no-repeat;
                 overflow:hidden;
             }
-            .jssord05l { background-position: -10px -40px; }
-            .jssord05r { background-position: -70px -40px; }
-            .jssord05l:hover { background-position: -130px -40px; }
-            .jssord05r:hover { background-position: -190px -40px; }
-            .jssord05ldn { background-position: -250px -40px; }
-            .jssord05rdn { background-position: -310px -40px; }
+            .jssora05l { background-position: -10px -40px; }
+            .jssora05r { background-position: -70px -40px; }
+            .jssora05l:hover { background-position: -130px -40px; }
+            .jssora05r:hover { background-position: -190px -40px; }
+            .jssora05ldn { background-position: -250px -40px; }
+            .jssora05rdn { background-position: -310px -40px; }
         </style>
         <!-- Arrow Left -->
-        <span u="arrowleft" class="jssord05l" style="width: 40px; height: 40px; top: 158px; left: 248px;">
+        <span u="arrowleft" class="jssora05l" style="width: 40px; height: 40px; top: 158px; left: 248px;">
         </span>
         <!-- Arrow Right -->
-        <span u="arrowright" class="jssord05r" style="width: 40px; height: 40px; top: 158px; right: 8px">
+        <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 158px; right: 8px">
         </span>
-        <!-- Direction Navigator Skin End -->
+        <!-- Arrow Navigator Skin End -->
         
         <!-- Thumbnail Navigator Skin 02 Begin -->
         <div u="thumbnavigator" class="jssort02" style="position: absolute; width: 240px; height: 480px; left:0px; bottom: 0px;">
@@ -311,7 +311,7 @@
             <!-- Thumbnail Item Skin End -->
         </div>
         <!-- Thumbnail Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
     </div>
     <!-- Jssor Slider End -->
 <img width=0 height=0 />

@@ -4,7 +4,7 @@
 Overview
 --------------------------------------
 
-1. [30+ Live Demos](http://www.jssor.com)
+1. [30+ Slider Demos](http://www.jssor.com)
 2. [Documentation](http://www.jssor.com/development/index.html)
 3. Support: [Ask question on StackOverflow](http://stackoverflow.com/search?tab=relevance&q=jssor)
 

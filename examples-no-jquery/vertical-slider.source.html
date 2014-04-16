@@ -18,8 +18,8 @@
                 $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
                 $DragOrientation: 2,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
-                $DirectionNavigatorOptions: {
-                    $Class: $JssorDirectionNavigator$,              //[Requried] Class to create direction navigator instance
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 1,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
@@ -57,18 +57,18 @@
             <div><img u="image" src="../img/landscape/08.jpg" /></div>
         </div>
         
-        <!-- Direction Navigator Skin Begin -->
+        <!-- Arrow Navigator Skin Begin -->
         <style>
-            /* jssor slider direction navigator skin 08 css */
+            /* jssor slider arrow navigator skin 08 css */
             /*
-            .jssorn08l              (normal)
-            .jssorn08r              (normal)
-            .jssorn08l:hover        (normal mouseover)
-            .jssorn08r:hover        (normal mouseover)
-            .jssorn08ldn            (mousedown)
-            .jssorn08rdn            (mousedown)
+            .jssorb08l              (normal)
+            .jssorb08r              (normal)
+            .jssorb08l:hover        (normal mouseover)
+            .jssorb08r:hover        (normal mouseover)
+            .jssorb08ldn            (mousedown)
+            .jssorb08rdn            (mousedown)
             */
-            .jssorn08l, .jssorn08r, .jssorn08ldn, .jssorn08rdn
+            .jssorb08l, .jssorb08r, .jssorb08ldn, .jssorb08rdn
             {
             	position: absolute;
             	cursor: pointer;
@@ -77,21 +77,21 @@
                 overflow:hidden;
                 opacity: .4; filter:alpha(opacity=40);
             }
-            .jssorn08l { background-position: -5px -35px; }
-            .jssorn08r { background-position: -65px -35px; }
-            .jssorn08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
-            .jssorn08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
-            .jssorn08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
-            .jssorn08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
+            .jssorb08l { background-position: -5px -35px; }
+            .jssorb08r { background-position: -65px -35px; }
+            .jssorb08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
+            .jssorb08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
+            .jssorb08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
+            .jssorb08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
         </style>
         <!-- Arrow Left -->
-        <span u="arrowleft" class="jssorn08l" style="width: 50px; height: 50px; top: 8px; left: 8px;">
+        <span u="arrowleft" class="jssorb08l" style="width: 50px; height: 50px; top: 8px; left: 8px;">
         </span>
         <!-- Arrow Right -->
-        <span u="arrowright" class="jssorn08r" style="width: 50px; height: 50px; bottom: 8px; left: 8px">
+        <span u="arrowright" class="jssorb08r" style="width: 50px; height: 50px; bottom: 8px; left: 8px">
         </span>
-        <!-- Direction Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <!-- Arrow Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

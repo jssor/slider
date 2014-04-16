@@ -30,8 +30,8 @@
                     $DisplayPieces: 6,                              //[Optional] Number of pieces to display, default value is 1
                     $ParkingPosition: 204,                          //[Optional] The offset position to park thumbnail,
 
-                    $DirectionNavigatorOptions: {
-                        $Class: $JssorDirectionNavigator$,              //[Requried] Class to create direction navigator instance
+                    $ArrowNavigatorOptions: {
+                        $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                         $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                         $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                         $Steps: 3                                       //[Optional] Steps to go for each navigation request, default value is 1
@@ -155,18 +155,18 @@
             </div>
             <!-- Thumbnail Item Skin End -->
             
-            <!-- Direction Navigator Skin Begin -->
+            <!-- Arrow Navigator Skin Begin -->
             <style>
-                /* jssor slider direction navigator skin 06 css */
+                /* jssor slider arrow navigator skin 06 css */
                 /*
-                .jssord06l              (normal)
-                .jssord06r              (normal)
-                .jssord06l:hover        (normal mouseover)
-                .jssord06r:hover        (normal mouseover)
-                .jssord06ldn            (mousedown)
-                .jssord06rdn            (mousedown)
+                .jssora06l              (normal)
+                .jssora06r              (normal)
+                .jssora06l:hover        (normal mouseover)
+                .jssora06r:hover        (normal mouseover)
+                .jssora06ldn            (mousedown)
+                .jssora06rdn            (mousedown)
                 */
-                .jssord06l, .jssord06r, .jssord06ldn, .jssord06rdn
+                .jssora06l, .jssora06r, .jssora06ldn, .jssora06rdn
                 {
             	    position: absolute;
             	    cursor: pointer;
@@ -174,23 +174,23 @@
                     background: url(../img/d06.png) no-repeat;
                     overflow:hidden;
                 }
-                .jssord06l { background-position: -8px -38px; }
-                .jssord06r { background-position: -68px -38px; }
-                .jssord06l:hover { background-position: -128px -38px; }
-                .jssord06r:hover { background-position: -188px -38px; }
-                .jssord06ldn { background-position: -248px -38px; }
-                .jssord06rdn { background-position: -308px -38px; }
+                .jssora06l { background-position: -8px -38px; }
+                .jssora06r { background-position: -68px -38px; }
+                .jssora06l:hover { background-position: -128px -38px; }
+                .jssora06r:hover { background-position: -188px -38px; }
+                .jssora06ldn { background-position: -248px -38px; }
+                .jssora06rdn { background-position: -308px -38px; }
             </style>
             <!-- Arrow Left -->
-            <span u="arrowleft" class="jssord06l" style="width: 45px; height: 45px; top: 123px; left: -40px;">
+            <span u="arrowleft" class="jssora06l" style="width: 45px; height: 45px; top: 123px; left: -40px;">
             </span>
             <!-- Arrow Right -->
-            <span u="arrowright" class="jssord06r" style="width: 45px; height: 45px; top: 123px; right: -40px">
+            <span u="arrowright" class="jssora06r" style="width: 45px; height: 45px; top: 123px; right: -40px">
             </span>
-            <!-- Direction Navigator Skin End -->
+            <!-- Arrow Navigator Skin End -->
         </div>
         <!-- ThumbnailNavigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         <!-- Trigger -->
     </div>
     <!-- Jssor Slider End -->

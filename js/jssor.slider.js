@@ -2589,7 +2589,7 @@ new function () {
             $SlideSpacing: 0, 				//[Optional] Space between each slide in pixels, default value is 0
             $DisplayPieces: 1,              //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), default value is 1
             $ParkingPosition: 0,            //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
-            $UISearchMode: 1,               //[Optional] The way (0 parellel, 1 recursive, default value is recursive) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc.
+            $UISearchMode: 1,               //[Optional] The way (0 parellel, 1 recursive, default value is recursive) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc.
             $PlayOrientation: 1,            //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
             $DragOrientation: 1             //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 both, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
@@ -2603,8 +2603,8 @@ new function () {
                 $SlideHeight: undefined,
                 $SlideshowOptions: undefined,
                 $CaptionSliderOptions: undefined,
-                $NavigatorOptions: undefined,
-                $DirectionNavigatorOptions: undefined,
+                $BulletNavigatorOptions: undefined,
+                $ArrowNavigatorOptions: undefined,
                 $ThumbnailNavigatorOptions: undefined
             },
             _Options);
@@ -2612,8 +2612,8 @@ new function () {
 
         var _SlideshowOptions = _Options.$SlideshowOptions;
         var _CaptionSliderOptions = $JssorUtils$.$Extend({ $Class: $JssorCaptionSliderBase$, $PlayInMode: 1, $PlayOutMode: 1 }, _Options.$CaptionSliderOptions);
-        var _NavigatorOptions = _Options.$NavigatorOptions;
-        var _DirectionNavigatorOptions = _Options.$DirectionNavigatorOptions;
+        var _BulletNavigatorOptions = _Options.$BulletNavigatorOptions;
+        var _ArrowNavigatorOptions = _Options.$ArrowNavigatorOptions;
         var _ThumbnailNavigatorOptions = _Options.$ThumbnailNavigatorOptions;
 
         $JssorDebug$.$Execute(function () {
@@ -2629,20 +2629,20 @@ new function () {
         });
 
         $JssorDebug$.$Execute(function () {
-            if (_NavigatorOptions && !_NavigatorOptions.$Class) {
-                $JssorDebug$.$Fail("Option $NavigatorOptions error, class not specified.");
+            if (_BulletNavigatorOptions && !_BulletNavigatorOptions.$Class) {
+                $JssorDebug$.$Fail("Option $BulletNavigatorOptions error, class not specified.");
             }
         });
 
         $JssorDebug$.$Execute(function () {
-            if (_DirectionNavigatorOptions && !_DirectionNavigatorOptions.$Class) {
-                $JssorDebug$.$Fail("Option $DirectionNavigatorOptions error, class not specified.");
+            if (_ArrowNavigatorOptions && !_ArrowNavigatorOptions.$Class) {
+                $JssorDebug$.$Fail("Option $ArrowNavigatorOptions error, class not specified.");
             }
         });
 
         $JssorDebug$.$Execute(function () {
             if (_ThumbnailNavigatorOptions && !_ThumbnailNavigatorOptions.$Class) {
-                $JssorDebug$.$Fail("Option $DirectionNavigatorOptions error, class not specified.");
+                $JssorDebug$.$Fail("Option $ArrowNavigatorOptions error, class not specified.");
             }
         });
 
@@ -2924,14 +2924,14 @@ new function () {
             _HoverToPause &= _HandleTouchEventOnly ? 2 : 1;
 
             //Navigator
-            if (_NavigatorContainer && _NavigatorOptions) {
-                _Navigator = new _NavigatorOptions.$Class(_NavigatorContainer, _NavigatorOptions);
+            if (_NavigatorContainer && _BulletNavigatorOptions) {
+                _Navigator = new _BulletNavigatorOptions.$Class(_NavigatorContainer, _BulletNavigatorOptions);
                 _Navigators.push(_Navigator);
             }
 
             //Direction Arrows
-            if (_DirectionNavigatorOptions) {
-                _DirectionNavigator = new _DirectionNavigatorOptions.$Class(elmt, _DirectionNavigatorOptions, _Options.$UISearchMode);
+            if (_ArrowNavigatorOptions) {
+                _DirectionNavigator = new _ArrowNavigatorOptions.$Class(elmt, _ArrowNavigatorOptions, _Options.$UISearchMode);
                 _Navigators.push(_DirectionNavigator);
             }
 
@@ -3018,14 +3018,14 @@ new function () {
     //});
 };
 
-//$JssorNavigator$
+//$JssorBulletNavigator$
 var $JssorNavigatorEvents$ = {
     $NAVIGATIONREQUEST: 1,
     $INDEXCHANGE: 2,
     $RESET: 3
 };
 
-var $JssorNavigator$ = window.$JssorNavigator$ = function (elmt, options) {
+var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, options) {
     var self = this;
     $JssorEventManager$.call(self);
 
@@ -3181,7 +3181,7 @@ var $JssorNavigator$ = window.$JssorNavigator$ = function (elmt, options) {
     }
 };
 
-var $JssorDirectionNavigator$ = window.$JssorDirectionNavigator$ = function (elmt, options, uiSearchMode) {
+var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (elmt, options, uiSearchMode) {
     var self = this;
     $JssorEventManager$.call(self);
 
@@ -3190,10 +3190,10 @@ var $JssorDirectionNavigator$ = window.$JssorDirectionNavigator$ = function (elm
         var arrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, uiSearchMode);
 
         if (!arrowLeft)
-            $JssorDebug$.$Fail("Option '$DirectionNavigatorOptions' spepcified, but UI 'arrowleft' not defined. Define 'arrowleft' to enable direct navigation, or remove option '$DirectionNavigatorOptions' to disable direct navigation.");
+            $JssorDebug$.$Fail("Option '$ArrowNavigatorOptions' spepcified, but UI 'arrowleft' not defined. Define 'arrowleft' to enable direct navigation, or remove option '$ArrowNavigatorOptions' to disable direct navigation.");
 
         if (!arrowRight)
-            $JssorDebug$.$Fail("Option '$DirectionNavigatorOptions' spepcified, but UI 'arrowright' not defined. Define 'arrowright' to enable direct navigation, or remove option '$DirectionNavigatorOptions' to disable direct navigation.");
+            $JssorDebug$.$Fail("Option '$ArrowNavigatorOptions' spepcified, but UI 'arrowright' not defined. Define 'arrowright' to enable direct navigation, or remove option '$ArrowNavigatorOptions' to disable direct navigation.");
 
         if (isNaN($JssorUtils$.$GetStyleWidth(arrowLeft))) {
             $JssorDebug$.$Fail("Width of 'arrow left' not specified.");

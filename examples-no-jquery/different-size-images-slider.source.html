@@ -12,16 +12,15 @@
     <script type="text/javascript" src="../js/jssor.utils.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
-        //Reference http://www.jssor.com/development/slider-with-slideshow.html
-        //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
-
-        var _SlideshowTransitions = [
-        //Fade
-        { $Duration: 1500, $Opacity: 2 }
-        ];
-    </script>
-    <script>
         jssor_slider1_starter = function (containerId) {
+            //Reference http://www.jssor.com/development/slider-with-slideshow.html
+            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+
+            var _SlideshowTransitions = [
+            //Fade Twins
+            { $Duration: 700, $Opacity: 2, $Brother: { $Duration: 1000, $Opacity: 2 } }
+            ];
+
             var options = {
                 $FillMode: 1,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actuall size, default value is 0
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
@@ -90,7 +89,7 @@
                 <a u=image href="#"><img src="../img/paint/11.jpg" /></a>
             </div>
         </div>
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

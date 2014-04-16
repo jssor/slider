@@ -9,16 +9,16 @@ SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$FillMode,$LazyLoading,$StartInd
 SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$NavigatorOptions,$Class,$ChanceToShow,$ActionMode,$AutoCenter,$Steps,$Lanes,$SpacingX,$SpacingY,$Orientation
 
 SET RESERVE_MEMBERNAMES3=$JssorPlayer$,$Play,$Pause,$SeekTo,$Enter,$Quit,$Enable,$Disable,$IsPlaying,$IsEntered,$Remove,$FetchPlayers
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$DirectionNavigatorOptions
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ArrowNavigatorOptions
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ThumbnailNavigatorOptions,$DisableDrag
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$SlideshowOptions,$Transitions,$TransitionsOrder,$ShowLink
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$CaptionSliderOptions,$CaptionTransitions,$PlayInMode,$PlayOutMode
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorSlideshowFormations$,$JssorSlideshowRunner$,$JssorNavigator$,$JssorDirectionNavigator$,$JssorThumbnailNavigator$,$JssorCaptionSlider$
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorSlideshowFormations$,$JssorSlideshowRunner$,$JssorBulletNavigator$,$JssorArrowNavigator$,$JssorThumbnailNavigator$,$JssorCaptionSlider$
 
 SET RESERVE_MEMBERS=%RESERVE_MEMBERNAMES%
 SET RESERVE_MEMBERS2=%RESERVE_MEMBERNAMES2%
 SET RESERVE_MEMBERS3=%RESERVE_MEMBERNAMES3%
-SET RESERVE_MEMBERS3=%RESERVE_MEMBERS3%,$Top,$Right,$Bottom,$Left,$Width,$Height,$Opacity,$Clip,$Cache,$Display,$Transform
+SET RESERVE_MEMBERS3=%RESERVE_MEMBERS3%,$Top,$Right,$Bottom,$Left,$Width,$Height,$Opacity,$Clip,$Display,$Transform
 
 SET RENAME=
 SET RENAME2=
@@ -90,4 +90,4 @@ ECHO -RENAME:%RENAME%,%RENAME2%,%RENAME3%
 ECHO -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3%
 
 "..\tool\Jssor.Compress.exe" -JS -AWRAP -OVERWRITE -RENAME:%RENAME%,%RENAME2%,%RENAME3% -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3% -ENCOUT:UTF-8 -NOREMOVE:GlobalVariable "jssor.core.js" "jssor.utils.js" "jssor.slider.js" -OUT "jssor.slider.mini.js"
-PAUSE
+REM PAUSE

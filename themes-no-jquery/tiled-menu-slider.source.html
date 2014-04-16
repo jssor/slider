@@ -71,8 +71,8 @@
     <script>
         jssor_slider1_starter = function (containerId) {
             var options = {
-                $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 1,                                  //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $SpacingX: 25                                   //[Optional] Horizontal space between each item in pixel, default value is 0
@@ -253,44 +253,44 @@
                 </a>
             </div>
         </div>
-        <!-- Navigator Skin Begin -->
+        <!-- Bullet Navigator Skin Begin -->
         <style>
-            /* jssor slider navigator skin 18 css */
+            /* jssor slider bullet navigator skin 18 css */
             /*
-            .jssorn18 div           (normal)
-            .jssorn18 div:hover     (normal mouseover)
-            .jssorn18 .av           (active)
-            .jssorn18 .av:hover     (active mouseover)
-            .jssorn18 .dn           (mousedown)
+            .jssorb18 div           (normal)
+            .jssorb18 div:hover     (normal mouseover)
+            .jssorb18 .av           (active)
+            .jssorb18 .av:hover     (active mouseover)
+            .jssorb18 .dn           (mousedown)
             */
-            .jssorn18 div, .jssorn18 div:hover, .jssorn18 .av
+            .jssorb18 div, .jssorb18 div:hover, .jssorb18 .av
             {
                 background: url(../img/n18.png) no-repeat;
                 overflow:hidden;
                 cursor: pointer;
             }
-            .jssorn18 div { background-position: -3px -3px; }
-            .jssorn18 div:hover, .jssorn18 .av:hover { background-position: -33px -3px; }
-            .jssorn18 .av { background-position: -63px -3px; }
-            .jssorn18 .dn, .jssorn18 .dn:hover { background-position: -93px -3px; }
+            .jssorb18 div { background-position: -3px -3px; }
+            .jssorb18 div:hover, .jssorb18 .av:hover { background-position: -33px -3px; }
+            .jssorb18 .av { background-position: -63px -3px; }
+            .jssorb18 .dn, .jssorb18 .dn:hover { background-position: -93px -3px; }
             
-            .jssorn18 .n
+            .jssorb18 .n
             {
                 display: none;
                 color: #000;
             }
-            .jssorn18 div:hover .n, .jssorn18 .av .n, .jssorn18 .av:hover .n, .jssorn18 .dn .n { display: block; }
+            .jssorb18 div:hover .n, .jssorb18 .av .n, .jssorb18 .av:hover .n, .jssorb18 .dn .n { display: block; }
         </style>
-        <!-- navigator container -->
-        <div u="navigator" class="jssorn18" style="position: absolute; bottom: 16px; right: 6px;">
-            <!-- navigator item prototype -->
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb18" style="position: absolute; bottom: 16px; right: 6px;">
+            <!-- bullet navigator item prototype -->
             <div u="prototype" style="position: absolute; width: 24px; height: 24px; text-align: center;
                 line-height: 24px; font-size: 16px;">
                 <Numbertemplate class=n></Numbertemplate>
             </div>
         </div>
-        <!-- Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <!-- Bullet Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

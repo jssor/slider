@@ -79,4 +79,4 @@ ECHO -RENAME:%RENAME%,%RENAME2%,%RENAME3%
 ECHO -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3%
 
 "..\tool\Jssor.Compress.exe" -JS -AWRAP -OVERWRITE -RENAME:%RENAME%,%RENAME2%,%RENAME3% -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3% -ENCOUT:UTF-8 -NOREMOVE:GlobalVariable "jssor.core.js" "jssor.utils.js" "jssor.player.ytiframe.js" -OUT "jssor.player.ytiframe.min.js"
-PAUSE
+REM PAUSE

@@ -29,10 +29,10 @@
                     $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
                     $DisplayPieces: 4,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
                     $ParkingPosition: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
-                    $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
+                    $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
 
-                    $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                        $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                    $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                        $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                         $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                         $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                         $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
@@ -59,12 +59,12 @@
                 $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
                 $DisplayPieces: 3,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
                 $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
-                $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
+                $UISearchMode: 0,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
                 $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
                 $DragOrientation: 2,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0),
 
-                $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 2,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $SpacingY: 5,                                   //[Optional] Vertical space between each item in pixel, default value is 0
@@ -76,24 +76,24 @@
     </script>
     <!-- sliderh style begin -->
     <style>
-        /* jssor slider navigator skin 03 css */
+        /* jssor slider bullet navigator skin 03 css */
         /*
-        .jssorn03 div           (normal)
-        .jssorn03 div:hover     (normal mouseover)
-        .jssorn03 .av           (active)
-        .jssorn03 .av:hover     (active mouseover)
-        .jssorn03 .dn           (mousedown)
+        .jssorb03 div           (normal)
+        .jssorb03 div:hover     (normal mouseover)
+        .jssorb03 .av           (active)
+        .jssorb03 .av:hover     (active mouseover)
+        .jssorb03 .dn           (mousedown)
         */
-        .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+        .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
         {
             background: url(../img/n03.png) no-repeat;
             overflow:hidden;
             cursor: pointer;
         }
-        .jssorn03 div { background-position: -5px -4px; }
-        .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
-        .jssorn03 .av { background-position: -65px -4px; }
-        .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+        .jssorb03 div { background-position: -5px -4px; }
+        .jssorb03 div:hover, .jssorb03 .av:hover { background-position: -35px -4px; }
+        .jssorb03 .av { background-position: -65px -4px; }
+        .jssorb03 .dn, .jssorb03 .dn:hover { background-position: -95px -4px; }
     </style>
     <!-- sliderh style end -->
     <!-- Jssor Slider Begin -->
@@ -116,13 +116,13 @@
                             <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
                         </div>
-                        <!-- Navigator Skin Begin -->
-                        <!-- navigator container -->
-                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
-                            <!-- navigator item prototype -->
+                        <!-- Bullet Navigator Skin Begin -->
+                        <!-- bullet navigator container -->
+                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- bullet navigator item prototype -->
                             <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
                         </div>
-                        <!-- Navigator Skin End -->
+                        <!-- Bullet Navigator Skin End -->
                     </div>
                 </div>
                 <div>
@@ -139,13 +139,13 @@
                             <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
                         </div>
-                        <!-- Navigator Skin Begin -->
-                        <!-- navigator container -->
-                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
-                            <!-- navigator item prototype -->
+                        <!-- Bullet Navigator Skin Begin -->
+                        <!-- bullet navigator container -->
+                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- bullet navigator item prototype -->
                             <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
                         </div>
-                        <!-- Navigator Skin End -->
+                        <!-- Bullet Navigator Skin End -->
                     </div>
                 </div>
                 <div>
@@ -162,13 +162,13 @@
                             <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
                         </div>
-                        <!-- Navigator Skin Begin -->
-                        <!-- navigator container -->
-                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
-                            <!-- navigator item prototype -->
+                        <!-- Bullet Navigator Skin Begin -->
+                        <!-- bullet navigator container -->
+                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- bullet navigator item prototype -->
                             <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
                         </div>
-                        <!-- Navigator Skin End -->
+                        <!-- Bullet Navigator Skin End -->
                     </div>
                 </div>
                 <div>
@@ -184,44 +184,44 @@
                             <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
                         </div>
-                        <!-- Navigator Skin Begin -->
-                        <!-- navigator container -->
-                        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 10px; right: 10px;">
-                            <!-- navigator item prototype -->
+                        <!-- Bullet Navigator Skin Begin -->
+                        <!-- bullet navigator container -->
+                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                            <!-- bullet navigator item prototype -->
                             <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><NumberTemplate></NumberTemplate></div>
                         </div>
-                        <!-- Navigator Skin End -->
+                        <!-- Bullet Navigator Skin End -->
                     </div>
                 </div>
             </div>
-        <!-- Navigator Skin Begin -->
-        <!-- jssor slider navigator skin 02 -->
+        <!-- Bullet Navigator Skin Begin -->
+        <!-- jssor slider bullet navigator skin 02 -->
         <style>
             /*
-            .jssorn02 div           (normal)
-            .jssorn02 div:hover     (normal mouseover)
-            .jssorn02 .av           (active)
-            .jssorn02 .av:hover     (active mouseover)
-            .jssorn02 .dn           (mousedown)
+            .jssorb02 div           (normal)
+            .jssorb02 div:hover     (normal mouseover)
+            .jssorb02 .av           (active)
+            .jssorb02 .av:hover     (active mouseover)
+            .jssorb02 .dn           (mousedown)
             */
-            .jssorn02 div, .jssorn02 div:hover, .jssorn02 .av
+            .jssorb02 div, .jssorb02 div:hover, .jssorb02 .av
             {
                 background: url(../img/n02.png) no-repeat;
                 overflow:hidden;
                 cursor: pointer;
             }
-            .jssorn02 div { background-position: -5px -5px; }
-            .jssorn02 div:hover, .jssorn02 .av:hover { background-position: -35px -5px; }
-            .jssorn02 .av { background-position: -65px -5px; }
-            .jssorn02 .dn, .jssorn02 .dn:hover { background-position: -95px -5px; }
+            .jssorb02 div { background-position: -5px -5px; }
+            .jssorb02 div:hover, .jssorb02 .av:hover { background-position: -35px -5px; }
+            .jssorb02 .av { background-position: -65px -5px; }
+            .jssorb02 .dn, .jssorb02 .dn:hover { background-position: -95px -5px; }
         </style>
-        <!-- navigator container -->
-        <div u="navigator" class="jssorn02" style="position: absolute; bottom: 8px; left: 6px;">
-            <!-- navigator item prototype -->
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb02" style="position: absolute; bottom: 8px; left: 6px;">
+            <!-- bullet navigator item prototype -->
             <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><NumberTemplate></NumberTemplate></div>
         </div>
-        <!-- Navigator Skin End -->
-            <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <!-- Bullet Navigator Skin End -->
+            <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         </div>
     <!-- Jssor Slider End -->
 </body>

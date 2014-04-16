@@ -22,8 +22,8 @@
                 $PauseOnHover: 3,                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
                 $ArrowKeyNavigation: true,   		//[Optional] Allows keyboard (arrow key) navigation or not, default value is false
 
-                $NavigatorOptions: {                //[Optional] Options to specify and enable navigator or not
-                    $Class: $JssorNavigator$,       //[Required] Class to create navigator instance
+                $BulletNavigatorOptions: {                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $ActionMode: 1,                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
                     $AutoCenter: 1,                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
@@ -142,34 +142,34 @@
             </div>
         </div>
  
-        <!-- Navigator Skin Begin -->
+        <!-- Bullet Navigator Skin Begin -->
         <style>
-            /* jssor slider navigator skin 03 css */
+            /* jssor slider bullet navigator skin 03 css */
             /*
-            .jssorn03 div           (normal)
-            .jssorn03 div:hover     (normal mouseover)
-            .jssorn03 .av           (active)
-            .jssorn03 .av:hover     (active mouseover)
-            .jssorn03 .dn           (mousedown)
+            .jssorb03 div           (normal)
+            .jssorb03 div:hover     (normal mouseover)
+            .jssorb03 .av           (active)
+            .jssorb03 .av:hover     (active mouseover)
+            .jssorb03 .dn           (mousedown)
             */
-            .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
             {
                 background: url(../img/n03.png) no-repeat;
                 overflow:hidden;
                 cursor: pointer;
             }
-            .jssorn03 div { background-position: -5px -4px; }
-            .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
-            .jssorn03 .av { background-position: -65px -4px; }
-            .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+            .jssorb03 div { background-position: -5px -4px; }
+            .jssorb03 div:hover, .jssorb03 .av:hover { background-position: -35px -4px; }
+            .jssorb03 .av { background-position: -65px -4px; }
+            .jssorb03 .dn, .jssorb03 .dn:hover { background-position: -95px -4px; }
         </style>
-        <!-- navigator container -->
-        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 6px; left: 6px;">
-            <!-- navigator item prototype -->
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 6px; left: 6px;">
+            <!-- bullet navigator item prototype -->
             <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><NumberTemplate></NumberTemplate></div>
         </div>
-        <!-- Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a>
+        <!-- Bullet Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

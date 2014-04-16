@@ -162,7 +162,7 @@
                 $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
                 $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
                 $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
-                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, direction navigator container, thumbnail navigator container etc).
+                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
                 $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
@@ -180,15 +180,15 @@
                     $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
                 },
 
-                $DirectionNavigatorOptions: {                       //[Optional] Options to specify and enable direction navigator or not
-                    $Class: $JssorDirectionNavigator$,              //[Requried] Class to create direction navigator instance
+                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                 },
 
-                $NavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                    $Class: $JssorNavigator$,                       //[Required] Class to create navigator instance
+                $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
@@ -361,46 +361,46 @@
             </div>
         </div> 
  
-        <!-- Navigator Skin Begin -->
+        <!-- Bullet Navigator Skin Begin -->
         <style>
-            /* jssor slider navigator skin 03 css */
+            /* jssor slider bullet navigator skin 03 css */
             /*
-            .jssorn03 div           (normal)
-            .jssorn03 div:hover     (normal mouseover)
-            .jssorn03 .av           (active)
-            .jssorn03 .av:hover     (active mouseover)
-            .jssorn03 .dn           (mousedown)
+            .jssorb03 div           (normal)
+            .jssorb03 div:hover     (normal mouseover)
+            .jssorb03 .av           (active)
+            .jssorb03 .av:hover     (active mouseover)
+            .jssorb03 .dn           (mousedown)
             */
-            .jssorn03 div, .jssorn03 div:hover, .jssorn03 .av
+            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
             {
                 background: url(../img/n03.png) no-repeat;
                 overflow:hidden;
                 cursor: pointer;
             }
-            .jssorn03 div { background-position: -5px -4px; }
-            .jssorn03 div:hover, .jssorn03 .av:hover { background-position: -35px -4px; }
-            .jssorn03 .av { background-position: -65px -4px; }
-            .jssorn03 .dn, .jssorn03 .dn:hover { background-position: -95px -4px; }
+            .jssorb03 div { background-position: -5px -4px; }
+            .jssorb03 div:hover, .jssorb03 .av:hover { background-position: -35px -4px; }
+            .jssorb03 .av { background-position: -65px -4px; }
+            .jssorb03 .dn, .jssorb03 .dn:hover { background-position: -95px -4px; }
         </style>
-        <!-- navigator container -->
-        <div u="navigator" class="jssorn03" style="position: absolute; bottom: 16px; left: 6px;">
-            <!-- navigator item prototype -->
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 16px; left: 6px;">
+            <!-- bullet navigator item prototype -->
             <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><NumberTemplate></NumberTemplate></div>
         </div>
-        <!-- Navigator Skin End -->
+        <!-- Bullet Navigator Skin End -->
         
-        <!-- Direction Navigator Skin Begin -->
+        <!-- Arrow Navigator Skin Begin -->
         <style>
-            /* jssor slider direction navigator skin 20 css */
+            /* jssor slider arrow navigator skin 20 css */
             /*
-            .jssord20l              (normal)
-            .jssord20r              (normal)
-            .jssord20l:hover        (normal mouseover)
-            .jssord20r:hover        (normal mouseover)
-            .jssord20ldn            (mousedown)
-            .jssord20rdn            (mousedown)
+            .jssora20l              (normal)
+            .jssora20r              (normal)
+            .jssora20l:hover        (normal mouseover)
+            .jssora20r:hover        (normal mouseover)
+            .jssora20ldn            (mousedown)
+            .jssora20rdn            (mousedown)
             */
-            .jssord20l, .jssord20r, .jssord20ldn, .jssord20rdn
+            .jssora20l, .jssora20r, .jssora20ldn, .jssora20rdn
             {
             	position: absolute;
             	cursor: pointer;
@@ -408,21 +408,21 @@
                 background: url(../img/d20.png) no-repeat;
                 overflow:hidden;
             }
-            .jssord20l { background-position: -3px -33px; }
-            .jssord20r { background-position: -63px -33px; }
-            .jssord20l:hover { background-position: -123px -33px; }
-            .jssord20r:hover { background-position: -183px -33px; }
-            .jssord20ldn { background-position: -243px -33px; }
-            .jssord20rdn { background-position: -303px -33px; }
+            .jssora20l { background-position: -3px -33px; }
+            .jssora20r { background-position: -63px -33px; }
+            .jssora20l:hover { background-position: -123px -33px; }
+            .jssora20r:hover { background-position: -183px -33px; }
+            .jssora20ldn { background-position: -243px -33px; }
+            .jssora20rdn { background-position: -303px -33px; }
         </style>
         <!-- Arrow Left -->
-        <span u="arrowleft" class="jssord20l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+        <span u="arrowleft" class="jssora20l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
         </span>
         <!-- Arrow Right -->
-        <span u="arrowright" class="jssord20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+        <span u="arrowright" class="jssora20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
-        <!-- Direction Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slide</a> 
+        <!-- Arrow Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a> 
     </div> 
     <!-- Jssor Slider End --> 
 </body> 
