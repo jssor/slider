@@ -1453,7 +1453,7 @@ new function () {
             function ParkEventHandler(currentIndex, previousIndex) {
                 if (currentIndex == slideIndex) {
 
-                    if (currentIndex != previousIndex)
+                    if (currentIndex != previousIndex || _SlideCount == 1)
                         _SlideItems[previousIndex] && _SlideItems[previousIndex].$ParkOut();
 
                     _PlayerInstance && _PlayerInstance.$Enable();
@@ -2297,7 +2297,7 @@ new function () {
                     var positionOffset = (positionTo - positionDisplay) % _SlideCount;
                     positionTo = positionDisplay + positionOffset;
 
-                    var duration = positionDisplay == positionTo ? 0 : slideDuration * Math.abs(positionOffset);
+                    var duration = positionDisplay == positionTo ? slideDuration : slideDuration * Math.abs(positionOffset);
                     duration = Math.min(duration, slideDuration * _DisplayPieces * 1.5);
 
                     _CarouselPlayer.$PlayCarousel(positionDisplay, positionTo, duration);
@@ -2769,8 +2769,8 @@ new function () {
 
         var _SlideshowEnabled;
         var _ParkingPosition;
-        var _CarouselEnabled = _DisplayPieces < _SlideCount;
-        var _DragEnabled = _CarouselEnabled && _Options.$DragOrientation;
+        var _CarouselEnabled = true;
+        var _DragEnabled = _DisplayPieces < _SlideCount && _Options.$DragOrientation;
         var _LastDragSucceded;
 
         var _HoverStatus = 1;   //0 Hovering, 1 Not hovering
