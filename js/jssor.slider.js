@@ -1607,7 +1607,10 @@ new function () {
                         //if ((_HandleTouchEventOnly && ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $JssorUtils$.$GetWebKitVersion() < 535)) {
                         //    $JssorUtils$.$EnableHWA(elmt);
                         //}
-                        if (!_HandleTouchEventOnly || ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) {
+                        //if (!_HandleTouchEventOnly || ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) {
+                        //    $JssorUtils$.$EnableHWA(elmt);
+                        //}
+                        if ($JssorUtils$.$GetWebKitVersion() < 534) {
                             $JssorUtils$.$EnableHWA(elmt);
                         }
                     }
