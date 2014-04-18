@@ -1,7 +1,7 @@
 ﻿/// <reference path="Jssor.Core.js" />
 
 /*
-* Jssor.Utils 14.0
+* Jssor.Utils 15.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Utils

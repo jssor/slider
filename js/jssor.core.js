@@ -1,5 +1,5 @@
 ﻿/*
-* Jssor.Core 14.0
+* Jssor.Core 15.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Core
@@ -28,85 +28,6 @@
 
 /*! Jssor */
 $Jssor$ = window.$Jssor$ = window.$Jssor$ || {};
-
-//$Jssor$.$Ready = function () {
-//    //Logic borrowed from http://www.jquery.com
-
-//    var readyBound = false,
-//        readyList = [],
-//        DOMContentLoaded;
-
-//    if (document.addEventListener) {
-//        DOMContentLoaded = function() {
-//            document.removeEventListener('DOMContentLoaded', DOMContentLoaded, false);
-//            ready();
-//        };
-
-//    } else if (document.attachEvent) {
-//        DOMContentLoaded = function() {
-//            if (document.readyState === 'complete') {
-//                document.detachEvent('onreadystatechange', DOMContentLoaded);
-//                ready();
-//            }
-//        };
-//    }
-
-//    function ready() {
-//        if (!ready.$IsReady) {
-//            ready.$IsReady = true;
-//            for (var i = 0, j = readyList.length; i < j; i++) {
-//                try {
-//                    readyList[i]();
-//                }
-//                catch (e) { }
-//            }
-//        }
-//    }
-
-//    function doScrollCheck() {
-//        try {
-//            document.documentElement.doScroll("left");
-//        } catch (e) {
-//            setTimeout(doScrollCheck, 1);
-//            return;
-//        }
-//        ready();
-//    }
-
-//    function bindReady() {
-//        if (readyBound) {
-//            return;
-//        }
-//        readyBound = true;
-
-//        if (document.readyState === 'complete') {
-//            ready.$IsReady = true;
-//        } else {
-//            if (document.addEventListener) {
-//                document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
-//                window.addEventListener('load', ready, false);
-//            } else if (document.attachEvent) {
-//                document.attachEvent('onreadystatechange', DOMContentLoaded);
-//                window.attachEvent('onload', ready);
-
-//                var toplevel = false;
-
-//                try {
-//                    toplevel = window.frameElement == null;
-//                } catch (e) { }
-
-//                if (document.documentElement.doScroll && toplevel) {
-//                    doScrollCheck();
-//                }
-//            }
-//        }
-//    }
-//    bindReady();
-
-//    return function(callback) {
-//        ready.$IsReady ? callback() : readyList.push(callback);
-//    };
-//}();
 
 
 //$JssorDebug$

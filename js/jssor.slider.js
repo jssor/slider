@@ -2,7 +2,7 @@
 /// <reference path="Jssor.Utils.js" />
 
 /*
-* Jssor.Slider 14.0
+* Jssor.Slider 15.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Slider
@@ -1604,12 +1604,6 @@ new function () {
                         $JssorUtils$.$SetStyleZIndex(elmt, $JssorUtils$.$GetStyleZIndex(elmt) + 1);
                     }
                     if ($JssorUtils$.$GetWebKitVersion() > 0) {
-                        //if ((_HandleTouchEventOnly && ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $JssorUtils$.$GetWebKitVersion() < 535)) {
-                        //    $JssorUtils$.$EnableHWA(elmt);
-                        //}
-                        //if (!_HandleTouchEventOnly || ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) {
-                        //    $JssorUtils$.$EnableHWA(elmt);
-                        //}
                         if ($JssorUtils$.$GetWebKitVersion() < 534) {
                             $JssorUtils$.$EnableHWA(elmt);
                         }
