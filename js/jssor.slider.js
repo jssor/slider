@@ -1175,7 +1175,7 @@ new function () {
             //Carousel Constructor
             {
                 $JssorUtils$.$Each(_SlideItems, function (slideItem) {
-                    _Options.$Loop && slideItem.$SetLoopLength(_SlideCount);
+                    _Loop && slideItem.$SetLoopLength(_SlideCount);
                     _SelfCarousel.$Chain(slideItem);
                     slideItem.$Shift(_ParkingPosition / _StepLength);
                 });
@@ -1603,8 +1603,11 @@ new function () {
                     if ($JssorUtils$.$IsBrowserIe9Earlier()) {
                         $JssorUtils$.$SetStyleZIndex(elmt, $JssorUtils$.$GetStyleZIndex(elmt) + 1);
                     }
-                    if ($JssorUtils$.$GetWebKitVersion() > 0) {
-                        if ($JssorUtils$.$GetWebKitVersion() < 534) {
+                    if (_Options.$HWA && $JssorUtils$.$GetWebKitVersion() > 0) {
+                        //if ((_HandleTouchEventOnly && ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $JssorUtils$.$GetWebKitVersion() < 535)) {
+                        //    $JssorUtils$.$EnableHWA(elmt);
+                        //}
+                        if (!_HandleTouchEventOnly || ($JssorUtils$.$GetWebKitVersion() < 534 || !_SlideshowEnabled)) {
                             $JssorUtils$.$EnableHWA(elmt);
                         }
                     }
@@ -2033,7 +2036,7 @@ new function () {
                             stepLength = _StepLengthX;
                         }
 
-                        if (!_Options.$Loop) {
+                        if (!_Loop) {
                             if (distance > 0) {
                                 var normalDistance = stepLength * _CurrentSlideIndex;
                                 var sqrtDistance = distance - normalDistance;
@@ -2110,7 +2113,7 @@ new function () {
                     toPosition += _DragIndexAdjust;
                 }
 
-                if (!_Options.$Loop) {
+                if (!_Loop) {
                     toPosition = Math.min(_SlideCount - _DisplayPieces, Math.max(toPosition, 0));
                 }
 
@@ -2195,7 +2198,7 @@ new function () {
 
         //Navigation Request Handler
         function NavigationClickHandler(index, relative) {
-            PlayTo(_Options.$Loop ? index : GetRealIndex(index), _Options.$SlideDuration, relative);
+            PlayTo(_Loop ? index : GetRealIndex(index), _Options.$SlideDuration, relative);
         }
 
         function ShowNavigators() {
@@ -2286,7 +2289,7 @@ new function () {
                     }
 
 
-                    if (!_Options.$Loop) {
+                    if (!_Loop) {
                         positionTo = GetRealIndex(positionTo);
                         positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
@@ -2574,6 +2577,7 @@ new function () {
             $StartIndex: 0,                 //[Optional] Index of slide to display when initialize, default value is 0
             $AutoPlay: false,               //[Optional] Whether to auto play, default value is false
             $Loop: true,                    //[Optional] Enable loop(circular) of carousel or not, default value is true
+            $HWA: true,                     //[Optional] Enable hardware acceleration or not, default value is true
             $NaviQuitDrag: true,
             $AutoPlaySteps: 1,              //[Optional] Steps to go of every play (this options applys only when slideshow disabled), default value is 1
             $AutoPlayInterval: 3000,        //[Optional] Interval to play next slide since the previous stopped if a slideshow is auto playing, default value is 3000
@@ -2705,12 +2709,6 @@ new function () {
                 $JssorDebug$.$Fail("Option $DragOrientation error, it should be 0 or the same of $PlayOrientation when $ParkingPosition is not equal to 0.");
         });
 
-        if (!_Options.$Loop)
-            _Options.$ParkingPosition = 0;
-
-        if (_Options.$DisplayPieces > 1 || _Options.$ParkingPosition)
-            _Options.$DragOrientation &= _Options.$PlayOrientation;
-
         var _StyleDef;
 
         var _SlideElmts = $JssorUtils$.$GetChildren(_SlidesContainer);
@@ -2767,7 +2765,15 @@ new function () {
         var _SlideshowEnabled;
         var _ParkingPosition;
         var _CarouselEnabled = _DisplayPieces < _SlideCount;
-        var _DragEnabled = _CarouselEnabled && _Options.$DragOrientation;
+        var _Loop = _Options.$Loop && _CarouselEnabled;
+
+        if (!_Loop)
+            _Options.$ParkingPosition = 0;
+
+        if (_Options.$DisplayPieces > 1 || _Options.$ParkingPosition)
+            _Options.$DragOrientation &= _Options.$PlayOrientation;
+
+        var _DragEnabled = _Options.$DragOrientation;
         var _LastDragSucceded;
 
         var _HoverStatus = 1;   //0 Hovering, 1 Not hovering

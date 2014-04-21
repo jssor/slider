@@ -92,7 +92,7 @@
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
 
                     $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
-                    $SpacingX: 6,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingX: 8,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
                     $DisplayPieces: 10,                             //[Optional] Number of pieces to display, default value is 1
                     $ParkingPosition: 360                          //[Optional] The offset position to park thumbnail
                 }
@@ -222,7 +222,6 @@
         
         <!-- Thumbnail Navigator Skin Begin -->
         <div u="thumbnavigator" class="jssort01" style="position: absolute; width: 800px; height: 100px; left:0px; bottom: 0px;">
-        
             <!-- Thumbnail Item Skin Begin -->
             <style>
                 /* jssor slider thumbnail navigator skin 01 css */
@@ -233,43 +232,42 @@
                 .jssort01 .pav:hover     (active mouseover)
                 .jssort01 .pdn           (mousedown)
                 */
-                .jssort01 .w
-                {
+                .jssort01 .w {
                     position: absolute;
                     top: 0px;
                     left: 0px;
                     width: 100%;
                     height: 100%;
                 }
-                .jssort01 .c
-                {
+
+                .jssort01 .c {
                     position: absolute;
                     top: 0px;
                     left: 0px;
-                    width: 70px;
-                    height: 70px;
+                    width: 68px;
+                    height: 68px;
                     border: #000 2px solid;
                 }
-                .jssort01 .p:hover .c, .jssort01 .pav:hover .c, .jssort01 .pav .c 
-                {
-                	background: url(../img/t01.png) center center;
-                	border-width: 0px;
+
+                .jssort01 .p:hover .c, .jssort01 .pav:hover .c, .jssort01 .pav .c {
+                    background: url(../img/t01.png) center center;
+                    border-width: 0px;
                     top: 2px;
                     left: 2px;
-                    width: 70px;
-                    height: 70px;
+                    width: 68px;
+                    height: 68px;
                 }
-                .jssort01 .p:hover .c, .jssort01 .pav:hover .c
-                {
+
+                .jssort01 .p:hover .c, .jssort01 .pav:hover .c {
                     top: 0px;
                     left: 0px;
-                    width: 72px;
-                    height: 72px;
+                    width: 70px;
+                    height: 70px;
                     border: #fff 1px solid;
                 }
             </style>
             <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="position: absolute; width: 74px; height: 74px; top: 0; left: 0;">
+                <div u="prototype" class="p" style="position: absolute; width: 72px; height: 72px; top: 0; left: 0;">
                     <div class=w><thumbnailtemplate style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></thumbnailtemplate></div>
                     <div class=c>
                     </div>

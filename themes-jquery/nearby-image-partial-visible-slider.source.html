@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Simple Slider Example - Jssor Slider, Slideshow</title>
+    <title>Nearby Image Partial Visible Slider - Jssor Slider, Slideshow</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
     <!-- it works the same with all jquery version from 1.3.1 to 2.0.3 -->
@@ -37,6 +37,23 @@
             };
 
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 800));
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+
+            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+                $(window).bind('resize', ScaleSlider);
+            }
+            //responsive code end
         });
     </script>
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;

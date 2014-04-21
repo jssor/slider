@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -89,15 +89,37 @@
             };
 
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth) {
+                    var sliderWidth = parentWidth;
+
+                    //keep the slider width no more than 600
+                    sliderWidth = Math.min(sliderWidth, 600);
+
+                    jssor_slider1.$SetScaleWidth(sliderWidth);
+                }
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+
+            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+                $(window).bind('resize', ScaleSlider);
+            }
+            //responsive code end
         });
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
-    <div id="slider1_container" style="position: relative; top:27px; left:0px; width: 600px;
-        height: 300px;background:#fff;">
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 327px; background: #fff; overflow: hidden; ">
         
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left:0px; top: 0px; width: 600px; height: 300px;
+        <div u="slides" style="cursor: move; position: absolute; left:0px; top: 27px; width: 600px; height: 300px;
             overflow: hidden;">
             <div>
                 <img src="../img/landscape/01.jpg" />
@@ -122,7 +144,7 @@
         </div>
         
         <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort14" style="position: absolute; width: 504px; height: 27px; left:0px; top: -27px;background:#fff;">
+        <div u="thumbnavigator" class="jssort14" style="position: absolute; width: 504px; height: 27px; left:0px; top: 0px;background:#fff;">
             <!-- Thumbnail Item Skin Begin -->
             <style>
                 /* jssor slider thumbnail navigator skin 14 css */

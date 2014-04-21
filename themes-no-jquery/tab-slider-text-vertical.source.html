@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -48,12 +48,35 @@
             };
 
             var jssor_slider3 = new $JssorSlider$(containerId, options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+                var parentWidth = jssor_slider3.$Elmt.parentNode.clientWidth;
+                if (parentWidth) {
+                    var sliderWidth = parentWidth;
+
+                    //keep the slider width no more than 701
+                    sliderWidth = Math.min(sliderWidth, 701);
+
+                    jssor_slider3.$SetScaleWidth(sliderWidth);
+                }
+                else
+                    $JssorUtils$.$Delay(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
+
+            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+            }
+            //responsive code end
         };
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
-    <div id="slider3_container" style="position: relative; top:0px; left:0px; width: 699px;
-        height: 300px;background:#fff;">
+    <div id="slider3_container" style="position: relative; top: 0px; left: 0px; width: 710px; height: 302px; background: #fff; overflow: hidden; ">
         
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left:99px; top: 0px; width: 600px; height: 300px; border: 1px solid gray; background-color: #fff;
