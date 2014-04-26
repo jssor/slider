@@ -1,5 +1,5 @@
 ﻿
-        Start with any file in folder 'themes', 'examples'
+        Start with any file in folder 'demos', 'examples'
         e.g. you can start with 'examples/simple-slider.source.html'.
         Use 'jssor.core.js' 'jssor.utils.js' 'jssor.slider.js' for development.
         Use 'jssor.slider.mini.js' (40KB for jQuery Plugin) or 'jssor.slider.min.js' (60KB for No-jQuery Version) for release.

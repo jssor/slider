@@ -6,16 +6,14 @@
     <title>Nearby Image Partial Visible Slider - Jssor Slider, Slideshow</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
-    <!-- it works the same with all jquery version from 1.3.1 to 2.0.3 -->
-    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
-    <!-- use jssor.slider.mini.js (39KB) or jssor.sliderc.mini.js (31KB, with caption, no slideshow) or jssor.sliders.mini.js (26KB, no caption, no slideshow) instead for release -->
-    <!-- jssor.slider.mini.js = jssor.sliderc.mini.js = jssor.sliders.mini.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="../js/jssor.core.js"></script>
     <script type="text/javascript" src="../js/jssor.utils.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
 
-        jQuery(document).ready(function ($) {
+        jssor_slider1_starter = function (containerId) {
             var options = {
                 $AutoPlay: true,
 
@@ -36,8 +34,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
-
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
             function ScaleSlider() {
@@ -45,17 +42,21 @@
                 if (parentWidth)
                     jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 800));
                 else
-                    window.setTimeout(ScaleSlider, 30);
+                    $JssorUtils$.$Delay(ScaleSlider, 30);
             }
 
             ScaleSlider();
+            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $(window).bind('resize', ScaleSlider);
+                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
             //responsive code end
-        });
+        };
     </script>
+    
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;
         height: 300px; overflow: hidden;">
         <!-- Slides Container -->
@@ -122,6 +123,12 @@
         </span>
         <!-- Arrow Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+
     </div>
+    <!-- Jssor Slider End -->
 </body>
 </html>
