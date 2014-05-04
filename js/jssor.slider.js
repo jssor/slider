@@ -2008,7 +2008,7 @@ new function () {
 
 
                     if (Math.floor(_DragStartPosition) != _DragStartPosition)
-                        _DragOrientation = _Options.$PlayOrientation & _DragOrientationRegistered;
+                        _DragOrientation = _DragOrientation || (_Options.$PlayOrientation & _DragOrientationRegistered);
 
                     if ((distanceX || distanceY) && !_DragOrientation) {
                         if (_DragOrientationRegistered == 3) {
@@ -2711,7 +2711,16 @@ new function () {
 
         var _StyleDef;
 
-        var _SlideElmts = $JssorUtils$.$GetChildren(_SlidesContainer);
+        var _SlideElmts = [];
+
+        {
+            var slideElmts = $JssorUtils$.$GetChildren(_SlidesContainer);
+            $JssorUtils$.$Each(slideElmts, function (slideElmt) {
+                if (slideElmt.tagName == "DIV" && !$JssorUtils$.$GetAttribute(slideElmt, "u")) {
+                    _SlideElmts.push(slideElmt);
+                }
+            });
+        }
 
         $JssorDebug$.$Execute(function () {
             if (_SlideElmts.length < 1) {
@@ -2739,6 +2748,7 @@ new function () {
 
         var _SlideshowPanel;
         var _CurrentBoardIndex = 0;
+        var _PlayOrientation = 0;
         var _DragOrientation;
         var _DragOrientationRegistered;
         var _DragInvalid;

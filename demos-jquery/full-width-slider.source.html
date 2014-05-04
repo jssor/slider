@@ -3,19 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <title>Responsive Slider Full Width - Jssor Slider, Slideshow</title>
+    <!-- QR Code Style -->
+    <style>
+        @media only screen and (max-width: 980px) {
+            .qr_code {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body style="padding:0px; margin:0px; font-family:Arial, Verdana;background-color:#fff;">
-    <!-- use jssor.slider.min.js for release -->
-    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
-    <!-- use jssor.slider.min.js instead for release -->
-    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
+    <!-- it works the same with all jquery version from 1.x to 2.x -->
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <!-- use jssor.slider.mini.js (39KB) or jssor.sliderc.mini.js (31KB, with caption, no slideshow) or jssor.sliders.mini.js (26KB, no caption, no slideshow) instead for release -->
+    <!-- jssor.slider.mini.js = jssor.sliderc.mini.js = jssor.sliders.mini.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="../js/jssor.core.js"></script>
     <script type="text/javascript" src="../js/jssor.utils.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jQuery(document).ready(function ($) {
+
             var _CaptionTransitions = [];
             _CaptionTransitions["L"] = { $Duration: 900, $FlyDirection: 1, $Easing: { $Left: $JssorEasing$.$EaseInOutSine }, $ScaleHorizontal: 0.6, $Opacity: 2 };
             _CaptionTransitions["R"] = { $Duration: 900, $FlyDirection: 2, $Easing: { $Left: $JssorEasing$.$EaseInOutSine }, $ScaleHorizontal: 0.6, $Opacity: 2 };
@@ -36,8 +44,8 @@
                 $PauseOnHover: 3,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
 
                 $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
-                $SlideEasing: $JssorEasing$.$EaseOutQuint,          //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
-                $SlideDuration: 1500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $SlideEasing: $JssorEasing$.$EaseOutQuart,          //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
+                $SlideDuration: 1200,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                 $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                 //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
                 //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
@@ -74,7 +82,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizes
@@ -83,17 +91,16 @@
                 if (bodyWidth)
                     jssor_slider1.$SetScaleWidth(Math.min(bodyWidth, 1920));
                 else
-                    $JssorUtils$.$Delay(ScaleSlider, 30);
+                    window.setTimeout(ScaleSlider, 30);
             }
 
             ScaleSlider();
-            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+                $(window).bind('resize', ScaleSlider);
             }
             //responsive code end
-        };
+        });
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles (except 'top', 'left', 'width' and 'height') to css file or css block. -->
@@ -139,7 +146,6 @@
             </div>
             <div>
                 <img u="image" src="../img/1920/purple.jpg" />
-                <img src="../img/new-site/c-phone.png" style="position: absolute; width: 445px; height: 300px; top: 100px; left: 600px; background-color: transparent;" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
                         color: #FFFFFF;">Touch Swipe Slider
@@ -152,7 +158,6 @@
             </div>
             <div>
                 <img u="image" src="../img/1920/blue.jpg" />
-                <img src="../img/new-site/c-phone.png" style="position: absolute; width: 445px; height: 300px; top: 100px; left: 600px; background-color: transparent;" />
                 <div style="position: absolute; width: 480px; height: 120px; top: 30px; left: 30px; padding: 5px;
                     text-align: left; line-height: 60px; text-transform: uppercase; font-size: 50px;
                         color: #FFFFFF;">Touch Swipe Slider
@@ -163,6 +168,7 @@
                         Build your slider with anything, includes image, content, text, html, photo, picture
                 </div>
             </div>
+            <img u="any" class="qr_code" src="../img/qr/full-width-slider.png" style="position: absolute; width: 106px; height: 106px; bottom: 30px; right: 180px; opacity: .25; filter: alpha(opacity=25);" />
         </div>
                 
         <!-- Bullet Navigator Skin Begin -->
@@ -226,12 +232,8 @@
         <span u="arrowright" class="jssora21r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
     </div>
     <!-- Trigger -->
-    <script>
-        jssor_slider1_starter('slider1_container');
-    </script>
-    <!-- Jssor Slider End -->
 </body>
 </html>

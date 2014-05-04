@@ -19,6 +19,7 @@
 
             $JssorUtils$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
                 var nestedSliderOptions = {
+                    $PauseOnHover: 0,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
                     $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                     $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                     //$SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
@@ -325,7 +326,7 @@
         </div>
         <!-- ThumbnailNavigator Skin End -->
 
-        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
+        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

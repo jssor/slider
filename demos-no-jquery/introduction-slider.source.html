@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"> 
     <title>Introduction Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
+    
+    <!-- QR Code Style -->
+    <style>
+        @media only screen and (max-width: 980px) {
+            .qr_code {
+                display: none;
+            }
+        }
+    </style>
 </head> 
 <body style="margin:0;padding:0; background:#fff; font-family: Arial, Verdana, Sans-Serif;"> 
     <!-- Caption Style -->
@@ -356,6 +365,7 @@
                 <img u="caption" t="T|IB" t2=B d=-900 src="../img/home/moc-iphone.png" style="position:absolute;left:600px;top:230px;width:120px;height:80px;" />
                 <img u="caption" t="RTTL|BR" d=-450 src="../img/home/moc-ipad.png" style="position:absolute;left:750px;top:220px;width:77px;height:100px;" />
             </div>
+            <img u="any" class="qr_code" src="../img/qr/jssor.com.png" style="position: absolute; width: 80px; height: 80px; bottom: 20px; right: 20px; opacity: .5; filter: alpha(opacity=50);" />
         </div> 
  
         <!-- Bullet Navigator Skin Begin -->
@@ -419,7 +429,7 @@
         <span u="arrowright" class="jssora20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a> 
+        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a> 
         <!-- Trigger --> 
         <script>
             jssor_slider1_starter('slider1_container');
