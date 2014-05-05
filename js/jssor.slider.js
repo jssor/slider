@@ -1464,7 +1464,8 @@ new function () {
                 }
                 else {
                     var distance = Math.abs(slideIndex - currentIndex);
-                    if (!_ImageLazyLoading || distance <= _Options.$LazyLoading || _SlideCount - distance <= _Options.$LazyLoading) {
+                    var loadRange = _DisplayPieces + _Options.$LazyLoading;
+                    if (!_ImageLazyLoading || distance < loadRange || _SlideCount - distance < loadRange) {
                         _SelfSlideItem.$LoadImage();
                     }
                 }
@@ -2315,7 +2316,7 @@ new function () {
             ///	<summary>
             ///		instance.$GoTo( slideIndex );   //Go to the specifed slide immediately with no play.
             ///	</summary>
-            PlayTo(slideIndex, 0);
+            PlayTo(slideIndex, 1);
         };
 
         _SelfSlider.$Next = function () {
