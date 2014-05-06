@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html> 
 <head> 
     <meta charset="utf-8">
@@ -352,7 +352,7 @@
                 }
             }
 
-            var sliderClusterSlideshowOptions = IsBrowserIe8Earlier ? null : {                                //[Optional] Options to specify and enable slideshow or not
+            var sliderClusterSlideshowOptions = IsBrowserIe8Earlier() ? null : {                                //[Optional] Options to specify and enable slideshow or not
                 $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
                 $Transitions: slideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
                 $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random

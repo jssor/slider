@@ -2,7 +2,7 @@
 /// <reference path="Jssor.Utils.js" />
 
 /*
-* Jssor.Slider 15.0
+* Jssor.Slider 16.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Slider
@@ -1349,6 +1349,7 @@ new function () {
                 _CaptionSliderIn && _CaptionSliderIn.$Revert();
 
                 RefreshContent(slideElmt, fresh);
+                _ContentRefreshed = true;
 
                 _CaptionSliderIn = new _CaptionSliderOptions.$Class(slideElmt, _CaptionSliderOptions, 1);
                 $JssorDebug$.$LiveStamp(_CaptionSliderIn, "caption_slider_" + _CaptionSliderCount + "_in");
@@ -1465,7 +1466,7 @@ new function () {
                 else {
                     var distance = Math.abs(slideIndex - currentIndex);
                     var loadRange = _DisplayPieces + _Options.$LazyLoading;
-                    if (!_ImageLazyLoading || distance < loadRange || _SlideCount - distance < loadRange) {
+                    if (!_ImageLazyLoading || distance <= loadRange || _SlideCount - distance <= loadRange) {
                         _SelfSlideItem.$LoadImage();
                     }
                 }
@@ -1589,6 +1590,9 @@ new function () {
             };
 
             function RefreshContent(elmt, fresh, level) {
+                if (elmt["jssor-slider"])
+                    return;
+
                 level = level || 0;
 
                 if (!_ContentRefreshed) {
@@ -1736,7 +1740,6 @@ new function () {
                 $JssorUtils$.$AddEvent(slideElmt, "click", LinkClickEventHandler);
 
                 ResetCaptionSlider(true);
-                _ContentRefreshed = true;
 
                 _SelfSlideItem.$Image = _ImageItem;
                 _SelfSlideItem.$Link = _LinkItem;
@@ -1930,10 +1933,10 @@ new function () {
             if ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserVersion() >= 10 && $JssorUtils$.$GetBrowserVersion() < 11) {
                 elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
             }
-            else if ($JssorUtils$.$IsBrowserChrome() && $JssorUtils$.$GetBrowserVersion() >= 30) {
-                elmt.style.WebkitTransition = "transform 0s";
-                elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
-            }
+            //else if ($JssorUtils$.$IsBrowserChrome() && $JssorUtils$.$GetBrowserVersion() >= 30 && $JssorUtils$.$GetBrowserVersion() < 32) {
+            //    elmt.style.WebkitTransition = "transform 0s";
+            //    elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
+            //}
             else {
                 $JssorUtils$.$SetStyleLeft(elmt, x);
                 $JssorUtils$.$SetStyleTop(elmt, y);
@@ -2301,7 +2304,7 @@ new function () {
                     var duration = positionDisplay == positionTo ? 0 : slideDuration * Math.abs(positionOffset);
                     duration = Math.min(duration, slideDuration * _DisplayPieces * 1.5);
 
-                    _CarouselPlayer.$PlayCarousel(positionDisplay, positionTo, duration);
+                    _CarouselPlayer.$PlayCarousel(positionDisplay, positionTo, duration || 1);
                 }
             }
         }
