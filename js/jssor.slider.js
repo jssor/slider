@@ -1515,7 +1515,7 @@ new function () {
                         $JssorUtils$.$Each(_ImageElmts, function (imageElmt) {
 
                             if (!imageElmt.src) {
-                                imageElmt.src = $JssorUtils$.$GetAttribute(imageElmt, "src2");
+                                imageElmt.src = $JssorUtils$.$GetAttributeEx(imageElmt, "src2");
                                 $JssorUtils$.$SetStyleDisplay(imageElmt, imageElmt["display-origin"]);
                             }
                         });
@@ -1622,7 +1622,7 @@ new function () {
 
                 $JssorUtils$.$Each(childElements, function (childElement, i) {
 
-                    var uAttribute = $JssorUtils$.$GetAttribute(childElement, "u");
+                    var uAttribute = $JssorUtils$.$GetAttributeEx(childElement, "u");
                     if (uAttribute == "player" && !_PlayerInstanceElement) {
                         _PlayerInstanceElement = childElement;
                         if (_PlayerInstanceElement.pInstance) {
@@ -1643,7 +1643,7 @@ new function () {
                             fresh = true;
                         }
                     }
-                    else if (!_ContentRefreshed && !level && !_ImageItem && $JssorUtils$.$GetAttribute(childElement, "u") == "image") {
+                    else if (!_ContentRefreshed && !level && !_ImageItem && $JssorUtils$.$GetAttributeEx(childElement, "u") == "image") {
                         _ImageItem = childElement;
 
                         if (_ImageItem) {
@@ -1933,10 +1933,10 @@ new function () {
             if ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserVersion() >= 10 && $JssorUtils$.$GetBrowserVersion() < 11) {
                 elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
             }
-            //else if ($JssorUtils$.$IsBrowserChrome() && $JssorUtils$.$GetBrowserVersion() >= 30 && $JssorUtils$.$GetBrowserVersion() < 32) {
-            //    elmt.style.WebkitTransition = "transform 0s";
-            //    elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
-            //}
+            else if ($JssorUtils$.$IsBrowserChrome() && $JssorUtils$.$GetBrowserVersion() >= 30 && $JssorUtils$.$GetBrowserVersion() < 34) {
+                elmt.style.WebkitTransition = "transform 0s";
+                elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
+            }
             else {
                 $JssorUtils$.$SetStyleLeft(elmt, x);
                 $JssorUtils$.$SetStyleTop(elmt, y);
@@ -2720,7 +2720,7 @@ new function () {
         {
             var slideElmts = $JssorUtils$.$GetChildren(_SlidesContainer);
             $JssorUtils$.$Each(slideElmts, function (slideElmt) {
-                if (slideElmt.tagName == "DIV" && !$JssorUtils$.$GetAttribute(slideElmt, "u")) {
+                if (slideElmt.tagName == "DIV" && !$JssorUtils$.$GetAttributeEx(slideElmt, "u")) {
                     _SlideElmts.push(slideElmt);
                 }
             });
@@ -3581,7 +3581,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             var rawTransition = {};
 
             $JssorUtils$.$Each(_CaptionTuningFetcher, function (fetchAttribute, fetchProperty) {
-                var attributeValue = $JssorUtils$.$GetAttribute(captionElmt, fetchAttribute + (index || ""));
+                var attributeValue = $JssorUtils$.$GetAttributeEx(captionElmt, fetchAttribute + (index || ""));
                 if (attributeValue) {
                     var propertyValue = {};
 
@@ -3671,7 +3671,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
             var transitionsWithTuning = [];
             transitionsWithTuning.$Elmt = captionElmt;
-            var isCaption = $JssorUtils$.$GetAttribute(captionElmt, "u") == "caption";
+            var isCaption = $JssorUtils$.$GetAttributeEx(captionElmt, "u") == "caption";
 
             $JssorUtils$.$Each(playIn ? [0, 3] : [2], function (j, k) {
 
@@ -3679,7 +3679,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                     var transition;
                     var rawTransition;
 
-                    if (j != 2 || !$JssorUtils$.$GetAttribute(captionElmt, "t3")) {
+                    if (j != 2 || !$JssorUtils$.$GetAttributeEx(captionElmt, "t3")) {
                         rawTransition = FetchRawTransition(captionElmt, j);
 
                         if (j == 2 && !rawTransition.$Transition) {

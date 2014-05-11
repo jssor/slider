@@ -4,15 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"> 
     <title>Introduction Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
-    
-    <!-- QR Code Style -->
-    <style>
-        @media only screen and (max-width: 980px) {
-            .qr_code {
-                display: none;
-            }
-        }
-    </style>
 </head> 
 <body style="margin:0;padding:0; background:#fff; font-family: Arial, Verdana, Sans-Serif;"> 
     <!-- Caption Style -->
@@ -160,7 +151,7 @@
                 $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 3
                 
                 $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
-                $SlideEasing: $JssorEasing$.$EaseOutQuart,        //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
+                $SlideEasing: $JssorEasing$.$EaseOutQuint,        //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
                 $SlideDuration: 1200,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                 $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                 //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
@@ -219,9 +210,14 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
             //responsive code end
         }
     </script>
@@ -365,7 +361,19 @@
                 <img u="caption" t="T|IB" t2=B d=-900 src="../img/home/moc-iphone.png" style="position:absolute;left:600px;top:230px;width:120px;height:80px;" />
                 <img u="caption" t="RTTL|BR" d=-450 src="../img/home/moc-ipad.png" style="position:absolute;left:750px;top:220px;width:77px;height:100px;" />
             </div>
+            
+            <!-- Example to add fixed static content in slider BEGIN -->
+            <!-- Remove it if no need -->
+            <!-- QR Code Style -->
+            <style>
+                @media only screen and (max-width: 980px) {
+                    .qr_code {
+                        display: none;
+                    }
+                }
+            </style>
             <img u="any" class="qr_code" src="../img/qr/jssor.com.png" style="position: absolute; width: 80px; height: 80px; bottom: 20px; right: 20px; opacity: .5; filter: alpha(opacity=50);" />
+            <!-- Example to add fixed static content in slider END -->
         </div> 
  
         <!-- Bullet Navigator Skin Begin -->
@@ -429,7 +437,7 @@
         <span u="arrowright" class="jssora20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a> 
+        <a style="display: none" href="http://www.jssor.com">Slider</a> 
         <!-- Trigger --> 
         <script>
             jssor_slider1_starter('slider1_container');

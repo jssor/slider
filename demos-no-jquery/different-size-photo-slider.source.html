@@ -94,9 +94,14 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
             //responsive code end
         };
     </script>
@@ -190,7 +195,7 @@
             <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px;"></div>
         </div>
         <!-- Bullet Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+        <a style="display: none" href="http://www.jssor.com">Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

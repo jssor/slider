@@ -1433,7 +1433,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
-                if (elmt.getAttribute(attrName) == attrValue)
+                if (self.$GetAttributeEx(elmt, attrName) == attrValue)
                     return elmt;
 
                 if (deep) {
@@ -1455,7 +1455,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
-                if (elmt.getAttribute(attrName) == attrValue)
+                if (self.$GetAttributeEx(elmt, attrName) == attrValue)
                     ret.push(elmt);
 
                 if (deep) {
@@ -1596,6 +1596,10 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
     self.$GetAttribute = function (elmt, name) {
         return elmt.getAttribute(name);
+    };
+
+    self.$GetAttributeEx = function (elmt, name) {
+        return self.$GetAttribute(elmt, name) || self.$GetAttribute(elmt, "data-" + name);
     };
 
     self.$SetAttribute = function (elmt, name, value) {
@@ -2686,7 +2690,7 @@ function $JssorPlayerClass$() {
             var playerHandler;
 
             if (!playerInstanceElement.pInstance) {
-                var playerHandlerAttribute = $JssorUtils$.$GetAttribute(playerInstanceElement, "pHandler");
+                var playerHandlerAttribute = $JssorUtils$.$GetAttributeEx(playerInstanceElement, "pHandler");
 
                 if ($JssorPlayer$[playerHandlerAttribute]) {
                     $JssorUtils$.$AddEvent(playerInstanceElement, "dataavailable", OnPlayerInstanceDataAvailable);

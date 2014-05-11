@@ -389,9 +389,14 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
             //responsive code end
 
             //slider cluster controller code begin
@@ -562,7 +567,7 @@
                         </span>
                         <!-- Arrow Navigator Skin End -->
         
-                        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+                        <a style="display: none" href="http://www.jssor.com">Slider</a>
                     </div>
                     <!-- Jssor Slider End -->
                     <div u="caption" t="RTT*JUP|BR" t2="SPACESHIP|RB" style="position: absolute; left: 0px;top:30px;width:600px;height:30px;font-size:28px;color:#fff;line-height:30px; text-align: center;">
@@ -652,7 +657,7 @@
                         <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 123px; right: 8px">
                         </span>
                         <!-- Arrow Navigator Skin End -->
-                        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+                        <a style="display: none" href="http://www.jssor.com">Slider</a>
                     </div>
                     <!-- Jssor Slider End -->
                     <div u="caption" t="T|IE*IE" t2="B*IB" style="position: absolute; left: 360px;top:360px;width:600px;height:30px;font-size:28px;color:#fff;line-height:30px; text-align: center;">
@@ -758,7 +763,7 @@
                         <span u="arrowright" class="jssora05r" style="width: 40px; height: 40px; top: 123px; right: 8px">
                         </span>
                         <!-- Arrow Navigator Skin End -->
-                        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+                        <a style="display: none" href="http://www.jssor.com">Slider</a>
                     </div>
                     <!-- Jssor Slider End -->
                     <div u="caption" t="L*IB" t2="SPACESHIP|LB" style="position: absolute; left: 360px;top:30px;width:600px;height:30px;font-size:28px;color:#fff;line-height:30px; text-align: center;">
@@ -860,7 +865,7 @@
             <span u="arrowright" class="jssora20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
             </span>
             <!-- Arrow Navigator Skin End -->
-            <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+            <a style="display: none" href="http://www.jssor.com">Slider</a>
             <!-- Trigger --> 
             <script>
                 jssor_sliderc_starter('sliderc_container');

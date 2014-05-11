@@ -3,20 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title>Responsive Slider Full Width - Jssor Slider, Slideshow</title>    <!-- QR Code Style -->
-    <style>
-        @media only screen and (max-width: 980px) {
-            .qr_code {
-                display: none;
-            }
-        }
-    </style>
+    <title>Full Width Slider - Jssor Slider, Slideshow</title>
 </head>
 <body style="padding:0px; margin:0px; font-family:Arial, Verdana;background-color:#fff;">
+
     <!-- use jssor.slider.min.js for release -->
-    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
-    <!-- use jssor.slider.min.js instead for release -->
     <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="../js/jssor.core.js"></script>
     <script type="text/javascript" src="../js/jssor.utils.js"></script>
@@ -44,7 +35,7 @@
 
                 $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
                 $SlideEasing: $JssorEasing$.$EaseOutQuint,          //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
-                $SlideDuration: 1500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $SlideDuration: 1200,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                 $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                 //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
                 //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
@@ -96,9 +87,14 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
             //responsive code end
         };
     </script>
@@ -170,7 +166,19 @@
                         Build your slider with anything, includes image, content, text, html, photo, picture
                 </div>
             </div>
+
+            <!-- Example to add fixed static content in slider BEGIN -->
+            <!-- Remove it if no need -->
+            <!-- QR Code Style -->
+            <style>
+                @media only screen and (max-width: 980px) {
+                    .qr_code {
+                        display: none;
+                    }
+                }
+            </style>
             <img u="any" class="qr_code" src="../img/qr/full-width-slider.png" style="position: absolute; width: 106px; height: 106px; bottom: 30px; right: 180px; opacity: .25; filter: alpha(opacity=25);" />
+            <!-- Example to add fixed static content in slider END -->
         </div>
                 
         <!-- Bullet Navigator Skin Begin -->
@@ -234,7 +242,7 @@
         <span u="arrowright" class="jssora21r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+        <a style="display: none" href="http://www.jssor.com">Slider</a>
     </div>
     <!-- Trigger -->
     <script>

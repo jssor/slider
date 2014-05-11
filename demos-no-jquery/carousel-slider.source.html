@@ -65,10 +65,15 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
-            //responsive code end
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
+            ////responsive code end
         };
     </script>
     <!-- Jssor Slider Begin -->
@@ -200,7 +205,7 @@
         <span u="arrowright" class="jssora03r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+        <a style="display: none" href="http://www.jssor.com">Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

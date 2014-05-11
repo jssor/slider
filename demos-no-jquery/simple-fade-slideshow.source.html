@@ -17,7 +17,7 @@
 
             var _SlideshowTransitions = [
             //Fade
-            { $Duration: 1500, $Opacity: 2 }
+            { $Duration: 1200, $Opacity: 2 }
             ];
 
             var options = {
@@ -77,9 +77,14 @@
             ScaleSlider();
             $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
 
+
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
                 $JssorUtils$.$OnWindowResize(window, ScaleSlider);
             }
+
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //}
             //responsive code end
         };
     </script>
@@ -219,7 +224,7 @@
         <span u="arrowright" class="jssora12r" style="width: 30px; height: 46px; top: 123px; right: 0px">
         </span>
         <!-- Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">jQuery Carousel</a>
+        <a style="display: none" href="http://www.jssor.com">Slider</a>
         <!-- Trigger -->
         <script>
             jssor_slider1_starter('slider1_container');

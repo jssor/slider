@@ -1,5 +1,5 @@
 ﻿/*
-* Jssor.Core 15.0
+* Jssor.Core 16.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Core
