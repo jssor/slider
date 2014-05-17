@@ -11,5 +11,5 @@
 
 
         Resources:
+        Top Website Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=site-templates
         Top Wordpress Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=wordpress
-        Top Site Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=site-templates

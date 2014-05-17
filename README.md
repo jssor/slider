@@ -1,16 +1,16 @@
-[slider.js](http://www.jssor.com/) - Touch Swipe, Responsive Slider [jssor.com](http://www.jssor.com)
-==================================================
+jQuery Slider/Carousel/Slideshow
+--------------------------------------
 
 Overview
 --------------------------------------
 
-1. [30+ Slider Demos](http://www.jssor.com)
+1. [30+ Slider/Carouel/Slideshow/Gallery/Banner Demos](http://www.jssor.com)
 2. [Documentation](http://www.jssor.com/development/index.html)
 3. Support: [Ask question on StackOverflow](http://stackoverflow.com/search?tab=relevance&q=jssor)
 
 What you get with jssor slider?
 --------------------------------------
-image slider, content slider, image gallery, banner slider, grid slider, list slider, banner rotator, photo slideshow
+image slider, content slider, fade slideshow, thumbnail slider, nested slider, carousel slider, slider cluster, full width slider, grid slider, list slider, vertical slider, image gallery, banner slider, banner rotator, video gallery, tiled menu slider
 
 Why jssor slider?
 --------------------------------------
