@@ -1729,6 +1729,7 @@ new function () {
                 var thumb = $JssorUtils$.$FindFirstChildByAttribute(slideElmt, "thumb");
                 if (thumb) {
                     _SelfSlideItem.$Thumb = $JssorUtils$.$CloneNode(thumb, true);
+                    $JssorUtils$.$RemoveAttribute(thumb, "id");
                     $JssorUtils$.$HideElement(thumb);
                 }
                 $JssorUtils$.$ShowElement(slideElmt);
@@ -2040,7 +2041,7 @@ new function () {
                             stepLength = _StepLengthX;
                         }
 
-                        if (!_Loop) {
+                        if (!(_Loop & 1)) {
                             if (distance > 0) {
                                 var normalDistance = stepLength * _CurrentSlideIndex;
                                 var sqrtDistance = distance - normalDistance;
@@ -2108,6 +2109,7 @@ new function () {
 
                 var currentPosition = _Conveyor.$GetPosition();
 
+                //Trigger EVT_DRAG_END
                 _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_DragStartPosition), _DragStartPosition, event);
 
                 var toPosition = Math.floor(_DragStartPosition);
@@ -2117,7 +2119,7 @@ new function () {
                     toPosition += _DragIndexAdjust;
                 }
 
-                if (!_Loop) {
+                if (!(_Loop & 1)) {
                     toPosition = Math.min(_SlideCount - _DisplayPieces, Math.max(toPosition, 0));
                 }
 
@@ -2202,7 +2204,7 @@ new function () {
 
         //Navigation Request Handler
         function NavigationClickHandler(index, relative) {
-            PlayTo(_Loop ? index : GetRealIndex(index), _Options.$SlideDuration, relative);
+            PlayTo(index, _Options.$SlideDuration, relative);
         }
 
         function ShowNavigators() {
@@ -2293,8 +2295,10 @@ new function () {
                     }
 
 
-                    if (!_Loop) {
-                        positionTo = GetRealIndex(positionTo);
+                    if (!(_Loop & 1)) {
+                        if (_Loop & 2) {
+                            positionTo = GetRealIndex(positionTo);
+                        }
                         positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
 
@@ -2580,7 +2584,7 @@ new function () {
             //But an integer value (maybe 1, 2 or 3) indicates that how far of nearby slides should be loaded immediately as well, default value is 1.
             $StartIndex: 0,                 //[Optional] Index of slide to display when initialize, default value is 0
             $AutoPlay: false,               //[Optional] Whether to auto play, default value is false
-            $Loop: true,                    //[Optional] Enable loop(circular) of carousel or not, default value is true
+            $Loop: 1,                       //[Optional] Enable loop(circular) of carousel or not, 0: stop, 1: loop, 2 rewind, default value is 1
             $HWA: true,                     //[Optional] Enable hardware acceleration or not, default value is true
             $NaviQuitDrag: true,
             $AutoPlaySteps: 1,              //[Optional] Steps to go of every play (this options applys only when slideshow disabled), default value is 1
@@ -2779,9 +2783,9 @@ new function () {
         var _SlideshowEnabled;
         var _ParkingPosition;
         var _CarouselEnabled = _DisplayPieces < _SlideCount;
-        var _Loop = _Options.$Loop && _CarouselEnabled;
+        var _Loop = _CarouselEnabled ? _Options.$Loop : 0;
 
-        if (!_Loop)
+        if (!(_Loop & 1))
             _Options.$ParkingPosition = 0;
 
         if (_Options.$DisplayPieces > 1 || _Options.$ParkingPosition)

@@ -1,4 +1,4 @@
-jQuery Slider/Carousel/Slideshow
+Free jQuery Slider/Carousel/Slideshow
 --------------------------------------
 
 Overview
