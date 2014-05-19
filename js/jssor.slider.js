@@ -1175,7 +1175,7 @@ new function () {
             //Carousel Constructor
             {
                 $JssorUtils$.$Each(_SlideItems, function (slideItem) {
-                    _Loop && slideItem.$SetLoopLength(_SlideCount);
+                    (_Loop & 1) && slideItem.$SetLoopLength(_SlideCount);
                     _SelfCarousel.$Chain(slideItem);
                     slideItem.$Shift(_ParkingPosition / _StepLength);
                 });
@@ -2159,6 +2159,7 @@ new function () {
         }
 
         function ResetNavigator(index, temp) {
+            _TempSlideIndex = index;
             $JssorUtils$.$Each(_Navigators, function (navigator) {
                 navigator.$SetCurrentIndex(GetRealIndex(index), index, temp);
             });
@@ -2204,6 +2205,18 @@ new function () {
 
         //Navigation Request Handler
         function NavigationClickHandler(index, relative) {
+            if (relative) {
+                if (!_Loop) {
+                    //Stop at threshold
+                    index = Math.min(Math.max(index + _TempSlideIndex, 0), _SlideCount - 1);
+                    relative = false;
+                }
+                else if (_Loop & 2) {
+                    //Rewind
+                    index = GetRealIndex(index + _TempSlideIndex);
+                    relative = false;
+                }
+            }
             PlayTo(index, _Options.$SlideDuration, relative);
         }
 
@@ -2296,9 +2309,7 @@ new function () {
 
 
                     if (!(_Loop & 1)) {
-                        if (_Loop & 2) {
-                            positionTo = GetRealIndex(positionTo);
-                        }
+                        positionTo = GetRealIndex(positionTo);
                         positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
 
@@ -2741,6 +2752,7 @@ new function () {
 
         var _PreviousSlideIndex;
         var _CurrentSlideIndex = -1;
+        var _TempSlideIndex;
         var _PrevSlideItem;
         var _CurrentSlideItem;
         var _SlideCount = _SlideElmts.length;
