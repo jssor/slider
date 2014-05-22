@@ -2974,8 +2974,6 @@ new function () {
 
             _HoverToPause &= _HandleTouchEventOnly ? 2 : 1;
 
-            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
-
             //Bullet Navigator
             if (_NavigatorContainer && _BulletNavigatorOptions) {
                 _BulletNavigator = new _BulletNavigatorOptions.$Class(_NavigatorContainer, _BulletNavigatorOptions);
@@ -2994,6 +2992,8 @@ new function () {
                 _ThumbnailNavigator = new _ThumbnailNavigatorOptions.$Class(_ThumbnailNavigatorContainer, _ThumbnailNavigatorOptions);
                 _Navigators.push(_ThumbnailNavigator);
             }
+
+            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
 
             $JssorUtils$.$Each(_Navigators, function (navigator) {
                 navigator.$Reset(_SlideCount, _SlideItems, _LoadingContainer);
