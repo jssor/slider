@@ -5,11 +5,11 @@ SET RESERVE_MEMBERNAMES=%RESERVE_MEMBERNAMES%,$EVT_CLICK,$EVT_DRAG_START,$EVT_DR
 SET RESERVE_MEMBERNAMES=%RESERVE_MEMBERNAMES%,$Interval,$Duration,$Delay,$Cols,$Rows,$Top,$Right,$Bottom,$Left,$Fade,$Zoom,$Move,$SlideOut,$FlyDirection,$Reverse,$Assembly,$Easing,$Formation,$ChessMode,$Column,$Row,$Cache,$Opacity,$ScaleHorizontal,$ScaleVertical,$Round,$During,$Rotate,$ZIndex,$Brother,$Shift,$Outside,$Clip,$ScaleClip
 
 SET RESERVE_MEMBERNAMES2=$On,$Off,$Elmt,$Play,$Pause,$Lock,$Unlock,$GoTo,$PlayTo,$Next,$Prev,$SetScaleWidth,$GetScaleWidth,$GetScaleHeight,$GetOriginalWidth,$GetOriginalHeight,$SetSlideshowTransitions,$SetCaptionTransitions,$SlidesCount,$CurrentIndex,$IsAutoPlaying,$IsDragging,$IsSliding,$IsMouseOver,$LastDragSucceded
-SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$FillMode,$LazyLoading,$StartIndex,$PauseOnHover,$AutoPlay,$Loop,$HWA,$AutoPlaySteps,$AutoPlayInterval,$ArrowKeyNavigation,$SlideDuration,$SlideEasing,$MinDragOffsetToSlide,$SlideWidth,$SlideHeight,$SlideSpacing,$DisplayPieces,$ParkingPosition,$UISearchMode,$PlayOrientation,$DragOrientation,$LoadNearby,$NaviQuitDrag,$HwaMode
+SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$FillMode,$LazyLoading,$StartIndex,$PauseOnHover,$AutoPlay,$Loop,$HWA,$AutoPlaySteps,$AutoPlayInterval,$ArrowKeyNavigation,$SlideDuration,$SlideEasing,$MinDragOffsetToSlide,$SlideWidth,$SlideHeight,$SlideSpacing,$DisplayPieces,$ParkingPosition,$UISearchMode,$PlayOrientation,$DragOrientation,$LoadNearby,$NaviQuitDrag,$HWA
 SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$BulletNavigatorOptions,$Class,$ChanceToShow,$ActionMode,$AutoCenter,$Steps,$Lanes,$SpacingX,$SpacingY,$Orientation
 
 SET RESERVE_MEMBERNAMES3=$JssorPlayer$,$Play,$Pause,$SeekTo,$Enter,$Quit,$Enable,$Disable,$IsPlaying,$IsEntered,$Remove,$FetchPlayers
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ArrowNavigatorOptions
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ArrowNavigatorOptions,$Scale
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ThumbnailNavigatorOptions,$DisableDrag
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$SlideshowOptions,$Transitions,$TransitionsOrder,$ShowLink
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$CaptionSliderOptions,$CaptionTransitions,$PlayInMode,$PlayOutMode

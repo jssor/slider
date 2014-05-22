@@ -2535,7 +2535,18 @@ new function () {
 
                 var children = $JssorUtils$.$GetChildren(elmt);
                 $JssorUtils$.$AppendChild(elmt, _ScaleWrapper);
-                $JssorUtils$.$AppendChildren(innerWrapper, children);
+
+                var noMoveElmts = {
+                    "navigator": _BulletNavigatorOptions && _BulletNavigatorOptions.$Scale == false,
+                    "arrowleft": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
+                    "arrowright": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
+                    "thumbnavigator": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false,
+                    "thumbwrapper": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false
+                };
+
+                $JssorUtils$.$Each(children, function (child) {
+                    $JssorUtils$.$AppendChild(noMoveElmts[$JssorUtils$.$GetAttributeEx(child, "u")] ? elmt : innerWrapper, child);
+                });
 
                 $JssorUtils$.$ShowElement(innerWrapper);
                 $JssorUtils$.$ShowElement(_ScaleWrapper);
@@ -2552,6 +2563,10 @@ new function () {
 
             $JssorUtils$.$SetStyleWidth(elmt, width);
             $JssorUtils$.$SetStyleHeight(elmt, _ScaleRatio * $JssorUtils$.$GetStyleHeight(_ScaleWrapper));
+
+            $JssorUtils$.$Each(_Navigators, function (navigator) {
+                navigator.$Relocate();
+            });
         };
 
         _SelfSlider.$GetVirtualIndex = function (index) {
@@ -2601,8 +2616,7 @@ new function () {
             $AutoPlaySteps: 1,              //[Optional] Steps to go of every play (this options applys only when slideshow disabled), default value is 1
             $AutoPlayInterval: 3000,        //[Optional] Interval to play next slide since the previous stopped if a slideshow is auto playing, default value is 3000
             $PauseOnHover: 1,               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 1
-            $HwaMode: 1,                    //[Optional] Hardware acceleration mode, 0 disabled, 1 enabled, default value is 1
-
+            
             $SlideDuration: 500,            //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 400
             $SlideEasing: $JssorEasing$.$EaseOutQuad,   //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
             $MinDragOffsetToSlide: 20,      //[Optional] Minimum drag offset that trigger slide, default value is 20
@@ -2671,6 +2685,10 @@ new function () {
         var _SlidesContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "slides", null, _UISearchMode);
         var _LoadingContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "loading", null, _UISearchMode) || $JssorUtils$.$CreateDivElement(document);
         var _NavigatorContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "navigator", null, _UISearchMode);
+
+        var _ArrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, _UISearchMode);
+        var _ArrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, _UISearchMode);
+
         var _ThumbnailNavigatorContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "thumbnavigator", null, _UISearchMode);
 
         var _SlidesContainerWidth = $JssorUtils$.$GetStyleWidth(_SlidesContainer);
@@ -2776,8 +2794,8 @@ new function () {
         var _HandleTouchEventOnly;
 
         var _Navigators = [];
-        var _Navigator;
-        var _DirectionNavigator;
+        var _BulletNavigator;
+        var _ArrowNavigator;
         var _ThumbnailNavigator;
 
         var _ShowLink;
@@ -2956,16 +2974,18 @@ new function () {
 
             _HoverToPause &= _HandleTouchEventOnly ? 2 : 1;
 
-            //Navigator
+            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
+
+            //Bullet Navigator
             if (_NavigatorContainer && _BulletNavigatorOptions) {
-                _Navigator = new _BulletNavigatorOptions.$Class(_NavigatorContainer, _BulletNavigatorOptions);
-                _Navigators.push(_Navigator);
+                _BulletNavigator = new _BulletNavigatorOptions.$Class(_NavigatorContainer, _BulletNavigatorOptions);
+                _Navigators.push(_BulletNavigator);
             }
 
-            //Direction Arrows
-            if (_ArrowNavigatorOptions) {
-                _DirectionNavigator = new _ArrowNavigatorOptions.$Class(elmt, _ArrowNavigatorOptions, _Options.$UISearchMode);
-                _Navigators.push(_DirectionNavigator);
+            //Arrow Navigator
+            if (_ArrowNavigatorOptions && _ArrowLeft && _ArrowRight) {
+                _ArrowNavigator = new _ArrowNavigatorOptions.$Class(_ArrowLeft, _ArrowRight, _ArrowNavigatorOptions);
+                _Navigators.push(_ArrowNavigator);
             }
 
             //Thumbnail Navigator
@@ -2998,8 +3018,6 @@ new function () {
                     }
                 });
             }
-
-            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
             _CarouselPlayer.$PlayCarousel(_Options.$StartIndex, _Options.$StartIndex, 0);
         }
     }
@@ -3115,6 +3133,20 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
         $JssorUtils$.$ShowElement(elmt, show);
     };
 
+    var _Located;
+    self.$Relocate = function (force) {
+        if (!_Located || !_Options.$Scale) {
+            if (_Options.$AutoCenter & 1) {
+                $JssorUtils$.$SetStyleLeft(elmt, ($JssorUtils$.$GetStyleWidth($JssorUtils$.$GetParentNode(elmt)) - _Width) / 2);
+            }
+            if (_Options.$AutoCenter & 2) {
+                $JssorUtils$.$SetStyleTop(elmt, ($JssorUtils$.$GetStyleHeight($JssorUtils$.$GetParentNode(elmt)) - _Height) / 2);
+            }
+            
+            _Located = true;
+        }
+    };
+
     var _Initialized;
     self.$Reset = function (length) {
         if (!_Initialized) {
@@ -3133,12 +3165,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
             $JssorUtils$.$SetStyleWidth(elmt, _Width);
             $JssorUtils$.$SetStyleHeight(elmt, _Height);
 
-            if (_Options.$AutoCenter & 1) {
-                $JssorUtils$.$SetStyleLeft(elmt, ($JssorUtils$.$GetStyleWidth($JssorUtils$.$GetParentNode(elmt)) - _Width) / 2);
-            }
-            if (_Options.$AutoCenter & 2) {
-                $JssorUtils$.$SetStyleTop(elmt, ($JssorUtils$.$GetStyleHeight($JssorUtils$.$GetParentNode(elmt)) - _Height) / 2);
-            }
+            //self.$Relocate(true);
 
             for (var buttonIndex = 0; buttonIndex < _Count; buttonIndex++) {
 
@@ -3214,13 +3241,13 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
     }
 };
 
-var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (elmt, options, uiSearchMode) {
+var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, arrowRight, options) {
     var self = this;
     $JssorEventManager$.call(self);
 
     $JssorDebug$.$Execute(function () {
-        var arrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, uiSearchMode);
-        var arrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, uiSearchMode);
+        //var arrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, uiSearchMode);
+        //var arrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, uiSearchMode);
 
         if (!arrowLeft)
             $JssorDebug$.$Fail("Option '$ArrowNavigatorOptions' spepcified, but UI 'arrowleft' not defined. Define 'arrowleft' to enable direct navigation, or remove option '$ArrowNavigatorOptions' to disable direct navigation.");
@@ -3245,14 +3272,13 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (elmt, optio
         }
     });
 
-    var arrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, uiSearchMode);
-    var arrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, uiSearchMode);
+    //var arrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, uiSearchMode);
+    //var arrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, uiSearchMode);
     var _Length;
     var _CurrentIndex;
     var _Options;
     var _Steps;
-    var _ContainerWidth = $JssorUtils$.$GetStyleWidth(elmt);
-    var _ContainerHeight = $JssorUtils$.$GetStyleHeight(elmt);
+    var _ParentNode = $JssorUtils$.$GetParentNode(arrowLeft);
     var _ArrowWidth = $JssorUtils$.$GetStyleWidth(arrowLeft);
     var _ArrowHeight = $JssorUtils$.$GetStyleHeight(arrowLeft);
 
@@ -3279,6 +3305,27 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (elmt, optio
         $JssorUtils$.$ShowElement(arrowRight, show);
     };
 
+    var _Located;
+    self.$Relocate = function (force) {
+        if (!_Located || !_Options.$Scale) {
+
+            var containerWidth = $JssorUtils$.$GetStyleWidth(_ParentNode);
+            var containerHeight = $JssorUtils$.$GetStyleHeight(_ParentNode);
+
+            if (_Options.$AutoCenter & 1) {
+                $JssorUtils$.$SetStyleLeft(arrowLeft, (containerWidth - _ArrowWidth) / 2);
+                $JssorUtils$.$SetStyleLeft(arrowRight, (containerWidth - _ArrowWidth) / 2);
+            }
+
+            if (_Options.$AutoCenter & 2) {
+                $JssorUtils$.$SetStyleTop(arrowLeft, (containerHeight - _ArrowHeight) / 2);
+                $JssorUtils$.$SetStyleTop(arrowRight, (containerHeight - _ArrowHeight) / 2);
+            }
+
+            _Located = true;
+        }
+    };
+
     var _Initialized;
     self.$Reset = function (length) {
         _Length = length;
@@ -3286,21 +3333,15 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (elmt, optio
 
         if (!_Initialized) {
 
-            if (_Options.$AutoCenter & 1) {
-                $JssorUtils$.$SetStyleLeft(arrowLeft, (_ContainerWidth - _ArrowWidth) / 2);
-                $JssorUtils$.$SetStyleLeft(arrowRight, (_ContainerWidth - _ArrowWidth) / 2);
-            }
-
-            if (_Options.$AutoCenter & 2) {
-                $JssorUtils$.$SetStyleTop(arrowLeft, (_ContainerHeight - _ArrowHeight) / 2);
-                $JssorUtils$.$SetStyleTop(arrowRight, (_ContainerHeight - _ArrowHeight) / 2);
-            }
+            //self.$Relocate(true);
 
             $JssorUtils$.$AddEvent(arrowLeft, "click", $JssorUtils$.$CreateCallback(null, OnNavigationRequest, -_Steps));
             $JssorUtils$.$AddEvent(arrowRight, "click", $JssorUtils$.$CreateCallback(null, OnNavigationRequest, _Steps));
 
             $JssorUtils$.$Buttonize(arrowLeft);
             $JssorUtils$.$Buttonize(arrowRight);
+
+            _Initialized = true;
         }
 
         //self.$TriggerEvent($JssorNavigatorEvents$.$RESET);
@@ -3403,6 +3444,8 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
     _Self.$Show = function (show) {
         $JssorUtils$.$ShowElement(elmt, show);
     };
+
+    _Self.$Relocate = $JssorUtils$.$EmptyFunction;
 
     var _Initialized;
     _Self.$Reset = function (length, items, loadingContainer) {
