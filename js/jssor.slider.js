@@ -2993,12 +2993,12 @@ new function () {
                 _Navigators.push(_ThumbnailNavigator);
             }
 
-            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
-
             $JssorUtils$.$Each(_Navigators, function (navigator) {
                 navigator.$Reset(_SlideCount, _SlideItems, _LoadingContainer);
                 navigator.$On($JssorNavigatorEvents$.$NAVIGATIONREQUEST, NavigationClickHandler);
             });
+
+            _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
 
             $JssorUtils$.$AddEvent(elmt, "mouseout", MainContainerMouseOutEventHandler);
             $JssorUtils$.$AddEvent(elmt, "mouseover", MainContainerMouseOverEventHandler);
@@ -3135,7 +3135,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
 
     var _Located;
     self.$Relocate = function (force) {
-        if (!_Located || !_Options.$Scale) {
+        if (!_Located || _Options.$Scale == false) {
             if (_Options.$AutoCenter & 1) {
                 $JssorUtils$.$SetStyleLeft(elmt, ($JssorUtils$.$GetStyleWidth($JssorUtils$.$GetParentNode(elmt)) - _Width) / 2);
             }
@@ -3307,7 +3307,7 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
 
     var _Located;
     self.$Relocate = function (force) {
-        if (!_Located || !_Options.$Scale) {
+        if (!_Located || _Options.$Scale == false) {
 
             var containerWidth = $JssorUtils$.$GetStyleWidth(_ParentNode);
             var containerHeight = $JssorUtils$.$GetStyleHeight(_ParentNode);

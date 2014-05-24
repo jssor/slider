@@ -291,7 +291,7 @@
             </div>
             <div> 
                 <img u="image" src="../img/home/03.jpg" />
-                <a class="captionOrange" href="http://www.jssor.com/demos/index.html" style="position: absolute; top: 30px; right: 30px; width: 200px;">30+ Demos</a>
+                <a class="captionOrange" href="http://www.jssor.com/demos/index.html" style="position: absolute; top: 50px; right: 30px; width: 200px;">30+ Demos</a>
                 <div u=caption t="T" t2=NO style="position: absolute; left: 20px; top:30px; width:600px; height:90px; color: #fff; line-height: 30px; text-align: center;"> 
                     Jssor Slider is touch swipe image slideshow with 360+ javascript slideshow effects.<br />
                     When touch Jssor Slider,<br />
@@ -362,7 +362,36 @@
                 <img u="caption" t="RTTL|BR" d=-450 src="../img/home/moc-ipad.png" style="position:absolute;left:750px;top:220px;width:77px;height:100px;" />
             </div>
             
-            <!-- Example to add fixed static content in slider BEGIN -->
+            <!-- Example to add fixed static share buttons in slider BEGIN -->
+            <!-- Remove it if no need -->
+            <!-- Share Button Styles -->
+            <style>
+                .share-icon {
+                    display: inline-block;
+                    float: left;
+                    margin: 4px;
+                    width: 32px;
+                    height: 32px;
+                    cursor: pointer;
+                    vertical-align: middle;
+                    background-image: url(../img/share/share-icons.png);
+                    background-position-y: 0px;
+                }
+
+                    .share-icon:hover {
+                        background-position-y: -40px;
+                    }
+            </style>
+            <div u="any" style="position: absolute; display: block; top: 6px; right: 16px; width: 240px; height: 40px;">
+                <a class="share-icon" target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.jssor.com" style="background-position-x: 0px;" title="Share on Facebook"></a>
+                <a class="share-icon" target="_blank" href="http://twitter.com/share?url=http://www.jssor.com&text=Jssor%20Slider" style="background-position-x: -40px;" title="Share on Twitter"></a>
+                <a class="share-icon" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://www.jssor.com" style="background-position-x: -240px;" title="Share on LinkedIn"></a>
+                <a class="share-icon" target="_blank" href="https://plus.google.com/share?url=http://www.jssor.com" style="background-position-x: -120px;" title="Share on Google Plus"></a>
+                <a class="share-icon" target="_blank" href="http://www.blogger.com/blog_this.pyra?t=&u=http%3A%2F%2Fwww.jssor.com&n=Jssor%20Slider" style="background-position-x: -280px;" title="Share on Blogger"></a>
+                <a class="share-icon" target="_blank" href="mailto:?Subject=Jssor%20Slider&Body=Highly%20recommended%20Responsive%20jQuery%20Image%20Slider/Slideshow/Carousel/Gallery/Banner%20http://www.jssor.com" style="background-position-x: -320px;" title="Share by Email"></a>
+            </div>
+            <!-- Example to add fixed static share buttons in slider END -->
+            <!-- Example to add fixed static QR code in slider BEGIN -->
             <!-- Remove it if no need -->
             <!-- QR Code Style -->
             <style>
@@ -373,7 +402,7 @@
                 }
             </style>
             <img u="any" class="qr_code" src="../img/qr/jssor.com.png" style="position: absolute; width: 80px; height: 80px; bottom: 20px; right: 20px; opacity: .5; filter: alpha(opacity=50);" />
-            <!-- Example to add fixed static content in slider END -->
+            <!-- Example to add fixed static QR code in slider END -->
         </div> 
  
         <!-- Bullet Navigator Skin Begin -->
