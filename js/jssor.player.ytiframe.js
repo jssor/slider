@@ -102,8 +102,8 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
     }
 
     function SyncSize() {
-        var width = $JssorUtils$.$GetStyleWidth(playerElement);
-        var height = $JssorUtils$.$GetStyleHeight(playerElement);
+        var width = $JssorUtils$.$CssWidth(playerElement);
+        var height = $JssorUtils$.$CssHeight(playerElement);
 
         $JssorUtils$.$SetAttribute(playerInstanceElement, "width", width);
         $JssorUtils$.$SetAttribute(playerInstanceElement, "height", height);
@@ -118,8 +118,8 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
             //    _CoverHeight = height - 108;
             //}
 
-            $JssorUtils$.$SetStyleWidth(_PlayCover, width);
-            $JssorUtils$.$SetStyleHeight(_PlayCover, height);
+            $JssorUtils$.$CssWidth(_PlayCover, width);
+            $JssorUtils$.$CssHeight(_PlayCover, height);
         }
     }
 
@@ -128,12 +128,12 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
         if (_PlayCover) {
             if (!_ytPlayerState) {
                 if (!_PlayButtonBackgroundImageUrl) {
-                    _PlayButtonBackgroundImageUrl = $JssorUtils$.$GetStyleBackgroundImage(_PlayCover);
-                    !_HideControls && $JssorUtils$.$SetStyleBackgroundImage(_PlayCover, "");
+                    _PlayButtonBackgroundImageUrl = $JssorUtils$.$Css(_PlayCover, "backgrouondImage");
+                    !_HideControls && $JssorUtils$.$Css(_PlayCover, "backgrouondImage", "");
                 }
             }
             else if (_PlayButtonBackgroundImageUrl) {
-                $JssorUtils$.$SetStyleBackgroundImage(_PlayCover, _PlayButtonBackgroundImageUrl);
+                $JssorUtils$.$Css(_PlayCover, "backgrouondImage", _PlayButtonBackgroundImageUrl);
                 _PlayButtonBackgroundImageUrl = null;
             }
             $JssorUtils$.$ShowElement(_PlayCover, !_Entered);
@@ -277,8 +277,8 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 
             var playerWidthStr = playerElement.style.width;
             var playerHeightStr = playerElement.style.height;
-            var playerWidth = $JssorUtils$.$GetStyleWidth(playerElement);
-            var playerHeight = $JssorUtils$.$GetStyleHeight(playerElement);
+            var playerWidth = $JssorUtils$.$CssWidth(playerElement);
+            var playerHeight = $JssorUtils$.$CssHeight(playerElement);
 
             if (!playerWidthStr) {
                 $JssorDebug$.$Fail("Youtube Video HTML definition error. 'width' of 'player' not specified. Please specify 'width' in pixel.");

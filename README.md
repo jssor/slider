@@ -5,7 +5,7 @@ Overview
 --------------------------------------
 
 1. [30+ Slider/Carouel/Slideshow/Gallery/Banner Demos](http://www.jssor.com)
-2. [Documentation](http://www.jssor.com/development/index.html)
+2. [Development Documentation](http://www.jssor.com/development/index.html)
 3. Support: [Ask question on StackOverflow](http://stackoverflow.com/search?tab=relevance&q=jssor)
 
 What you get with jssor slider?

@@ -1,7 +1,7 @@
 ﻿/// <reference path="Jssor.Core.js" />
 
 /*
-* Jssor.Utils 15.0
+* Jssor.Utils 16.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Utils
@@ -639,8 +639,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
             SetStyleFilterIE(elmt, newFilterValue);
 
-            self.$SetStyleMarginTop(elmt, offset.y);
-            self.$SetStyleMarginLeft(elmt, offset.x);
+            self.$CssMarginTop(elmt, offset.y);
+            self.$CssMarginLeft(elmt, offset.x);
         }
     }
 
@@ -713,18 +713,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     self.$GetElementSize = function (elmt) {
         elmt = self.$GetElement(elmt);
         return new $JssorPoint$(elmt.clientWidth, elmt.clientHeight);
-    };
-
-    self.$GetElementStyle = function (elmt) {
-        elmt = self.$GetElement(elmt);
-
-        if (elmt.currentStyle) {
-            return elmt.currentStyle;
-        } else if (window.getComputedStyle) {
-            return window.getComputedStyle(elmt, "");
-        } else {
-            $JssorDebug$.$Fail("Unknown elmt style, no known technique.");
-        }
     };
 
     self.$GetEvent = function (event) {
@@ -821,116 +809,14 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         // technique from:
         // http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
 
-        // important: i originally cleaned up the second and third IE checks to
-        // check if the typeof was number. but self fails for quirks mode,
-        // because docElmt.clientWidth is indeed a number, but it's incorrectly
-        // zero. so no longer checking typeof is number for those cases.
-
-        //if (typeof (window.innerWidth) == 'number') {
-        //    // non-IE browsers
-        //    result.x = window.innerWidth;
-        //    result.y = window.innerHeight;
-        //}
-        //else {
-
         //jQuery way to get window size, but support ie quirks mode
         var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
 
-        //$JssorDebug$.$Execute(function () {
-        //    if (!checkElement || (!checkElement.clientWidth && !checkElement.clientHeight))
-        //        $JssorDebug$.$Fail("Unknown window size, no known technique.");
-        //});
-
         result.x = checkElement.clientWidth;
         result.y = checkElement.clientHeight;
-        //}
 
         return result;
     };
-
-    //self.$ImageFormatSupported = function (ext) {
-    //    var ext = ext ? ext : "";
-    //    return !!supportedImageFormats[ext.toLowerCase()];
-    //};
-
-    //self.$MakeCenteredNode = function (elmt) {
-    //    elmt = $JssorUtils$.$GetElement(elmt);
-    //    var div = self.$MakeNeutralElement("div");
-    //    var html = [];
-
-    //    // technique for vertically centering (in IE!!!) from:
-    //    // http://www.jakpsatweb.cz/css/css-vertical-center-solution.html
-    //    // with explicit neutralizing of styles added by me.
-    //    html.push('<div style="display:table; height:100%; width:100%;');
-    //    html.push('border:none; margin:0px; padding:0px;'); // neutralizing
-    //    html.push('#position:relative; overflow:hidden; text-align:left;">');
-    //    // the text-align:left guards against incorrect centering in IE
-    //    html.push('<div style="#position:absolute; #top:50%; width:100%; ');
-    //    html.push('border:none; margin:0px; padding:0px;'); // neutralizing
-    //    html.push('display:table-cell; vertical-align:middle;">');
-    //    html.push('<div style="#position:relative; #top:-50%; width:100%; ');
-    //    html.push('border:none; margin:0px; padding:0px;'); // neutralizing
-    //    html.push('text-align:center;"></div></div></div>');
-
-    //    div.innerHTML = html.join('');
-    //    div = div.firstChild;
-
-    //    // now add the elmt as a child to the inner-most div
-    //    var innerDiv = div;
-    //    var innerDivs = div.getElementsByTagName("div");
-    //    while (innerDivs.length > 0) {
-    //        innerDiv = innerDivs[0];
-    //        innerDivs = innerDiv.getElementsByTagName("div");
-    //    }
-
-    //    innerDiv.appendChild(elmt);
-
-    //    return div;
-    //};
-
-    //self.$MakeNeutralElement = function (tagName) {
-    //    var elmt = self.$CreateElement(tagName);
-    //    var style = elmt.style;
-
-    //    // TODO reset neutral elmt's style in a better way
-    //    style.background = "transparent none";
-    //    style.border = "none";
-    //    style.margin = "0px";
-    //    style.padding = "0px";
-    //    style.position = "static";
-
-    //    return elmt;
-    //};
-
-    //self.$MakeTransparentImage = function (src) {
-    //    var img = self.$MakeNeutralElement("img");
-    //    var elmt = null;
-
-    //    if (IsBrowserIE() && browserRuntimeVersion < 7) {
-    //        elmt = self.$MakeNeutralElement("span");
-    //        elmt.style.display = "inline-block";
-
-    //        // to size span correctly, load image and get natural size,
-    //        // but don't override any user-set CSS values
-    //        img.onload = function () {
-    //            elmt.style.width = elmt.style.width || img.width + "px";
-    //            elmt.style.height = elmt.style.height || img.height + "px";
-
-    //            img.onload = null;
-    //            img = null;     // to prevent memory leaks in IE
-    //        };
-
-    //        img.src = src;
-    //        elmt.style.filter =
-    //                "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" +
-    //                src + "', sizingMethod='scale')";
-    //    } else {
-    //        elmt = img;
-    //        elmt.src = src;
-    //    }
-
-    //    return elmt;
-    //};
 
     //self.$MakeAjaxRequest = function (url, callback) {
     //    var async = typeof (callback) == "function";
@@ -1012,21 +898,107 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     //    return xmlDoc;
     //};
 
-    //self.$GetUrlParameter = function (key) {
-    //    var value = urlParams[key];
-    //    return value ? value : null;
-    //};
+    function Css(elmt, name, value) {
+        ///	<summary>
+        ///		access css
+        ///     $JssorUtils$.$Css(elmt, name);         //get css value
+        ///     $JssorUtils$.$Css(elmt, name, value);  //set css value
+        ///	</summary>
+        ///	<param name="elmt" type="HTMLElement">
+        ///		the element to access css
+        ///	</param>
+        ///	<param name="name" type="String">
+        ///		the name of css property
+        ///	</param>
+        ///	<param name="value" type="Number" optional="true">
+        ///		the value to set
+        ///	</param>
+        if (value != undefined) {
+            elmt.style[name] = value;
+        }
+        else {
+            var style = elmt.currentStyle || elmt.style;
+            value = style[name];
 
-    self.$GetStyleOpacity = function (elmt) {
+            if(value == "" && window.getComputedStyle) {
+                style = elmt.ownerDocument.defaultView.getComputedStyle(elmt, null);
+
+                style && (value = style.getPropertyValue(name) || style[name]);
+            }
+
+            return value;
+        }
+    }
+
+    function CssN(elmt, name, value, isDimensional) {
+        ///	<summary>
+        ///		access css as numeric
+        ///     $JssorUtils$.$CssN(elmt, name);         //get css value
+        ///     $JssorUtils$.$CssN(elmt, name, value);  //set css value
+        ///	</summary>
+        ///	<param name="elmt" type="HTMLElement">
+        ///		the element to access css
+        ///	</param>
+        ///	<param name="name" type="String">
+        ///		the name of css property
+        ///	</param>
+        ///	<param name="value" type="Number" optional="true">
+        ///		the value to set
+        ///	</param>
+        if (value != undefined) {
+            isDimensional && (value += "px");
+            Css(elmt, name, value);
+        }
+        else {
+            return parseFloat(Css(elmt, name));
+        }
+    }
+
+    function CssP(elmt, name, value) {
+        ///	<summary>
+        ///		access css in pixel as numeric, like 'top', 'left', 'width', 'height'
+        ///     $JssorUtils$.$CssP(elmt, name);         //get css value
+        ///     $JssorUtils$.$CssP(elmt, name, value);  //set css value
+        ///	</summary>
+        ///	<param name="elmt" type="HTMLElement">
+        ///		the element to access css
+        ///	</param>
+        ///	<param name="name" type="String">
+        ///		the name of css property
+        ///	</param>
+        ///	<param name="value" type="Number" optional="true">
+        ///		the value to set
+        ///	</param>
+        return CssN(elmt, name, value, true);
+    }
+
+    function CssProxy(name, numericOrDimension) {
+        ///	<summary>
+        ///		create proxy to access css, CssProxy(name[, numericOrDimension]);
+        ///	</summary>
+        ///	<param name="elmt" type="HTMLElement">
+        ///		the element to access css
+        ///	</param>
+        ///	<param name="numericOrDimension" type="Number" optional="true">
+        ///		not set: access original css, 1: access css as numeric, 2: access css in pixel as numeric
+        ///	</param>
+        var isDimensional = numericOrDimension & 2;
+        var cssAccessor = numericOrDimension ? CssN : Css;
+        return function (elmt, value) {
+            return cssAccessor(elmt, name, value, isDimensional);
+        };
+    }
+
+    function GetStyleOpacity(elmt) {
         if (IsBrowserIE() && browserEngineVersion < 9) {
             var match = /opacity=([^)]*)/.exec(elmt.style.filter || "");
             return match ? (parseFloat(match[1]) / 100) : 1;
         }
         else
             return parseFloat(elmt.style.opacity || "1");
-    };
+    }
 
-    self.$SetStyleOpacity = self.$setElementOpacity = function (elmt, opacity, ie9EarlierForce) {
+    function SetStyleOpacity(elmt, opacity, ie9EarlierForce) {
 
         if (IsBrowserIE() && browserEngineVersion < 9) {
             //var filterName = "filter"; // browserEngineVersion < 8 ? "filter" : "-ms-filter";
@@ -1053,11 +1025,11 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             SetStyleFilterIE(elmt, newFilterValue);
         }
 
-        //if (!IsBrowserIE() || browserEngineVersion >= 9) 
+            //if (!IsBrowserIE() || browserEngineVersion >= 9) 
         else {
             elmt.style.opacity = opacity == 1 ? "" : Math.round(opacity * 100) / 100;
         }
-    };
+    }
 
     function SetStyleTransformInternal(elmt, transform) {
         var rotate = transform.$Rotate || 0;
@@ -1126,17 +1098,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     self.$DisableHWA = function (elmt) {
         //if (force || elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
         elmt.style[GetTransformProperty(elmt)] = "none";
-    };
-
-    self.$GetStyleFloat = function (elmt) {
-        return IsBrowserIE() ? elmt.style.styleFloat : elmt.style.cssFloat;
-    };
-
-    self.$SetStyleFloat = function (elmt, float) {
-        if (IsBrowserIE())
-            elmt.style.styleFloat = float;
-        else
-            elmt.style.cssFloat = float;
     };
 
     var ie8OffsetWidth = 0;
@@ -1611,47 +1572,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$SetClassName = function (elmt, className) {
-        elmt.className = className ? className : "";
-    };
-
-    self.$GetStyleCursor = function (elmt) {
-        return elmt.style.cursor;
-    };
-
-    self.$SetStyleCursor = function (elmt, cursor) {
-        elmt.style.cursor = cursor;
-    };
-
-    self.$GetStyleDisplay = function (elmt) {
-        return elmt.style.display;
-    };
-
-    self.$SetStyleDisplay = function (elmt, display) {
-        elmt.style.display = display || "";
-    };
-
-    self.$GetStyleOverflow = function (elmt) {
-        return elmt.style.overflow;
-    };
-
-    self.$SetStyleOverflow = function (elmt, overflow) {
-        elmt.style.overflow = overflow;
-    };
-
-    self.$GetStyleOverflowX = function (elmt) {
-        return elmt.style.overflowX;
-    };
-
-    self.$SetStyleOverflowX = function (elmt, overflow) {
-        elmt.style.overflowX = overflow;
-    };
-
-    self.$GetStyleOverflowY = function (elmt) {
-        return elmt.style.overflowY;
-    };
-
-    self.$SetStyleOverflowY = function (elmt, overflow) {
-        elmt.style.overflowY = overflow;
+        elmt.className = className || "";
     };
 
     self.$GetParentNode = function (elmt) {
@@ -1659,7 +1580,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$HideElement = function (elmt) {
-        self.$SetStyleDisplay(elmt, "none");
+        self.$CssDisplay(elmt, "none");
     };
 
     self.$HideElements = function (elmts) {
@@ -1669,7 +1590,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     self.$ShowElement = function (elmt, show) {
-        self.$SetStyleDisplay(elmt, show == false ? "none" : "");
+        self.$CssDisplay(elmt, show == false ? "none" : "");
     };
 
     self.$ShowElements = function (elmts) {
@@ -1678,184 +1599,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     };
 
-    self.$GetStylePosition = function (elmt) {
-        return elmt.style.position;
-    };
-
-    self.$SetStylePosition = function (elmt, position) {
-        elmt.style.position = position;
-    };
-
-    self.$GetStyleTop = function (elmt) {
-        return parseInt(elmt.style.top, 10);
-    };
-
-    self.$SetStyleTop = function (elmt, top) {
-        elmt.style.top = top + "px";
-    };
-
-    self.$GetStyleRight = function (elmt) {
-        return parseInt(elmt.style.right, 10);
-    };
-
-    self.$SetStyleRight = function (elmt, right) {
-        elmt.style.right = right + "px";
-    };
-
-    self.$GetStyleBottom = function (elmt) {
-        return parseInt(elmt.style.bottom, 10);
-    };
-
-    self.$SetStyleBottom = function (elmt, bottom) {
-        elmt.style.bottom = bottom + "px";
-    };
-
-    self.$GetStyleLeft = function (elmt) {
-        return parseInt(elmt.style.left, 10);
-    };
-
-    self.$SetStyleLeft = function (elmt, left) {
-        elmt.style.left = left + "px";
-    };
-
-    self.$GetStyleWidth = function (elmt) {
-        return parseInt(elmt.style.width, 10);
-    };
-
-    self.$SetStyleWidth = function (elmt, width) {
-        elmt.style.width = Math.max(width, 0) + "px";
-    };
-
-    self.$GetStyleHeight = function (elmt) {
-        return parseInt(elmt.style.height, 10);
-    };
-
-    self.$SetStyleHeight = function (elmt, height) {
-        elmt.style.height = Math.max(height, 0) + "px";
-    };
-
-    self.$GetStyleCssText = function (elmt) {
-        return elmt.style.cssText;
-    };
-
-    self.$SetStyleCssText = function (elmt, cssText) {
-        elmt.style.cssText = cssText;
-    };
-
     self.$RemoveAttribute = function (elmt, attrbuteName) {
         elmt.removeAttribute(attrbuteName);
-    };
-
-    self.$GetBorderWidth = function (elmt) {
-        return parseInt(elmt.style.borderWidth, 10);
-    };
-
-    self.$SetBorderWdith = function (elmt, width) {
-        elmt.style.width = width + "px";
-    };
-
-    self.$GetStyleMarginLeft = function (elmt) {
-        return parseInt(elmt.style.marginLeft, 10) || 0;
-    };
-
-    self.$SetStyleMarginLeft = function (elmt, marginLeft) {
-        elmt.style.marginLeft = marginLeft + "px";
-    };
-
-    self.$GetStyleMarginTop = function (elmt) {
-        return parseInt(elmt.style.marginTop, 10) || 0;
-    };
-
-    self.$SetStyleMarginTop = function (elmt, marginTop) {
-        elmt.style.marginTop = marginTop + "px";
-    };
-
-    self.$GetStyleMarginBottom = function (elmt) {
-        return parseInt(elmt.style.marginBottom, 10) || 0;
-    };
-
-    self.$SetStyleMarginBottom = function (elmt, marginBottom) {
-        elmt.style.marginBottom = marginBottom + "px";
-    };
-
-    self.$GetStyleMarginRight = function (elmt) {
-        return parseInt(elmt.style.marginRight, 10) || 0;
-    };
-
-    self.$SetStyleMarginRight = function (elmt, marginRight) {
-        elmt.style.marginRight = marginRight + "px";
-    };
-
-    self.$GetStyleBorder = function (elmt) {
-        return elmt.style.border;
-    };
-
-    self.$SetStyleBorder = function (elmt, border) {
-        elmt.style.border = border;
-    };
-
-    self.$GetStyleBorderWidth = function (elmt) {
-        return parseInt(elmt.style.borderWidth);
-    };
-
-    self.$SetStyleBorderWidth = function (elmt, borderWidth) {
-        elmt.style.borderWidth = borderWidth + "px";
-    };
-
-    self.$GetStyleBorderStyle = function (elmt) {
-        return elmt.style.borderStyle;
-    };
-
-    self.$SetStyleBorderStyle = function (elmt, borderStyle) {
-        elmt.style.borderStyle = borderStyle;
-    };
-
-    self.$GetStyleBorderColor = function (elmt) {
-        return elmt.style.borderColor;
-    };
-
-    self.$SetStyleBorderColor = function (elmt, borderColor) {
-        elmt.style.borderColor = borderColor;
-    };
-
-    self.$GetStyleVibility = function (elmt) {
-        return elmt.style.vibility;
-    };
-
-    self.$SetStyleVisibility = function (elmt, visibility) {
-        elmt.style.visibility = visibility;
-    };
-
-    self.$GetStyleZIndex = function (elmt) {
-        return parseInt(elmt.style.zIndex) || 0;
-    };
-
-    self.$SetStyleZIndex = function (elmt, zIndex) {
-        elmt.style.zIndex = Math.ceil(zIndex);
-    };
-
-    self.$GetStyleBackgroundColor = function (elmt) {
-        return elmt.style.backgroundColor;
-    };
-
-    self.$SetStyleBackgroundColor = function (elmt, backgroundColor) {
-        elmt.style.backgroundColor = backgroundColor;
-    };
-
-    self.$GetStyleColor = function (elmt) {
-        return elmt.style.color;
-    };
-
-    self.$SetStyleColor = function (elmt, color) {
-        elmt.style.color = color;
-    };
-
-    self.$GetStyleBackgroundImage = function (elmt) {
-        return elmt.style.backgroundImage;
-    };
-
-    self.$SetStyleBackgroundImage = function (elmt, backgroundImage) {
-        elmt.style.backgroundImage = backgroundImage;
     };
 
     self.$CanClearClip = function () {
@@ -1868,7 +1613,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             elmt.style.clip = "rect(" + Math.round(clip.$Top) + "px " + Math.round(clip.$Right) + "px " + Math.round(clip.$Bottom) + "px " + Math.round(clip.$Left) + "px)";
         }
         else {
-            var cssText = self.$GetStyleCssText(elmt);
+            var cssText = elmt.style.cssText;
             var clipRegs = [
                 new RegExp(/[\s]*clip: rect\(.*?\)[;]?/i),
                 new RegExp(/[\s]*cliptop: .*?[;]?/i),
@@ -1879,20 +1624,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
             var newCssText = BuildNewCss(cssText, clipRegs, "");
 
-            $JssorUtils$.$SetStyleCssText(elmt, newCssText);
+            $JssorUtils$.$CssCssText(elmt, newCssText);
         }
-    };
-
-    self.$GetStyleZoom = function (elmt) {
-        return elmt.style.zoom;
-    };
-
-    self.$SetStyleZoom = function (elmt, zoom) {
-        return elmt.style.zoom = zoom;
-    };
-
-    self.$SetStyleClear = function (elmt, clear) {
-        elmt.style.clear = clear;
     };
 
     self.$GetNow = function () {
@@ -1965,12 +1698,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     function LoadImageCallback(callback, image, abort) {
-        //$JssorDebug$.$Execute(function () {
-        //    Delay(self.$CreateCallback(null, function () {
-        //        callback && callback(image, abort);
-        //    }), 10000);
-        //});
-
         image.onload = null;
         image.abort = null;
 
@@ -2017,7 +1744,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             var templateHolder = templateHolders[j];
             var replaceItem = $JssorUtils$.$CloneNode(replacer, true);
             $JssorUtils$.$SetClassName(replaceItem, $JssorUtils$.$GetClassName(templateHolder));
-            $JssorUtils$.$SetStyleCssText(replaceItem, $JssorUtils$.$GetStyleCssText(templateHolder));
+            $JssorUtils$.$CssCssText(replaceItem, templateHolder.style.cssText);
 
             var thumbnailPlaceHolderParent = $JssorUtils$.$GetParentNode(templateHolder);
             $JssorUtils$.$InsertBefore(thumbnailPlaceHolderParent, replaceItem, templateHolder);
@@ -2102,40 +1829,89 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return new JssorButtonEx(elmt);
     };
 
-    var StyleGetter = {
-        $Opacity: self.$GetStyleOpacity,
-        $Top: self.$GetStyleTop,
-        $Left: self.$GetStyleLeft,
-        $Width: self.$GetStyleWidth,
-        $Height: self.$GetStyleHeight,
-        $Position: self.$GetStylePosition,
-        $Display: self.$GetStyleDisplay,
-        $ZIndex: self.$GetStyleZIndex
+    self.$Css = Css;
+    self.$CssN = CssN;
+    self.$CssP = CssP;
+
+    self.$CssOverflow = CssProxy("overflow");
+    self.$CssCssText = CssProxy("cssText");
+
+    self.$CssTop = CssProxy("top", 2);
+    self.$CssLeft = CssProxy("left", 2);
+    self.$CssWidth = CssProxy("width", 2);
+    self.$CssHeight = CssProxy("height", 2);
+    self.$CssMarginLeft = CssProxy("marginLeft", 2);
+    self.$CssMarginTop = CssProxy("marginTop", 2);
+    self.$CssPosition = CssProxy("position");
+    self.$CssDisplay = CssProxy("display");
+    self.$CssZIndex = CssProxy("zIndex", 1);
+    self.$CssFloat = function (elmt, float) {
+        return Css(elmt, IsBrowserIE() ? "styleFloat" : "cssFloat", float);
+    };
+    self.$CssOpacity = function (elmt, opacity, ie9EarlierForce) {
+        if (opacity != undefined) {
+            SetStyleOpacity(elmt, opacity, ie9EarlierForce);
+        }
+        else {
+            return GetStyleOpacity(elmt);
+        }
     };
 
-    //For Compression Only
-    var _StyleSetterReserved = {
-        $Opacity: self.$SetStyleOpacity,
-        $Top: self.$SetStyleTop,
-        $Left: self.$SetStyleLeft,
-        $Width: self.$SetStyleWidth,
-        $Height: self.$SetStyleHeight,
-        $Display: self.$SetStyleDisplay,
-        $Clip: self.$SetStyleClip,
-        $MarginLeft: self.$SetStyleMarginLeft,
-        $MarginTop: self.$SetStyleMarginTop,
-        $Transform: self.$SetStyleTransform,
-        $Position: self.$SetStylePosition,
-        $ZIndex: self.$SetStyleZIndex
+    var _StyleGetter = {
+        $Opacity: self.$CssOpacity,
+        $Top: self.$CssTop,
+        $Left: self.$CssLeft,
+        $Width: self.$CssWidth,
+        $Height: self.$CssHeight,
+        $Position: self.$CssPosition,
+        $Display: self.$CssDisplay,
+        $ZIndex: self.$CssZIndex
     };
+
+    //var _StyleGetter = {
+    //    $Opacity: self.$GetStyleOpacity,
+    //    $Top: self.$GetStyleTop,
+    //    $Left: self.$GetStyleLeft,
+    //    $Width: self.$GetStyleWidth,
+    //    $Height: self.$GetStyleHeight,
+    //    $Position: self.$GetStylePosition,
+    //    $Display: self.$GetStyleDisplay,
+    //    $ZIndex: self.$GetStyleZIndex
+    //};
+
+    var _StyleSetterReserved;
+
+    //var _StyleSetterReserved = {
+    //    $Opacity: self.$SetStyleOpacity,
+    //    $Top: self.$SetStyleTop,
+    //    $Left: self.$SetStyleLeft,
+    //    $Width: self.$SetStyleWidth,
+    //    $Height: self.$SetStyleHeight,
+    //    $Display: self.$SetStyleDisplay,
+    //    $Clip: self.$SetStyleClip,
+    //    $MarginLeft: self.$SetStyleMarginLeft,
+    //    $MarginTop: self.$SetStyleMarginTop,
+    //    $Transform: self.$SetStyleTransform,
+    //    $Position: self.$SetStylePosition,
+    //    $ZIndex: self.$SetStyleZIndex
+    //};
 
     function GetStyleSetter() {
+        if (!_StyleSetterReserved) {
+            _StyleSetterReserved = self.$Extend({
+                $MarginTop: self.$CssMarginTop,
+                $MarginLeft: self.$CssMarginLeft,
+                $Clip: self.$SetStyleClip,
+                $Transform: self.$SetStyleTransform
+            }, _StyleGetter);
+        }
         return _StyleSetterReserved;
     }
 
     function GetStyleSetterEx() {
         GetStyleSetter();
 
+        //For Compression Only
         _StyleSetterReserved.$Transform = _StyleSetterReserved.$Transform;
 
         return _StyleSetterReserved;
@@ -2151,8 +1927,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         var styles = {};
 
         each(originStyles, function (value, key) {
-            if (StyleGetter[key]) {
-                styles[key] = StyleGetter[key](elmt);
+            if (_StyleGetter[key]) {
+                styles[key] = _StyleGetter[key](elmt);
             }
         });
 
