@@ -1821,7 +1821,7 @@ new function () {
 
                 var currentPosition = _SelfProcessor.$GetPosition_Display();
 
-                if (!_IsDragging && !_IsSliding && !_IsPlayerOnService && (currentPosition != _IdleEnd || (_AutoPlay && (!_HoverToPause || _HoverStatus))) && _CurrentSlideIndex == slideIndex) {
+                if (!_IsDragging && !_IsSliding && !_IsPlayerOnService && _CurrentSlideIndex == slideIndex) {
 
                     if (!currentPosition) {
                         if (_SlideshowEnd && !_IsSlideshowRunning) {
@@ -1838,34 +1838,37 @@ new function () {
                     var toPosition;
                     var stateEvent = JssorSlider.$EVT_STATE_CHANGE;
 
-                    if (currentPosition == _ProgressEnd) {
-
-                        if (_IdleEnd == _ProgressEnd)
-                            _SelfProcessor.$GoToPosition(_IdleBegin);
-
-                        return slideItem.$GoForNextSlide();
-                    }
-                    else if (currentPosition == _IdleEnd) {
-                        toPosition = _ProgressEnd;
-                    }
-                    else if (currentPosition == _IdleBegin) {
-                        toPosition = _IdleEnd;
-                    }
-                    else if (!currentPosition) {
-                        toPosition = _IdleBegin;
-                    }
-                    else if (currentPosition > _IdleEnd) {
-                        _IsRollingBack = true;
-                        toPosition = _IdleEnd;
-                        stateEvent = JssorSlider.$EVT_ROLLBACK_START;
-                    }
-                    else {
-                        //continue from break (by drag or lock)
-                        toPosition = _SelfProcessor.$GetPlayToPosition();
+                    if (currentPosition != _ProgressEnd) {
+                        if (currentPosition == _IdleEnd) {
+                            toPosition = _ProgressEnd;
+                        }
+                        else if (currentPosition == _IdleBegin) {
+                            toPosition = _IdleEnd;
+                        }
+                        else if (!currentPosition) {
+                            toPosition = _IdleBegin;
+                        }
+                        else if (currentPosition > _IdleEnd) {
+                            _IsRollingBack = true;
+                            toPosition = _IdleEnd;
+                            stateEvent = JssorSlider.$EVT_ROLLBACK_START;
+                        }
+                        else {
+                            //continue from break (by drag or lock)
+                            toPosition = _SelfProcessor.$GetPlayToPosition();
+                        }
                     }
 
                     _SelfSlider.$TriggerEvent(stateEvent, slideIndex, currentPosition, _ProgressBegin, _IdleBegin, _IdleEnd, _ProgressEnd);
-                    _SelfProcessor.$PlayToPosition(toPosition, ProcessCompleteEventHandler);
+
+                    var allowAutoPlay = _AutoPlay && (!_HoverToPause || _HoverStatus);
+
+                    if (currentPosition == _ProgressEnd) {
+                        allowAutoPlay && slideItem.$GoForNextSlide();
+                    }
+                    else if (allowAutoPlay || currentPosition != _IdleEnd) {
+                        _SelfProcessor.$PlayToPosition(toPosition, ProcessCompleteEventHandler);
+                    }
                 }
             };
 
