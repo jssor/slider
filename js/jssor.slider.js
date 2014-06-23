@@ -2,7 +2,7 @@
 /// <reference path="Jssor.Utils.js" />
 
 /*
-* Jssor.Slider 16.0
+* Jssor.Slider 17.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Slider
@@ -1532,13 +1532,13 @@ new function () {
                     if (slideshowTransition) {
                         var loadingTicket = _LoadingTicket = $JssorUtils$.$GetNow();
 
-                        var nextIndex = slideIndex + 1;
+                        var nextIndex = slideIndex + 1 * _PlayReverse;
                         var nextItem = _SlideItems[GetRealIndex(nextIndex)];
                         return nextItem.$LoadImage($JssorUtils$.$CreateCallback(null, LoadSlideshowImageCompleteEventHandler, nextIndex, nextItem, slideshowTransition, loadingTicket), _LoadingScreen);
                     }
                 }
 
-                PlayTo(_CurrentSlideIndex + _Options.$AutoPlaySteps);
+                PlayTo(_CurrentSlideIndex + _Options.$AutoPlaySteps * _PlayReverse);
             };
 
             _SelfSlideItem.$TryActivate = function () {
@@ -1588,7 +1588,7 @@ new function () {
             };
 
             function RefreshContent(elmt, fresh, level) {
-                if (elmt["jssor-slider"])
+                if (elmt["jssor-slider"] || $JssorUtils$.$GetAttribute(elmt, "u") == "thumb")
                     return;
 
                 level = level || 0;
@@ -1928,7 +1928,7 @@ new function () {
         //private classes
 
         function SetPosition(elmt, position) {
-            var orientation = _DragOrientation > 0 ? _DragOrientation : _Options.$PlayOrientation;
+            var orientation = _DragOrientation > 0 ? _DragOrientation : _PlayOrientation;
             var x = Math.round(_StepLengthX * position * (orientation & 1));
             var y = Math.round(_StepLengthY * position * ((orientation >> 1) & 1));
 
@@ -2014,7 +2014,7 @@ new function () {
 
 
                     if (Math.floor(_DragStartPosition) != _DragStartPosition)
-                        _DragOrientation = _DragOrientation || (_Options.$PlayOrientation & _DragOrientationRegistered);
+                        _DragOrientation = _DragOrientation || (_PlayOrientation & _DragOrientationRegistered);
 
                     if ((distanceX || distanceY) && !_DragOrientation) {
                         if (_DragOrientationRegistered == 3) {
@@ -2168,7 +2168,7 @@ new function () {
 
         function RegisterDrag() {
             var dragRegistry = JssorSlider.$DragRegistry || 0;
-            var dragOrientation = _Options.$DragOrientation;
+            var dragOrientation = _DragEnabled;
             if (_HandleTouchEventOnly)
                 (dragOrientation & 1) && (dragOrientation &= 1);
             JssorSlider.$DragRegistry |= dragOrientation;
@@ -2178,7 +2178,7 @@ new function () {
 
         function UnregisterDrag() {
             if (_DragOrientationRegistered) {
-                JssorSlider.$DragRegistry &= ~_Options.$DragOrientation;
+                JssorSlider.$DragRegistry &= ~_DragEnabled;
                 _DragOrientationRegistered = 0;
             }
         }
@@ -2625,7 +2625,7 @@ new function () {
             $DisplayPieces: 1,              //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), default value is 1
             $ParkingPosition: 0,            //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
             $UISearchMode: 1,               //[Optional] The way (0 parellel, 1 recursive, default value is recursive) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc.
-            $PlayOrientation: 1,            //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, default value is 1
+            $PlayOrientation: 1,            //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
             $DragOrientation: 1             //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 both, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
         }, options);
@@ -2644,6 +2644,9 @@ new function () {
             },
             _Options);
         });
+
+        var _PlayOrientation = _Options.$PlayOrientation & 3;
+        var _PlayReverse = (_Options.$PlayOrientation & 4) / -4 || 1;
 
         var _SlideshowOptions = _Options.$SlideshowOptions;
         var _CaptionSliderOptions = $JssorUtils$.$Extend({ $Class: $JssorCaptionSliderBase$, $PlayInMode: 1, $PlayOutMode: 1 }, _Options.$CaptionSliderOptions);
@@ -2737,13 +2740,13 @@ new function () {
             if (_Options.$DisplayPieces < 1)
                 $JssorDebug$.$Fail("Option $DisplayPieces error, it should be greater than or equal to 1.");
 
-            if (_Options.$DisplayPieces > 1 && _Options.$DragOrientation && _Options.$DragOrientation != _Options.$PlayOrientation)
+            if (_Options.$DisplayPieces > 1 && _Options.$DragOrientation && _Options.$DragOrientation != _PlayOrientation)
                 $JssorDebug$.$Fail("Option $DragOrientation error, it should be 0 or the same of $PlayOrientation when $DisplayPieces is greater than 1.");
 
             if (!$JssorUtils$.$IsNumeric(_Options.$ParkingPosition))
                 $JssorDebug$.$Fail("Option $ParkingPosition error, it should be a numeric value.");
 
-            if (_Options.$ParkingPosition && _Options.$DragOrientation && _Options.$DragOrientation != _Options.$PlayOrientation)
+            if (_Options.$ParkingPosition && _Options.$DragOrientation && _Options.$DragOrientation != _PlayOrientation)
                 $JssorDebug$.$Fail("Option $DragOrientation error, it should be 0 or the same of $PlayOrientation when $ParkingPosition is not equal to 0.");
         });
 
@@ -2782,12 +2785,11 @@ new function () {
         var _SlideSpacing = _Options.$SlideSpacing;
         var _StepLengthX = _SlideWidth + _SlideSpacing;
         var _StepLengthY = _SlideHeight + _SlideSpacing;
-        var _StepLength = (_Options.$PlayOrientation == 1) ? _StepLengthX : _StepLengthY;
+        var _StepLength = (_PlayOrientation & 1) ? _StepLengthX : _StepLengthY;
         var _DisplayPieces = Math.min(_Options.$DisplayPieces, _SlideCount);
 
         var _SlideshowPanel;
         var _CurrentBoardIndex = 0;
-        var _PlayOrientation = 0;
         var _DragOrientation;
         var _DragOrientationRegistered;
         var _DragInvalid;
@@ -2816,13 +2818,7 @@ new function () {
         var _CarouselEnabled = _DisplayPieces < _SlideCount;
         var _Loop = _CarouselEnabled ? _Options.$Loop : 0;
 
-        if (!(_Loop & 1))
-            _Options.$ParkingPosition = 0;
-
-        if (_Options.$DisplayPieces > 1 || _Options.$ParkingPosition)
-            _Options.$DragOrientation &= _Options.$PlayOrientation;
-
-        var _DragEnabled = _Options.$DragOrientation;
+        var _DragEnabled;
         var _LastDragSucceded;
 
         var _HoverStatus = 1;   //0 Hovering, 1 Not hovering
@@ -2879,7 +2875,9 @@ new function () {
                 _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass && (!$JssorUtils$.$IsBrowserIE() || $JssorUtils$.$GetBrowserVersion() >= 8);
             }
 
-            _ParkingPosition = (_SlideshowEnabled || _DisplayPieces >= _SlideCount) ? 0 : _Options.$ParkingPosition;
+            _ParkingPosition = (_SlideshowEnabled || _DisplayPieces >= _SlideCount || !(_Loop & 1)) ? 0 : _Options.$ParkingPosition;
+
+            _DragEnabled = (_DisplayPieces > 1 || _ParkingPosition) ? _PlayOrientation : _Options.$DragOrientation;
 
             //SlideBoard
             var _SlideboardElmt = _SlidesContainer;
@@ -2909,12 +2907,12 @@ new function () {
                     _UpEvent = "MSPointerUp";
                     _CancelEvent = "MSPointerCancel";
 
-                    if (_Options.$DragOrientation) {
+                    if (_DragEnabled) {
                         var touchAction = "none";
-                        if (_Options.$DragOrientation == 1) {
+                        if (_DragEnabled == 1) {
                             touchAction = "pan-y";
                         }
-                        else if (_Options.$DragOrientation == 2) {
+                        else if (_DragEnabled == 2) {
                             touchAction = "pan-x";
                         }
 
