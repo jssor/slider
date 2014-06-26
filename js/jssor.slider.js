@@ -1950,7 +1950,8 @@ new function () {
         function OnMouseDown(event) {
             _LastDragSucceded = 0;
 
-            if (!_DragOrientationRegistered && RegisterDrag()) {
+            var tagName = $JssorUtils$.$GetEventSrcElement(event).tagName;
+            if (!_DragOrientationRegistered && tagName != "INPUT" && tagName != "TEXTAREA" && RegisterDrag()) {
                 OnDragStart(event);
             }
         }
