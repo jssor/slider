@@ -2516,16 +2516,22 @@ new function () {
                     }
                 });
 
-                var innerWrapper = $JssorUtils$.$CloneNode(elmt, false);
-                $JssorUtils$.$RemoveAttribute(innerWrapper, "id");
+                //var innerWrapper = $JssorUtils$.$CloneNode(elmt, false);
+                //$JssorUtils$.$RemoveAttribute(innerWrapper, "id");
+                var innerWrapper = $JssorUtils$.$CreateDivElement(document);
+                $JssorUtils$.$CssCssText(innerWrapper, $JssorUtils$.$CssCssText(elmt));
+                $JssorUtils$.$SetClassName(innerWrapper, $JssorUtils$.$GetClassName(elmt));
+
                 $JssorUtils$.$CssPosition(innerWrapper, "relative");
                 $JssorUtils$.$CssTop(innerWrapper, 0);
                 $JssorUtils$.$CssLeft(innerWrapper, 0);
                 $JssorUtils$.$CssOverflow(innerWrapper, "visible");
 
-                _ScaleWrapper = $JssorUtils$.$CloneNode(elmt, false);
-                $JssorUtils$.$RemoveAttribute(_ScaleWrapper, "id");
-                $JssorUtils$.$CssCssText(_ScaleWrapper, "");
+                //_ScaleWrapper = $JssorUtils$.$CloneNode(elmt, false);
+                //$JssorUtils$.$RemoveAttribute(_ScaleWrapper, "id");
+                //$JssorUtils$.$CssCssText(_ScaleWrapper, "");
+                _ScaleWrapper = $JssorUtils$.$CreateDivElement(document);
+
                 $JssorUtils$.$CssPosition(_ScaleWrapper, "absolute");
                 $JssorUtils$.$CssTop(_ScaleWrapper, 0);
                 $JssorUtils$.$CssLeft(_ScaleWrapper, 0);
@@ -2537,6 +2543,8 @@ new function () {
 
                 var children = $JssorUtils$.$GetChildren(elmt);
                 $JssorUtils$.$AppendChild(elmt, _ScaleWrapper);
+
+                $JssorUtils$.$Css(elmt, "backgroundImage", "");
 
                 var noMoveElmts = {
                     "navigator": _BulletNavigatorOptions && _BulletNavigatorOptions.$Scale == false,

@@ -1,7 +1,7 @@
 ﻿/// <reference path="Jssor.Core.js" />
 
 /*
-* Jssor.Utils 16.0
+* Jssor.Utils 17.0
 * http://www.jssor.com/
 * 
 * TERMS OF USE - Jssor.Utils
@@ -1834,7 +1834,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     self.$CssP = CssP;
 
     self.$CssOverflow = CssProxy("overflow");
-    self.$CssCssText = CssProxy("cssText");
 
     self.$CssTop = CssProxy("top", 2);
     self.$CssLeft = CssProxy("left", 2);
@@ -1854,6 +1853,14 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
         else {
             return GetStyleOpacity(elmt);
+        }
+    };
+    self.$CssCssText = function (elmt, text) {
+        if (text != undefined) {
+            elmt.style.cssText = text;
+        }
+        else {
+            return elmt.style.cssText;
         }
     };
 
