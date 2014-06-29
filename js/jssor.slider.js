@@ -2886,7 +2886,7 @@ new function () {
 
             _ParkingPosition = (_SlideshowEnabled || _DisplayPieces >= _SlideCount || !(_Loop & 1)) ? 0 : _Options.$ParkingPosition;
 
-            _DragEnabled = (_DisplayPieces > 1 || _ParkingPosition) ? _PlayOrientation : _Options.$DragOrientation;
+            _DragEnabled = ((_DisplayPieces > 1 || _ParkingPosition) ? _PlayOrientation : -1) & _Options.$DragOrientation;
 
             //SlideBoard
             var _SlideboardElmt = _SlidesContainer;
@@ -3516,7 +3516,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
                 _NavigationItems.push(navigationItem);
             });
 
-            var slideshowOptions = $JssorUtils$.$Extend({
+            var thumbnailSliderOptions = $JssorUtils$.$Extend({
                 $AutoPlay: false,
                 $NaviQuitDrag: false,
                 $SlideWidth: slideWidth,
@@ -3529,7 +3529,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
                 $DragOrientation: _Options.$DisableDrag ? 0 : _Options.$Orientation
             }, _Options);
 
-            _Slider = new $JssorSlider$(elmt, slideshowOptions);
+            _Slider = new $JssorSlider$(elmt, thumbnailSliderOptions);
 
             _Initialized = true;
         }
