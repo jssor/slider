@@ -1929,8 +1929,8 @@ new function () {
 
         function SetPosition(elmt, position) {
             var orientation = _DragOrientation > 0 ? _DragOrientation : _PlayOrientation;
-            var x = Math.round(_StepLengthX * position * (orientation & 1));
-            var y = Math.round(_StepLengthY * position * ((orientation >> 1) & 1));
+            var x = _StepLengthX * position * (orientation & 1);
+            var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
             if ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserVersion() >= 10 && $JssorUtils$.$GetBrowserVersion() < 11) {
                 elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";

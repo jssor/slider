@@ -2419,7 +2419,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     //Constructor`  1
     {
         options = $JssorUtils$.$Extend({
-            $Interval: 15
+            $Interval: 16
         }, options);
 
         //Sodo statement, for development time intellisence only
