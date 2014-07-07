@@ -1932,7 +1932,7 @@ new function () {
             var x = _StepLengthX * position * (orientation & 1);
             var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
-            if ($JssorUtils$.$IsBrowserIE()) {
+            if (!$JssorUtils$.$IsBrowserChrome()) {
                 x = Math.round(x);
                 y = Math.round(y);
             }
