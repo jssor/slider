@@ -1932,6 +1932,11 @@ new function () {
             var x = _StepLengthX * position * (orientation & 1);
             var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
+            if ($JssorUtils$.$IsBrowserIE()) {
+                x = Math.round(x);
+                y = Math.round(y);
+            }
+
             if ($JssorUtils$.$IsBrowserIE() && $JssorUtils$.$GetBrowserVersion() >= 10 && $JssorUtils$.$GetBrowserVersion() < 11) {
                 elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
             }
