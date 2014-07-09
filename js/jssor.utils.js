@@ -1033,7 +1033,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
     function SetStyleTransformInternal(elmt, transform) {
         var rotate = transform.$Rotate || 0;
-        var scale = transform.$Scale || 1;
+        var scale = transform.$Scale == undefined ? 1 : transform.$Scale;
 
         if (IsBrowserIe9Earlier()) {
             var matrix = self.$CreateMatrix(rotate / 180 * Math.PI, scale, scale);
