@@ -135,7 +135,7 @@ var $JssorEasing$ = window.$JssorEasing$ = {
         return (t *= 2) < 1 ? 1 / 2 * t * t * t * t * t : 1 / 2 * ((t -= 2) * t * t * t * t + 2);
     },
     $EaseInSine: function (t) {
-        return 1 - Math.cos(t * Math.PI / 2)
+        return 1 - Math.cos(t * Math.PI / 2);
     },
     $EaseOutSine: function (t) {
         return Math.sin(t * Math.PI / 2);
