@@ -3610,6 +3610,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
     var _Self = this;
     var _ImmediateOutCaptionHanger;
+    var _PlayMode = playIn ? captionSlideOptions.$PlayInMode : captionSlideOptions.$PlayOutMode;
 
     var _CaptionTransitions = captionSlideOptions.$CaptionTransitions;
     var _CaptionTuningFetcher = { $Transition: "t", $Delay: "d", $Duration: "du", $ScaleHorizontal: "x", $ScaleVertical: "y", $Rotate: "r", $Zoom: "z", $Opacity: "f", $BeginTime: "b" };
@@ -3777,7 +3778,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                             if (!k) {
                                 if (rawTransition.$BeginTime)
                                     transitionWithTuning.$BeginTime = rawTransition.$BeginTime.$Value || 0;
-                                else if ((playIn ? captionSlideOptions.$PlayInMode : captionSlideOptions.$PlayOutMode) & 2)
+                                else if ((_PlayMode) & 2)
                                     transitionWithTuning.$BeginTime = 0;
                             }
                         }
@@ -3989,7 +3990,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
         //var streamLineLength = 0;
         //var captionItems = GetCaptionItems(container, null, [], [], 1);
 
-        CreateAnimators(0, GetCaptionItems(container, 1));
+        CreateAnimators(0, _PlayMode ? GetCaptionItems(container, 1) : []);
     }
 };
 
