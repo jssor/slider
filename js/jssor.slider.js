@@ -3409,9 +3409,9 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
 
         function OnNavigationRequest(event) {
             if (!_Slider.$LastDragSucceded()) {
-                var tail = (_Lanes - index % _Lanes) % _Lanes;
-                var slideVirtualIndex = _Slider.$GetVirtualIndex((index + tail) / _Lanes);
-                var itemVirtualIndex = slideVirtualIndex * _Lanes - tail;
+                var tail = _Lanes - index % _Lanes;
+                var slideVirtualIndex = _Slider.$GetVirtualIndex((index + tail) / _Lanes - 1);
+                var itemVirtualIndex = slideVirtualIndex * _Lanes + _Lanes - tail;
                 _Self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, itemVirtualIndex);
             }
         }
