@@ -2215,7 +2215,7 @@ new function () {
             if (relative) {
                 if (!_Loop) {
                     //Stop at threshold
-                    index = Math.min(Math.max(index + _TempSlideIndex, 0), _SlideCount - 1);
+                    index = Math.min(Math.max(index + _TempSlideIndex, 0), _SlideCount - _DisplayPieces);
                     relative = false;
                 }
                 else if (_Loop & 2) {
@@ -3031,7 +3031,12 @@ new function () {
                     }
                 });
             }
-            _CarouselPlayer.$PlayCarousel(_Options.$StartIndex, _Options.$StartIndex, 0);
+
+            var startPosition = _Options.$StartIndex;
+            if (!(_Loop & 1)) {
+                startPosition = Math.max(0, Math.min(startPosition, _SlideCount - _DisplayPieces));
+            }
+            _CarouselPlayer.$PlayCarousel(startPosition, startPosition, 0);
         }
     }
     //Jssor Slider

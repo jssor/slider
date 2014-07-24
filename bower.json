@@ -17,6 +17,7 @@
     "web"
   ],
   "homepage": "http://jssor.com",
+  "license": "MIT",
   "main": [
     "js/jssor.slider.mini.js"
   ],
