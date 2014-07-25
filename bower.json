@@ -1,8 +1,14 @@
 ﻿{
-  "name": "Jssor Slider",
+  "name": "Jssor-Slider",
   "description": "Responsive jQuery Image Slider/Slideshow/Carousel/Gallery/Banner.",
   "version": "16.0",
   "keywords": [
+    "jquery",
+    "photo",
+    "image",
+    "picture",
+    "content",
+    "text",
     "slider",
     "slideshow",
     "carousel",
@@ -48,6 +54,7 @@
     "img/Icon-Slider-12-jQuery.png",
     "img/back.jpg",
     "img/browser-icons.png",
+    "js/jquery-1.9.1.min.js",
     "js/jquery-2.1.0.min.js",
     "js/jssor.core.js",
     "js/jssor.player.ytiframe.compress.bat",
