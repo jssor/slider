@@ -1588,7 +1588,7 @@ new function () {
             };
 
             function RefreshContent(elmt, fresh, level) {
-                if (elmt["jssor-slider"] || $JssorUtils$.$GetAttribute(elmt, "u") == "thumb")
+                if (elmt["jssor-slider"])
                     return;
 
                 level = level || 0;
