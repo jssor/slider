@@ -910,7 +910,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         ///	<param name="name" type="String">
         ///		the name of css property
         ///	</param>
-        ///	<param name="value" type="Number" optional="true">
+        ///	<param name="value" optional="true">
         ///		the value to set
         ///	</param>
         if (value != undefined) {
