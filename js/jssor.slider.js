@@ -593,7 +593,7 @@ new function () {
             $Clip: 0,   //Clip block or not
             $Move: false,   //Move block or not
             $SlideOut: false,   //Slide the previous slide out to display next slide instead
-            $FlyDirection: 0,   //Specify fly transform with direction
+            //$FlyDirection: 0,   //Specify fly transform with direction
             $Reverse: false,    //Reverse the assembly or not
             $Formation: $JssorSlideshowFormations$.$FormationRandom,    //Shape that assembly blocks as
             $Assembly: ASSEMBLY_RIGHT_BOTTOM,   //The way to assembly blocks
@@ -881,31 +881,16 @@ new function () {
                             _StyleStart.$Clip = _Blocks[columnRow];
                         }
 
-                        if (slideTransition.$FlyDirection) {
+                        //fly
+                        {
+                            var chessHor = chessHorizontal ? 1 : -1;
+                            var chessVer = chessVertical ? 1 : -1;
 
-                            var direction = slideTransition.$FlyDirection;
+                            if (slideTransition.x)
+                                _StyleEnd.$Left += slideContainerWidth * slideTransition.x * chessHor;
 
-                            if (!chessHorizontal)
-                                direction = $JssorDirection$.$ChessHorizontal(direction);
-
-                            if (!chessVertical)
-                                direction = $JssorDirection$.$ChessVertical(direction);
-
-                            var scaleHorizontal = slideTransition.$ScaleHorizontal || 1;
-                            var scaleVertical = slideTransition.$ScaleVertical || 1;
-
-                            if ($JssorDirection$.$IsToLeft(direction)) {
-                                _StyleEnd.$Left += slideContainerWidth * scaleHorizontal;
-                            }
-                            else if ($JssorDirection$.$IsToRight(direction)) {
-                                _StyleEnd.$Left -= slideContainerWidth * scaleHorizontal;
-                            }
-                            if ($JssorDirection$.$IsToTop(direction)) {
-                                _StyleEnd.$Top += slideContainerHeight * scaleVertical;
-                            }
-                            else if ($JssorDirection$.$IsToBottom(direction)) {
-                                _StyleEnd.$Top -= slideContainerHeight * scaleVertical;
-                            }
+                            if (slideTransition.y)
+                                _StyleEnd.$Top += slideContainerHeight * slideTransition.y * chessVer;
                         }
 
                         $JssorUtils$.$Each(_StyleEnd, function (propertyEnd, property) {
@@ -2385,6 +2370,7 @@ new function () {
                 }
             });
 
+            $JssorUtils$.$TranslateTransitions(transitions);    //for old transition compatibility
             _Options.$SlideshowOptions.$Transitions = transitions;
         };
 
@@ -2398,6 +2384,7 @@ new function () {
                 }
             });
 
+            $JssorUtils$.$TranslateTransitions(transitions);    //for old transition compatibility
             _CaptionSliderOptions.$CaptionTransitions = transitions;
             _CaptionSliderOptions.$Version = $JssorUtils$.$GetNow();
         };
@@ -2664,6 +2651,7 @@ new function () {
 
         var _SlideshowOptions = _Options.$SlideshowOptions;
         var _CaptionSliderOptions = $JssorUtils$.$Extend({ $Class: $JssorCaptionSliderBase$, $PlayInMode: 1, $PlayOutMode: 1 }, _Options.$CaptionSliderOptions);
+        $JssorUtils$.$TranslateTransitions(_CaptionSliderOptions.$CaptionTransitions); //for old transition compatibility
         var _BulletNavigatorOptions = _Options.$BulletNavigatorOptions;
         var _ArrowNavigatorOptions = _Options.$ArrowNavigatorOptions;
         var _ThumbnailNavigatorOptions = _Options.$ThumbnailNavigatorOptions;
@@ -2694,7 +2682,7 @@ new function () {
 
         $JssorDebug$.$Execute(function () {
             if (_ThumbnailNavigatorOptions && !_ThumbnailNavigatorOptions.$Class) {
-                $JssorDebug$.$Fail("Option $ArrowNavigatorOptions error, class not specified.");
+                $JssorDebug$.$Fail("Option $ThumbnailNavigatorOptions error, class not specified.");
             }
         });
 
@@ -2702,12 +2690,44 @@ new function () {
         var _ScaleWrapper;
         var _SlidesContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "slides", null, _UISearchMode);
         var _LoadingContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "loading", null, _UISearchMode) || $JssorUtils$.$CreateDivElement(document);
-        var _NavigatorContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "navigator", null, _UISearchMode);
+
+        var _BulletNavigatorContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "navigator", null, _UISearchMode);
 
         var _ArrowLeft = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowleft", null, _UISearchMode);
         var _ArrowRight = $JssorUtils$.$FindFirstChildByAttribute(elmt, "arrowright", null, _UISearchMode);
 
         var _ThumbnailNavigatorContainer = $JssorUtils$.$FindFirstChildByAttribute(elmt, "thumbnavigator", null, _UISearchMode);
+
+        $JssorDebug$.$Execute(function () {
+            //if (_BulletNavigatorOptions && !_BulletNavigatorContainer) {
+            //    throw new Error("$BulletNavigatorOptions specified but bullet navigator container (<div u=\"navigator\" ...) not defined.");
+            //}
+            if (_BulletNavigatorContainer && !_BulletNavigatorOptions) {
+                throw new Error("Bullet navigator container defined but $BulletNavigatorOptions not specified.");
+            }
+
+            //if (_ArrowNavigatorOptions) {
+            //    if (!_ArrowLeft) {
+            //        throw new Error("$ArrowNavigatorOptions specified, but arrowleft (<span u=\"arrowleft\" ...) not defined.");
+            //    }
+
+            //    if (!_ArrowRight) {
+            //        throw new Error("$ArrowNavigatorOptions specified, but arrowright (<span u=\"arrowright\" ...) not defined.");
+            //    }
+            //}
+
+            if ((_ArrowLeft || _ArrowRight) && !_ArrowNavigatorOptions) {
+                throw new Error("arrowleft or arrowright defined, but $ArrowNavigatorOptions not specified.");
+            }
+
+            //if (_ThumbnailNavigatorOptions && !_ThumbnailNavigatorContainer) {
+            //    throw new Error("$ThumbnailNavigatorOptions specified, but thumbnail navigator container (<div u=\"thumbnavigator\" ...) not defined.");
+            //}
+
+            if (_ThumbnailNavigatorContainer && !_ThumbnailNavigatorOptions) {
+                throw new Error("Thumbnail navigator container defined, but $ThumbnailNavigatorOptions not specified.");
+            }
+        });
 
         var _SlidesContainerWidth = $JssorUtils$.$CssWidth(_SlidesContainer);
         var _SlidesContainerHeight = $JssorUtils$.$CssHeight(_SlidesContainer);
@@ -2886,6 +2906,8 @@ new function () {
                     }
                 });
 
+                $JssorUtils$.$TranslateTransitions(_SlideshowOptions.$Transitions); //for old transition compatibility
+
                 _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass && (!$JssorUtils$.$IsBrowserIE() || $JssorUtils$.$GetBrowserVersion() >= 8);
             }
 
@@ -2988,8 +3010,8 @@ new function () {
             _HoverToPause &= _HandleTouchEventOnly ? 2 : 1;
 
             //Bullet Navigator
-            if (_NavigatorContainer && _BulletNavigatorOptions) {
-                _BulletNavigator = new _BulletNavigatorOptions.$Class(_NavigatorContainer, _BulletNavigatorOptions);
+            if (_BulletNavigatorContainer && _BulletNavigatorOptions) {
+                _BulletNavigator = new _BulletNavigatorOptions.$Class(_BulletNavigatorContainer, _BulletNavigatorOptions);
                 _Navigators.push(_BulletNavigator);
             }
 
@@ -3618,7 +3640,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
     var _PlayMode = playIn ? captionSlideOptions.$PlayInMode : captionSlideOptions.$PlayOutMode;
 
     var _CaptionTransitions = captionSlideOptions.$CaptionTransitions;
-    var _CaptionTuningFetcher = { $Transition: "t", $Delay: "d", $Duration: "du", $ScaleHorizontal: "x", $ScaleVertical: "y", $Rotate: "r", $Zoom: "z", $Opacity: "f", $BeginTime: "b" };
+    var _CaptionTuningFetcher = { $Transition: "t", $Delay: "d", $Duration: "du", x: "x", y: "y", $Rotate: "r", $Zoom: "z", $Opacity: "f", $BeginTime: "b" };
     var _CaptionTuningTransfer = {
         $Default: function (value, tuningValue) {
             if (!isNaN(tuningValue.$Value))
@@ -3772,7 +3794,8 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
                         if (transition) {
 
-                            var transitionWithTuning = $JssorUtils$.$Extend({ $Delay: 0, $ScaleHorizontal: 1, $ScaleVertical: 1 }, transition);
+                            //var transitionWithTuning = $JssorUtils$.$Extend({ $Delay: 0, $ScaleHorizontal: 1, $ScaleVertical: 1 }, transition);
+                            var transitionWithTuning = $JssorUtils$.$Extend({ $Delay: 0 }, transition);
 
                             $JssorUtils$.$Each(rawTransition, function (rawPropertyValue, propertyName) {
                                 var tuningPropertyValue = (_CaptionTuningTransfer[propertyName] || _CaptionTuningTransfer.$Default).apply(_CaptionTuningTransfer, [transitionWithTuning[propertyName], rawTransition[propertyName]]);
@@ -3848,8 +3871,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             fromStyles.$Zoom = 1;
 
             var rotate = transition.$Rotate || 0;
-            if (rotate == true)
-                rotate = 1;
 
             toStyles.$Rotate = rotate * 360;
             fromStyles.$Rotate = 0;
@@ -3891,27 +3912,14 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
         //Fly
         {
-            var direction = transition.$FlyDirection;
-
             var toLeft = 0;
             var toTop = 0;
 
-            var scaleHorizontal = transition.$ScaleHorizontal;
-            var scaleVertical = transition.$ScaleVertical;
+            if (transition.x)
+                toLeft -= captionParentWidth * transition.x;
 
-            if ($JssorDirection$.$IsToLeft(direction)) {
-                toLeft -= captionParentWidth * scaleHorizontal;
-            }
-            else if ($JssorDirection$.$IsToRight(direction)) {
-                toLeft += captionParentWidth * scaleHorizontal;
-            }
-
-            if ($JssorDirection$.$IsToTop(direction)) {
-                toTop -= captionParentHeight * scaleVertical;
-            }
-            else if ($JssorDirection$.$IsToBottom(direction)) {
-                toTop += captionParentHeight * scaleVertical;
-            }
+            if (transition.y)
+                toTop -= captionParentHeight * transition.y;
 
             if (toLeft || toTop || animatorOptions.$Move) {
                 toStyles.$Left = toLeft + $JssorUtils$.$CssLeft(captionItem);

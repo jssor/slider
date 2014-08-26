@@ -1697,6 +1697,41 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return elmt.cloneNode(deep);
     };
 
+    function TranslateTransition(transition) {
+        if (transition) {
+            var flyDirection = transition.$FlyDirection;
+
+            if (flyDirection & 1) {
+                transition.x = transition.$ScaleHorizontal || 1;
+            }
+            if (flyDirection & 2) {
+                transition.x = -transition.$ScaleHorizontal || -1;
+            }
+            if (flyDirection & 4) {
+                transition.y = transition.$ScaleVertical || 1;
+            }
+            if (flyDirection & 8) {
+                transition.y = -transition.$ScaleVertical || -1;
+            }
+
+            TranslateTransition(transition.$Brother);
+        }
+    }
+
+    self.$TranslateTransitions = function (transitions) {
+        ///	<summary>
+        ///		For backward compatibility only.
+        ///	</summary>
+        if (transitions) {
+            for (var i = 0; i < transitions.length; i++) {
+                TranslateTransition(transitions[i]);
+            }
+            for (var name in transitions) {
+                TranslateTransition(transitions[name]);
+            }
+        }
+    };
+
     function LoadImageCallback(callback, image, abort) {
         image.onload = null;
         image.abort = null;
@@ -1755,7 +1790,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     var _MouseDownButtons;
-    var _MouseOverButtons = [];
     function JssorButtonEx(elmt) {
         var _Self = this;
 
@@ -1763,11 +1797,15 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         var _IsMouseDown;   //class name 'dn'
         var _IsActive;      //class name 'av'
+        var _IsDisabled;    //class name 'ds'
 
         function Highlight() {
             var className = _OriginClassName;
 
-            if (_IsMouseDown) {
+            if (_IsDisabled) {
+                className += 'ds';
+            }
+            else if (_IsMouseDown) {
                 className += 'dn';
             }
             else if (_IsActive) {
@@ -1778,11 +1816,16 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
 
         function OnMouseDown(event) {
-            _MouseDownButtons.push(_Self);
+            if (_IsDisabled) {
+                self.$CancelEvent(event);
+            }
+            else {
+                _MouseDownButtons.push(_Self);
 
-            _IsMouseDown = true;
+                _IsMouseDown = true;
 
-            Highlight();
+                Highlight();
+            }
         }
 
         _Self.$MouseUp = function () {
@@ -1797,9 +1840,25 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         };
 
         _Self.$Activate = function (activate) {
-            _IsActive = activate;
+            if (activate != undefined) {
+                _IsActive = activate;
 
-            Highlight();
+                Highlight();
+            }
+            else {
+                return _IsActive;
+            }
+        };
+
+        _Self.$Enable = function (enable) {
+            if (enable != undefined) {
+                _IsDisabled = !enable;
+
+                Highlight();
+            }
+            else {
+                return !_IsDisabled;
+            }
         };
 
         //JssorButtonEx Constructor

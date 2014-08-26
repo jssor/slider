@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -16,15 +16,11 @@
     <script>
         jQuery(document).ready(function ($) {
             var _CaptionTransitions = [];
-            //Left to Right
-            _CaptionTransitions["L"] = { $Duration: 800, $FlyDirection: 1 };
-            //Right to Left
-            _CaptionTransitions["R"] = { $Duration: 800, $FlyDirection: 2 };
-            //Top to Bottom
-            _CaptionTransitions["T"] = { $Duration: 800, $FlyDirection: 4 };
-            //Bottom to Top
-            _CaptionTransitions["B"] = { $Duration: 800, $FlyDirection: 8 };
-            //Reference http://www.jssor.com/development/caption-transition-viewer.html
+            _CaptionTransitions["L"] = { $Duration: 900, x: 0.6, $Easing: { $Left: $JssorEasing$.$EaseInOutSine }, $Opacity: 2 };
+            _CaptionTransitions["R"] = { $Duration: 900, x: -0.6, $Easing: { $Left: $JssorEasing$.$EaseInOutSine }, $Opacity: 2 };
+            _CaptionTransitions["T"] = { $Duration: 900, y: 0.6, $Easing: { $Top: $JssorEasing$.$EaseInOutSine }, $Opacity: 2 };
+            _CaptionTransitions["B"] = { $Duration: 900, y: -0.6, $Easing: { $Top: $JssorEasing$.$EaseInOutSine }, $Opacity: 2 };
+            //Reference http://www.jssor.com/development/tool-caption-transition-viewer.html
 
             var options = {
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
