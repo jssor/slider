@@ -1439,6 +1439,8 @@ new function () {
 
                     if (currentIndex != previousIndex)
                         _SlideItems[previousIndex] && _SlideItems[previousIndex].$ParkOut();
+                    else
+                        _Processor && _Processor.$AdjustIdleOnPark();
 
                     _PlayerInstance && _PlayerInstance.$Enable();
 
@@ -1855,12 +1857,17 @@ new function () {
                 }
             };
 
+            _SelfProcessor.$AdjustIdleOnPark = function () {
+                if (_IdleEnd == _ProgressEnd && _IdleEnd == _SelfProcessor.$GetPosition_Display())
+                    _SelfProcessor.$GoToPosition(_IdleBegin);
+            };
+
             _SelfProcessor.$Abort = function () {
                 _SlideshowRunner && _SlideshowRunner.$Index == slideIndex && _SlideshowRunner.$Clear();
 
                 var currentPosition = _SelfProcessor.$GetPosition_Display();
                 if (currentPosition < _ProgressEnd) {
-                    _SelfSlider.$TriggerEvent(JssorSlider.$EVT_STATE_CHANGE, slideIndex, -currentPosition - 1, _ProgressBegin, _IdleBegin, _IdleEnd, _ProgressEnd);
+                    _SelfSlider.$TriggerEvent(JssorSlider.$EVT_STATE_CHANGE, slideIndex, -currentPosition -1, _ProgressBegin, _IdleBegin, _IdleEnd, _ProgressEnd);
                 }
             };
 
@@ -1948,7 +1955,6 @@ new function () {
             _LastDragSucceded = 0;
             _CarouselPlaying_OnFreeze = _IsSliding;
             _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
-
             _Position_OnFreeze = _Conveyor.$GetPosition();
 
             if (_IsDragging || !_HoverStatus && (_HoverToPause & 12)) {
@@ -1960,12 +1966,12 @@ new function () {
 
         function Unfreeze(byDrag) {
 
-            if (!_IsDragging && (_HoverStatus || !(_HoverToPause & 12))) {
+            if (!_IsDragging && (_HoverStatus || !(_HoverToPause & 12)) && !_CarouselPlayer.$IsPlaying()) {
                 var currentPosition = _Conveyor.$GetPosition();
-                var toPosition = Math.floor(_Position_OnFreeze);
+                var toPosition = Math.ceil(_Position_OnFreeze);
 
                 if (byDrag && Math.abs(_DragOffsetTotal) >= _Options.$MinDragOffsetToSlide) {
-                    toPosition = Math.floor(currentPosition);
+                    toPosition = Math.ceil(currentPosition);
                     toPosition += _DragIndexAdjust;
                 }
 
@@ -1987,6 +1993,8 @@ new function () {
                     _CarouselPlayer.$PlayCarousel(currentPosition, toPosition, t * _SlideDuration);
                 }
             }
+
+            Freeze();
         }
 
         function OnDragStart(event) {
@@ -2094,10 +2102,10 @@ new function () {
                         }
 
                         if (_DragOffsetTotal - _DragOffsetLastTime < -2) {
-                            _DragIndexAdjust = 1;
+                            _DragIndexAdjust = 0;
                         }
                         else if (_DragOffsetTotal - _DragOffsetLastTime > 2) {
-                            _DragIndexAdjust = 0;
+                            _DragIndexAdjust = -1;
                         }
 
                         _DragOffsetLastTime = _DragOffsetTotal;
@@ -2260,11 +2268,13 @@ new function () {
         }
 
         function MainContainerMouseOverEventHandler() {
-            _HoverStatus = 0;
+            if (_HoverStatus) {
+                _HoverStatus = 0;
 
-            ShowNavigators();
+                ShowNavigators();
 
-            _IsDragging || Freeze();
+                _IsDragging || Freeze();
+            }
         }
 
         function AdjustSlidesContainerSize() {
