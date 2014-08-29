@@ -8,8 +8,3 @@
 
 
         Note that 'jssor.compress.ese' runs on windows system with .NET 2.0 installed.
-
-
-        Resources:
-        Top Website Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=site-templates
-        Top Wordpress Templates http://themeforest.net/popular_item/by_category?ref=jssor&category=wordpress

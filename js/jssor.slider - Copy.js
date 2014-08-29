@@ -1464,7 +1464,7 @@ new function () {
                 }
             }
 
-            function FreezeEventHandler() {
+            function DragStartEventHandler() {
                 if (_CurrentSlideIndex == slideIndex && _Processor) {
                     _Processor.$Stop();
                 }
@@ -1734,7 +1734,7 @@ new function () {
                 $JssorUtils$.$AppendChild(_Wrapper, _LoadingScreen);
 
                 _SelfSlider.$On(203, ParkEventHandler);
-                _SelfSlider.$On(28, FreezeEventHandler);
+                _SelfSlider.$On(22, DragStartEventHandler);
                 _SelfSlider.$On(24, SwipeStartEventHandler);
 
                 $JssorDebug$.$Execute(function () {
@@ -1938,58 +1938,16 @@ new function () {
         //Event handling begin
 
         function OnMouseDown(event) {
+            _LastDragSucceded = 0;
+
             var tagName = $JssorUtils$.$GetEventSrcElement(event).tagName;
             if (!_DragOrientationRegistered && tagName != "INPUT" && tagName != "TEXTAREA" && RegisterDrag()) {
                 OnDragStart(event);
             }
         }
 
-        function Freeze() {
-            _LastDragSucceded = 0;
-            _CarouselPlaying_OnFreeze = _IsSliding;
-            _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
-
-            _Position_OnFreeze = _Conveyor.$GetPosition();
-
-            if (_IsDragging || !_HoverStatus && (_HoverToPause & 12)) {
-                _CarouselPlayer.$Stop();
-
-                _SelfSlider.$TriggerEvent(JssorSlider.$EVT_FREEZE);
-            }
-        }
-
-        function Unfreeze(byDrag) {
-
-            if (!_IsDragging && (_HoverStatus || !(_HoverToPause & 12))) {
-                var currentPosition = _Conveyor.$GetPosition();
-                var toPosition = Math.floor(_Position_OnFreeze);
-
-                if (byDrag && Math.abs(_DragOffsetTotal) >= _Options.$MinDragOffsetToSlide) {
-                    toPosition = Math.floor(currentPosition);
-                    toPosition += _DragIndexAdjust;
-                }
-
-                if (!(_Loop & 1)) {
-                    toPosition = Math.min(_SlideCount - _DisplayPieces, Math.max(toPosition, 0));
-                }
-
-                var t = Math.abs(toPosition - currentPosition);
-                t = 1 - Math.pow(1 - t, 5);
-
-                if (!_LastDragSucceded && _CarouselPlaying_OnFreeze) {
-                    _CarouselPlayer.$Continue(_PlayToPosition_OnFreeze);
-                }
-                else if (currentPosition == toPosition) {
-                    _CurrentSlideItem.$EnablePlayer();
-                    _CurrentSlideItem.$TryActivate();
-                }
-                else {
-                    _CarouselPlayer.$PlayCarousel(currentPosition, toPosition, t * _SlideDuration);
-                }
-            }
-        }
-
         function OnDragStart(event) {
+            _DragStart_CarouselPlaying = _IsSliding;
 
             _IsDragging = true;
             _DragInvalid = false;
@@ -1998,10 +1956,10 @@ new function () {
             $JssorUtils$.$AddEvent(document, _MoveEvent, OnDragMove);
 
             _LastTimeMoveByDrag = $JssorUtils$.$GetNow() - 50;
+            _DragStartPlayToPosition = _CarouselPlayer.$GetPlayToPosition();
+            _CarouselPlayer.$Stop();
 
-            Freeze();
-
-            if (!_CarouselPlaying_OnFreeze)
+            if (!_DragStart_CarouselPlaying)
                 _DragOrientation = 0;
 
             if (_HandleTouchEventOnly) {
@@ -2021,9 +1979,10 @@ new function () {
             _DragOffsetTotal = 0;
             _DragOffsetLastTime = 0;
             _DragIndexAdjust = 0;
+            _DragStartPosition = _Conveyor.$GetPosition();
 
             //Trigger EVT_DRAGSTART
-            _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_START, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
+            _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_START, GetRealIndex(_DragStartPosition), _DragStartPosition, event);
         }
 
         function OnDragMove(event) {
@@ -2045,7 +2004,7 @@ new function () {
                     var distanceY = actionPoint.y - _DragStartMouseY;
 
 
-                    if (Math.floor(_Position_OnFreeze) != _Position_OnFreeze)
+                    if (Math.floor(_DragStartPosition) != _DragStartPosition)
                         _DragOrientation = _DragOrientation || (_PlayOrientation & _DragOrientationRegistered);
 
                     if ((distanceX || distanceY) && !_DragOrientation) {
@@ -2102,7 +2061,7 @@ new function () {
 
                         _DragOffsetLastTime = _DragOffsetTotal;
                         _DragOffsetTotal = distance;
-                        _PositionToGoByDrag = _Position_OnFreeze - _DragOffsetTotal / stepLength / (_ScaleRatio || 1);
+                        _PositionToGoByDrag = _DragStartPosition - _DragOffsetTotal / stepLength / (_ScaleRatio || 1);
 
                         if (_DragOffsetTotal && _DragOrientation && !_DragInvalid) {
                             $JssorUtils$.$CancelEvent(event);
@@ -2143,9 +2102,32 @@ new function () {
                 var currentPosition = _Conveyor.$GetPosition();
 
                 //Trigger EVT_DRAG_END
-                _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
+                _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_DragStartPosition), _DragStartPosition, event);
 
-                Unfreeze(true);
+                var toPosition = Math.floor(_DragStartPosition);
+
+                if (Math.abs(_DragOffsetTotal) >= _Options.$MinDragOffsetToSlide) {
+                    toPosition = Math.floor(currentPosition);
+                    toPosition += _DragIndexAdjust;
+                }
+
+                if (!(_Loop & 1)) {
+                    toPosition = Math.min(_SlideCount - _DisplayPieces, Math.max(toPosition, 0));
+                }
+
+                var t = Math.abs(toPosition - currentPosition);
+                t = 1 - Math.pow(1 - t, 5);
+
+                if (!_LastDragSucceded && _DragStart_CarouselPlaying) {
+                    _CarouselPlayer.$Continue(_DragStartPlayToPosition);
+                }
+                else if (currentPosition == toPosition) {
+                    _CurrentSlideItem.$EnablePlayer();
+                    _CurrentSlideItem.$TryActivate();
+                }
+                else {
+                    _CarouselPlayer.$PlayCarousel(currentPosition, toPosition, t * _SlideDuration);
+                }
             }
         }
         //Event handling end
@@ -2256,7 +2238,10 @@ new function () {
 
             ShowNavigators();
 
-            _IsDragging || Unfreeze();
+            if (_HoverToPause & 12) {
+                _CarouselPlayer.$Continue(_DragStartPlayToPosition);
+            }
+            _SlideItems[_CurrentSlideIndex].$TryActivate();
         }
 
         function MainContainerMouseOverEventHandler() {
@@ -2264,7 +2249,10 @@ new function () {
 
             ShowNavigators();
 
-            _IsDragging || Freeze();
+            if (_HoverToPause & 12) {
+                _DragStartPlayToPosition = _CarouselPlayer.$GetPlayToPosition();
+                _CarouselPlayer.$Stop();
+            }
         }
 
         function AdjustSlidesContainerSize() {
@@ -2638,7 +2626,7 @@ new function () {
             $AutoPlaySteps: 1,              //[Optional] Steps to go of every play (this options applys only when slideshow disabled), default value is 1
             $AutoPlayInterval: 3000,        //[Optional] Interval to play next slide since the previous stopped if a slideshow is auto playing, default value is 3000
             $PauseOnHover: 1,               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
-
+            
             $SlideDuration: 500,            //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 400
             $SlideEasing: $JssorEasing$.$EaseOutQuad,   //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
             $MinDragOffsetToSlide: 20,      //[Optional] Minimum drag offset that trigger slide, default value is 20
@@ -2948,9 +2936,9 @@ new function () {
             var _CancelEvent;
 
             var _LastTimeMoveByDrag;
-            var _Position_OnFreeze;
-            var _CarouselPlaying_OnFreeze;
-            var _PlayToPosition_OnFreeze;
+            var _DragStartPosition;
+            var _DragStart_CarouselPlaying;
+            var _DragStartPlayToPosition;
             var _PositionToGoByDrag;
 
             //SlideBoard Constructor
@@ -3100,7 +3088,6 @@ new function () {
 
     JssorSlider.$EVT_LOAD_START = 26;
     JssorSlider.$EVT_LOAD_END = 27;
-    JssorSlider.$EVT_FREEZE = 28;
 
     JssorSlider.$EVT_POSITION_CHANGE = 202;
     JssorSlider.$EVT_PARK = 203;
@@ -3203,7 +3190,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
             if (_Options.$AutoCenter & 2) {
                 $JssorUtils$.$CssTop(elmt, ($JssorUtils$.$CssHeight($JssorUtils$.$GetParentNode(elmt)) - _Height) / 2);
             }
-
+            
             _Located = true;
         }
     };
