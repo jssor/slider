@@ -1967,7 +1967,6 @@ new function () {
         function Unfreeze(byDrag) {
 
             if (!_IsDragging && (_HoverStatus || !(_HoverToPause & 12)) && !_CarouselPlayer.$IsPlaying()) {
-
                 var currentPosition = _Conveyor.$GetPosition();
                 var toPosition = Math.ceil(_Position_OnFreeze);
 
@@ -1991,7 +1990,6 @@ new function () {
                     _CurrentSlideItem.$TryActivate();
                 }
                 else {
-
                     _CarouselPlayer.$PlayCarousel(currentPosition, toPosition, t * _SlideDuration);
                 }
             }
@@ -2266,7 +2264,7 @@ new function () {
 
             ShowNavigators();
 
-            _IsDragging || !(_HoverToPause & 12) || Unfreeze();
+            _IsDragging || Unfreeze();
         }
 
         function MainContainerMouseOverEventHandler() {
@@ -2275,7 +2273,7 @@ new function () {
 
                 ShowNavigators();
 
-                _IsDragging || !(_HoverToPause & 12) || Freeze();
+                _IsDragging || Freeze();
             }
         }
 
