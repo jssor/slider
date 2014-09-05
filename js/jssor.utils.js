@@ -2185,6 +2185,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                         var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
                         if (options.$Optimize && $JssorUtils$.$IsBrowserChrome() && duration)
                             interPosition = Math.round(interPosition * duration / 16) / duration * 16;
+
                         if (options.$Reverse)
                             interPosition = 1 - interPosition;
 
@@ -2294,7 +2295,8 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     function PlayFrame() {
         if (_AutoPlay) {
             var now = $JssorUtils$.$GetNow();
-            var timeOffset = Math.min(now - _TimeStampLastFrame, $JssorUtils$.$IsBrowserOpera() ? 80 : 20);
+            //var timeOffset = Math.min(now - _TimeStampLastFrame, $JssorUtils$.$IsBrowserOpera() ? 80 : 20);
+            var timeOffset = Math.min(now - _TimeStampLastFrame, 80);
             var timePosition = _Position_Current + timeOffset * _PlayDirection;
             _TimeStampLastFrame = now;
 
