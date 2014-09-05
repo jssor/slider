@@ -1129,7 +1129,7 @@ new function () {
         //private classes
         function Conveyor() {
             var _SelfConveyor = this;
-            $JssorAnimator$.call(_SelfConveyor, -100000000, 200000000);
+            $JssorAnimator$.call(_SelfConveyor, -100000000, 200000000, { $Optimize: true });
 
             _SelfConveyor.$GetCurrentSlideInfo = function () {
                 var positionDisplay = _SelfConveyor.$GetPosition_Display();

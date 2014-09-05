@@ -2183,8 +2183,9 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
                     if (fromStyles) {
                         var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
-                        if (options.$Optimize && $JssorUtils$.$IsBrowserChrome() && duration)
-                            interPosition = Math.round(interPosition * duration / 16) / duration * 16;
+                        if (options.$Optimize && $JssorUtils$.$IsBrowserChrome() && duration) {
+                            interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
+                        }
 
                         if (options.$Reverse)
                             interPosition = 1 - interPosition;
