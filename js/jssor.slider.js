@@ -1952,7 +1952,6 @@ new function () {
         }
 
         function Freeze() {
-            _LastDragSucceded = 0;
             _CarouselPlaying_OnFreeze = _IsSliding;
             _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
             _Position_OnFreeze = _Conveyor.$GetPosition();
@@ -2009,6 +2008,7 @@ new function () {
 
             _LastTimeMoveByDrag = $JssorUtils$.$GetNow() - 50;
 
+            _LastDragSucceded = 0;
             Freeze();
 
             if (!_CarouselPlaying_OnFreeze)

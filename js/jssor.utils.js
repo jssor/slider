@@ -1297,7 +1297,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             return method.apply(object, args);
         };
 
-        $JssorDebug$.$LiveStamp(callback, "callback_" + ($JssorUtils$.$GetNow() & 11111111));
+        //$JssorDebug$.$LiveStamp(callback, "callback_" +($JssorUtils$.$GetNow() & 0xFFFF));
 
         return callback;
     };
