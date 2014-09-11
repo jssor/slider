@@ -2258,33 +2258,25 @@ new function () {
             });
         }
 
-        function MainContainerMouseOutEventHandler(event) {
+        function MainContainerMouseLeaveEventHandler() {
+            if (!_HoverStatus) {
 
-            event = $JssorUtils$.$GetEvent(event);
-            // we have to watch out for a tricky case: a mouseout occurs on a
-            // child element, but the mouse is still inside the parent element.
-            // the mouseout event will bubble up to us. this happens in all
-            // browsers, so we need to correct for this. technique from:
-            // http://www.quirksmode.org/js/events_mouse.html
-            var from = event.target ? event.target : event.srcElement;
-            var to = event.relatedTarget ? event.relatedTarget : event.toElement;
+                //$JssorDebug$.$Log("mouseleave");
 
-            if (!$JssorUtils$.$IsChild(elmt, from) || $JssorUtils$.$IsChild(elmt, to)) {
-                // the mouseout needs to start from this or a child node, and it
-                // needs to end on this or an outer node.
-                return;
+                _HoverStatus = 1;
+
+                ShowNavigators();
+
+                _IsDragging || !(_HoverToPause & 12) || Unfreeze();
             }
-
-            _HoverStatus = 1;
-
-            ShowNavigators();
-
-            _IsDragging || !(_HoverToPause & 12) || Unfreeze();
         }
 
-        function MainContainerMouseOverEventHandler() {
+        function MainContainerMouseEnterEventHandler() {
 
             if (_HoverStatus) {
+
+                //$JssorDebug$.$Log("mouseenter");
+
                 _HoverStatus = 0;
 
                 ShowNavigators();
@@ -3081,8 +3073,8 @@ new function () {
 
             _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
 
-            $JssorUtils$.$AddEvent(elmt, "mouseout", MainContainerMouseOutEventHandler);
-            $JssorUtils$.$AddEvent(elmt, "mouseover", MainContainerMouseOverEventHandler);
+            $JssorUtils$.$AddEvent(elmt, "mouseleave", MainContainerMouseLeaveEventHandler);
+            $JssorUtils$.$AddEvent(elmt, "mouseenter", MainContainerMouseEnterEventHandler);
 
             ShowNavigators();
 

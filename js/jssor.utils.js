@@ -1149,8 +1149,24 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         self.$AddEvent(window, "resize", handler);
     };
 
+    function MouseEnterLeaveEventHandler(target, eventName, handler, event) {
+        event = self.$GetEvent(event);
+
+        var related = event.relatedTarget || (eventName == "mouseout" ? event.toElement : event.fromElement);
+
+        if (!related || (related !== target && !self.$IsChild(target, related))) {
+            handler(event);
+        }
+    }
+
     self.$AddEvent = function (elmt, eventName, handler, useCapture) {
         elmt = self.$GetElement(elmt);
+
+        var eventTransfer = { "mouseenter": "mouseover", "mouseleave": "mouseout" };
+        if (eventTransfer[eventName]) {
+            eventName = eventTransfer[eventName];
+            handler = self.$CreateCallback(null, MouseEnterLeaveEventHandler, elmt, eventName, handler);
+        }
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
