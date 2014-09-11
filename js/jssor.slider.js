@@ -1129,7 +1129,7 @@ new function () {
         //private classes
         function Conveyor() {
             var _SelfConveyor = this;
-            $JssorAnimator$.call(_SelfConveyor, -100000000, 200000000, { $Optimize: true });
+            $JssorAnimator$.call(_SelfConveyor, -100000000, 200000000);
 
             _SelfConveyor.$GetCurrentSlideInfo = function () {
                 var positionDisplay = _SelfConveyor.$GetPosition_Display();
@@ -1141,6 +1141,7 @@ new function () {
             };
 
             _SelfConveyor.$OnPositionChange = function (oldPosition, newPosition) {
+
                 var index = Math.floor(newPosition);
                 if (index != newPosition && newPosition > oldPosition)
                     index++;
@@ -1221,6 +1222,7 @@ new function () {
             };
 
             _SelfCarouselPlayer.$OnPositionChange = function (oldPosition, newPosition) {
+
                 var toPosition;
 
                 if (_StandBy)
@@ -1228,8 +1230,14 @@ new function () {
                 else {
                     toPosition = _ToPosition;
 
-                    if (_Duration)
-                        toPosition = _Options.$SlideEasing(newPosition / _Duration) * (_ToPosition - _FromPosition) + _FromPosition;
+                    if (_Duration) {
+                        var interPosition = newPosition / _Duration;
+                        if ($JssorUtils$.$IsBrowserChrome() || $JssorUtils$.$IsBrowserFireFox()) {
+                            Math.round(interPosition * 16 / _Duration) / 16 * _Duration;
+                            interPosition = parseFloat(interPosition.toFixed(4));
+                        }
+                        toPosition = _Options.$SlideEasing(interPosition) * (_ToPosition - _FromPosition) + _FromPosition;
+                    }
                 }
 
                 _Conveyor.$GoToPosition(toPosition);
@@ -1924,7 +1932,11 @@ new function () {
             var x = _StepLengthX * position * (orientation & 1);
             var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
-            if (!$JssorUtils$.$IsBrowserChrome()) {
+            if ($JssorUtils$.$IsBrowserChrome()) {
+                x = x.toFixed(3);
+                y = y.toFixed(3);
+            }
+            else {
                 x = Math.round(x);
                 y = Math.round(y);
             }
@@ -2247,6 +2259,7 @@ new function () {
         }
 
         function MainContainerMouseOutEventHandler(event) {
+
             event = $JssorUtils$.$GetEvent(event);
             // we have to watch out for a tricky case: a mouseout occurs on a
             // child element, but the mouse is still inside the parent element.
@@ -2270,6 +2283,7 @@ new function () {
         }
 
         function MainContainerMouseOverEventHandler() {
+
             if (_HoverStatus) {
                 _HoverStatus = 0;
 
