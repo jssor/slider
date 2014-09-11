@@ -1964,6 +1964,7 @@ new function () {
         }
 
         function Freeze() {
+
             _CarouselPlaying_OnFreeze = _IsSliding;
             _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
             _Position_OnFreeze = _Conveyor.$GetPosition();
@@ -2006,8 +2007,6 @@ new function () {
                     _CarouselPlayer.$PlayCarousel(currentPosition, toPosition, t * _SlideDuration);
                 }
             }
-
-            Freeze();
         }
 
         function OnDragStart(event) {
@@ -2168,6 +2167,8 @@ new function () {
                 _SelfSlider.$TriggerEvent(JssorSlider.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
 
                 Unfreeze(true);
+
+                Freeze();
             }
         }
         //Event handling end
@@ -2267,7 +2268,10 @@ new function () {
 
                 ShowNavigators();
 
-                _IsDragging || !(_HoverToPause & 12) || Unfreeze();
+                if (!_IsDragging) {
+                    (_HoverToPause & 12) && Unfreeze();
+                    (_HoverToPause & 3) && _SlideItems[_CurrentSlideIndex].$TryActivate();
+                }
             }
         }
 
@@ -3045,7 +3049,7 @@ new function () {
             }
             //SlideBoard
 
-            _HoverToPause &= _HandleTouchEventOnly ? 10 : 5;
+            _HoverToPause &= (_HandleTouchEventOnly ? 10 : 5);
 
             //Bullet Navigator
             if (_BulletNavigatorContainer && _BulletNavigatorOptions) {
