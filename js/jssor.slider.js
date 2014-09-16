@@ -1527,7 +1527,7 @@ new function () {
                     if (slideshowTransition) {
                         var loadingTicket = _LoadingTicket = $JssorUtils$.$GetNow();
 
-                        var nextIndex = slideIndex + 1 * _PlayReverse;
+                        var nextIndex = slideIndex + _PlayReverse;
                         var nextItem = _SlideItems[GetRealIndex(nextIndex)];
                         return nextItem.$LoadImage($JssorUtils$.$CreateCallback(null, LoadSlideshowImageCompleteEventHandler, nextIndex, nextItem, slideshowTransition, loadingTicket), _LoadingScreen);
                     }
@@ -3077,8 +3077,8 @@ new function () {
 
             _SelfSlider.$SetScaleWidth(_SelfSlider.$GetOriginalWidth());
 
-            $JssorUtils$.$AddEvent(elmt, "mouseleave", MainContainerMouseLeaveEventHandler);
-            $JssorUtils$.$AddEvent(elmt, "mouseenter", MainContainerMouseEnterEventHandler);
+            $JssorUtils$.$AddEvent(elmt, "mouseout", $JssorUtils$.$MouseOverOutFilter(MainContainerMouseLeaveEventHandler, elmt));
+            $JssorUtils$.$AddEvent(elmt, "mouseover", $JssorUtils$.$MouseOverOutFilter(MainContainerMouseEnterEventHandler, elmt));
 
             ShowNavigators();
 
