@@ -1958,7 +1958,7 @@ new function () {
 
         function OnMouseDown(event) {
             var tagName = $JssorUtils$.$GetEventSrcElement(event).tagName;
-            if (!_DragOrientationRegistered && tagName != "INPUT" && tagName != "TEXTAREA" && RegisterDrag()) {
+            if (!_DragOrientationRegistered && tagName != "INPUT" && tagName != "TEXTAREA" && tagName != "SELECT" && RegisterDrag()) {
                 OnDragStart(event);
             }
         }
@@ -3269,7 +3269,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
                     $JssorUtils$.$AddEvent(div, "click", $JssorUtils$.$CreateCallback(null, OnNavigationRequest, buttonIndex));
 
                 if (_Options.$ActionMode & 2)
-                    $JssorUtils$.$AddEvent(div, "mouseover", $JssorUtils$.$CreateCallback(null, OnNavigationRequest, buttonIndex));
+                    $JssorUtils$.$AddEvent(div, "mouseover", $JssorUtils$.$MouseOverOutFilter($JssorUtils$.$CreateCallback(null, OnNavigationRequest, buttonIndex), div));
 
                 _Buttons[buttonIndex] = $JssorUtils$.$Buttonize(div);
             }
@@ -3484,6 +3484,8 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
                 var itemVirtualIndex = slideVirtualIndex * _Lanes + _Lanes - tail;
                 _Self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, itemVirtualIndex);
             }
+
+            //$JssorDebug$.$Log("navigation request");
         }
 
         $JssorDebug$.$Execute(function () {
@@ -3503,7 +3505,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             if (_Options.$ActionMode & 1)
                 $JssorUtils$.$AddEvent(_Wrapper, "click", OnNavigationRequest);
             if (_Options.$ActionMode & 2)
-                $JssorUtils$.$AddEvent(_Wrapper, "mouseover", OnNavigationRequest);
+                $JssorUtils$.$AddEvent(_Wrapper, "mouseover", $JssorUtils$.$MouseOverOutFilter(OnNavigationRequest, _Wrapper));
         }
     }
 
