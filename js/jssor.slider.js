@@ -2977,8 +2977,26 @@ new function () {
 
             //SlideBoard Constructor
             {
+                if (window.navigator.pointerEnabled) {
 
-                if (window.navigator.msPointerEnabled) {
+                    _DownEvent = "pointerdown";
+                    _MoveEvent = "pointermove";
+                    _UpEvent = "pointerup";
+                    _CancelEvent = "pointercancel";
+
+                    if (_DragEnabled) {
+                        var touchAction = "none";
+                        if (_DragEnabled == 1) {
+                            touchAction = "pan-y";
+                        }
+                        else if (_DragEnabled == 2) {
+                            touchAction = "pan-x";
+                        }
+
+                        $JssorUtils$.$Css(_SlideboardElmt, "touch-action", touchAction);
+                    }
+                }
+                else if (window.navigator.msPointerEnabled) {
 
                     _DownEvent = "MSPointerDown";
                     _MoveEvent = "MSPointerMove";
