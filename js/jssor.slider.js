@@ -2984,6 +2984,7 @@ new function () {
 
             //SlideBoard Constructor
             {
+<<<<<<< HEAD
                 var msPrefix;
                 if (window.navigator.pointerEnabled || (msPrefix = window.navigator.msPointerEnabled)) {
 
@@ -2991,6 +2992,33 @@ new function () {
                     _MoveEvent = msPrefix ? "MSPointerMove" : "pointermove";
                     _UpEvent = msPrefix ? "MSPointerUp" : "pointerup";
                     _CancelEvent = msPrefix ? "MSPointerCancel" : "pointercancel";
+=======
+                if (window.navigator.pointerEnabled) {
+
+                    _DownEvent = "pointerdown";
+                    _MoveEvent = "pointermove";
+                    _UpEvent = "pointerup";
+                    _CancelEvent = "pointercancel";
+
+                    if (_DragEnabled) {
+                        var touchAction = "none";
+                        if (_DragEnabled == 1) {
+                            touchAction = "pan-y";
+                        }
+                        else if (_DragEnabled == 2) {
+                            touchAction = "pan-x";
+                        }
+
+                        $JssorUtils$.$Css(_SlideboardElmt, "touch-action", touchAction);
+                    }
+                }
+                else if (window.navigator.msPointerEnabled) {
+
+                    _DownEvent = "MSPointerDown";
+                    _MoveEvent = "MSPointerMove";
+                    _UpEvent = "MSPointerUp";
+                    _CancelEvent = "MSPointerCancel";
+>>>>>>> origin/master
 
                     if (_DragEnabled) {
                         var touchAction = "none";
