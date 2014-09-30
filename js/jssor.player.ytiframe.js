@@ -47,7 +47,7 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
     var _NoPostMessage = !window.postMessage;
     var _PlayButtonBackgroundImageUrl;
 
-    $JssorEventManager$.call(_Self);
+    $JssorObject$.call(_Self);
 
     function ToJson(value) {
         var json;
