@@ -3,7 +3,7 @@ SET RESERVE_MEMBERNAMES=$EaseLinear,$EaseGoBack,$EaseSwing,$EaseInQuad,$EaseOutQ
 SET RESERVE_MEMBERNAMES=%RESERVE_MEMBERNAMES%,$EVT_CLICK,$EVT_DRAG_START,$EVT_DRAG_END,$EVT_SWIPE_START,$EVT_SWIPE_END,$EVT_LOAD_START,$EVT_LOAD_END,$EVT_POSITION_CHANGE,$EVT_PARK,$EVT_SLIDESHOW_START,$EVT_SLIDESHOW_END,$EVT_PROGRESS_CHANGE,$EVT_STATE_CHANGE,$EVT_ROLLBACK_START,$EVT_ROLLBACK_END
 SET RESERVE_MEMBERNAMES=%RESERVE_MEMBERNAMES%,$Interval,$Duration,$Delay,$Cols,$Rows,$Top,$Right,$Bottom,$Left,$Fade,$Zoom,$Move,$SlideOut,$FlyDirection,$Reverse,$Assembly,$Easing,$Formation,$ChessMode,$Column,$Row,$Opacity,$ScaleHorizontal,$ScaleVertical,$Round,$During,$Rotate,$ZIndex,$Brother,$Shift,$Outside,$Clip,$ScaleClip
 
-SET RESERVE_MEMBERNAMES2=$On,$Off,$Elmt,$Play,$Pause,$Lock,$Unlock,$GoTo,$PlayTo,$Next,$Prev,$SetScaleWidth,$GetScaleWidth,$GetScaleHeight,$ResizeCanvas,$GetOriginalWidth,$GetOriginalHeight,$SetSlideshowTransitions,$SetCaptionTransitions,$SlidesCount,$CurrentIndex,$IsAutoPlaying,$IsDragging,$IsSliding,$IsMouseOver,$LastDragSucceded
+SET RESERVE_MEMBERNAMES2=$On,$Off,$Elmt,$Play,$Pause,$Lock,$Unlock,$GoTo,$PlayTo,$Next,$Prev,$ScaleWidth,$ScaleHeight,$OriginalWidth,$OriginalHeight,$SetScaleWidth,$GetScaleWidth,$GetScaleHeight,$ResizeCanvas,$GetOriginalWidth,$GetOriginalHeight,$SetSlideshowTransitions,$SetCaptionTransitions,$SlidesCount,$CurrentIndex,$IsAutoPlaying,$IsDragging,$IsSliding,$IsMouseOver,$LastDragSucceded
 SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$FillMode,$LazyLoading,$StartIndex,$PauseOnHover,$AutoPlay,$Loop,$HWA,$AutoPlaySteps,$AutoPlayInterval,$ArrowKeyNavigation,$SlideDuration,$SlideEasing,$MinDragOffsetToSlide,$SlideWidth,$SlideHeight,$SlideSpacing,$DisplayPieces,$ParkingPosition,$UISearchMode,$PlayOrientation,$DragOrientation,$NaviQuitDrag,$HWA
 SET RESERVE_MEMBERNAMES2=%RESERVE_MEMBERNAMES2%,$BulletNavigatorOptions,$Class,$ChanceToShow,$ActionMode,$AutoCenter,$Steps,$Lanes,$SpacingX,$SpacingY,$Orientation
 
@@ -58,7 +58,8 @@ EXIT /b
 
 :SubMemberNames
 IF NOT "%RENAME%" == "" SET RENAME=%RENAME%,
-SET RENAME=%RENAME%.%1=.%1
+REM SET RENAME=%RENAME%.%1=.%1
+SET RENAME=%RENAME%.%1
 EXIT /b
 REM----------------------------------------------------------
 
@@ -88,5 +89,5 @@ REM----------------------------------------------------------
 ECHO -RENAME:%RENAME%,%RENAME2%,%RENAME3%
 ECHO -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3%
 
-"..\tool\Jssor.Compress.exe" -JS -AWRAP -OVERWRITE -RENAME:%RENAME%,%RENAME2%,%RENAME3% -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3% -ENCOUT:UTF-8 -NOREMOVE:GlobalVariable "jssor.core.js" "jssor.utils.js" "jssor.slider.js" -OUT "jssor.sliderc.mini.js"
+"..\tool\Jssor.Compress.exe" -JS -AWRAP -OVERWRITE -RENAME:%RENAME%,%RENAME2%,%RENAME3% -RESERVE:%RESERVE%,%RESERVE2%,%RESERVE3% -ENCOUT:UTF-8 -NOREMOVE:GlobalVariable "jssor.js" "jssor.slider.js" -OUT "jssor.sliderc.mini.js"
 REM PAUSE

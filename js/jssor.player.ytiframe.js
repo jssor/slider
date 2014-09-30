@@ -1,5 +1,4 @@
-﻿/// <reference path="Jssor.Core.js" />
-/// <reference path="Jssor.Utils.js" />
+﻿/// <reference path="Jssor.js" />
 
 /**
 * Jssor.Player.ytiframe 1.0
@@ -56,16 +55,16 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
         if (value == null) {
             json = "null";
         }
-        else if ($JssorUtils$.$IsUndefined(value)) {
+        else if (value == undefined) {
             json == "undefined";
         }
-        else if ($JssorUtils$.$IsString(value)) {
+        else if ($Jssor$.$IsString(value)) {
             json = '"' + value + '"';
         }
-        else if ($JssorUtils$.$IsArray(value)) {
+        else if ($Jssor$.$IsArray(value)) {
             json = "[";
 
-            $JssorUtils$.$Each(value, function (item, index) {
+            $Jssor$.$Each(value, function (item, index) {
                 json += ToJson(item);
                 if (index < value.length - 1)
                     json += ",";
@@ -82,9 +81,9 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 
     function DeliverMessage(evt, options) {
         if (!_NoPostMessage) {
-            options = $JssorUtils$.$Extend({ id: _MessageFrameId }, options);
+            options = $Jssor$.$Extend({ id: _MessageFrameId }, options);
             var command = '{"event":"' + evt + '"';
-            $JssorUtils$.$Each(options, function (optionValue, name) {
+            $Jssor$.$Each(options, function (optionValue, name) {
                 var optionString = ',"' + name + '":' + ToJson(optionValue);
                 command += optionString;
             });
@@ -97,16 +96,16 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
         if (!_FrameConnected) {
             DeliverMessage("listening");
 
-            $JssorUtils$.$Delay(ConnectYtiframe, 50);
+            $Jssor$.$Delay(ConnectYtiframe, 50);
         }
     }
 
     function SyncSize() {
-        var width = $JssorUtils$.$CssWidth(playerElement);
-        var height = $JssorUtils$.$CssHeight(playerElement);
+        var width = $Jssor$.$CssWidth(playerElement);
+        var height = $Jssor$.$CssHeight(playerElement);
 
-        $JssorUtils$.$SetAttribute(playerInstanceElement, "width", width);
-        $JssorUtils$.$SetAttribute(playerInstanceElement, "height", height);
+        $Jssor$.$Attribute(playerInstanceElement, "width", width);
+        $Jssor$.$Attribute(playerInstanceElement, "height", height);
 
         if (_PlayCover) {
             ////25, 66, 40
@@ -118,25 +117,25 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
             //    _CoverHeight = height - 108;
             //}
 
-            $JssorUtils$.$CssWidth(_PlayCover, width);
-            $JssorUtils$.$CssHeight(_PlayCover, height);
+            $Jssor$.$CssWidth(_PlayCover, width);
+            $Jssor$.$CssHeight(_PlayCover, height);
         }
     }
 
     function UpdateUI() {
-        _CloseButton && $JssorUtils$.$ShowElement(_CloseButton, _Entered);
+        _CloseButton && $Jssor$.$ShowElement(_CloseButton, _Entered);
         if (_PlayCover) {
             if (!_ytPlayerState) {
                 if (!_PlayButtonBackgroundImageUrl) {
-                    _PlayButtonBackgroundImageUrl = $JssorUtils$.$Css(_PlayCover, "backgrouondImage");
-                    !_HideControls && $JssorUtils$.$Css(_PlayCover, "backgrouondImage", "");
+                    _PlayButtonBackgroundImageUrl = $Jssor$.$Css(_PlayCover, "backgrouondImage");
+                    !_HideControls && $Jssor$.$Css(_PlayCover, "backgrouondImage", "");
                 }
             }
             else if (_PlayButtonBackgroundImageUrl) {
-                $JssorUtils$.$Css(_PlayCover, "backgrouondImage", _PlayButtonBackgroundImageUrl);
+                $Jssor$.$Css(_PlayCover, "backgrouondImage", _PlayButtonBackgroundImageUrl);
                 _PlayButtonBackgroundImageUrl = null;
             }
-            $JssorUtils$.$ShowElement(_PlayCover, !_Entered);
+            $Jssor$.$ShowElement(_PlayCover, !_Entered);
         }
     }
 
@@ -159,12 +158,12 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
             playerElement.pAvailable = true;
             playerElement.pInstance = _Self;
 
-            $JssorUtils$.$FireEvent(playerElement, "dataavailable");
+            $Jssor$.$FireEvent(playerElement, "dataavailable");
 
-            _CloseButton && $JssorUtils$.$AddEvent(_CloseButton, "click", CloseButtonClickHandler);
-            _PlayCover && $JssorUtils$.$AddEvent(_PlayCover, "click", QuitCoverClickEventHandler);
+            _CloseButton && $Jssor$.$AddEvent(_CloseButton, "click", CloseButtonClickHandler);
+            _PlayCover && $Jssor$.$AddEvent(_PlayCover, "click", QuitCoverClickEventHandler);
 
-            _HideControls = parseInt($JssorUtils$.$GetAttribute(playerInstanceElement, "pHideControls"));
+            _HideControls = $Jssor$.$ParseInt($Jssor$.$Attribute(playerInstanceElement, "pHideControls"));
 
             SyncSize();
 
@@ -260,7 +259,7 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 
     _Self.$Remove = function () {
         //unlisten window message
-        $JssorUtils$.$RemoveEvent(window, "message", YtiframeMessageEventHandler);
+        $Jssor$.$RemoveEvent(window, "message", YtiframeMessageEventHandler);
 
         //to do prevent youtube player from posting message
         //to do remove this playerInstanceElement
@@ -277,8 +276,8 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 
             var playerWidthStr = playerElement.style.width;
             var playerHeightStr = playerElement.style.height;
-            var playerWidth = $JssorUtils$.$CssWidth(playerElement);
-            var playerHeight = $JssorUtils$.$CssHeight(playerElement);
+            var playerWidth = $Jssor$.$CssWidth(playerElement);
+            var playerHeight = $Jssor$.$CssHeight(playerElement);
 
             if (!playerWidthStr) {
                 $JssorDebug$.$Fail("Youtube Video HTML definition error. 'width' of 'player' not specified. Please specify 'width' in pixel.");
@@ -301,19 +300,19 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
             }
         });
 
-        $JssorUtils$.$SetAttribute(playerInstanceElement, "src", $JssorUtils$.$GetAttribute(playerInstanceElement, "url"));
+        $Jssor$.$Attribute(playerInstanceElement, "src", $Jssor$.$Attribute(playerInstanceElement, "url"));
 
         playerInstanceElement.pInstance = _Self;
 
-        _CloseButton = $JssorUtils$.$FindFirstChildByAttribute(playerElement, "close");
-        _PlayCover = $JssorUtils$.$FindFirstChildByAttribute(playerElement, "cover");
+        _CloseButton = $Jssor$.$FindFirstChild(playerElement, "close");
+        _PlayCover = $Jssor$.$FindFirstChild(playerElement, "cover");
 
         SyncSize();
 
         AttachPlayerInstance();
 
         if (!_NoPostMessage) {
-            $JssorUtils$.$AddEvent(window, "message", YtiframeMessageEventHandler);
+            $Jssor$.$AddEvent(window, "message", YtiframeMessageEventHandler);
             ConnectYtiframe();
         }
     }
@@ -322,7 +321,7 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 //youtube iframe video player handler end
 
 //fetch and initialize all players within docyment.body
-//$JssorUtils$.$AddEvent(window, "load", $JssorUtils$.$CreateCallback(null, $JssorPlayer$.$FetchPlayers, document.body));
+//$Jssor$.$AddEvent(window, "load", $Jssor$.$CreateCallback(null, $JssorPlayer$.$FetchPlayers, document.body));
 //$JssorPlayer$.$FetchPlayers(document.body);
 
 //youtube flash video player handler begin

@@ -1,10 +1,8 @@
-﻿/// <reference path="Jssor.Core.js" />
-
-/*
-* Jssor.Utils 17.0
+﻿/*
+* Jssor 18.0
 * http://www.jssor.com/
 * 
-* TERMS OF USE - Jssor.Utils
+* TERMS OF USE - Jssor
 * 
 * Copyright 2014 Jssor
 *
@@ -28,64 +26,143 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*! Jssor */
 
-//$JssorPoint$
-var $JssorPoint$;
+//$JssorDebug$
+var $JssorDebug$ = new function () {
 
-(function () {
-
-    $JssorPoint$ = function (x, y) {
-
-        // Properties
-
-        this.x = typeof (x) == "number" ? x : 0;
-        this.y = typeof (y) == "number" ? y : 0;
-
-    };
+    this.$DebugMode = true;
 
     // Methods
 
-    var SDPointPrototype = $JssorPoint$.prototype;
+    this.$Log = function (msg, important) {
+        var console = window.console || {};
+        var debug = this.$DebugMode;
 
-    SDPointPrototype.$Plus = function (point) {
-        return new $JssorPoint$(this.x + point.x, this.y + point.y);
+        if (debug && console.log) {
+            console.log(msg);
+        } else if (debug && important) {
+            alert(msg);
+        }
     };
 
-    SDPointPrototype.$Minus = function (point) {
-        return new $JssorPoint$(this.x - point.x, this.y - point.y);
+    this.$Error = function (msg, e) {
+        var console = window.console || {};
+        var debug = this.$DebugMode;
+
+        if (debug && console.error) {
+            console.error(msg);
+        } else if (debug) {
+            alert(msg);
+        }
+
+        if (debug) {
+            // since we're debugging, fail fast by crashing
+            throw e || new Error(msg);
+        }
     };
 
-    SDPointPrototype.$Times = function (factor) {
-        return new $JssorPoint$(this.x * factor, this.y * factor);
+    this.$Fail = function (msg) {
+        throw new Error(msg);
     };
 
-    SDPointPrototype.$Divide = function (factor) {
-        return new $JssorPoint$(this.x / factor, this.y / factor);
+    this.$Assert = function (value, msg) {
+        var debug = this.$DebugMode;
+        if (debug) {
+            if (!value)
+                throw new Error("Assert failed " + msg || "");
+        }
     };
 
-    SDPointPrototype.$Negate = function () {
-        return new $JssorPoint$(-this.x, -this.y);
+    this.$Trace = function (msg) {
+        var console = window.console || {};
+        var debug = this.$DebugMode;
+
+        if (debug && console.log) {
+            console.log(msg);
+        }
     };
 
-    SDPointPrototype.$DistanceTo = function (point) {
-        return Math.sqrt(Math.pow(this.x - point.x, 2) +
-                        Math.pow(this.y - point.y, 2));
+    this.$Execute = function (func) {
+        var debug = this.$DebugMode;
+        if (debug)
+            func();
     };
 
-    SDPointPrototype.$Apply = function (func) {
-        return new $JssorPoint$(func(this.x), func(this.y));
+    this.$LiveStamp = function (obj, id) {
+        var debug = this.$DebugMode;
+        if (debug) {
+            var stamp = document.createElement("DIV");
+            stamp.setAttribute("id", id);
+
+            obj.$Live = stamp;
+        }
     };
 
-    SDPointPrototype.$Equals = function (point) {
-        return (point instanceof $JssorPoint$) &&
-                (this.x === point.x) && (this.y === point.y);
+    this.$C_AbstractMethod = function () {
+        ///	<summary>
+        ///		Tells compiler the method is abstract, it should be implemented by subclass.
+        ///	</summary>
+
+        throw new Error("The method is abstract, it should be implemented by subclass.");
     };
 
-    SDPointPrototype.$ToString = function () {
-        return "(" + this.x + "," + this.y + ")";
+    function C_AbstractClass (instance) {
+        ///	<summary>
+        ///		Tells compiler the class is abstract, it should be implemented by subclass.
+        ///	</summary>
+
+        if(instance.constructor === C_AbstractClass.caller)
+            throw new Error("Cannot create instance of an abstract class.");
+    }
+
+    this.$C_AbstractClass = C_AbstractClass;
+};
+
+//$JssorPoint$
+var $JssorPoint$ = function (x, y) {
+    var _ThisPoint = this;
+
+    // Properties
+    _ThisPoint.x = x;
+    _ThisPoint.y = y;
+
+    _ThisPoint.$Plus = function (point) {
+        return new $JssorPoint$(x + point.x, y + point.y);
     };
 
-})();
+    _ThisPoint.$Minus = function (point) {
+        return new $JssorPoint$(x - point.x, y - point.y);
+    };
+
+    _ThisPoint.$Times = function (factor) {
+        return new $JssorPoint$(x * factor, y * factor);
+    };
+
+    _ThisPoint.$Divide = function (factor) {
+        return new $JssorPoint$(x / factor, y / factor);
+    };
+
+    _ThisPoint.$Negate = function () {
+        return new $JssorPoint$(-x, -y);
+    };
+
+    _ThisPoint.$DistanceTo = function (point) {
+        return Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2));
+    };
+
+    _ThisPoint.$Apply = function (func) {
+        return new $JssorPoint$(func(x), func(y));
+    };
+
+    _ThisPoint.$Equals = function (point) {
+        return (point instanceof $JssorPoint$) && (x === point.x) && (y === point.y);
+    };
+
+    _ThisPoint.$ToString = function () {
+        return "(" + x + "," + y + ")";
+    };
+};
 
 //$JssorEasing$
 var $JssorEasing$ = window.$JssorEasing$ = {
@@ -319,42 +396,25 @@ var $JssorAlignment$ = {
 
 var $JssorMatrix$;
 
-var $JssorBrowser$ = {
-    $UNKNOWN: 0,
-    $IE: 1,
-    $FIREFOX: 2,
-    $SAFARI: 3,
-    $CHROME: 4,
-    $OPERA: 5
-};
-
-var $ROWSER_UNKNOWN$ = 0;
-var $ROWSER_IE$ = 1;
-var $ROWSER_FIREFOX$ = 2;
-var $ROWSER_SAFARI$ = 3;
-var $ROWSER_CHROME$ = 4;
-var $ROWSER_OPERA$ = 5;
-
 var $JssorAnimator$;
 
-// $JssorUtils$ is a static class, so make it singleton instance
-var $JssorUtils$ = window.$JssorUtils$ = new function () {
-
+// $Jssor$ is a static class, so make it singleton instance
+var $Jssor$ = window.$Jssor$ = new function () {
     // Fields
+    var _This = this;
 
-    var self = this;
+    var REGEX_WHITESPACE_GLOBAL = /\S+/g;
 
-    var arrActiveX = ["Msxml2.XMLHTTP", "Msxml3.XMLHTTP", "Microsoft.XMLHTTP"];
-    var supportedImageFormats = {
-        "bmp": false,
-        "jpeg": true,
-        "jpg": true,
-        "png": true,
-        "tif": false,
-        "wdp": false
-    };
+    var ROWSER_UNKNOWN = 0;
+    var BROWSER_IE = 1;
+    var BROWSER_FIREFOX = 2;
+    var BROWSER_FIREFOX = 3;
+    var BROWSER_CHROME = 4;
+    var BROWSER_OPERA = 5;
 
-    var browser = $JssorBrowser$.$UNKNOWN;
+    //var arrActiveX = ["Msxml2.XMLHTTP", "Msxml3.XMLHTTP", "Microsoft.XMLHTTP"];
+
+    var browser = 0;
     var browserRuntimeVersion = 0;
     var browserEngineVersion = 0;
     var browserJavascriptVersion = 0;
@@ -364,7 +424,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     var ver = navigator.appVersion;
     var ua = navigator.userAgent;
 
-    var urlParams = {};
+    var _DocElmt = document.documentElement;
+    var _TransformProperty;
 
     function DetectBrowser() {
         if (!browser) {
@@ -372,8 +433,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 !!window.attachEvent && !!window.ActiveXObject) {
 
                 var ieOffset = ua.indexOf("MSIE");
-                browser = $JssorBrowser$.$IE;
-                browserEngineVersion = parseFloat(ua.substring(ieOffset + 5, ua.indexOf(";", ieOffset)));
+                browser = BROWSER_IE;
+                browserEngineVersion = ParseFloat(ua.substring(ieOffset + 5, ua.indexOf(";", ieOffset)));
 
                 //check IE javascript version
                 /*@cc_on
@@ -383,7 +444,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 // update: for intranet sites and compat view list sites, IE sends
                 // an IE7 User-Agent to the server to be interoperable, and even if
                 // the page requests a later IE version, IE will still report the
-                // IE7 UA to JS. we should be robust to self.
+                // IE7 UA to JS. we should be robust to self
                 //var docMode = document.documentMode;
                 //if (typeof docMode !== "undefined") {
                 //    browserRuntimeVersion = docMode;
@@ -400,23 +461,23 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 var webkitOffset = ua.indexOf("AppleWebKit");
 
                 if (ffOffset >= 0) {
-                    browser = $JssorBrowser$.$FIREFOX;
-                    browserRuntimeVersion = parseFloat(ua.substring(ffOffset + 8));
+                    browser = BROWSER_FIREFOX;
+                    browserRuntimeVersion = ParseFloat(ua.substring(ffOffset + 8));
                 }
                 else if (saOffset >= 0) {
                     var slash = ua.substring(0, saOffset).lastIndexOf("/");
-                    browser = (chOffset >= 0) ? $JssorBrowser$.$CHROME : $JssorBrowser$.$SAFARI;
-                    browserRuntimeVersion = parseFloat(ua.substring(slash + 1, saOffset));
+                    browser = (chOffset >= 0) ? BROWSER_CHROME : BROWSER_FIREFOX;
+                    browserRuntimeVersion = ParseFloat(ua.substring(slash + 1, saOffset));
                 }
 
                 if (webkitOffset >= 0)
-                    webkitVersion = parseFloat(ua.substring(webkitOffset + 12));
+                    webkitVersion = ParseFloat(ua.substring(webkitOffset + 12));
             }
             else {
                 var match = /(opera)(?:.*version|)[ \/]([\w.]+)/i.exec(ua);
                 if (match) {
-                    browser = $JssorBrowser$.$OPERA;
-                    browserRuntimeVersion = parseFloat(match[2]);
+                    browser = BROWSER_OPERA;
+                    browserRuntimeVersion = ParseFloat(match[2]);
                 }
             }
         }
@@ -424,32 +485,31 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
     function IsBrowserIE() {
         DetectBrowser();
-        return browser == $ROWSER_IE$;
+        return browser == BROWSER_IE;
     }
 
     function IsBrowserIeQuirks() {
-
         return IsBrowserIE() && (browserRuntimeVersion < 6 || document.compatMode == "BackCompat");   //Composite to "CSS1Compat"
     }
 
     function IsBrowserFireFox() {
         DetectBrowser();
-        return browser == $ROWSER_FIREFOX$;
+        return browser == BROWSER_FIREFOX;
     }
 
     function IsBrowserSafari() {
         DetectBrowser();
-        return browser == $ROWSER_SAFARI$;
+        return browser == BROWSER_FIREFOX;
     }
 
     function IsBrowserChrome() {
         DetectBrowser();
-        return browser == $ROWSER_CHROME$;
+        return browser == BROWSER_CHROME;
     }
 
     function IsBrowserOpera() {
         DetectBrowser();
-        return browser == $ROWSER_OPERA$;
+        return browser == BROWSER_OPERA;
     }
 
     function IsBrowserBadTransform() {
@@ -461,12 +521,9 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     }
 
     function IsBrowserIe9Earlier() {
-
-        //IE 8- and chrome 1 won't fade well
-        return IsBrowserIE() && browserRuntimeVersion < 9; // || (IsBrowserChrome() && browserRuntimeVersion < 2);
+        return IsBrowserIE() && browserRuntimeVersion < 9; 
     }
 
-    var _TransformProperty;
     function GetTransformProperty(elmt) {
 
         if (!_TransformProperty) {
@@ -474,7 +531,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             // msTransform appear in this list before MozTransform
 
             each(['transform', 'WebkitTransform', 'msTransform', 'MozTransform', 'OTransform'], function (property) {
-                if (!self.$IsUndefined(elmt.style[property])) {
+                if (elmt.style[property] != undefined) {
                     _TransformProperty = property;
                     return true;
                 }
@@ -484,28 +541,6 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
 
         return _TransformProperty;
-    }
-
-    // Constructor
-    {
-        //Ignore urlParams
-        //        // Url parameters
-
-        //        var query = window.location.search.substring(1);    // ignore '?'
-        //        var parts = query.split('&');
-
-        //        for (var i = 0; i < parts.length; i++) {
-        //            var part = parts[i];
-        //            var sep = part.indexOf('=');
-
-        //            if (sep > 0) {
-        //                urlParams[part.substring(0, sep)] =
-        //                        decodeURIComponent(part.substring(sep + 1));
-        //            }
-        //        }
-
-        // Browser behaviors
-
     }
 
     // Helpers
@@ -530,13 +565,14 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         if (toString(object) == "[object Array]") {
             for (var i = 0; i < object.length; i++) {
                 if (callback(object[i], i, object)) {
-                    break;
+                    return true;
                 }
             }
-        } else {
+        }
+        else {
             for (var name in object) {
                 if (callback(object[name], name, object)) {
-                    break;
+                    return true;
                 }
             }
         }
@@ -561,7 +597,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         // Must be an Object.
         // Because of IE, we also have to check the presence of the constructor property.
         // Make sure that DOM nodes and window objects don't pass through, as well
-        if (!obj || type(obj) !== "object" || obj.nodeType || self.$IsWindow(obj)) {
+        if (!obj || type(obj) !== "object" || obj.nodeType || _This.$IsWindow(obj)) {
             return false;
         }
 
@@ -639,193 +675,159 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
             SetStyleFilterIE(elmt, newFilterValue);
 
-            self.$CssMarginTop(elmt, offset.y);
-            self.$CssMarginLeft(elmt, offset.x);
+            _This.$CssMarginTop(elmt, offset.y);
+            _This.$CssMarginLeft(elmt, offset.x);
         }
     }
 
     // Methods
 
-    self.$IsBrowserIE = IsBrowserIE;
+    _This.$IsBrowserIE = IsBrowserIE;
 
-    self.$IsBrowserIeQuirks = IsBrowserIeQuirks;
+    _This.$IsBrowserIeQuirks = IsBrowserIeQuirks;
 
-    self.$IsBrowserFireFox = IsBrowserFireFox;
+    _This.$IsBrowserFireFox = IsBrowserFireFox;
 
-    self.$IsBrowserSafari = IsBrowserSafari;
+    _This.$IsBrowserSafari = IsBrowserSafari;
 
-    self.$IsBrowserChrome = IsBrowserChrome;
+    _This.$IsBrowserChrome = IsBrowserChrome;
 
-    self.$IsBrowserOpera = IsBrowserOpera;
+    _This.$IsBrowserOpera = IsBrowserOpera;
 
-    self.$IsBrowserBadTransform = IsBrowserBadTransform;
+    _This.$IsBrowserBadTransform = IsBrowserBadTransform;
 
-    self.$IsBrowserSafeHWA = IsBrowserSafeHWA;
+    _This.$IsBrowserSafeHWA = IsBrowserSafeHWA;
 
-    self.$IsBrowserIe9Earlier = IsBrowserIe9Earlier;
+    _This.$IsBrowserIe9Earlier = IsBrowserIe9Earlier;
 
-    self.$GetBrowserVersion = function () {
+    _This.$BrowserVersion = function () {
         return browserRuntimeVersion;
     };
 
-    self.$GetBrowserEngineVersion = function () {
+    _This.$BrowserEngineVersion = function () {
         return browserEngineVersion || browserRuntimeVersion;
     };
 
-    self.$GetWebKitVersion = function () {
+    _This.$WebKitVersion = function () {
         return webkitVersion;
     };
 
-    self.$Delay = Delay;
+    _This.$Delay = Delay;
 
-    self.$GetElement = function (elmt) {
-        if (self.$IsString(elmt)) {
+    _This.$Inherit = function (instance, baseClass) {
+        baseClass.apply(instance, [].slice.call(arguments, 2));
+        return Extend({}, instance);
+    };
+
+    function Construct(instance, constructor) {
+        instance.constructor === Construct.caller && instance.$Construct && instance.$Construct();
+    }
+
+    _This.$Construct = Construct;
+
+    _This.$GetElement = function (elmt) {
+        if (_This.$IsString(elmt)) {
             elmt = document.getElementById(elmt);
         }
 
         return elmt;
     };
 
-    self.$GetElementPosition = function (elmt) {
-        elmt = self.$GetElement(elmt);
-        var result = new $JssorPoint$();
+    function GetEvent(event) {
+        return event || window.event;
+    }
 
-        // technique from:
-        // http://www.quirksmode.org/js/findpos.html
-        // with special check for "fixed" elements.
+    GetEvent = GetEvent;
 
-        while (elmt) {
-            result.x += elmt.offsetLeft;
-            result.y += elmt.offsetTop;
-
-            var isFixed = self.$GetElementStyle(elmt).position == "fixed";
-
-            if (isFixed) {
-                result = result.$Plus(self.$GetPageScroll(window));
-            }
-
-            elmt = getOffsetParent(elmt, isFixed);
-        }
-
-        return result;
-    };
-
-    self.$GetElementSize = function (elmt) {
-        elmt = self.$GetElement(elmt);
-        return new $JssorPoint$(elmt.clientWidth, elmt.clientHeight);
-    };
-
-    self.$GetEvent = function (event) {
-        return event ? event : window.event;
-    };
-
-    self.$GetEventSrcElement = function (event) {
-        event = self.$GetEvent(event);
+    _This.$EventSrc = function (event) {
+        event = GetEvent(event);
         return event.target || event.srcElement || document;
     };
 
-    self.$GetEventDstElement = function (event) {
-        event = self.$GetEvent(event);
+    _This.$EventDst = function (event) {
+        event = GetEvent(event);
         return event.relatedTarget || event.toElement;
     };
 
-    self.$GetMousePosition = function (event) {
-        event = self.$GetEvent(event);
-        var result = new $JssorPoint$();
+    _This.$MousePosition = function (event) {
+        event = GetEvent(event);
+        var body = document.body;
 
-        // technique from:
-        // http://www.quirksmode.org/js/events_properties.html
-
-        if (event.type == "DOMMouseScroll" &&
-                IsBrowserFireFox() && browserRuntimeVersion < 3) {
-            // hack for FF2 which reports incorrect position for mouse scroll
-            result.x = event.screenX;
-            result.y = event.screenY;
-        } else if (typeof (event.pageX) == "number") {
-            result.x = event.pageX;
-            result.y = event.pageY;
-        } else if (typeof (event.clientX) == "number") {
-            result.x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-            result.y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        } else {
-            $JssorDebug$.$Fail("Unknown event mouse position, no known technique.");
-        }
-
-        return result;
+        return {
+            x: event.pageX || event.clientX + (_DocElmt.scrollLeft || body.scrollLeft || 0) - (_DocElmt.clientLeft || body.clientLeft || 0) || 0,
+            y: event.pageY || event.clientY + (_DocElmt.scrollTop || body.scrollTop || 0) - (_DocElmt.clientTop || body.clientTop || 0) || 0
+        };
     };
 
-    self.$GetMouseScroll = function (event) {
-        event = self.$GetEvent(event);
-        var delta = 0; // default value
+    _This.$PageScroll = function () {
+        var body = document.body;
 
-        // technique from:
-        // http://blog.paranoidferret.com/index.php/2007/10/31/javascript-tutorial-the-scroll-wheel/
-
-        if (typeof (event.wheelDelta) == "number") {
-            delta = event.wheelDelta;
-        } else if (typeof (event.detail) == "number") {
-            delta = event.detail * -1;
-        } else {
-            $JssorDebug$.$Fail("Unknown event mouse scroll, no known technique.");
-        }
-
-        // normalize value to [-1, 1]
-        return delta ? delta / Math.abs(delta) : 0;
+        return {
+            x: (window.pageXOffset || _DocElmt.scrollLeft || body.scrollLeft || 0) - (_DocElmt.clientLeft || body.clientLeft || 0),
+            y: (window.pageYOffset || _DocElmt.scrollTop || body.scrollTop || 0) - (_DocElmt.clientTop || body.clientTop || 0)
+        };
     };
 
-    self.$GetPageScroll = function (window) {
-        var result = new $JssorPoint$();
-        var docElmt = window.document.documentElement || {};
-        var body = window.document.body || {};
+    _This.$WindowSize = function () {
+        var body = document.body;
 
-        // technique from:
-        // http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
-
-        if (typeof (window.pageXOffset) == "number") {
-            // most browsers
-            result.x = window.pageXOffset;
-            result.y = window.pageYOffset;
-        } else if (body.scrollLeft || body.scrollTop) {
-            // W3C spec, IE6+ in quirks mode
-            result.x = body.scrollLeft;
-            result.y = body.scrollTop;
-        } else if (docElmt.scrollLeft || docElmt.scrollTop) {
-            // IE6+ in standards mode
-            result.x = docElmt.scrollLeft;
-            result.y = docElmt.scrollTop;
-        }
-
-        // note: we specifically aren't testing for typeof here, because IE sets
-        // the appropriate variables undefined instead of 0 under certain
-        // conditions. self means we also shouldn't fail if none of the three
-        // cases are hit; we'll just assume the page scroll is 0.
-
-        return result;
+        return {
+            x: body.clientWidth || _DocElmt.clientWidth,
+            y: body.clientHeight || _DocElmt.clientHeight
+        };
     };
 
-    self.$GetWindowSize = function (window) {
-        var result = new $JssorPoint$();
+    //_This.$GetElementPosition = function (elmt) {
+    //    elmt = _This.$GetElement(elmt);
+    //    var result = new $JssorPoint$();
 
-        // technique from:
-        // http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
+    //    // technique from:
+    //    // http://www.quirksmode.org/js/findpos.html
+    //    // with special check for "fixed" elements.
 
-        //jQuery way to get window size, but support ie quirks mode
-        var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
+    //    while (elmt) {
+    //        result.x += elmt.offsetLeft;
+    //        result.y += elmt.offsetTop;
 
-        result.x = checkElement.clientWidth;
-        result.y = checkElement.clientHeight;
+    //        var isFixed = _This.$GetElementStyle(elmt).position == "fixed";
 
-        return result;
-    };
+    //        if (isFixed) {
+    //            result = result.$Plus(_This.$PageScroll(window));
+    //        }
 
-    //self.$MakeAjaxRequest = function (url, callback) {
+    //        elmt = getOffsetParent(elmt, isFixed);
+    //    }
+
+    //    return result;
+    //};
+
+    //_This.$GetMouseScroll = function (event) {
+    //    event = GetEvent(event);
+    //    var delta = 0; // default value
+
+    //    // technique from:
+    //    // http://blog.paranoidferret.com/index.php/2007/10/31/javascript-tutorial-the-scroll-wheel/
+
+    //    if (typeof (event.wheelDelta) == "number") {
+    //        delta = event.wheelDelta;
+    //    } else if (typeof (event.detail) == "number") {
+    //        delta = event.detail * -1;
+    //    } else {
+    //        $JssorDebug$.$Fail("Unknown event mouse scroll, no known technique.");
+    //    }
+
+    //    // normalize value to [-1, 1]
+    //    return delta ? delta / Math.abs(delta) : 0;
+    //};
+
+    //_This.$MakeAjaxRequest = function (url, callback) {
     //    var async = typeof (callback) == "function";
     //    var req = null;
 
     //    if (async) {
     //        var actual = callback;
     //        var callback = function () {
-    //            Delay($JssorUtils$.$CreateCallback(null, actual, req), 1);
+    //            Delay($Jssor$.$CreateCallback(null, actual, req), 1);
     //        };
     //    }
 
@@ -873,7 +875,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     //    return async ? null : req;
     //};
 
-    //self.$ParseXml = function (string) {
+    //_This.$ParseXml = function (string) {
     //    var xmlDoc = null;
 
     //    if (window.ActiveXObject) {
@@ -901,8 +903,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     function Css(elmt, name, value) {
         ///	<summary>
         ///		access css
-        ///     $JssorUtils$.$Css(elmt, name);         //get css value
-        ///     $JssorUtils$.$Css(elmt, name, value);  //set css value
+        ///     $Jssor$.$Css(elmt, name);         //get css value
+        ///     $Jssor$.$Css(elmt, name, value);  //set css value
         ///	</summary>
         ///	<param name="elmt" type="HTMLElement">
         ///		the element to access css
@@ -920,7 +922,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             var style = elmt.currentStyle || elmt.style;
             value = style[name];
 
-            if(value == "" && window.getComputedStyle) {
+            if (value == "" && window.getComputedStyle) {
                 style = elmt.ownerDocument.defaultView.getComputedStyle(elmt, null);
 
                 style && (value = style.getPropertyValue(name) || style[name]);
@@ -933,8 +935,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     function CssN(elmt, name, value, isDimensional) {
         ///	<summary>
         ///		access css as numeric
-        ///     $JssorUtils$.$CssN(elmt, name);         //get css value
-        ///     $JssorUtils$.$CssN(elmt, name, value);  //set css value
+        ///     $Jssor$.$CssN(elmt, name);         //get css value
+        ///     $Jssor$.$CssN(elmt, name, value);  //set css value
         ///	</summary>
         ///	<param name="elmt" type="HTMLElement">
         ///		the element to access css
@@ -950,15 +952,15 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             Css(elmt, name, value);
         }
         else {
-            return parseFloat(Css(elmt, name));
+            return ParseFloat(Css(elmt, name));
         }
     }
 
     function CssP(elmt, name, value) {
         ///	<summary>
         ///		access css in pixel as numeric, like 'top', 'left', 'width', 'height'
-        ///     $JssorUtils$.$CssP(elmt, name);         //get css value
-        ///     $JssorUtils$.$CssP(elmt, name, value);  //set css value
+        ///     $Jssor$.$CssP(elmt, name);         //get css value
+        ///     $Jssor$.$CssP(elmt, name, value);  //set css value
         ///	</summary>
         ///	<param name="elmt" type="HTMLElement">
         ///		the element to access css
@@ -992,10 +994,10 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     function GetStyleOpacity(elmt) {
         if (IsBrowserIE() && browserEngineVersion < 9) {
             var match = /opacity=([^)]*)/.exec(elmt.style.filter || "");
-            return match ? (parseFloat(match[1]) / 100) : 1;
+            return match ? (ParseFloat(match[1]) / 100) : 1;
         }
         else
-            return parseFloat(elmt.style.opacity || "1");
+            return ParseFloat(elmt.style.opacity || "1");
     }
 
     function SetStyleOpacity(elmt, opacity, ie9EarlierForce) {
@@ -1005,11 +1007,11 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             var finalFilter = elmt.style.filter || "";
 
             // for CSS filter browsers (IE), remove alpha filter if it's unnecessary.
-            // update: doing self always since IE9 beta seems to have broken the
+            // update: doing _This always since IE9 beta seems to have broken the
             // behavior if we rely on the programmatic filters collection.
             var alphaReg = new RegExp(/[\s]*alpha\([^\)]*\)/g);
 
-            // important: note the lazy star! self protects against
+            // important: note the lazy star! _This protects against
             // multiple filters; we don't want to delete the other ones.
             // update: also trimming extra whitespace around filter.
 
@@ -1036,15 +1038,15 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         var scale = transform.$Scale == undefined ? 1 : transform.$Scale;
 
         if (IsBrowserIe9Earlier()) {
-            var matrix = self.$CreateMatrix(rotate / 180 * Math.PI, scale, scale);
-            SetStyleMatrixIE(elmt, (!rotate && scale == 1) ? null : matrix, self.$GetMatrixOffset(matrix, transform.$OriginalWidth, transform.$OriginalHeight));
+            var matrix = _This.$CreateMatrix(rotate / 180 * Math.PI, scale, scale);
+            SetStyleMatrixIE(elmt, (!rotate && scale == 1) ? null : matrix, _This.$GetMatrixOffset(matrix, transform.$OriginalWidth, transform.$OriginalHeight));
         }
         else {
             //rotate(15deg) scale(.5) translateZ(0)
             var transformProperty = GetTransformProperty(elmt);
             if (transformProperty) {
                 var transformValue = "rotate(" + rotate % 360 + "deg) scale(" + scale + ")";
-                if ($JssorUtils$.$IsBrowserChrome() && webkitVersion > 535)
+                if (IsBrowserChrome() && webkitVersion > 535)
                     transformValue += " perspective(2000px)";
 
                 elmt.style[transformProperty] = transformValue;
@@ -1052,23 +1054,23 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     }
 
-    self.$SetStyleTransform = function (elmt, transform) {
+    _This.$SetStyleTransform = function (elmt, transform) {
         if (IsBrowserBadTransform()) {
-            Delay(self.$CreateCallback(null, SetStyleTransformInternal, elmt, transform));
+            Delay(_This.$CreateCallback(null, SetStyleTransformInternal, elmt, transform));
         }
         else {
             SetStyleTransformInternal(elmt, transform);
         }
     };
 
-    self.$SetStyleTransformOrigin = function (elmt, transformOrigin) {
+    _This.$SetStyleTransformOrigin = function (elmt, transformOrigin) {
         var transformProperty = GetTransformProperty(elmt);
 
         if (transformProperty)
             elmt.style[transformProperty + "Origin"] = transformOrigin;
     };
 
-    self.$SetStyleScale = function (elmt, scale) {
+    _This.$CssScale = function (elmt, scale) {
 
         if (IsBrowserIE() && browserEngineVersion < 9 || (browserEngineVersion < 10 && IsBrowserIeQuirks())) {
             elmt.style.zoom = (scale == 1) ? "" : scale;
@@ -1090,80 +1092,115 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     };
 
-    self.$EnableHWA = function (elmt) {
+    _This.$EnableHWA = function (elmt) {
         if (!elmt.style[GetTransformProperty(elmt)] || elmt.style[GetTransformProperty(elmt)] == "none")
             elmt.style[GetTransformProperty(elmt)] = "perspective(2000px)";
     };
 
-    self.$DisableHWA = function (elmt) {
+    _This.$DisableHWA = function (elmt) {
         //if (force || elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
         elmt.style[GetTransformProperty(elmt)] = "none";
     };
 
     var ie8OffsetWidth = 0;
     var ie8OffsetHeight = 0;
-    var ie8WindowResizeCallbackHandlers;
+    //var ie8WindowResizeCallbackHandlers;
     //var ie8LastVerticalScrollbar;
     //var toggleInfo = "";
 
-    function Ie8WindowResizeFilter(window) {
+    //function Ie8WindowResizeFilter(window, handler) {
 
-        var trigger = true;
+    //    var trigger = true;
 
-        var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
-        if (checkElement) {
-            //check vertical bar
-            //var hasVerticalBar = checkElement.scrollHeight > checkElement.clientHeight;
-            //var verticalBarToggle = hasVerticalBar != ie8LastVerticalScrollbar;
-            //ie8LastVerticalScrollbar = hasVerticalBar;
+    //    var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
+    //    if (checkElement) {
+    //        //check vertical bar
+    //        //var hasVerticalBar = checkElement.scrollHeight > checkElement.clientHeight;
+    //        //var verticalBarToggle = hasVerticalBar != ie8LastVerticalScrollbar;
+    //        //ie8LastVerticalScrollbar = hasVerticalBar;
 
-            var widthChange = checkElement.offsetWidth - ie8OffsetWidth;
-            var heightChange = checkElement.offsetHeight - ie8OffsetHeight;
-            if (widthChange || heightChange) {
+    //        var widthChange = checkElement.offsetWidth - ie8OffsetWidth;
+    //        var heightChange = checkElement.offsetHeight - ie8OffsetHeight;
+    //        if (widthChange || heightChange) {
 
-                ie8OffsetWidth += widthChange;
-                ie8OffsetHeight += heightChange;
+    //            ie8OffsetWidth += widthChange;
+    //            ie8OffsetHeight += heightChange;
+    //        }
+    //        else
+    //            trigger = false;
+    //    }
+
+    //    trigger && handler();
+    //}
+
+    //_This.$OnWindowResize = function (window, handler) {
+
+    //    if (IsBrowserIE() && browserEngineVersion < 9) {
+    //        if (!ie8WindowResizeCallbackHandlers) {
+    //            ie8WindowResizeCallbackHandlers = [handler];
+    //            handler = _This.$CreateCallback(null, Ie8WindowResizeFilter, window);
+    //        }
+    //        else {
+    //            ie8WindowResizeCallbackHandlers.push(handler);
+    //            return;
+    //        }
+    //    }
+
+    //    _This.$AddEvent(window, "resize", handler);
+    //};
+
+    _This.$WindowResizeFilter = function (window, handler) {
+        return IsBrowserIe9Earlier() ? function () {
+
+            var trigger = true;
+
+            var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
+            if (checkElement) {
+                //check vertical bar
+                //var hasVerticalBar = checkElement.scrollHeight > checkElement.clientHeight;
+                //var verticalBarToggle = hasVerticalBar != ie8LastVerticalScrollbar;
+                //ie8LastVerticalScrollbar = hasVerticalBar;
+
+                var widthChange = checkElement.offsetWidth - ie8OffsetWidth;
+                var heightChange = checkElement.offsetHeight - ie8OffsetHeight;
+                if (widthChange || heightChange) {
+                    ie8OffsetWidth += widthChange;
+                    ie8OffsetHeight += heightChange;
+                }
+                else
+                    trigger = false;
             }
-            else
-                trigger = false;
-        }
 
-        trigger && each(ie8WindowResizeCallbackHandlers, function (handler) {
-            handler();
-        });
-    }
+            trigger && handler();
 
-    self.$OnWindowResize = function (window, handler) {
-
-        if (IsBrowserIE() && browserEngineVersion < 9) {
-            if (!ie8WindowResizeCallbackHandlers) {
-                ie8WindowResizeCallbackHandlers = [handler];
-                handler = self.$CreateCallback(null, Ie8WindowResizeFilter, window);
-            }
-            else {
-                ie8WindowResizeCallbackHandlers.push(handler);
-                return;
-            }
-        }
-
-        self.$AddEvent(window, "resize", handler);
+        } : handler;
     };
 
-    self.$MouseOverOutFilter = function (handler, target) {
+    _This.$MouseOverOutFilter = function (handler, target) {
+        ///	<param name="target" type="HTMLDomElement">
+        ///		The target element to detect mouse over/out events. (for ie < 9 compatibility)
+        ///	</param>
+
+        $JssorDebug$.$Execute(function () {
+            if (!target) {
+                throw new Error("Null reference, parameter \"target\".");
+            }
+        });
+
         return function (event) {
-            event = self.$GetEvent(event);
+            event = GetEvent(event);
 
             var eventName = event.type;
             var related = event.relatedTarget || (eventName == "mouseout" ? event.toElement : event.fromElement);
 
-            if (!related || (related !== target && !self.$IsChild(target, related))) {
+            if (!related || (related !== target && !_This.$IsChild(target, related))) {
                 handler(event);
             }
         };
     };
 
-    self.$AddEvent = function (elmt, eventName, handler, useCapture) {
-        elmt = self.$GetElement(elmt);
+    _This.$AddEvent = function (elmt, eventName, handler, useCapture) {
+        elmt = _This.$GetElement(elmt);
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
@@ -1173,7 +1210,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 elmt.addEventListener("DOMMouseScroll", handler, useCapture);
             }
             // we are still going to add the mousewheel -- not a mistake!
-            // self is for opera, since it uses onmousewheel but needs addEventListener.
+            // _This is for opera, since it uses onmousewheel but needs addEventListener.
             elmt.addEventListener(eventName, handler, useCapture);
         }
         else if (elmt.attachEvent) {
@@ -1191,8 +1228,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
     };
 
-    self.$RemoveEvent = function (elmt, eventName, handler, useCapture) {
-        elmt = self.$GetElement(elmt);
+    _This.$RemoveEvent = function (elmt, eventName, handler, useCapture) {
+        elmt = _This.$GetElement(elmt);
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
@@ -1202,7 +1239,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 elmt.removeEventListener("DOMMouseScroll", handler, useCapture);
             }
             // we are still going to remove the mousewheel -- not a mistake!
-            // self is for opera, since it uses onmousewheel but needs removeEventListener.
+            // _This is for opera, since it uses onmousewheel but needs removeEventListener.
             elmt.removeEventListener(eventName, handler, useCapture);
         }
         else if (elmt.detachEvent) {
@@ -1211,15 +1248,9 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 elmt.releaseCapture();
             }
         }
-
-        $JssorDebug$.$Execute(function () {
-            if (!elmt.removeEventListener && !elmt.detachEvent) {
-                $JssorDebug$.$Fail("Unable to detach event handler, no known technique.");
-            }
-        });
     };
 
-    self.$FireEvent = function (elmt, eventName) {
+    _This.$FireEvent = function (elmt, eventName) {
         //var document = elmt.document;
 
         $JssorDebug$.$Execute(function () {
@@ -1249,24 +1280,24 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     };
 
-    self.$AddEventBrowserMouseUp = function (handler, userCapture) {
-        self.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
+    _This.$AddEventBrowserMouseUp = function (handler, userCapture) {
+        _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
     };
 
-    self.$RemoveEventBrowserMouseUp = function (handler, userCapture) {
-        self.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
+    _This.$RemoveEventBrowserMouseUp = function (handler, userCapture) {
+        _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
     };
 
-    self.$AddEventBrowserMouseDown = function (handler, userCapture) {
-        self.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
-    };
+    //_This.$AddEventBrowserMouseDown = function (handler, userCapture) {
+    //    _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
+    //};
 
-    self.$RemoveEventBrowserMouseDown = function (handler, userCapture) {
-        self.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
-    };
+    //_This.$RemoveEventBrowserMouseDown = function (handler, userCapture) {
+    //    _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
+    //};
 
-    self.$CancelEvent = function (event) {
-        event = self.$GetEvent(event);
+    _This.$CancelEvent = function (event) {
+        event = GetEvent(event);
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
@@ -1279,8 +1310,8 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         event.returnValue = false;      // IE for preventing default
     };
 
-    self.$StopEvent = function (event) {
-        event = self.$GetEvent(event);
+    _This.$StopEvent = function (event) {
+        event = GetEvent(event);
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
@@ -1292,75 +1323,73 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         event.cancelBubble = true;      // IE for stopping propagation
     };
 
-    self.$CreateCallback = function (object, method) {
+    _This.$CreateCallback = function (object, method) {
         // create callback args
-        var initialArgs = [];
-        for (var i = 2; i < arguments.length; i++) {
-            initialArgs.push(arguments[i]);
-        }
+        var initialArgs = [].slice.call(arguments, 2);
 
         // create closure to apply method
         var callback = function () {
             // concatenate new args, but make a copy of initialArgs first
-            var args = initialArgs.concat([]);
-            for (var i = 0; i < arguments.length; i++) {
-                args.push(arguments[i]);
-            }
+            var args = initialArgs.concat([].slice.call(arguments, 0));
 
             return method.apply(object, args);
         };
 
-        //$JssorDebug$.$LiveStamp(callback, "callback_" +($JssorUtils$.$GetNow() & 0xFFFF));
+        //$JssorDebug$.$LiveStamp(callback, "callback_" + ($Jssor$.$GetNow() & 0xFFFFFF));
 
         return callback;
     };
 
     var _Freeer;
-    self.$FreeElement = function (elmt) {
+    _This.$FreeElement = function (elmt) {
         if (!_Freeer)
-            _Freeer = self.$CreateDivElement();
+            _Freeer = _This.$CreateDiv();
 
         if (elmt) {
-            $JssorUtils$.$AppendChild(_Freeer, elmt);
-            $JssorUtils$.$ClearInnerHtml(_Freeer);
+            $Jssor$.$AppendChild(_Freeer, elmt);
+            $Jssor$.$ClearInnerHtml(_Freeer);
         }
     };
 
-    self.$SetInnerText = function (elmt, text) {
+    _This.$InnerText = function (elmt, text) {
+        if (text == undefined)
+            return elmt.textContent || elmt.innerText;
+
         var textNode = document.createTextNode(text);
-        self.$ClearInnerHtml(elmt);
+        _This.$ClearInnerHtml(elmt);
         elmt.appendChild(textNode);
     };
+    
+    _This.$InnerHtml = function (elmt, html) {
+        if (html == undefined)
+            return elmt.innerHTML;
 
-    self.$GetInnerText = function (elmt) {
-        return elmt.textContent || elmt.innerText;
-    };
-
-    self.$GetInnerHtml = function (elmt) {
-        return elmt.innerHTML;
-    };
-
-    self.$SetInnerHtml = function (elmt, html) {
         elmt.innerHTML = html;
     };
 
-    self.$ClearInnerHtml = function (elmt) {
+    _This.$GetClientRect = function (elmt) {
+        var rect = elmt.getBoundingClientRect();
+
+        return { x: rect.left, y: rect.top, w: rect.right - rect.left, h: rect.bottom - rect.top };
+    };
+
+    _This.$ClearInnerHtml = function (elmt) {
         elmt.innerHTML = "";
     };
 
-    self.$EncodeHtml = function (text) {
-        var div = self.$CreateDivElement();
-        self.$SetInnerText(div, text);
-        return self.$GetInnerHtml(div);
+    _This.$EncodeHtml = function (text) {
+        var div = _This.$CreateDiv();
+        _This.$InnerText(div, text);
+        return _This.$InnerHtml(div);
     };
 
-    self.$DecodeHtml = function (html) {
-        var div = self.$CreateDivElement();
-        self.$SetInnerHtml(div, html);
-        return self.$GetInnerText(div);
+    _This.$DecodeHtml = function (html) {
+        var div = _This.$CreateDiv();
+        _This.$InnerHtml(div, html);
+        return _This.$InnerText(div);
     };
 
-    self.$SelectElement = function (elmt) {
+    _This.$SelectElement = function (elmt) {
         var userSelection;
         if (window.getSelection) {
             //W3C default
@@ -1381,7 +1410,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             userSelection.addRange(theRange);
     };
 
-    self.$DeselectElements = function () {
+    _This.$DeselectElements = function () {
         if (document.selection) {
             document.selection.empty();
         } else if (window.getSelection) {
@@ -1389,7 +1418,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     };
 
-    self.$GetChildren = function (elmt) {
+    _This.$Children = function (elmt) {
         var children = [];
 
         for (var tmpEl = elmt.firstChild; tmpEl; tmpEl = tmpEl.nextSibling) {
@@ -1401,17 +1430,17 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return children;
     };
 
-    function FindFirstChildByAttribute(elmt, attrValue, attrName, deep) {
+    function FindFirstChild(elmt, attrValue, attrName, deep) {
         if (!attrName)
             attrName = "u";
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
-                if (self.$GetAttributeEx(elmt, attrName) == attrValue)
+                if (AttributeEx(elmt, attrName) == attrValue)
                     return elmt;
 
                 if (deep) {
-                    var childRet = FindFirstChildByAttribute(elmt, attrValue, attrName, deep);
+                    var childRet = FindFirstChild(elmt, attrValue, attrName, deep);
                     if (childRet)
                         return childRet;
                 }
@@ -1419,9 +1448,9 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     }
 
-    self.$FindFirstChildByAttribute = FindFirstChildByAttribute;
+    _This.$FindFirstChild = FindFirstChild;
 
-    function FindChildrenByAttribute(elmt, attrValue, attrName, deep) {
+    function FindChildren(elmt, attrValue, attrName, deep) {
         if (!attrName)
             attrName = "u";
 
@@ -1429,11 +1458,11 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
-                if (self.$GetAttributeEx(elmt, attrName) == attrValue)
+                if (AttributeEx(elmt, attrName) == attrValue)
                     ret.push(elmt);
 
                 if (deep) {
-                    var childRet = FindChildrenByAttribute(elmt, attrValue, attrName, deep);
+                    var childRet = FindChildren(elmt, attrValue, attrName, deep);
                     if (childRet.length)
                         ret = ret.concat(childRet);
                 }
@@ -1443,7 +1472,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return ret;
     }
 
-    self.$FindChildrenByAttribute = FindChildrenByAttribute;
+    _This.$FindChildren = FindChildren;
 
     function FindFirstChildByTag(elmt, tagName, deep) {
 
@@ -1461,7 +1490,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     }
 
-    self.$FindFirstChildByTag = FindFirstChildByTag;
+    _This.$FindFirstChildByTag = FindFirstChildByTag;
 
     function FindChildrenByTag(elmt, tagName, deep) {
         var ret = [];
@@ -1482,13 +1511,13 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return ret;
     }
 
-    self.$FindChildrenByTag = FindChildrenByTag;
+    _This.$FindChildrenByTag = FindChildrenByTag;
 
-    self.$GetElementsByTagName = function (elmt, tagName) {
+    _This.$GetElementsByTag = function (elmt, tagName) {
         return elmt.getElementsByTagName(tagName);
     };
 
-    self.$Extend = function (target) {
+    function Extend(target) {
         for (var i = 1; i < arguments.length; i++) {
 
             var options = arguments[i];
@@ -1504,9 +1533,11 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         // Return the modified object
         return target;
-    };
+    }
 
-    self.$Unextend = function (target, options) {
+    _This.$Extend = Extend;
+
+    function Unextend(target, options) {
         $JssorDebug$.$Assert(options);
 
         var unextended = {};
@@ -1520,108 +1551,154 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         // Return the modified object
         return unextended;
-    };
+    }
 
-    self.$IsUndefined = function (obj) {
+    _This.$Unextend = Unextend;
+
+    _This.$IsUndefined = function (obj) {
         return type(obj) == "undefined";
     };
 
-    self.$IsFunction = function (obj) {
+    _This.$IsFunction = function (obj) {
         return type(obj) == "function";
     };
 
-    self.$IsArray = Array.isArray || function (obj) {
+    _This.$IsArray = function (obj) {
         return type(obj) == "array";
     };
 
-    self.$IsString = function (obj) {
+    _This.$IsString = function (obj) {
         return type(obj) == "string";
     };
 
-    self.$IsNumeric = function (obj) {
-        return !isNaN(parseFloat(obj)) && isFinite(obj);
+    _This.$IsNumeric = function (obj) {
+        return !isNaN(ParseFloat(obj)) && isFinite(obj);
     };
 
-    self.$IsWindow = function (obj) {
-        return obj != null && obj == obj.window;
+    _This.$IsWindow = function (obj) {
+        return obj && obj == obj.window;
     };
 
-    self.$Type = type;
+    _This.$Type = type;
 
     // args is for internal usage only
-    self.$Each = each;
+    _This.$Each = each;
 
-    self.$IsPlainObject = isPlainObject;
+    _This.$IsPlainObject = isPlainObject;
 
-    self.$CreateDivElement = function (doc) {
-        return self.$CreateElement("DIV", doc);
+    function CreateElement(tagName) {
+        return document.createElement(tagName);
+    }
+
+    _This.$CreateElement = CreateElement;
+
+    _This.$CreateDiv = function () {
+        return CreateElement("DIV", document);
     };
 
-    self.$CreateSpanElement = function (doc) {
-        return self.$CreateElement("SPAN", doc);
+    _This.$CreateSpan = function () {
+        return CreateElement("SPAN", document);
     };
 
-    self.$CreateElement = function (tagName, doc) {
-        doc = doc || document;
-        return doc.createElement(tagName);
-    };
+    _This.$EmptyFunction = function () { };
 
-    self.$EmptyFunction = function () { };
+    function Attribute(elmt, name, value) {
+        if (value == undefined)
+            return elmt.getAttribute(name);
 
-    self.$GetAttribute = function (elmt, name) {
-        return elmt.getAttribute(name);
-    };
-
-    self.$GetAttributeEx = function (elmt, name) {
-        return self.$GetAttribute(elmt, name) || self.$GetAttribute(elmt, "data-" + name);
-    };
-
-    self.$SetAttribute = function (elmt, name, value) {
         elmt.setAttribute(name, value);
+    }
+
+    function AttributeEx(elmt, name) {
+        return Attribute(elmt, name) || Attribute(elmt, "data-" + name);
+    }
+
+    _This.$Attribute = Attribute;
+    _This.$AttributeEx = AttributeEx;
+
+    function ClassName(elmt, className) {
+        if (className == undefined)
+            return elmt.className;
+
+        elmt.className = className;
+    }
+
+    _This.$ClassName = ClassName;
+
+    function ToHash(array) {
+        var hash = {};
+
+        each(array, function (item) {
+            hash[item] = item;
+        });
+
+        return hash;
+    }
+
+    _This.$ToHash = ToHash;
+
+    function Join(separator, strings) {
+        ///	<param name="separator" type="String">
+        ///		The element to show the dialog around
+        ///	</param>
+        ///	<param name="strings" type="Array" value="['1']">
+        ///		The element to show the dialog around
+        ///	</param>
+
+        var joined = "";
+
+        each(strings, function (str) {
+            joined && (joined += separator);
+            joined += str;
+        });
+
+        return joined;
+    }
+
+    _This.$Join = Join;
+
+    _This.$AddClass = function (elmt, className) {
+        var newClassName = ClassName(elmt) + " " + className;
+        ClassName(elmt, Join(" ", ToHash(newClassName.match(REGEX_WHITESPACE_GLOBAL))));
     };
 
-    self.$GetClassName = function (elmt) {
-        return elmt.className;
+    _This.$RemoveClass = function (elmt, className) {
+        ClassName(elmt, Join(" ", _This.$Unextend(ToHash(ClassName(elmt).match(REGEX_WHITESPACE_GLOBAL)), ToHash(className.match(REGEX_WHITESPACE_GLOBAL)))));
     };
 
-    self.$SetClassName = function (elmt, className) {
-        elmt.className = className || "";
-    };
-
-    self.$GetParentNode = function (elmt) {
+    _This.$ParentNode = function (elmt) {
         return elmt.parentNode;
     };
 
-    self.$HideElement = function (elmt) {
-        self.$CssDisplay(elmt, "none");
+    _This.$HideElement = function (elmt) {
+        _This.$CssDisplay(elmt, "none");
     };
 
-    self.$HideElements = function (elmts) {
+    _This.$HideElements = function (elmts) {
         for (var i = 0; i < elmts.length; i++) {
-            self.$HideElement(elmts[i]);
+            _This.$HideElement(elmts[i]);
         }
     };
 
-    self.$ShowElement = function (elmt, show) {
-        self.$CssDisplay(elmt, show == false ? "none" : "");
+    _This.$ShowElement = function (elmt, show) {
+        _This.$CssDisplay(elmt, show == false ? "none" : "");
     };
 
-    self.$ShowElements = function (elmts) {
+    _This.$ShowElements = function (elmts) {
         for (var i = 0; i < elmts.length; i++) {
-            self.$ShowElement(elmts[i]);
+            _This.$ShowElement(elmts[i]);
         }
     };
 
-    self.$RemoveAttribute = function (elmt, attrbuteName) {
+    _This.$RemoveAttribute = function (elmt, attrbuteName) {
         elmt.removeAttribute(attrbuteName);
     };
 
-    self.$CanClearClip = function () {
-        //return !IsBrowserIE() || browserEngineVersion > 9 || (browserRuntimeVersion > 7 && !IsBrowserIeQuirks());
+    _This.$CanClearClip = function () {
         return IsBrowserIE() && browserRuntimeVersion < 10;
     };
 
-    self.$SetStyleClip = function (elmt, clip) {
+    _This.$SetStyleClip = function (elmt, clip) {
         if (clip) {
             elmt.style.clip = "rect(" + Math.round(clip.$Top) + "px " + Math.round(clip.$Right) + "px " + Math.round(clip.$Bottom) + "px " + Math.round(clip.$Left) + "px)";
         }
@@ -1637,55 +1714,57 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
             var newCssText = BuildNewCss(cssText, clipRegs, "");
 
-            $JssorUtils$.$CssCssText(elmt, newCssText);
+            $Jssor$.$CssCssText(elmt, newCssText);
         }
     };
 
-    self.$GetNow = function () {
+    _This.$GetNow = function () {
         return new Date().getTime();
     };
 
-    self.$AppendChild = function (elmt, child) {
+    _This.$AppendChild = function (elmt, child) {
         elmt.appendChild(child);
     };
 
-    self.$AppendChildren = function (elmt, children) {
+    _This.$AppendChildren = function (elmt, children) {
         each(children, function (child) {
-            self.$AppendChild(elmt, child);
+            _This.$AppendChild(elmt, child);
         });
     };
 
-    self.$InsertBefore = function (elmt, child, refObject) {
+    _This.$InsertBefore = function (elmt, child, refObject) {
         elmt.insertBefore(child, refObject);
     };
 
-    self.$InsertAdjacentHtml = function (elmt, where, text) {
+    _This.$InsertAdjacentHtml = function (elmt, where, text) {
         elmt.insertAdjacentHTML(where, text);
     };
 
-    self.$RemoveChild = function (elmt, child) {
+    _This.$RemoveChild = function (elmt, child) {
         elmt.removeChild(child);
     };
 
-    self.$RemoveChildren = function (elmt, children) {
+    _This.$RemoveChildren = function (elmt, children) {
         each(children, function (child) {
-            self.$RemoveChild(elmt, child);
+            _This.$RemoveChild(elmt, child);
         });
     };
 
-    self.$ClearChildren = function (elmt) {
-        self.$RemoveChildren(elmt, self.$GetChildren(elmt));
+    _This.$ClearChildren = function (elmt) {
+        _This.$RemoveChildren(elmt, _This.$Children(elmt));
     };
 
-    self.$ParseInt = function (str, radix) {
+    _This.$ParseInt = function (str, radix) {
         return parseInt(str, radix || 10);
     };
 
-    self.$ParseFloat = function (str) {
+    function ParseFloat(str) {
         return parseFloat(str);
-    };
+    }
 
-    self.$IsChild = function (elmtA, elmtB) {
+    _This.$ParseFloat = ParseFloat;
+
+    _This.$IsChild = function (elmtA, elmtB) {
         var body = document.body;
         while (elmtB && elmtA != elmtB && body != elmtB) {
             try {
@@ -1699,16 +1778,11 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return elmtA == elmtB;
     };
 
-    self.$ToLowerCase = function (value) {
-        if (value)
-            value = value.toLowerCase();
-
-        return value;
-    };
-
-    self.$CloneNode = function (elmt, deep) {
+    function CloneNode(elmt, deep) {
         return elmt.cloneNode(deep);
-    };
+    }
+
+    _This.$CloneNode = CloneNode;
 
     function TranslateTransition(transition) {
         if (transition) {
@@ -1731,7 +1805,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         }
     }
 
-    self.$TranslateTransitions = function (transitions) {
+    _This.$TranslateTransitions = function (transitions) {
         ///	<summary>
         ///		For backward compatibility only.
         ///	</summary>
@@ -1753,19 +1827,19 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             callback(image, abort);
     }
 
-    self.$LoadImage = function (src, callback) {
-        if (self.$IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
+    _This.$LoadImage = function (src, callback) {
+        if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
             LoadImageCallback(callback, null);
         }
         else {
             var image = new Image();
-            image.onload = self.$CreateCallback(null, LoadImageCallback, callback, image);
-            image.onabort = self.$CreateCallback(null, LoadImageCallback, callback, image, true);
+            image.onload = _This.$CreateCallback(null, LoadImageCallback, callback, image);
+            image.onabort = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
             image.src = src;
         }
     };
 
-    self.$LoadImages = function (imageElmts, mainImageElmt, callback) {
+    _This.$LoadImages = function (imageElmts, mainImageElmt, callback) {
 
         var _ImageLoading = imageElmts.length + 1;
 
@@ -1776,27 +1850,27 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             !_ImageLoading && callback && callback(mainImageElmt);
         }
 
-        $JssorUtils$.$Each(imageElmts, function (imageElmt) {
-            $JssorUtils$.$LoadImage(imageElmt.src, LoadImageCompleteEventHandler);
+        each(imageElmts, function (imageElmt) {
+            $Jssor$.$LoadImage(imageElmt.src, LoadImageCompleteEventHandler);
         });
 
         LoadImageCompleteEventHandler();
     };
 
-    self.$BuildElement = function (template, tagName, replacer, createCopy) {
+    _This.$BuildElement = function (template, tagName, replacer, createCopy) {
         if (createCopy)
-            template = $JssorUtils$.$CloneNode(template, true);
+            template = CloneNode(template, true);
 
-        var templateHolders = $JssorUtils$.$GetElementsByTagName(template, tagName);
+        var templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
         for (var j = templateHolders.length - 1; j > -1; j--) {
             var templateHolder = templateHolders[j];
-            var replaceItem = $JssorUtils$.$CloneNode(replacer, true);
-            $JssorUtils$.$SetClassName(replaceItem, $JssorUtils$.$GetClassName(templateHolder));
-            $JssorUtils$.$CssCssText(replaceItem, templateHolder.style.cssText);
+            var replaceItem = CloneNode(replacer, true);
+            ClassName(replaceItem, ClassName(templateHolder));
+            $Jssor$.$CssCssText(replaceItem, templateHolder.style.cssText);
 
-            var thumbnailPlaceHolderParent = $JssorUtils$.$GetParentNode(templateHolder);
-            $JssorUtils$.$InsertBefore(thumbnailPlaceHolderParent, replaceItem, templateHolder);
-            $JssorUtils$.$RemoveChild(thumbnailPlaceHolderParent, templateHolder);
+            var thumbnailPlaceHolderParent = $Jssor$.$ParentNode(templateHolder);
+            $Jssor$.$InsertBefore(thumbnailPlaceHolderParent, replaceItem, templateHolder);
+            $Jssor$.$RemoveChild(thumbnailPlaceHolderParent, templateHolder);
         }
 
         return template;
@@ -1825,12 +1899,12 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 className += "av";
             }
 
-            $JssorUtils$.$SetClassName(elmt, className);
+            ClassName(elmt, className);
         }
 
         function OnMouseDown(event) {
             if (_IsDisabled) {
-                self.$CancelEvent(event);
+                _This.$CancelEvent(event);
             }
             else {
                 _MouseDownButtons.push(_Self);
@@ -1876,10 +1950,10 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
 
         //JssorButtonEx Constructor
         {
-            elmt = self.$GetElement(elmt);
+            elmt = _This.$GetElement(elmt);
 
             if (!_MouseDownButtons) {
-                self.$AddEventBrowserMouseUp(function () {
+                _This.$AddEventBrowserMouseUp(function () {
                     var oldMouseDownButtons = _MouseDownButtons;
                     _MouseDownButtons = [];
 
@@ -1891,35 +1965,35 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
                 _MouseDownButtons = [];
             }
 
-            _OriginClassName = self.$GetClassName(elmt);
+            _OriginClassName = ClassName(elmt);
 
-            $JssorUtils$.$AddEvent(elmt, "mousedown", OnMouseDown);
+            $Jssor$.$AddEvent(elmt, "mousedown", OnMouseDown);
         }
     }
 
-    self.$Buttonize = function (elmt) {
+    _This.$Buttonize = function (elmt) {
         return new JssorButtonEx(elmt);
     };
 
-    self.$Css = Css;
-    self.$CssN = CssN;
-    self.$CssP = CssP;
+    _This.$Css = Css;
+    _This.$CssN = CssN;
+    _This.$CssP = CssP;
 
-    self.$CssOverflow = CssProxy("overflow");
+    _This.$CssOverflow = CssProxy("overflow");
 
-    self.$CssTop = CssProxy("top", 2);
-    self.$CssLeft = CssProxy("left", 2);
-    self.$CssWidth = CssProxy("width", 2);
-    self.$CssHeight = CssProxy("height", 2);
-    self.$CssMarginLeft = CssProxy("marginLeft", 2);
-    self.$CssMarginTop = CssProxy("marginTop", 2);
-    self.$CssPosition = CssProxy("position");
-    self.$CssDisplay = CssProxy("display");
-    self.$CssZIndex = CssProxy("zIndex", 1);
-    self.$CssFloat = function (elmt, float) {
+    _This.$CssTop = CssProxy("top", 2);
+    _This.$CssLeft = CssProxy("left", 2);
+    _This.$CssWidth = CssProxy("width", 2);
+    _This.$CssHeight = CssProxy("height", 2);
+    _This.$CssMarginLeft = CssProxy("marginLeft", 2);
+    _This.$CssMarginTop = CssProxy("marginTop", 2);
+    _This.$CssPosition = CssProxy("position");
+    _This.$CssDisplay = CssProxy("display");
+    _This.$CssZIndex = CssProxy("zIndex", 1);
+    _This.$CssFloat = function (elmt, float) {
         return Css(elmt, IsBrowserIE() ? "styleFloat" : "cssFloat", float);
     };
-    self.$CssOpacity = function (elmt, opacity, ie9EarlierForce) {
+    _This.$CssOpacity = function (elmt, opacity, ie9EarlierForce) {
         if (opacity != undefined) {
             SetStyleOpacity(elmt, opacity, ie9EarlierForce);
         }
@@ -1927,7 +2001,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             return GetStyleOpacity(elmt);
         }
     };
-    self.$CssCssText = function (elmt, text) {
+    _This.$CssCssText = function (elmt, text) {
         if (text != undefined) {
             elmt.style.cssText = text;
         }
@@ -1937,58 +2011,58 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 
     var _StyleGetter = {
-        $Opacity: self.$CssOpacity,
-        $Top: self.$CssTop,
-        $Left: self.$CssLeft,
-        $Width: self.$CssWidth,
-        $Height: self.$CssHeight,
-        $Position: self.$CssPosition,
-        $Display: self.$CssDisplay,
-        $ZIndex: self.$CssZIndex
+        $Opacity: _This.$CssOpacity,
+        $Top: _This.$CssTop,
+        $Left: _This.$CssLeft,
+        $Width: _This.$CssWidth,
+        $Height: _This.$CssHeight,
+        $Position: _This.$CssPosition,
+        $Display: _This.$CssDisplay,
+        $ZIndex: _This.$CssZIndex
     };
 
     //var _StyleGetter = {
-    //    $Opacity: self.$GetStyleOpacity,
-    //    $Top: self.$GetStyleTop,
-    //    $Left: self.$GetStyleLeft,
-    //    $Width: self.$GetStyleWidth,
-    //    $Height: self.$GetStyleHeight,
-    //    $Position: self.$GetStylePosition,
-    //    $Display: self.$GetStyleDisplay,
-    //    $ZIndex: self.$GetStyleZIndex
+    //    $Opacity: _This.$GetStyleOpacity,
+    //    $Top: _This.$GetStyleTop,
+    //    $Left: _This.$GetStyleLeft,
+    //    $Width: _This.$GetStyleWidth,
+    //    $Height: _This.$GetStyleHeight,
+    //    $Position: _This.$GetStylePosition,
+    //    $Display: _This.$GetStyleDisplay,
+    //    $ZIndex: _This.$GetStyleZIndex
     //};
 
     var _StyleSetterReserved;
 
     //var _StyleSetterReserved = {
-    //    $Opacity: self.$SetStyleOpacity,
-    //    $Top: self.$SetStyleTop,
-    //    $Left: self.$SetStyleLeft,
-    //    $Width: self.$SetStyleWidth,
-    //    $Height: self.$SetStyleHeight,
-    //    $Display: self.$SetStyleDisplay,
-    //    $Clip: self.$SetStyleClip,
-    //    $MarginLeft: self.$SetStyleMarginLeft,
-    //    $MarginTop: self.$SetStyleMarginTop,
-    //    $Transform: self.$SetStyleTransform,
-    //    $Position: self.$SetStylePosition,
-    //    $ZIndex: self.$SetStyleZIndex
+    //    $Opacity: _This.$SetStyleOpacity,
+    //    $Top: _This.$SetStyleTop,
+    //    $Left: _This.$SetStyleLeft,
+    //    $Width: _This.$SetStyleWidth,
+    //    $Height: _This.$SetStyleHeight,
+    //    $Display: _This.$SetStyleDisplay,
+    //    $Clip: _This.$SetStyleClip,
+    //    $MarginLeft: _This.$SetStyleMarginLeft,
+    //    $MarginTop: _This.$SetStyleMarginTop,
+    //    $Transform: _This.$SetStyleTransform,
+    //    $Position: _This.$SetStylePosition,
+    //    $ZIndex: _This.$SetStyleZIndex
     //};
 
-    function GetStyleSetter() {
+    function StyleSetter() {
         if (!_StyleSetterReserved) {
-            _StyleSetterReserved = self.$Extend({
-                $MarginTop: self.$CssMarginTop,
-                $MarginLeft: self.$CssMarginLeft,
-                $Clip: self.$SetStyleClip,
-                $Transform: self.$SetStyleTransform
+            _StyleSetterReserved = Extend({
+                $MarginTop: _This.$CssMarginTop,
+                $MarginLeft: _This.$CssMarginLeft,
+                $Clip: _This.$SetStyleClip,
+                $Transform: _This.$SetStyleTransform
             }, _StyleGetter);
         }
         return _StyleSetterReserved;
     }
 
-    function GetStyleSetterEx() {
-        GetStyleSetter();
+    function StyleSetterEx() {
+        StyleSetter();
 
         //For Compression Only
         _StyleSetterReserved.$Transform = _StyleSetterReserved.$Transform;
@@ -1996,12 +2070,12 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return _StyleSetterReserved;
     }
 
-    self.$GetStyleSetter = GetStyleSetter;
+    _This.$StyleSetter = StyleSetter;
 
-    self.$GetStyleSetterEx = GetStyleSetterEx;
+    _This.$StyleSetterEx = StyleSetterEx;
 
-    self.$GetStyles = function (elmt, originStyles) {
-        GetStyleSetter();
+    _This.$GetStyles = function (elmt, originStyles) {
+        StyleSetter();
 
         var styles = {};
 
@@ -2014,22 +2088,22 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return styles;
     };
 
-    self.$SetStyles = function (elmt, styles) {
-        var styleSetter = GetStyleSetter();
+    _This.$SetStyles = function (elmt, styles) {
+        var styleSetter = StyleSetter();
 
         each(styles, function (value, key) {
             styleSetter[key] && styleSetter[key](elmt, value);
         });
     };
 
-    self.$SetStylesEx = function (elmt, styles) {
-        GetStyleSetterEx();
+    _This.$SetStylesEx = function (elmt, styles) {
+        StyleSetterEx();
 
-        self.$SetStyles(elmt, styles);
+        _This.$SetStyles(elmt, styles);
     };
 
     $JssorMatrix$ = new function () {
-        var _This = this;
+        var _ThisMatrix = this;
 
         function Multiply(ma, mb) {
             var acs = ma[0].length;
@@ -2054,26 +2128,26 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
             return matrix;
         }
 
-        _This.$ScaleX = function (matrix, sx) {
-            return _This.$ScaleXY(matrix, sx, 0);
+        _ThisMatrix.$ScaleX = function (matrix, sx) {
+            return _ThisMatrix.$ScaleXY(matrix, sx, 0);
         };
 
-        _This.$ScaleY = function (matrix, sy) {
-            return _This.$ScaleXY(matrix, 0, sy);
+        _ThisMatrix.$ScaleY = function (matrix, sy) {
+            return _ThisMatrix.$ScaleXY(matrix, 0, sy);
         };
 
-        _This.$ScaleXY = function (matrix, sx, sy) {
+        _ThisMatrix.$ScaleXY = function (matrix, sx, sy) {
             return Multiply(matrix, [[sx, 0], [0, sy]]);
         };
 
-        _This.$TransformPoint = function (matrix, p) {
+        _ThisMatrix.$TransformPoint = function (matrix, p) {
             var pMatrix = Multiply(matrix, [[p.x], [p.y]]);
 
             return new $JssorPoint$(pMatrix[0][0], pMatrix[1][0]);
         };
     };
 
-    self.$CreateMatrix = function (alpha, scaleX, scaleY) {
+    _This.$CreateMatrix = function (alpha, scaleX, scaleY) {
         var cos = Math.cos(alpha);
         var sin = Math.sin(alpha);
         //var r11 = cos;
@@ -2089,7 +2163,7 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
         return [[cos * scaleX, -sin * scaleY], [sin * scaleX, cos * scaleY]];
     };
 
-    self.$GetMatrixOffset = function (matrix, width, height) {
+    _This.$GetMatrixOffset = function (matrix, width, height) {
         var p1 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(-width / 2, -height / 2));
         var p2 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(width / 2, -height / 2));
         var p3 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(width / 2, height / 2));
@@ -2099,10 +2173,153 @@ var $JssorUtils$ = window.$JssorUtils$ = new function () {
     };
 };
 
+//for backward compatibility
+//var $JssorUtils$ = window.$JssorUtils$ = $Jssor$;
+
+//$JssorObject$
+var $JssorObject$ = window.$JssorObject$ = function () {
+    var _ThisObject = this;
+    // Fields
+
+    var _Listeners = []; // dictionary of eventName --> array of handlers
+    var _Listenees = [];
+
+    // Private Methods
+    function AddListener(eventName, handler) {
+
+        $JssorDebug$.$Execute(function () {
+            if (eventName == undefined || eventName == null)
+                throw new Error("param 'eventName' is null or empty.");
+
+            if (typeof (handler) != "function") {
+                throw "param 'handler' must be a function.";
+            }
+
+            $Jssor$.$Each(_Listeners, function (listener) {
+                if (listener.$EventName == eventName && listener.$Handler === handler) {
+                    throw new Error("The handler listened to the event already, cannot listen to the same event of the same object with the same handler twice.");
+                }
+            });
+        });
+
+        _Listeners.push({ $EventName: eventName, $Handler: handler });
+    }
+
+    function RemoveListener(eventName, handler) {
+
+        $JssorDebug$.$Execute(function () {
+            if (eventName == undefined || eventName == null)
+                throw new Error("param 'eventName' is null or empty.");
+
+            if (typeof (handler) != "function") {
+                throw "param 'handler' must be a function.";
+            }
+        });
+
+        $Jssor$.$Each(_Listeners, function (listener, index) {
+            if (listener.$EventName == eventName && listener.$Handler === handler) {
+                _Listeners.splice(index, 1);
+            }
+        });
+    }
+
+    function ClearListeners() {
+        _Listeners = [];
+    }
+
+    function ClearListenees() {
+
+        $Jssor$.$Each(_Listenees, function (listenee) {
+            $Jssor$.$RemoveEvent(listenee.$Obj, listenee.$EventName, listenee.$Handler);
+        });
+
+        _Listenees = [];
+    }
+
+    //Protected Methods
+    _ThisObject.$Listen = function (obj, eventName, handler, useCapture) {
+
+        $JssorDebug$.$Execute(function () {
+            if (!obj)
+                throw new Error("param 'obj' is null or empty.");
+
+            if (eventName == undefined || eventName == null)
+                throw new Error("param 'eventName' is null or empty.");
+
+            if (typeof (handler) != "function") {
+                throw "param 'handler' must be a function.";
+            }
+
+            $Jssor$.$Each(_Listenees, function (listenee) {
+                if (listenee.$Obj === obj && listenee.$EventName == eventName && listenee.$Handler === handler) {
+                    throw new Error("The handler listened to the event already, cannot listen to the same event of the same object with the same handler twice.");
+                }
+            });
+        });
+
+        $Jssor$.$AddEvent(obj, eventName, handler, useCapture);
+        _Listenees.push({ $Obj: obj, $EventName: eventName, $Handler: handler });
+    };
+
+    _ThisObject.$Unlisten = function (obj, eventName, handler) {
+
+        $JssorDebug$.$Execute(function () {
+            if (!obj)
+                throw new Error("param 'obj' is null or empty.");
+
+            if (eventName == undefined || eventName == null)
+                throw new Error("param 'eventName' is null or empty.");
+
+            if (typeof (handler) != "function") {
+                throw "param 'handler' must be a function.";
+            }
+        });
+
+        $Jssor$.$Each(_Listenees, function (listenee, index) {
+            if (listenee.$Obj === obj && listenee.$EventName == eventName && listenee.$Handler === handler) {
+                $Jssor$.$RemoveEvent(obj, eventName, handler);
+                _Listenees.splice(index, 1);
+            }
+        });
+    };
+
+    _ThisObject.$UnlistenAll = ClearListenees;
+
+    // Public Methods
+    _ThisObject.$On = _ThisObject.addEventListener = AddListener;
+
+    _ThisObject.$Off = _ThisObject.removeEventListener = RemoveListener;
+
+    _ThisObject.$TriggerEvent = function (eventName) {
+
+        var args = [].slice.call(arguments, 1);
+
+        $Jssor$.$Each(_Listeners, function (listener) {
+            try {
+                listener.$EventName == eventName && listener.$Handler.apply(window, args);
+            } catch (e) {
+                // handler threw an error, ignore, go on to next one
+                $JssorDebug$.$Error(e.name + " while executing " + eventName +
+                        " handler: " + e.message, e);
+            }
+        });
+    };
+
+    _ThisObject.$Destroy = function () {
+        ClearListenees();
+        ClearListeners();
+
+        for (var name in _ThisObject)
+            delete _ThisObject[name];
+    };
+
+    $JssorDebug$.$C_AbstractClass(_ThisObject);
+};
+
 $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles) {
     delay = delay || 0;
 
-    var _This = this;
+    var _ThisAnimator = this;
     var _AutoPlay;
     var _Hiden;
     var _CombineMode;
@@ -2158,7 +2375,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         _Position_Current += offset;
         _Position_Display += offset;
 
-        $JssorUtils$.$Each(_NestedAnimators, function (animator) {
+        $Jssor$.$Each(_NestedAnimators, function (animator) {
             animator, animator.$Shift(offset);
         });
     }
@@ -2169,10 +2386,10 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         Shift(offset);
 
         //$JssorDebug$.$Execute(function () {
-        //    _This.$Position_InnerBegin = _Position_InnerBegin;
-        //    _This.$Position_InnerEnd = _Position_InnerEnd;
-        //    _This.$Position_OuterBegin = _Position_OuterBegin;
-        //    _This.$Position_OuterEnd = _Position_OuterEnd;
+        //    _ThisAnimator.$Position_InnerBegin = _Position_InnerBegin;
+        //    _ThisAnimator.$Position_InnerEnd = _Position_InnerEnd;
+        //    _ThisAnimator.$Position_OuterBegin = _Position_OuterBegin;
+        //    _ThisAnimator.$Position_OuterEnd = _Position_OuterEnd;
         //});
 
         return _Position_OuterEnd;
@@ -2196,10 +2413,9 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
                     if (fromStyles) {
                         var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
-                        if (options.$Optimize && $JssorUtils$.$IsBrowserChrome() && duration) {
+                        if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
                             interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
                         }
-
                         if (options.$Reverse)
                             interPosition = 1 - interPosition;
 
@@ -2221,13 +2437,13 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                             var value = fromStyles[key];
                             var toValue = toStyles[key];
 
-                            if ($JssorUtils$.$IsNumeric(toValue)) {
+                            if ($Jssor$.$IsNumeric(toValue)) {
                                 currentPropertyValue = value + (toValue - value) * easingValue;
                             }
                             else {
-                                currentPropertyValue = $JssorUtils$.$Extend({ $Offset: {} }, fromStyles[key]);
+                                currentPropertyValue = $Jssor$.$Extend({ $Offset: {} }, fromStyles[key]);
 
-                                $JssorUtils$.$Each(toValue.$Offset, function (rectX, n) {
+                                $Jssor$.$Each(toValue.$Offset, function (rectX, n) {
                                     var offsetValue = rectX * easingValue;
                                     currentPropertyValue.$Offset[n] = offsetValue;
                                     currentPropertyValue[n] += offsetValue;
@@ -2255,20 +2471,20 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                         currentStyles.$Clip.$Bottom -= offsetY;
                     }
 
-                    if (currentStyles.$Clip && $JssorUtils$.$CanClearClip() && !currentStyles.$Clip.$Top && !currentStyles.$Clip.$Left && (currentStyles.$Clip.$Right == options.$OriginalWidth) && (currentStyles.$Clip.$Bottom == options.$OriginalHeight))
+                    if (currentStyles.$Clip && $Jssor$.$CanClearClip() && !currentStyles.$Clip.$Top && !currentStyles.$Clip.$Left && (currentStyles.$Clip.$Right == options.$OriginalWidth) && (currentStyles.$Clip.$Bottom == options.$OriginalHeight))
                         currentStyles.$Clip = null;
 
-                    $JssorUtils$.$Each(currentStyles, function (value, key) {
+                    $Jssor$.$Each(currentStyles, function (value, key) {
                         _StyleSetter[key] && _StyleSetter[key](elmt, value);
                     });
                 }
 
-                _This.$OnInnerOffsetChange(_Position_Display - _Position_InnerBegin, positionToDisplay - _Position_InnerBegin);
+                _ThisAnimator.$OnInnerOffsetChange(_Position_Display - _Position_InnerBegin, positionToDisplay - _Position_InnerBegin);
             }
 
             _Position_Display = positionToDisplay;
 
-            $JssorUtils$.$Each(_NestedAnimators, function (animator, i) {
+            $Jssor$.$Each(_NestedAnimators, function (animator, i) {
                 var nestedAnimator = positionOuter < _Position_Current ? _NestedAnimators[_NestedAnimators.length - i - 1] : animator;
                 nestedAnimator.$GoToPosition(positionOuter, force);
             });
@@ -2279,7 +2495,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
             _Position_Current = trimedPositionOuter;
             _Hooked = true;
 
-            _This.$OnPositionChange(positionOld, positionNew);
+            _ThisAnimator.$OnPositionChange(positionOld, positionNew);
         }
     }
 
@@ -2308,8 +2524,8 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
     function PlayFrame() {
         if (_AutoPlay) {
-            var now = $JssorUtils$.$GetNow();
-            //var timeOffset = Math.min(now - _TimeStampLastFrame, $JssorUtils$.$IsBrowserOpera() ? 80 : 20);
+            var now = $Jssor$.$GetNow();
+            //var timeOffset = Math.min(now - _TimeStampLastFrame, $Jssor$.$IsBrowserOpera() ? 80 : 20);
             var timeOffset = Math.min(now - _TimeStampLastFrame, 80);
             var timePosition = _Position_Current + timeOffset * _PlayDirection;
             _TimeStampLastFrame = now;
@@ -2323,7 +2539,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                 Stop(_Callback);
             }
             else {
-                $JssorUtils$.$Delay(PlayFrame, options.$Interval);
+                $Jssor$.$Delay(PlayFrame, options.$Interval);
             }
         }
     }
@@ -2337,8 +2553,8 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
             toPosition = Math.min(toPosition, _Position_OuterEnd);
             _PlayToPosition = toPosition;
             _PlayDirection = _PlayToPosition < _Position_Current ? -1 : 1;
-            _This.$OnStart();
-            _TimeStampLastFrame = $JssorUtils$.$GetNow();
+            _ThisAnimator.$OnStart();
+            _TimeStampLastFrame = $Jssor$.$GetNow();
             PlayFrame();
         }
     }
@@ -2346,90 +2562,86 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     function Stop(callback) {
         if (_AutoPlay) {
             _NoStop = _AutoPlay = _Callback = false;
-            _This.$OnStop();
+            _ThisAnimator.$OnStop();
 
             if (callback)
                 callback();
         }
     }
 
-    _This.$Play = function (positionLength, callback, noStop) {
+    _ThisAnimator.$Play = function (positionLength, callback, noStop) {
         PlayToPosition(positionLength ? _Position_Current + positionLength : _Position_OuterEnd, callback, noStop);
     };
 
-    _This.$PlayToPosition = function (position, callback, noStop) {
-        PlayToPosition(position, callback, noStop);
-    };
+    _ThisAnimator.$PlayToPosition = PlayToPosition;
 
-    _This.$PlayToBegin = function (callback, noStop) {
+    _ThisAnimator.$PlayToBegin = function (callback, noStop) {
         PlayToPosition(_Position_OuterBegin, callback, noStop);
     };
 
-    _This.$PlayToEnd = function (callback, noStop) {
+    _ThisAnimator.$PlayToEnd = function (callback, noStop) {
         PlayToPosition(_Position_OuterEnd, callback, noStop);
     };
 
-    _This.$Stop = function () {
-        Stop();
-    };
+    _ThisAnimator.$Stop = Stop;
 
-    _This.$Continue = function (toPosition) {
+    _ThisAnimator.$Continue = function (toPosition) {
         PlayToPosition(toPosition);
     };
 
-    _This.$GetPosition = function () {
+    _ThisAnimator.$GetPosition = function () {
         return _Position_Current;
     };
 
-    _This.$GetPlayToPosition = function () {
+    _ThisAnimator.$GetPlayToPosition = function () {
         return _PlayToPosition;
     };
 
-    _This.$GetPosition_Display = function () {
+    _ThisAnimator.$GetPosition_Display = function () {
         return _Position_Display;
     };
 
-    _This.$GoToPosition = GoToPosition;
+    _ThisAnimator.$GoToPosition = GoToPosition;
 
-    _This.$GoToBegin = function () {
+    _ThisAnimator.$GoToBegin = function () {
         GoToPosition(_Position_OuterBegin, true);
     };
 
-    _This.$GoToEnd = function () {
+    _ThisAnimator.$GoToEnd = function () {
         GoToPosition(_Position_OuterEnd, true);
     };
 
-    _This.$Move = function (offset) {
+    _ThisAnimator.$Move = function (offset) {
         GoToPosition(_Position_Current + offset);
     };
 
-    _This.$CombineMode = function () {
+    _ThisAnimator.$CombineMode = function () {
         return _CombineMode;
     };
 
-    _This.$GetDuration = function () {
+    _ThisAnimator.$GetDuration = function () {
         return duration;
     };
 
-    _This.$IsPlaying = function () {
+    _ThisAnimator.$IsPlaying = function () {
         return _AutoPlay;
     };
 
-    _This.$IsOnTheWay = function () {
+    _ThisAnimator.$IsOnTheWay = function () {
         return _Position_Current > _Position_InnerBegin && _Position_Current <= _Position_InnerEnd;
     };
 
-    _This.$SetLoopLength = function (length) {
+    _ThisAnimator.$SetLoopLength = function (length) {
         _LoopLength = length;
     };
 
-    _This.$Locate = Locate;
+    _ThisAnimator.$Locate = Locate;
 
-    _This.$Shift = Shift;
+    _ThisAnimator.$Shift = Shift;
 
-    _This.$Join = Join;
+    _ThisAnimator.$Join = Join;
 
-    _This.$Combine = function (animator) {
+    _ThisAnimator.$Combine = function (animator) {
         ///	<summary>
         ///		Combine another animator parallel to this animator
         ///	</summary>
@@ -2439,7 +2651,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         Join(animator, 0);
     };
 
-    _This.$Chain = function (animator) {
+    _ThisAnimator.$Chain = function (animator) {
         ///	<summary>
         ///		Chain another animator at the _Position_InnerEnd of this animator
         ///	</summary>
@@ -2449,7 +2661,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         Join(animator, 1);
     };
 
-    _This.$GetPosition_InnerBegin = function () {
+    _ThisAnimator.$GetPosition_InnerBegin = function () {
         ///	<summary>
         ///		Internal member function, do not use it.
         ///	</summary>
@@ -2458,7 +2670,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         return _Position_InnerBegin;
     };
 
-    _This.$GetPosition_InnerEnd = function () {
+    _ThisAnimator.$GetPosition_InnerEnd = function () {
         ///	<summary>
         ///		Internal member function, do not use it.
         ///	</summary>
@@ -2467,7 +2679,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         return _Position_InnerEnd;
     };
 
-    _This.$GetPosition_OuterBegin = function () {
+    _ThisAnimator.$GetPosition_OuterBegin = function () {
         ///	<summary>
         ///		Internal member function, do not use it.
         ///	</summary>
@@ -2476,7 +2688,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         return _Position_OuterBegin;
     };
 
-    _This.$GetPosition_OuterEnd = function () {
+    _ThisAnimator.$GetPosition_OuterEnd = function () {
         ///	<summary>
         ///		Internal member function, do not use it.
         ///	</summary>
@@ -2485,21 +2697,18 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         return _Position_OuterEnd;
     };
 
-    _This.$OnPositionChange = $JssorUtils$.$EmptyFunction;
-    _This.$OnStart = $JssorUtils$.$EmptyFunction;
-    _This.$OnStop = $JssorUtils$.$EmptyFunction;
-    _This.$OnInnerOffsetChange = $JssorUtils$.$EmptyFunction;
-    _This.$Version = $JssorUtils$.$GetNow();
+    _ThisAnimator.$OnPositionChange = _ThisAnimator.$OnStart = _ThisAnimator.$OnStop = _ThisAnimator.$OnInnerOffsetChange = $Jssor$.$EmptyFunction;
+    _ThisAnimator.$Version = $Jssor$.$GetNow();
 
-    //Constructor`  1
+    //Constructor  1
     {
-        options = $JssorUtils$.$Extend({
+        options = $Jssor$.$Extend({
             $Interval: 16
         }, options);
 
         //Sodo statement, for development time intellisence only
         $JssorDebug$.$Execute(function () {
-            options = $JssorUtils$.$Extend({
+            options = $Jssor$.$Extend({
                 $LoopLength: undefined,
                 $Setter: undefined,
                 $Easing: undefined
@@ -2508,20 +2717,20 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
         _LoopLength = options.$LoopLength;
 
-        _StyleSetter = $JssorUtils$.$Extend({}, $JssorUtils$.$GetStyleSetter(), options.$Setter);
+        _StyleSetter = $Jssor$.$Extend({}, $Jssor$.$StyleSetter(), options.$Setter);
 
         _Position_OuterBegin = _Position_InnerBegin = delay;
         _Position_OuterEnd = _Position_InnerEnd = delay + duration;
 
         var _SubRounds = options.$Round || {};
         var _SubDurings = options.$During || {};
-        _SubEasings = $JssorUtils$.$Extend({ $Default: $JssorUtils$.$IsFunction(options.$Easing) && options.$Easing || $JssorEasing$.$EaseSwing }, options.$Easing);
+        _SubEasings = $Jssor$.$Extend({ $Default: $Jssor$.$IsFunction(options.$Easing) && options.$Easing || $JssorEasing$.$EaseSwing }, options.$Easing);
     }
 };
 
 function $JssorPlayerClass$() {
 
-    var _SelfPlayer = this;
+    var _ThisPlayer = this;
     var _PlayerControllers = [];
 
     function PlayerController(playerElement) {
@@ -2530,11 +2739,11 @@ function $JssorPlayerClass$() {
         var _PlayerInstantces = [];
 
         function OnPlayerInstanceDataAvailable(event) {
-            var srcElement = $JssorUtils$.$GetEventSrcElement(event);
+            var srcElement = $Jssor$.$EventSrc(event);
             _PlayerInstance = srcElement.pInstance;
 
-            $JssorUtils$.$RemoveEvent(srcElement, "dataavailable", OnPlayerInstanceDataAvailable);
-            $JssorUtils$.$Each(_PlayerInstantces, function (playerInstance) {
+            $Jssor$.$RemoveEvent(srcElement, "dataavailable", OnPlayerInstanceDataAvailable);
+            $Jssor$.$Each(_PlayerInstantces, function (playerInstance) {
                 if (playerInstance != _PlayerInstance) {
                     playerInstance.$Remove();
                 }
@@ -2548,15 +2757,15 @@ function $JssorPlayerClass$() {
             var playerHandler;
 
             if (!playerInstanceElement.pInstance) {
-                var playerHandlerAttribute = $JssorUtils$.$GetAttributeEx(playerInstanceElement, "pHandler");
+                var playerHandlerAttribute = $Jssor$.$AttributeEx(playerInstanceElement, "pHandler");
 
                 if ($JssorPlayer$[playerHandlerAttribute]) {
-                    $JssorUtils$.$AddEvent(playerInstanceElement, "dataavailable", OnPlayerInstanceDataAvailable);
+                    $Jssor$.$AddEvent(playerInstanceElement, "dataavailable", OnPlayerInstanceDataAvailable);
                     playerHandler = new $JssorPlayer$[playerHandlerAttribute](playerElement, playerInstanceElement);
                     _PlayerInstantces.push(playerHandler);
 
                     $JssorDebug$.$Execute(function () {
-                        if ($JssorUtils$.$Type(playerHandler.$Remove) != "function") {
+                        if ($Jssor$.$Type(playerHandler.$Remove) != "function") {
                             $JssorDebug$.$Fail("'pRemove' interface not implemented for player handler '" + playerHandlerAttribute + "'.");
                         }
                     });
@@ -2569,23 +2778,23 @@ function $JssorPlayerClass$() {
         _SelfPlayerController.$InitPlayerController = function () {
             if (!playerElement.pInstance && !HandlePlayerInstance(playerElement)) {
 
-                var playerInstanceElements = $JssorUtils$.$GetChildren(playerElement);
+                var playerInstanceElements = $Jssor$.$Children(playerElement);
 
-                $JssorUtils$.$Each(playerInstanceElements, function (playerInstanceElement) {
+                $Jssor$.$Each(playerInstanceElements, function (playerInstanceElement) {
                     HandlePlayerInstance(playerInstanceElement);
                 });
             }
         };
     }
 
-    _SelfPlayer.$EVT_SWITCH = 21;
+    _ThisPlayer.$EVT_SWITCH = 21;
 
-    _SelfPlayer.$FetchPlayers = function (elmt) {
+    _ThisPlayer.$FetchPlayers = function (elmt) {
         elmt = elmt || document.body;
 
-        var playerElements = $JssorUtils$.$FindChildrenByAttribute(elmt, "player", null, true);
+        var playerElements = $Jssor$.$FindChildren(elmt, "player", null, true);
 
-        $JssorUtils$.$Each(playerElements, function (playerElement) {
+        $Jssor$.$Each(playerElements, function (playerElement) {
             if (!_PlayerControllers[playerElement.pId]) {
                 playerElement.pId = _PlayerControllers.length;
                 _PlayerControllers.push(new PlayerController(playerElement));

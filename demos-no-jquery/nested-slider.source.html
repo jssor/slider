@@ -7,9 +7,8 @@
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
     <!-- use jssor.slider.min.js instead for release -->
-    <!-- jssor.slider.min.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
-    <script type="text/javascript" src="../js/jssor.core.js"></script>
-    <script type="text/javascript" src="../js/jssor.utils.js"></script>
+    <!-- jssor.slider.min.js = (jssor.js + jssor.slider.js) -->
+    <script type="text/javascript" src="../js/jssor.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
 
@@ -17,7 +16,7 @@
 
             var nestedSliders = [];
 
-            $JssorUtils$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
+            $Jssor$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
                 var nestedSliderOptions = {
                     $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
                     $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
@@ -81,7 +80,7 @@
             var jssor_slider1 = new $JssorSlider$(containerId, options);
 
             function OnMainSliderPark(currentIndex, fromIndex) {
-                $JssorUtils$.$Each(nestedSliders, function (nestedSlider) {
+                $Jssor$.$Each(nestedSliders, function (nestedSlider) {
                     nestedSlider.$Pause();
                 });
 
@@ -98,21 +97,21 @@
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth)
-                    jssor_slider1.$SetScaleWidth(Math.min(parentWidth, 600));
+                    jssor_slider1.$ScaleWidth(Math.min(parentWidth, 600));
                 else
-                    $JssorUtils$.$Delay(ScaleSlider, 30);
+                    $Jssor$.$Delay(ScaleSlider, 30);
             }
 
             ScaleSlider();
-            $JssorUtils$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
 
             if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $JssorUtils$.$OnWindowResize(window, ScaleSlider);
+                $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
             }
 
             //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
-            //    $JssorUtils$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             //}
             //responsive code end
         };
