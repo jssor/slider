@@ -28,7 +28,7 @@ Features:
 --------------------------------------
 - **both jQuery Plugin, No-jQuery Version available**
 
-Query plugin slider and No-jQuery version slider work almost the same, both are for image slider, content slider. Slideshow and caption slide animation are all available for both version.
+jQuery plugin slider and No-jQuery version slider work almost the same, both are for image slider, content slider. Slideshow and caption slide animation are all available for both version.
 
 jQuery developers benifit on jQuery js library. No-jQuery version is slider without jQuery. Non-jQuery developers benifite on light weight cut/paste code snipet, which is eligible for eBay listing, blogger post, or embed into any web page freely.
 
