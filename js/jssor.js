@@ -2412,14 +2412,14 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                     var currentStyles = toStyles;
 
                     if (fromStyles) {
+                        currentStyles = {};
+
                         var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
                         if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
                             interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
                         }
                         if (options.$Reverse)
                             interPosition = 1 - interPosition;
-
-                        currentStyles = {};
 
                         for (var key in toStyles) {
                             var round = _SubRounds[key] || 1;
@@ -2451,10 +2451,10 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                             }
                             currentStyles[key] = currentPropertyValue;
                         }
-                    }
 
-                    if (fromStyles.$Zoom) {
-                        currentStyles.$Transform = { $Rotate: currentStyles.$Rotate || 0, $Scale: currentStyles.$Zoom, $OriginalWidth: options.$OriginalWidth, $OriginalHeight: options.$OriginalHeight };
+                        if (fromStyles.$Zoom) {
+                            currentStyles.$Transform = { $Rotate: currentStyles.$Rotate || 0, $Scale: currentStyles.$Zoom, $OriginalWidth: options.$OriginalWidth, $OriginalHeight: options.$OriginalHeight };
+                        }
                     }
 
                     if (toStyles.$Clip && options.$Move) {

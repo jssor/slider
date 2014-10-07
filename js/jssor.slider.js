@@ -841,8 +841,8 @@ new function () {
                                     _StyleEnd.$Zoom = Math.min(_StyleEnd.$Zoom, 2);
 
                                 var rotate = slideTransition.$Rotate;
-                                //if (rotate == true)
-                                //    rotate = 1;
+                                if (rotate == true)
+                                    rotate = 1;
 
                                 _StyleEnd.$Rotate = rotate * 360 * ((chessRotate) ? -1 : 1);
                                 _StyleStart.$Rotate = 0;
@@ -2783,16 +2783,16 @@ new function () {
 
         $JssorDebug$.$Execute(function () {
             if (isNaN(_SlidesContainerWidth))
-                $JssorDebug$.$Fail("Width of slides container wrong specification, it should be specified by inline style in pixels (like style='width: 600px;').");
+                $JssorDebug$.$Fail("Width of slides container wrong specification, it should be specified in pixel (like style='width: 600px;').");
 
             if (_SlidesContainerWidth == undefined)
-                $JssorDebug$.$Fail("Width of slides container not specified, it should be specified by inline style in pixels (like style='width: 600px;').");
+                $JssorDebug$.$Fail("Width of slides container not specified, it should be specified in pixel (like style='width: 600px;').");
 
             if (isNaN(_SlidesContainerHeight))
-                $JssorDebug$.$Fail("Height of slides container wrong specification, it should be specified by inline style in pixels (like style='height: 300px;').");
+                $JssorDebug$.$Fail("Height of slides container wrong specification, it should be specified in pixel (like style='height: 300px;').");
 
             if (_SlidesContainerHeight == undefined)
-                $JssorDebug$.$Fail("Height of slides container not specified, it should be specified by inline style in pixels (like style='height: 300px;').");
+                $JssorDebug$.$Fail("Height of slides container not specified, it should be specified in pixel (like style='height: 300px;').");
 
             var slidesContainerOverflow = $Jssor$.$CssOverflow(_SlidesContainer);
             var slidesContainerOverflowX = $Jssor$.$Css(_SlidesContainer, "overflowX");
@@ -2804,16 +2804,16 @@ new function () {
             //var slidesContainerLeft = $Jssor$.$CssLeft(_SlidesContainer);
 
             //if (isNaN(slidesContainerTop))
-            //    $JssorDebug$.$Fail("Top of slides container wrong specification, it should be specified by inline style in pixels (like style='top: 0px;').");
+            //    $JssorDebug$.$Fail("Top of slides container wrong specification, it should be specified in pixel (like style='top: 0px;').");
 
             //if (slidesContainerTop == undefined)
-            //    $JssorDebug$.$Fail("Top of slides container not specified, it should be specified by inline style in pixels (like style='top: 0px;').");
+            //    $JssorDebug$.$Fail("Top of slides container not specified, it should be specified in pixel (like style='top: 0px;').");
 
             //if (isNaN(slidesContainerLeft))
-            //    $JssorDebug$.$Fail("Left of slides container wrong specification, it should be specified by inline style in pixels (like style='left: 0px;').");
+            //    $JssorDebug$.$Fail("Left of slides container wrong specification, it should be specified in pixel (like style='left: 0px;').");
 
             //if (slidesContainerLeft == undefined)
-            //    $JssorDebug$.$Fail("Left of slides container not specified, it should be specified by inline style in pixels (like style='left: 0px;').");
+            //    $JssorDebug$.$Fail("Left of slides container not specified, it should be specified in pixel (like style='left: 0px;').");
         });
 
         $JssorDebug$.$Execute(function () {
@@ -3564,11 +3564,11 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             //        var slidesContainerLeft = $Jssor$.$CssLeft(_SlidesContainer);
 
             //        if (isNaN(slidesContainerTop)) {
-            //            $JssorDebug$.$Fail("Position 'top' wrong specification of thumbnail navigator slides container (<div u=\"thumbnavigator\">...<div u=\"slides\">), \r\nwhen option $ThumbnailNavigatorOptions.$AutoCenter set to 0, it should be specified by inline style in pixels (like <div u=\"slides\" style=\"top: 0px;\">)");
+            //            $JssorDebug$.$Fail("Position 'top' wrong specification of thumbnail navigator slides container (<div u=\"thumbnavigator\">...<div u=\"slides\">), \r\nwhen option $ThumbnailNavigatorOptions.$AutoCenter set to 0, it should be specified in pixel (like <div u=\"slides\" style=\"top: 0px;\">)");
             //        }
 
             //        if (isNaN(slidesContainerLeft)) {
-            //            $JssorDebug$.$Fail("Position 'left' wrong specification of thumbnail navigator slides container (<div u=\"thumbnavigator\">...<div u=\"slides\">), \r\nwhen option $ThumbnailNavigatorOptions.$AutoCenter set to 0, it should be specified by inline style in pixels (like <div u=\"slides\" style=\"left: 0px;\">)");
+            //            $JssorDebug$.$Fail("Position 'left' wrong specification of thumbnail navigator slides container (<div u=\"thumbnavigator\">...<div u=\"slides\">), \r\nwhen option $ThumbnailNavigatorOptions.$AutoCenter set to 0, it should be specified in pixel (like <div u=\"slides\" style=\"left: 0px;\">)");
             //        }
             //    }
             //});
