@@ -2171,10 +2171,70 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         return new $JssorPoint$(Math.min(p1.x, p2.x, p3.x, p4.x) + width / 2, Math.min(p1.y, p2.y, p3.y, p4.y) + height / 2);
     };
-};
 
-//for backward compatibility
-//var $JssorUtils$ = window.$JssorUtils$ = $Jssor$;
+    _This.$Transform = function (fromStyles, toStyles, interPosition, easings, durings, rounds, options) {
+
+        var currentStyles = toStyles;
+
+        if (fromStyles) {
+            currentStyles = {};
+
+            for (var key in toStyles) {
+                var round = rounds[key] || 1;
+                var during = durings[key] || [0, 1];
+                var propertyInterPosition = (interPosition - during[0]) / during[1];
+                propertyInterPosition = Math.min(Math.max(propertyInterPosition, 0), 1);
+                propertyInterPosition = propertyInterPosition * round;
+                var floorPosition = Math.floor(propertyInterPosition);
+                if (propertyInterPosition != floorPosition)
+                    propertyInterPosition -= floorPosition;
+
+                var easing = easings[key] || easings.$Default;
+                var easingValue = easing(propertyInterPosition);
+                var currentPropertyValue;
+                var value = fromStyles[key];
+                var toValue = toStyles[key];
+
+                if ($Jssor$.$IsNumeric(toValue)) {
+                    currentPropertyValue = value + (toValue - value) * easingValue;
+                }
+                else {
+                    currentPropertyValue = $Jssor$.$Extend({ $Offset: {} }, fromStyles[key]);
+
+                    $Jssor$.$Each(toValue.$Offset, function (rectX, n) {
+                        var offsetValue = rectX * easingValue;
+                        currentPropertyValue.$Offset[n] = offsetValue;
+                        currentPropertyValue[n] += offsetValue;
+                    });
+                }
+                currentStyles[key] = currentPropertyValue;
+            }
+
+            if (fromStyles.$Zoom) {
+                currentStyles.$Transform = { $Rotate: currentStyles.$Rotate || 0, $Scale: currentStyles.$Zoom, $OriginalWidth: options.$OriginalWidth, $OriginalHeight: options.$OriginalHeight };
+            }
+        }
+
+        if (toStyles.$Clip && options.$Move) {
+            var styleFrameNClipOffset = currentStyles.$Clip.$Offset;
+
+            var offsetY = (styleFrameNClipOffset.$Top || 0) + (styleFrameNClipOffset.$Bottom || 0);
+            var offsetX = (styleFrameNClipOffset.$Left || 0) + (styleFrameNClipOffset.$Right || 0);
+
+            currentStyles.$Left = (currentStyles.$Left || 0) + offsetX;
+            currentStyles.$Top = (currentStyles.$Top || 0) + offsetY;
+            currentStyles.$Clip.$Left -= offsetX;
+            currentStyles.$Clip.$Right -= offsetX;
+            currentStyles.$Clip.$Top -= offsetY;
+            currentStyles.$Clip.$Bottom -= offsetY;
+        }
+
+        if (currentStyles.$Clip && $Jssor$.$CanClearClip() && !currentStyles.$Clip.$Top && !currentStyles.$Clip.$Left && (currentStyles.$Clip.$Right == options.$OriginalWidth) && (currentStyles.$Clip.$Bottom == options.$OriginalHeight))
+            currentStyles.$Clip = null;
+
+        return currentStyles;
+    };
+};
 
 //$JssorObject$
 var $JssorObject$ = window.$JssorObject$ = function () {
@@ -2409,70 +2469,17 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
             if (!_Hooked || _NoStop || force || positionToDisplay != _Position_Display) {
                 if (toStyles) {
-                    var currentStyles = toStyles;
 
-                    if (fromStyles) {
-                        currentStyles = {};
+                    var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
 
-                        var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
-                        if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
-                            interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
-                        }
-                        if (options.$Reverse)
-                            interPosition = 1 - interPosition;
-
-                        for (var key in toStyles) {
-                            var round = _SubRounds[key] || 1;
-                            var during = _SubDurings[key] || [0, 1];
-                            var propertyInterPosition = (interPosition - during[0]) / during[1];
-                            propertyInterPosition = Math.min(Math.max(propertyInterPosition, 0), 1);
-                            propertyInterPosition = propertyInterPosition * round;
-                            var floorPosition = Math.floor(propertyInterPosition);
-                            if (propertyInterPosition != floorPosition)
-                                propertyInterPosition -= floorPosition;
-
-                            var easing = _SubEasings[key] || _SubEasings.$Default;
-                            var easingValue = easing(propertyInterPosition);
-                            var currentPropertyValue;
-                            var value = fromStyles[key];
-                            var toValue = toStyles[key];
-
-                            if ($Jssor$.$IsNumeric(toValue)) {
-                                currentPropertyValue = value + (toValue - value) * easingValue;
-                            }
-                            else {
-                                currentPropertyValue = $Jssor$.$Extend({ $Offset: {} }, fromStyles[key]);
-
-                                $Jssor$.$Each(toValue.$Offset, function (rectX, n) {
-                                    var offsetValue = rectX * easingValue;
-                                    currentPropertyValue.$Offset[n] = offsetValue;
-                                    currentPropertyValue[n] += offsetValue;
-                                });
-                            }
-                            currentStyles[key] = currentPropertyValue;
-                        }
-
-                        if (fromStyles.$Zoom) {
-                            currentStyles.$Transform = { $Rotate: currentStyles.$Rotate || 0, $Scale: currentStyles.$Zoom, $OriginalWidth: options.$OriginalWidth, $OriginalHeight: options.$OriginalHeight };
-                        }
+                    if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
+                        interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
                     }
 
-                    if (toStyles.$Clip && options.$Move) {
-                        var styleFrameNClipOffset = currentStyles.$Clip.$Offset;
+                    if (options.$Reverse)
+                        interPosition = 1 - interPosition;
 
-                        var offsetY = (styleFrameNClipOffset.$Top || 0) + (styleFrameNClipOffset.$Bottom || 0);
-                        var offsetX = (styleFrameNClipOffset.$Left || 0) + (styleFrameNClipOffset.$Right || 0);
-
-                        currentStyles.$Left = (currentStyles.$Left || 0) + offsetX;
-                        currentStyles.$Top = (currentStyles.$Top || 0) + offsetY;
-                        currentStyles.$Clip.$Left -= offsetX;
-                        currentStyles.$Clip.$Right -= offsetX;
-                        currentStyles.$Clip.$Top -= offsetY;
-                        currentStyles.$Clip.$Bottom -= offsetY;
-                    }
-
-                    if (currentStyles.$Clip && $Jssor$.$CanClearClip() && !currentStyles.$Clip.$Top && !currentStyles.$Clip.$Left && (currentStyles.$Clip.$Right == options.$OriginalWidth) && (currentStyles.$Clip.$Bottom == options.$OriginalHeight))
-                        currentStyles.$Clip = null;
+                    var currentStyles = $Jssor$.$Transform(fromStyles, toStyles, interPosition, _SubEasings, _SubDurings, _SubRounds, options);
 
                     $Jssor$.$Each(currentStyles, function (value, key) {
                         _StyleSetter[key] && _StyleSetter[key](elmt, value);
@@ -2703,7 +2710,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     //Constructor  1
     {
         options = $Jssor$.$Extend({
-            $Interval: 16
+            $Interval: 15
         }, options);
 
         //Sodo statement, for development time intellisence only

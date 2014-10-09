@@ -1233,7 +1233,6 @@ new function () {
                         var interPosition = newPosition / _Duration;
                         if ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserFireFox()) {
                             Math.round(interPosition * 16 / _Duration) / 16 * _Duration;
-                            interPosition = parseFloat(interPosition.toFixed(4));
                         }
                         toPosition = _Options.$SlideEasing(interPosition) * (_ToPosition - _FromPosition) + _FromPosition;
                     }
@@ -1931,14 +1930,8 @@ new function () {
             var x = _StepLengthX * position * (orientation & 1);
             var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
-            if ($Jssor$.$IsBrowserChrome()) {
-                x = x.toFixed(3);
-                y = y.toFixed(3);
-            }
-            else {
-                x = Math.round(x);
-                y = Math.round(y);
-            }
+            x = Math.round(x);
+            y = Math.round(y);
 
             if ($Jssor$.$IsBrowserIE() && $Jssor$.$BrowserVersion() >= 10 && $Jssor$.$BrowserVersion() < 11) {
                 elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
