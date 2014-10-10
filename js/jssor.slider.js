@@ -2055,7 +2055,7 @@ new function () {
                 if (_HandleTouchEventOnly) {
                     var touches = event.touches;
                     if (touches && touches.length > 0) {
-                        actionPoint = new $JssorPoint$(touches[0].clientX, touches[0].clientY);
+                        actionPoint = { x: touches[0].clientX, y: touches[0].clientY };
                     }
                 }
                 else {

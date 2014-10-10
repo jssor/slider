@@ -119,51 +119,6 @@ var $JssorDebug$ = new function () {
     this.$C_AbstractClass = C_AbstractClass;
 };
 
-//$JssorPoint$
-var $JssorPoint$ = function (x, y) {
-    var _ThisPoint = this;
-
-    // Properties
-    _ThisPoint.x = x;
-    _ThisPoint.y = y;
-
-    _ThisPoint.$Plus = function (point) {
-        return new $JssorPoint$(x + point.x, y + point.y);
-    };
-
-    _ThisPoint.$Minus = function (point) {
-        return new $JssorPoint$(x - point.x, y - point.y);
-    };
-
-    _ThisPoint.$Times = function (factor) {
-        return new $JssorPoint$(x * factor, y * factor);
-    };
-
-    _ThisPoint.$Divide = function (factor) {
-        return new $JssorPoint$(x / factor, y / factor);
-    };
-
-    _ThisPoint.$Negate = function () {
-        return new $JssorPoint$(-x, -y);
-    };
-
-    _ThisPoint.$DistanceTo = function (point) {
-        return Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2));
-    };
-
-    _ThisPoint.$Apply = function (func) {
-        return new $JssorPoint$(func(x), func(y));
-    };
-
-    _ThisPoint.$Equals = function (point) {
-        return (point instanceof $JssorPoint$) && (x === point.x) && (y === point.y);
-    };
-
-    _ThisPoint.$ToString = function () {
-        return "(" + x + "," + y + ")";
-    };
-};
-
 //$JssorEasing$
 var $JssorEasing$ = window.$JssorEasing$ = {
     $EaseLinear: function (t) {
@@ -624,6 +579,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return key === undefined || hasOwn.call(obj, key);
     }
 
+    function Point(x, y) {
+        return { x: x, y: y };
+    }
+
     function Delay(code, delay) {
         setTimeout(code, delay || 0);
     }
@@ -779,7 +738,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     //_This.$GetElementPosition = function (elmt) {
     //    elmt = _This.$GetElement(elmt);
-    //    var result = new $JssorPoint$();
+    //    var result = Point();
 
     //    // technique from:
     //    // http://www.quirksmode.org/js/findpos.html
@@ -2143,7 +2102,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         _ThisMatrix.$TransformPoint = function (matrix, p) {
             var pMatrix = Multiply(matrix, [[p.x], [p.y]]);
 
-            return new $JssorPoint$(pMatrix[0][0], pMatrix[1][0]);
+            return Point(pMatrix[0][0], pMatrix[1][0]);
         };
     };
 
@@ -2164,12 +2123,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$GetMatrixOffset = function (matrix, width, height) {
-        var p1 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(-width / 2, -height / 2));
-        var p2 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(width / 2, -height / 2));
-        var p3 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(width / 2, height / 2));
-        var p4 = $JssorMatrix$.$TransformPoint(matrix, new $JssorPoint$(-width / 2, height / 2));
+        var p1 = $JssorMatrix$.$TransformPoint(matrix, Point(-width / 2, -height / 2));
+        var p2 = $JssorMatrix$.$TransformPoint(matrix, Point(width / 2, -height / 2));
+        var p3 = $JssorMatrix$.$TransformPoint(matrix, Point(width / 2, height / 2));
+        var p4 = $JssorMatrix$.$TransformPoint(matrix, Point(-width / 2, height / 2));
 
-        return new $JssorPoint$(Math.min(p1.x, p2.x, p3.x, p4.x) + width / 2, Math.min(p1.y, p2.y, p3.y, p4.y) + height / 2);
+        return Point(Math.min(p1.x, p2.x, p3.x, p4.x) + width / 2, Math.min(p1.y, p2.y, p3.y, p4.y) + height / 2);
     };
 
     _This.$Transform = function (fromStyles, toStyles, interPosition, easings, durings, rounds, options) {
@@ -2729,8 +2688,8 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         _Position_OuterBegin = _Position_InnerBegin = delay;
         _Position_OuterEnd = _Position_InnerEnd = delay + duration;
 
-        var _SubRounds = options.$Round || {};
-        var _SubDurings = options.$During || {};
+        _SubRounds = options.$Round || {};
+        _SubDurings = options.$During || {};
         _SubEasings = $Jssor$.$Extend({ $Default: $Jssor$.$IsFunction(options.$Easing) && options.$Easing || $JssorEasing$.$EaseSwing }, options.$Easing);
     }
 };
