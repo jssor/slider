@@ -123,7 +123,7 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
     }
 
     function UpdateUI() {
-        _CloseButton && $Jssor$.$ShowElement(_CloseButton, _Entered);
+        _CloseButton && $Jssor$.$ShowElement(_CloseButton, !_Entered);
         if (_PlayCover) {
             if (!_ytPlayerState) {
                 if (!_PlayButtonBackgroundImageUrl) {
@@ -135,7 +135,7 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
                 $Jssor$.$Css(_PlayCover, "backgrouondImage", _PlayButtonBackgroundImageUrl);
                 _PlayButtonBackgroundImageUrl = null;
             }
-            $Jssor$.$ShowElement(_PlayCover, !_Entered);
+            $Jssor$.$ShowElement(_PlayCover, _Entered);
         }
     }
 
@@ -304,8 +304,8 @@ $JssorPlayer$["ytiframe"] = function (playerElement, playerInstanceElement) {
 
         playerInstanceElement.pInstance = _Self;
 
-        _CloseButton = $Jssor$.$FindFirstChild(playerElement, "close");
-        _PlayCover = $Jssor$.$FindFirstChild(playerElement, "cover");
+        _CloseButton = $Jssor$.$FindChild(playerElement, "close");
+        _PlayCover = $Jssor$.$FindChild(playerElement, "cover");
 
         SyncSize();
 

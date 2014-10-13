@@ -1389,17 +1389,16 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return children;
     };
 
-    function FindFirstChild(elmt, attrValue, attrName, deep) {
-        if (!attrName)
-            attrName = "u";
+    function FindChild(elmt, attrValue, noDeep, attrName) {
+        attrName = attrName || "u";
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
                 if (AttributeEx(elmt, attrName) == attrValue)
                     return elmt;
 
-                if (deep) {
-                    var childRet = FindFirstChild(elmt, attrValue, attrName, deep);
+                if (!noDeep) {
+                    var childRet = FindChild(elmt, attrValue, noDeep, attrName);
                     if (childRet)
                         return childRet;
                 }
@@ -1407,11 +1406,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     }
 
-    _This.$FindFirstChild = FindFirstChild;
+    _This.$FindChild = FindChild;
 
-    function FindChildren(elmt, attrValue, attrName, deep) {
-        if (!attrName)
-            attrName = "u";
+    function FindChildren(elmt, attrValue, noDeep, attrName) {
+        attrName = attrName || "u";
 
         var ret = [];
 
@@ -1420,8 +1418,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 if (AttributeEx(elmt, attrName) == attrValue)
                     ret.push(elmt);
 
-                if (deep) {
-                    var childRet = FindChildren(elmt, attrValue, attrName, deep);
+                if (!noDeep) {
+                    var childRet = FindChildren(elmt, attrValue, noDeep, attrName);
                     if (childRet.length)
                         ret = ret.concat(childRet);
                 }
@@ -1433,15 +1431,15 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$FindChildren = FindChildren;
 
-    function FindFirstChildByTag(elmt, tagName, deep) {
+    function FindChildByTag(elmt, tagName, noDeep) {
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
             if (elmt.nodeType == 1) {
                 if (elmt.tagName == tagName)
                     return elmt;
 
-                if (deep) {
-                    var childRet = FindFirstChildByTag(elmt, tagName, deep);
+                if (!noDeep) {
+                    var childRet = FindChildByTag(elmt, tagName, noDeep);
                     if (childRet)
                         return childRet;
                 }
@@ -1449,9 +1447,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     }
 
-    _This.$FindFirstChildByTag = FindFirstChildByTag;
+    _This.$FindChildByTag = FindChildByTag;
 
-    function FindChildrenByTag(elmt, tagName, deep) {
+    function FindChildrenByTag(elmt, tagName, noDeep) {
         var ret = [];
 
         for (elmt = elmt ? elmt.firstChild : null; elmt; elmt = elmt.nextSibling) {
@@ -1459,8 +1457,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 if (!tagName || elmt.tagName == tagName)
                     ret.push(elmt);
 
-                if (deep) {
-                    var childRet = FindChildrenByTag(elmt, tagName, true);
+                if (!noDeep) {
+                    var childRet = FindChildrenByTag(elmt, tagName, noDeep);
                     if (childRet.length)
                         ret = ret.concat(childRet);
                 }
@@ -1639,13 +1637,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     };
 
-    _This.$ShowElement = function (elmt, show) {
-        _This.$CssDisplay(elmt, show == false ? "none" : "");
+    _This.$ShowElement = function (elmt, hide) {
+        _This.$CssDisplay(elmt, hide ? "none" : "");
     };
 
-    _This.$ShowElements = function (elmts) {
+    _This.$ShowElements = function (elmts, hide) {
         for (var i = 0; i < elmts.length; i++) {
-            _This.$ShowElement(elmts[i]);
+            _This.$ShowElement(elmts[i], hide);
         }
     };
 
@@ -1737,8 +1735,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return elmtA == elmtB;
     };
 
-    function CloneNode(elmt, deep) {
-        return elmt.cloneNode(deep);
+    function CloneNode(elmt, noDeep) {
+        return elmt.cloneNode(!noDeep);
     }
 
     _This.$CloneNode = CloneNode;
@@ -1818,12 +1816,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$BuildElement = function (template, tagName, replacer, createCopy) {
         if (createCopy)
-            template = CloneNode(template, true);
+            template = CloneNode(template);
 
         var templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
         for (var j = templateHolders.length - 1; j > -1; j--) {
             var templateHolder = templateHolders[j];
-            var replaceItem = CloneNode(replacer, true);
+            var replaceItem = CloneNode(replacer);
             ClassName(replaceItem, ClassName(templateHolder));
             $Jssor$.$CssCssText(replaceItem, templateHolder.style.cssText);
 
@@ -2758,7 +2756,7 @@ function $JssorPlayerClass$() {
     _ThisPlayer.$FetchPlayers = function (elmt) {
         elmt = elmt || document.body;
 
-        var playerElements = $Jssor$.$FindChildren(elmt, "player", null, true);
+        var playerElements = $Jssor$.$FindChildren(elmt, "player");
 
         $Jssor$.$Each(playerElements, function (playerElement) {
             if (!_PlayerControllers[playerElement.pId]) {
