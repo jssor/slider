@@ -471,10 +471,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return IsBrowserSafari() && (webkitVersion > 534) && (webkitVersion < 535);
     }
 
-    function IsBrowserSafeHWA() {
-        return IsBrowserSafari() && (webkitVersion < 535);
-    }
-
     function IsBrowserIe9Earlier() {
         return IsBrowserIE() && browserRuntimeVersion < 9; 
     }
@@ -655,8 +651,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$IsBrowserBadTransform = IsBrowserBadTransform;
 
-    _This.$IsBrowserSafeHWA = IsBrowserSafeHWA;
-
     _This.$IsBrowserIe9Earlier = IsBrowserIe9Earlier;
 
     _This.$BrowserVersion = function () {
@@ -668,6 +662,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$WebKitVersion = function () {
+        DetectBrowser();
+
         return webkitVersion;
     };
 
@@ -1758,6 +1754,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 transition.y = -transition.$ScaleVertical || -1;
             }
 
+            if (transition.$Rotate == true)
+                transition.$Rotate = 1;
+
             TranslateTransition(transition.$Brother);
         }
     }
@@ -1958,6 +1957,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             return GetStyleOpacity(elmt);
         }
     };
+
     _This.$CssCssText = function (elmt, text) {
         if (text != undefined) {
             elmt.style.cssText = text;
@@ -1978,33 +1978,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         $ZIndex: _This.$CssZIndex
     };
 
-    //var _StyleGetter = {
-    //    $Opacity: _This.$GetStyleOpacity,
-    //    $Top: _This.$GetStyleTop,
-    //    $Left: _This.$GetStyleLeft,
-    //    $Width: _This.$GetStyleWidth,
-    //    $Height: _This.$GetStyleHeight,
-    //    $Position: _This.$GetStylePosition,
-    //    $Display: _This.$GetStyleDisplay,
-    //    $ZIndex: _This.$GetStyleZIndex
-    //};
-
     var _StyleSetterReserved;
-
-    //var _StyleSetterReserved = {
-    //    $Opacity: _This.$SetStyleOpacity,
-    //    $Top: _This.$SetStyleTop,
-    //    $Left: _This.$SetStyleLeft,
-    //    $Width: _This.$SetStyleWidth,
-    //    $Height: _This.$SetStyleHeight,
-    //    $Display: _This.$SetStyleDisplay,
-    //    $Clip: _This.$SetStyleClip,
-    //    $MarginLeft: _This.$SetStyleMarginLeft,
-    //    $MarginTop: _This.$SetStyleMarginTop,
-    //    $Transform: _This.$SetStyleTransform,
-    //    $Position: _This.$SetStylePosition,
-    //    $ZIndex: _This.$SetStyleZIndex
-    //};
 
     function StyleSetter() {
         if (!_StyleSetterReserved) {
@@ -2429,9 +2403,9 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
                     var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
 
-                    if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
-                        interPosition = Math.round(interPosition / 16 * duration) * 16 / duration;
-                    }
+                    //if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
+                    //    interPosition = Math.round(interPosition / 8 * duration) * 8 / duration;
+                    //}
 
                     if (options.$Reverse)
                         interPosition = 1 - interPosition;
@@ -2486,11 +2460,24 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         _NestedAnimators.push(animator);
     }
 
-    function PlayFrame() {
+    var RequestAnimationFrame = window.requestAnimationFrame
+    || window.webkitRequestAnimationFrame
+    || window.mozRequestAnimationFrame
+    || window.msRequestAnimationFrame
+    || function (callback) {
+        $Jssor$.$Delay(callback, options.$Interval);
+        //$JssorDebug$.$Log("custom frame");
+    };
+
+    //var RequestAnimationFrame = function (callback) {
+    //    $Jssor$.$Delay(callback, options.$Interval);
+    //    $JssorDebug$.$Log("custom frame");
+    //};
+
+    function ShowFrame() {
         if (_AutoPlay) {
             var now = $Jssor$.$GetNow();
-            //var timeOffset = Math.min(now - _TimeStampLastFrame, $Jssor$.$IsBrowserOpera() ? 80 : 20);
-            var timeOffset = Math.min(now - _TimeStampLastFrame, 80);
+            var timeOffset = Math.min(now - _TimeStampLastFrame, 100);
             var timePosition = _Position_Current + timeOffset * _PlayDirection;
             _TimeStampLastFrame = now;
 
@@ -2503,7 +2490,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
                 Stop(_Callback);
             }
             else {
-                $Jssor$.$Delay(PlayFrame, options.$Interval);
+                RequestAnimationFrame(ShowFrame);
             }
         }
     }
@@ -2519,7 +2506,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
             _PlayDirection = _PlayToPosition < _Position_Current ? -1 : 1;
             _ThisAnimator.$OnStart();
             _TimeStampLastFrame = $Jssor$.$GetNow();
-            PlayFrame();
+            RequestAnimationFrame(ShowFrame);
         }
     }
 

@@ -841,8 +841,6 @@ new function () {
                                     _StyleEnd.$Zoom = Math.min(_StyleEnd.$Zoom, 2);
 
                                 var rotate = slideTransition.$Rotate;
-                                if (rotate == true)
-                                    rotate = 1;
 
                                 _StyleEnd.$Rotate = rotate * 360 * ((chessRotate) ? -1 : 1);
                                 _StyleStart.$Rotate = 0;
@@ -1231,12 +1229,12 @@ new function () {
 
                     if (_Duration) {
                         var interPosition = newPosition / _Duration;
-                        if ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserFireFox()) {
-                            Math.round(interPosition * 16 / _Duration) / 16 * _Duration;
+                        //if ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserFireFox()) {
+                        //    Math.round(interPosition * 8 / _Duration) / 8 * _Duration;
 
-                            if ($Jssor$.$BrowserVersion() < 38)
-                                interPosition = parseFloat(interPosition.toFixed(4));
-                        }
+                        //    if ($Jssor$.$BrowserVersion() < 38)
+                        //        interPosition = parseFloat(interPosition.toFixed(4));
+                        //}
                         toPosition = _Options.$SlideEasing(interPosition) * (_ToPosition - _FromPosition) + _FromPosition;
                     }
                 }
@@ -1602,11 +1600,8 @@ new function () {
                     if ($Jssor$.$IsBrowserIe9Earlier()) {
                         $Jssor$.$CssZIndex(elmt, ($Jssor$.$CssZIndex(elmt) || 0) + 1);
                     }
-                    if (_Options.$HWA && $Jssor$.$WebKitVersion() > 0) {
-                        //if ((_HandleTouchEventOnly && ($Jssor$.$WebKitVersion() < 534 || !_SlideshowEnabled)) || (!_HandleTouchEventOnly && $Jssor$.$WebKitVersion() < 535)) {
-                        //    $Jssor$.$EnableHWA(elmt);
-                        //}
-                        if (!_HandleTouchEventOnly || ($Jssor$.$WebKitVersion() < 534 || !_SlideshowEnabled)) {
+                    if (_Options.$HWA && $Jssor$.$WebKitVersion()) {
+                        if (!_HandleTouchEventOnly || $Jssor$.$WebKitVersion() < 534 || (!_SlideshowEnabled && !$Jssor$.$IsBrowserChrome())) {
                             $Jssor$.$EnableHWA(elmt);
                         }
                     }
