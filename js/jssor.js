@@ -1777,7 +1777,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     function LoadImageCallback(callback, image, abort) {
         image.onload = null;
-        image.abort = null;
+        image.onerror = image.onabort = null;
 
         if (callback)
             callback(image, abort);
@@ -1785,12 +1785,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$LoadImage = function (src, callback) {
         if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
-            LoadImageCallback(callback, null);
+            LoadImageCallback(callback, null, !src);
         }
         else {
             var image = new Image();
-            image.onload = _This.$CreateCallback(null, LoadImageCallback, callback, image);
-            image.onabort = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
+            image.onload = _This.$CreateCallback(null, LoadImageCallback, callback, image, false);
+            image.onerror = image.onabort = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
+            
             image.src = src;
         }
     };
