@@ -1776,8 +1776,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     function LoadImageCallback(callback, image, abort) {
-        image.onload = null;
-        image.onerror = image.onabort = null;
+        _This.$RemoveEvent(image, "load");
+        _This.$RemoveEvent(image, "abort");
+        _This.$RemoveEvent(image, "error");
 
         if (callback)
             callback(image, abort);
@@ -1789,8 +1790,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
         else {
             var image = new Image();
-            image.onload = _This.$CreateCallback(null, LoadImageCallback, callback, image, false);
-            image.onerror = image.onabort = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
+            _This.$AddEvent(image, "load", _This.$CreateCallback(null, LoadImageCallback, callback, image, false));
+            var abortHandler = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
+            _This.$AddEvent(image, "abort", abortHandler);
+            _This.$AddEvent(image, "error", abortHandler);
             
             image.src = src;
         }
