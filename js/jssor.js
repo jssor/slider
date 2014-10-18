@@ -1775,10 +1775,75 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     };
 
+    //function ImageLoader() {
+    //    var _ThisImageLoader = this;
+    //    var _BaseImageLoader = _This.$Inherit(_ThisImageLoader, $JssorObject$);
+
+    //    var _ImageLoading = 1;
+    //    var _MainImageSrc;
+    //    var _MainImage;
+    //    var _CompleteCallback;
+    //    var _MainImageAbort;
+
+    //    function LoadCompleteCallback(image, abort) {
+    //        _ImageLoading--;
+
+    //        if (image) {
+    //            _This.$RemoveEvent(image, "load");
+    //            _This.$RemoveEvent(image, "abort");
+    //            _This.$RemoveEvent(image, "error");
+
+    //            if (_MainImageSrc == image.src) {
+    //                _MainImage = image;
+    //                _MainImageAbort = abort;
+    //            }
+    //        }
+
+    //        _CompleteCallback && _CompleteCallback(_MainImage, _MainImageAbort);
+    //    }
+
+    //    function LoadImage(src) {
+    //        _ImageLoading++;
+
+    //        if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
+    //            LoadImageCallback(callback, null, !src);
+    //        }
+    //        else {
+    //            var image = new Image();
+
+    //            _This.$AddEvent(image, "load", _This.$CreateCallback(null, LoadImageCallback, image, false));
+
+    //            var abortHandler = _This.$CreateCallback(null, LoadImageCallback, image, true);
+    //            _This.$AddEvent(image, "abort", abortHandler);
+    //            _This.$AddEvent(image, "error", abortHandler);
+
+    //            image.src = src;
+    //        }
+    //    }
+
+    //    _ThisImageLoader.$LoadImage = function (src, callback) {
+    //        _MainImageSrc = src;
+    //        _CompleteCallback = callback;
+
+    //        LoadImage(src);
+    //        LoadComplete();
+    //    };
+
+    //    _ThisImageLoader.$LoadImages = function (imageElmts, mainImageElmt, callback) {
+    //        mainImageElmt && (_MainImageSrc = mainImageElmt.src);
+    //        _CompleteCallback = callback;
+
+    //        each(imageElmts, function (imageElmt) {
+    //            LoadImage(imageElmt.src);
+    //        });
+    //        LoadComplete();
+    //    };
+    //}
+
     function LoadImageCallback(callback, image, abort) {
-        _This.$RemoveEvent(image, "load");
-        _This.$RemoveEvent(image, "abort");
-        _This.$RemoveEvent(image, "error");
+        _This.$RemoveEvent(image, "load", LoadImageCallback.caller);
+        _This.$RemoveEvent(image, "abort", LoadImageCallback.caller);
+        _This.$RemoveEvent(image, "error", LoadImageCallback.caller);
 
         if (callback)
             callback(image, abort);
@@ -1822,7 +1887,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             template = CloneNode(template);
 
         var templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
-        for (var j = templateHolders.length - 1; j > -1; j--) {
+        for (var j = templateHolders.length -1; j > -1; j--) {
             var templateHolder = templateHolders[j];
             var replaceItem = CloneNode(replacer);
             ClassName(replaceItem, ClassName(templateHolder));
