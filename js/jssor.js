@@ -1840,25 +1840,30 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //    };
     //}
 
-    function LoadImageCallback(callback, image, abort) {
-        _This.$RemoveEvent(image, "load", LoadImageCallback.caller);
-        _This.$RemoveEvent(image, "abort", LoadImageCallback.caller);
-        _This.$RemoveEvent(image, "error", LoadImageCallback.caller);
-
-        if (callback)
-            callback(image, abort);
-    }
-
     _This.$LoadImage = function (src, callback) {
+        var image = new Image();
+
+        function LoadImageCompleteHandler(abort) {
+            _This.$RemoveEvent(image, "load", LoadImageCompleteHandler);
+            _This.$RemoveEvent(image, "abort", ErrorOrAbortHandler);
+            _This.$RemoveEvent(image, "error", ErrorOrAbortHandler);
+
+            if (callback)
+                callback(image, abort);
+        }
+
+        function ErrorOrAbortHandler() {
+            LoadImageCompleteHandler(true);
+        }
+
         if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
-            LoadImageCallback(callback, null, !src);
+            LoadImageCompleteHandler(!src);
         }
         else {
-            var image = new Image();
-            _This.$AddEvent(image, "load", _This.$CreateCallback(null, LoadImageCallback, callback, image, false));
-            var abortHandler = _This.$CreateCallback(null, LoadImageCallback, callback, image, true);
-            _This.$AddEvent(image, "abort", abortHandler);
-            _This.$AddEvent(image, "error", abortHandler);
+
+            _This.$AddEvent(image, "load", LoadImageCompleteHandler);
+            _This.$AddEvent(image, "abort", ErrorOrAbortHandler);
+            _This.$AddEvent(image, "error", ErrorOrAbortHandler);
             
             image.src = src;
         }
@@ -1876,7 +1881,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
 
         each(imageElmts, function (imageElmt) {
-            $Jssor$.$LoadImage(imageElmt.src, LoadImageCompleteEventHandler);
+            _This.$LoadImage(imageElmt.src, LoadImageCompleteEventHandler);
         });
 
         LoadImageCompleteEventHandler();
