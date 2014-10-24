@@ -2551,7 +2551,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     function ShowFrame() {
         if (_AutoPlay) {
             var now = $Jssor$.$GetNow();
-            var timeOffset = Math.min(now - _TimeStampLastFrame, 100);
+            var timeOffset = Math.min(now - _TimeStampLastFrame, options.$IntervalMax);
             var timePosition = _Position_Current + timeOffset * _PlayDirection;
             _TimeStampLastFrame = now;
 
@@ -2728,7 +2728,8 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     //Constructor  1
     {
         options = $Jssor$.$Extend({
-            $Interval: 15
+            $Interval: 16,
+            $IntervalMax: 50
         }, options);
 
         //Sodo statement, for development time intellisence only

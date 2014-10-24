@@ -1193,7 +1193,7 @@ new function () {
             var _StandBy;
             var _StandByPosition;
 
-            $JssorAnimator$.call(_SelfCarouselPlayer, -100000000, 200000000);
+            $JssorAnimator$.call(_SelfCarouselPlayer, -100000000, 200000000, { $IntervalMax: 100 });
 
             _SelfCarouselPlayer.$OnStart = function () {
                 _IsSliding = true;
@@ -2632,7 +2632,13 @@ new function () {
 
         //member functions
 
-        $JssorObject$.call(this);
+        $JssorObject$.call(_SelfSlider);
+
+        $JssorDebug$.$Execute(function () {
+            var outerContainerElmt = $Jssor$.$GetElement(elmt);
+            if (!outerContainerElmt)
+                $JssorDebug$.$Fail("Outer container '" + elmt + "' not found.");
+        });
 
         //initialize member variables
         _SelfSlider.$Elmt = elmt = $Jssor$.$GetElement(elmt);
@@ -2640,12 +2646,6 @@ new function () {
 
         var _InitialScrollWidth;    //for debug only
         var _CaptionSliderCount = 1;    //for debug only
-
-        $JssorDebug$.$Execute(function () {
-            var outerContainerElmt = $Jssor$.$GetElement(elmt);
-            if (!outerContainerElmt)
-                $JssorDebug$.$Fail("Outer container '" + elmt + "' not found.");
-        });
 
         var _Options = $Jssor$.$Extend({
             $FillMode: 0,                   //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
