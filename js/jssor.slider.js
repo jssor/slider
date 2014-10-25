@@ -1033,9 +1033,9 @@ new function () {
             var transitionCount = transitions.length;
 
             if (_TransitionsOrder) { /*Sequence*/
-                if (transitionCount > slideCount && ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserSafari() || $Jssor$.$IsBrowserFireFox())) {
-                    transitionCount -= transitionCount % slideCount;
-                }
+                //if (transitionCount > slideCount && ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserSafari() || $Jssor$.$IsBrowserFireFox())) {
+                //    transitionCount -= transitionCount % slideCount;
+                //}
                 n = _TransitionIndex++ % transitionCount;
             }
             else { /*Random*/
@@ -1288,6 +1288,7 @@ new function () {
             var elmt = CreatePanel();
 
             $Jssor$.$CssZIndex(elmt, 0);
+            $Jssor$.$Css(elmt, "pointerEvents", "none");
 
             _Self.$Elmt = elmt;
 
