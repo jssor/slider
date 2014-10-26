@@ -2537,16 +2537,17 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     var RequestAnimationFrame = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
     || window.mozRequestAnimationFrame
-    || window.msRequestAnimationFrame
-    || function (callback) {
-        $Jssor$.$Delay(callback, options.$Interval);
-        //$JssorDebug$.$Log("custom frame");
-    };
+    || window.msRequestAnimationFrame;
 
-    //var RequestAnimationFrame = function (callback) {
-    //    $Jssor$.$Delay(callback, options.$Interval);
-    //    $JssorDebug$.$Log("custom frame");
-    //};
+    if ($Jssor$.$IsBrowserSafari() && $Jssor$.$BrowserVersion() < 7) {
+        RequestAnimationFrame = null;
+
+        $JssorDebug$.$Log("Custom animation frame for safari before 7.");
+    }
+
+    RequestAnimationFrame = RequestAnimationFrame || function (callback) {
+        $Jssor$.$Delay(callback, options.$Interval);
+    };
 
     function ShowFrame() {
         if (_AutoPlay) {
