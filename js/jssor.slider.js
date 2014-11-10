@@ -1863,7 +1863,7 @@ new function () {
                     var allowAutoPlay = _AutoPlay && (!_HoverToPause || _NotOnHover);
 
                     if (currentPosition == _ProgressEnd) {
-                        _AutoPlay && !(_HoverToPause & 12) && (allowAutoPlay || _IdleEnd != _ProgressEnd) && slideItem.$GoForNextSlide();
+                        (_IdleEnd != _ProgressEnd && !(_HoverToPause & 12) || allowAutoPlay) && slideItem.$GoForNextSlide();
                     }
                     else if (allowAutoPlay || currentPosition != _IdleEnd) {
                         _SelfProcessor.$PlayToPosition(toPosition, ProcessCompleteEventHandler);
