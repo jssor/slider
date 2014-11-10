@@ -1445,13 +1445,13 @@ new function () {
                 }
             }
 
-            function ParkEventHandler(currentIndex, previousIndex) {
+            function ParkEventHandler(currentIndex, previousIndex, manualActivate) {
                 if (currentIndex == slideIndex) {
 
                     if (currentIndex != previousIndex)
                         _SlideItems[previousIndex] && _SlideItems[previousIndex].$ParkOut();
                     else
-                        _Processor && _Processor.$AdjustIdleOnPark();
+                        !manualActivate && _Processor && _Processor.$AdjustIdleOnPark();
 
                     _PlayerInstance && _PlayerInstance.$Enable();
 
@@ -1540,7 +1540,7 @@ new function () {
             };
 
             _SelfSlideItem.$TryActivate = function () {
-                ParkEventHandler(slideIndex, slideIndex);
+                ParkEventHandler(slideIndex, slideIndex, true);
             };
 
             _SelfSlideItem.$ParkOut = function () {
@@ -1863,7 +1863,7 @@ new function () {
                     var allowAutoPlay = _AutoPlay && (!_HoverToPause || _NotOnHover);
 
                     if (currentPosition == _ProgressEnd) {
-                        _AutoPlay && !(_HoverToPause & 12) && slideItem.$GoForNextSlide();
+                        _AutoPlay && !(_HoverToPause & 12) && (allowAutoPlay || _IdleEnd != _ProgressEnd) && slideItem.$GoForNextSlide();
                     }
                     else if (allowAutoPlay || currentPosition != _IdleEnd) {
                         _SelfProcessor.$PlayToPosition(toPosition, ProcessCompleteEventHandler);
