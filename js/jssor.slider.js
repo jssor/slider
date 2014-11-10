@@ -1860,10 +1860,10 @@ new function () {
 
                     _SelfSlider.$TriggerEvent(stateEvent, slideIndex, currentPosition, _ProgressBegin, _IdleBegin, _IdleEnd, _ProgressEnd);
 
-                    var allowAutoPlay = _AutoPlay && (!(_HoverToPause & 12) || _NotOnHover);
+                    var allowAutoPlay = _AutoPlay && (!_HoverToPause || _NotOnHover);
 
                     if (currentPosition == _ProgressEnd) {
-                        allowAutoPlay && slideItem.$GoForNextSlide();
+                        _AutoPlay && !(_HoverToPause & 12) && slideItem.$GoForNextSlide();
                     }
                     else if (allowAutoPlay || currentPosition != _IdleEnd) {
                         _SelfProcessor.$PlayToPosition(toPosition, ProcessCompleteEventHandler);
