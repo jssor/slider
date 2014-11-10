@@ -1,6 +1,9 @@
 ﻿/*
 * Jssor 18.0
 * http://www.jssor.com/
+*
+* Licensed under the MIT license:
+* http://www.opensource.org/licenses/MIT
 * 
 * TERMS OF USE - Jssor
 * 
