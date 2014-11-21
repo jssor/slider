@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tab Slider Demo - Jssor Slider, Slideshow with Javascript Source Code</title>
 </head>
 <body style="background:#fff;">
@@ -65,17 +65,11 @@
                 else
                     window.setTimeout(ScaleSlider, 30);
             }
-
             ScaleSlider();
 
-            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $(window).bind('resize', ScaleSlider);
-            }
-
-
-            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
-            //    $(window).bind("orientationchange", ScaleSlider);
-            //}
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
             //responsive code end
         });
     </script>

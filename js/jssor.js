@@ -695,7 +695,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return event || window.event;
     }
 
-    GetEvent = GetEvent;
+    _This.$GetEvent = GetEvent;
 
     _This.$EventSrc = function (event) {
         event = GetEvent(event);
@@ -1004,6 +1004,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
             var transformProperty = GetTransformProperty(elmt);
             if (transformProperty) {
                 var transformValue = "rotate(" + rotate % 360 + "deg) scale(" + scale + ")";
+
+                //needed for touch device, no need for desktop device, to optimize
                 if (IsBrowserChrome() && webkitVersion > 535)
                     transformValue += " perspective(2000px)";
 

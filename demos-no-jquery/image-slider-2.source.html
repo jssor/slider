@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Slider Theme - Jssor Slider, Slideshow with Javascript Source Code</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
@@ -106,14 +106,8 @@
             ScaleSlider();
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-
-            if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
-                $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
-            }
-
-            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
-            //    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            //}
+            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             //responsive code end
         };
     </script>
