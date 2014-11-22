@@ -3004,7 +3004,7 @@ new function () {
                     _CancelEvent = msPrefix ? "MSPointerCancel" : "pointercancel";
 
                     if (_DragEnabled) {
-                        var touchAction = "none";
+                        var touchAction = "auto";
                         if (_DragEnabled == 2) {
                             touchAction = "pan-x";
                         }
