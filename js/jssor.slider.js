@@ -1605,7 +1605,7 @@ new function () {
                         $Jssor$.$CssZIndex(elmt, ($Jssor$.$CssZIndex(elmt) || 0) + 1);
                     }
                     if (_Options.$HWA && $Jssor$.$WebKitVersion()) {
-                        if (!_HandleTouchEventOnly || $Jssor$.$WebKitVersion() < 534 || (!_SlideshowEnabled && !$Jssor$.$IsBrowserChrome())) {
+                        if (!_IsTouchDevice || $Jssor$.$WebKitVersion() < 534 || (!_SlideshowEnabled && !$Jssor$.$IsBrowserChrome())) {
                             $Jssor$.$EnableHWA(elmt);
                         }
                     }
@@ -2096,7 +2096,7 @@ new function () {
                             _DragOrientation = _DragOrientationRegistered;
                         }
 
-                        if (_HandleTouchEventOnly && _DragOrientation == 1 && Math.abs(distanceY) - Math.abs(distanceX) > 3) {
+                        if (_IsTouchDevice && _DragOrientation == 1 && Math.abs(distanceY) - Math.abs(distanceX) > 3) {
                             _DragInvalid = true;
                         }
                     }
@@ -2214,7 +2214,7 @@ new function () {
         function RegisterDrag() {
             var dragRegistry = JssorSlider.$DragRegistry || 0;
             var dragOrientation = _DragEnabled;
-            if (_HandleTouchEventOnly)
+            if (_IsTouchDevice)
                 (dragOrientation & 1) && (dragOrientation &= 1);
             JssorSlider.$DragRegistry |= dragOrientation;
 
@@ -2887,6 +2887,7 @@ new function () {
         var _DragInvalid;
 
         var _HandleTouchEventOnly;
+        var _IsTouchDevice;
 
         var _Navigators = [];
         var _BulletNavigator;
@@ -2995,6 +2996,7 @@ new function () {
             {
                 var msPrefix;
                 if (window.navigator.pointerEnabled || (msPrefix = window.navigator.msPointerEnabled)) {
+                    _IsTouchDevice = true;
 
                     _DownEvent = msPrefix ? "MSPointerDown" : "pointerdown";
                     _MoveEvent = msPrefix ? "MSPointerMove" : "pointermove";
@@ -3003,11 +3005,11 @@ new function () {
 
                     if (_DragEnabled) {
                         var touchAction = "none";
-                        if (_DragEnabled == 1) {
-                            touchAction = "pan-y";
-                        }
-                        else if (_DragEnabled == 2) {
+                        if (_DragEnabled == 2) {
                             touchAction = "pan-x";
+                        }
+                        else if (_DragEnabled) {
+                            touchAction = "pan-y";
                         }
 
                         $Jssor$.$Css(_SlideboardElmt, msPrefix ? "msTouchAction" : "touchAction", touchAction);
@@ -3015,6 +3017,7 @@ new function () {
                 }
                 else if ("ontouchstart" in window || "createTouch" in document) {
                     _HandleTouchEventOnly = true;
+                    _IsTouchDevice = true;
 
                     _DownEvent = "touchstart";
                     _MoveEvent = "touchmove";
@@ -3065,7 +3068,7 @@ new function () {
             }
             //SlideBoard
 
-            _HoverToPause &= (_HandleTouchEventOnly ? 10 : 5);
+            _HoverToPause &= (_IsTouchDevice ? 10 : 5);
 
             //Bullet Navigator
             if (_BulletNavigatorContainer && _BulletNavigatorOptions) {

@@ -1005,8 +1005,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
             if (transformProperty) {
                 var transformValue = "rotate(" + rotate % 360 + "deg) scale(" + scale + ")";
 
-                //needed for touch device, no need for desktop device, to optimize
-                if (IsBrowserChrome() && webkitVersion > 535)
+                //needed for touch device, no need for desktop device
+                if (IsBrowserChrome() && webkitVersion > 535 && "ontouchstart" in window)
                     transformValue += " perspective(2000px)";
 
                 elmt.style[transformProperty] = transformValue;
