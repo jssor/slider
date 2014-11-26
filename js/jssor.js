@@ -1632,6 +1632,15 @@ var $Jssor$ = window.$Jssor$ = new function () {
         _This.$CssDisplay(elmt, "none");
     };
 
+    _This.$EnableElement = function (elmt, notEnable) {
+        if (notEnable) {
+            _This.$Attribute(elmt, "disabled", true);
+        }
+        else {
+            _This.$RemoveAttribute(elmt, "disabled");
+        }
+    };
+
     _This.$HideElements = function (elmts) {
         for (var i = 0; i < elmts.length; i++) {
             _This.$HideElement(elmts[i]);

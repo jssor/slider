@@ -3605,6 +3605,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             });
 
             var thumbnailSliderOptions = $Jssor$.$Extend({
+                $HWA: false,
                 $AutoPlay: false,
                 $NaviQuitDrag: false,
                 $SlideWidth: slideWidth,
