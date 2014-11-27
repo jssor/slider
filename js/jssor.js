@@ -1905,7 +1905,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
         if (createCopy)
             template = CloneNode(template);
 
-        var templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
+        var templateHolders = FindChildren(template, tagName);
+        var templateHolders2 = $Jssor$.$GetElementsByTag(template, tagName);
+        if (!templateHolders.length)
+            templateHolders = templateHolders2;
+
         for (var j = templateHolders.length -1; j > -1; j--) {
             var templateHolder = templateHolders[j];
             var replaceItem = CloneNode(replacer);

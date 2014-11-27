@@ -3274,7 +3274,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
                 var numberDiv = $Jssor$.$CreateSpan();
                 $Jssor$.$InnerText(numberDiv, buttonIndex + 1);
 
-                var div = $Jssor$.$BuildElement(_ItemPrototype, "NumberTemplate", numberDiv, true);
+                var div = $Jssor$.$BuildElement(_ItemPrototype, "numbertemplate", numberDiv, true);
                 $Jssor$.$CssPosition(div, "absolute");
 
                 var columnIndex = buttonIndex % (maxIndex + 1);
@@ -3510,7 +3510,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
         //NavigationItem Constructor
         {
             _Thumbnail = item.$Thumb || item.$Image || $Jssor$.$CreateDiv();
-            self.$Wrapper = _Wrapper = $Jssor$.$BuildElement(_ThumbnailPrototype, "ThumbnailTemplate", _Thumbnail, true);
+            self.$Wrapper = _Wrapper = $Jssor$.$BuildElement(_ThumbnailPrototype, "thumbnailtemplate", _Thumbnail, true);
 
             _Button = $Jssor$.$Buttonize(_Wrapper);
             if (_Options.$ActionMode & 1)
