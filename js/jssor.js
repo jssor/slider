@@ -1906,9 +1906,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
             template = CloneNode(template);
 
         var templateHolders = FindChildren(template, tagName);
-        var templateHolders2 = $Jssor$.$GetElementsByTag(template, tagName);
         if (!templateHolders.length)
-            templateHolders = templateHolders2;
+            templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
 
         for (var j = templateHolders.length -1; j > -1; j--) {
             var templateHolder = templateHolders[j];

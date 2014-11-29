@@ -2608,11 +2608,14 @@ new function () {
             _ScaleRatio = dimension /  (isHeight? $Jssor$.$CssHeight : $Jssor$.$CssWidth)(_ScaleWrapper);
             $Jssor$.$CssScale(_ScaleWrapper, _ScaleRatio);
 
-            $Jssor$.$CssWidth(elmt, isHeight ? (_ScaleRatio * OriginalWidth()) : dimension);
-            $Jssor$.$CssHeight(elmt, isHeight ? dimension : (_ScaleRatio * OriginalHeight()));
+            var scaleWidth = isHeight ? (_ScaleRatio * OriginalWidth()) : dimension;
+            var scaleHeight = isHeight ? dimension : (_ScaleRatio * OriginalHeight());
+
+            $Jssor$.$CssWidth(elmt, scaleWidth);
+            $Jssor$.$CssHeight(elmt, scaleHeight);
 
             $Jssor$.$Each(_Navigators, function (navigator) {
-                navigator.$Relocate();
+                navigator.$Relocate(scaleWidth, scaleHeight);
             });
         }
 
@@ -3236,7 +3239,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
     };
 
     var _Located;
-    self.$Relocate = function (force) {
+    self.$Relocate = function (containerWidth, containerHeight) {
         if (!_Located || _Options.$Scale == false) {
             if (_Options.$AutoCenter & 1) {
                 $Jssor$.$CssLeft(elmt, (containerWidth - _Width) / 2);
@@ -3266,8 +3269,6 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
 
             $Jssor$.$CssWidth(elmt, _Width);
             $Jssor$.$CssHeight(elmt, _Height);
-
-            //self.$Relocate(true);
 
             for (var buttonIndex = 0; buttonIndex < _Count; buttonIndex++) {
 
@@ -3403,7 +3404,7 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
     };
 
     var _Located;
-    self.$Relocate = function (force) {
+    self.$Relocate = function (conainerWidth, containerHeight) {
         if (!_Located || _Options.$Scale == false) {
 
             if (_Options.$AutoCenter & 1) {
@@ -3426,8 +3427,6 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         _CurrentIndex = 0;
 
         if (!_Initialized) {
-
-            //self.$Relocate(true);
 
             $Jssor$.$AddEvent(arrowLeft, "click", $Jssor$.$CreateCallback(null, OnNavigationRequest, -_Steps));
             $Jssor$.$AddEvent(arrowRight, "click", $Jssor$.$CreateCallback(null, OnNavigationRequest, _Steps));
