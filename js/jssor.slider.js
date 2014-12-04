@@ -1437,7 +1437,7 @@ new function () {
 
                         EnsureCaptionSliderVersion();
 
-                        _Processor = new Processor(slideIndex, slideshowProcessor, _SelfSlideItem.$GetCaptionSliderIn(), _SelfSlideItem.$GetCaptionSliderOut());
+                        _Processor = new Processor(slideElmt, slideIndex, slideshowProcessor, _SelfSlideItem.$GetCaptionSliderIn(), _SelfSlideItem.$GetCaptionSliderOut());
                         _Processor.$SetPlayer(_PlayerInstance);
                     }
 
@@ -1759,7 +1759,7 @@ new function () {
         //SlideItem
 
         //Processor
-        function Processor(slideIndex, slideshowProcessor, captionSliderIn, captionSliderOut) {
+        function Processor(slideElmt, slideIndex, slideshowProcessor, captionSliderIn, captionSliderOut) {
 
             var _SelfProcessor = this;
 
@@ -1923,7 +1923,7 @@ new function () {
                 _CaptionInBegin = _SelfProcessor.$GetPosition_OuterEnd();
                 _SelfProcessor.$Chain(captionSliderIn);
                 _IdleBegin = captionSliderIn.$GetPosition_OuterEnd();
-                _IdleEnd = _IdleBegin + _Options.$AutoPlayInterval;
+                _IdleEnd = _IdleBegin + $Jssor$.$ParseFloat($Jssor$.$AttributeEx(slideElmt, "idle")) || _Options.$AutoPlayInterval;
 
                 captionSliderOut.$Shift(_IdleEnd);
                 _SelfProcessor.$Combine(captionSliderOut);
