@@ -1923,7 +1923,7 @@ new function () {
                 _CaptionInBegin = _SelfProcessor.$GetPosition_OuterEnd();
                 _SelfProcessor.$Chain(captionSliderIn);
                 _IdleBegin = captionSliderIn.$GetPosition_OuterEnd();
-                _IdleEnd = _IdleBegin + $Jssor$.$ParseFloat($Jssor$.$AttributeEx(slideElmt, "idle")) || _Options.$AutoPlayInterval;
+                _IdleEnd = _IdleBegin + ($Jssor$.$ParseFloat($Jssor$.$AttributeEx(slideElmt, "idle")) || _Options.$AutoPlayInterval);
 
                 captionSliderOut.$Shift(_IdleEnd);
                 _SelfProcessor.$Combine(captionSliderOut);
