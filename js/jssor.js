@@ -2037,8 +2037,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$CssPosition = CssProxy("position");
     _This.$CssDisplay = CssProxy("display");
     _This.$CssZIndex = CssProxy("zIndex", 1);
-    _This.$CssFloat = function (elmt, float) {
-        return Css(elmt, IsBrowserIE() ? "styleFloat" : "cssFloat", float);
+    _This.$CssFloat = function (elmt, floatValue) {
+        return Css(elmt, IsBrowserIE() ? "styleFloat" : "cssFloat", floatValue);
     };
     _This.$CssOpacity = function (elmt, opacity, ie9EarlierForce) {
         if (opacity != undefined) {
