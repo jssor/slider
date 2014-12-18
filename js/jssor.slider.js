@@ -2354,10 +2354,13 @@ new function () {
                             positionTo = Math.floor(positionTo);
                     }
 
-
-                    if (!(_Loop & 1)) {
-                        positionTo = GetRealIndex(positionTo);
+                    if (!_Loop) {
+                        //Stop at threshold
                         positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
+                    }
+                    else if (_Loop & 2) {
+                        //Rewind
+                        positionTo = GetRealIndex(positionTo);
                     }
 
                     var positionOffset = (positionTo - positionDisplay) % _SlideCount;
