@@ -1,7 +1,7 @@
 ﻿/// <reference path="Jssor.js" />
 
 /*
-* Jssor.Slider 18.0
+* Jssor.Slider 19.0
 * http://www.jssor.com/
 *
 * Licensed under the MIT license:
@@ -3211,7 +3211,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
 
     function Highlight(index) {
         if (index != -1)
-            _Buttons[index].$Activate(index == _CurrentInnerIndex);
+            _Buttons[index].$Selected(index == _CurrentInnerIndex);
     }
 
     function OnNavigationRequest(index) {
@@ -3487,7 +3487,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
         var _Thumbnail;
 
         function Highlight(mouseStatus) {
-            _Button.$Activate(_CurrentIndex == index);
+            _Button.$Selected(_CurrentIndex == index);
         }
 
         function OnNavigationRequest(event) {

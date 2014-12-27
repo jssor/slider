@@ -1,5 +1,5 @@
 ﻿/*
-* Jssor 18.0
+* Jssor 19.0
 * http://www.jssor.com/
 *
 * Licensed under the MIT license:
@@ -677,7 +677,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return Extend({}, instance);
     };
 
-    function Construct(instance, constructor) {
+    function Construct(instance) {
         instance.constructor === Construct.caller && instance.$Construct && instance.$Construct();
     }
 
@@ -1930,7 +1930,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         var _OriginClassName;
 
         var _IsMouseDown;   //class name 'dn'
-        var _IsActive;      //class name 'av'
+        var _IsSelected;    //class name 1(active): 'av', 2(passive): 'pv'
         var _IsDisabled;    //class name 'ds'
 
         function Highlight() {
@@ -1942,7 +1942,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
             else if (_IsMouseDown) {
                 className += 'dn';
             }
-            else if (_IsActive) {
+            else if (_IsSelected == 2) {
+                className += "pv";
+            }
+            else if (_IsSelected) {
                 className += "av";
             }
 
@@ -1973,14 +1976,14 @@ var $Jssor$ = window.$Jssor$ = new function () {
             Highlight();
         };
 
-        _Self.$Activate = function (activate) {
+        _Self.$Selected = function (activate) {
             if (activate != undefined) {
-                _IsActive = activate;
+                _IsSelected = activate;
 
                 Highlight();
             }
             else {
-                return _IsActive;
+                return _IsSelected;
             }
         };
 
