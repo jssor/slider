@@ -1502,7 +1502,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         // Extend the base object
         for (var name in target) {
-            if (target[name] != options[name]) {
+            if (target[name] !== options[name]) {
                 unextended[name] = target[name];
             }
         }
