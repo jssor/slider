@@ -28,6 +28,7 @@
   "homepage": "http://jssor.com",
   "license": "MIT",
   "main": [
+    "js/jssor.js",
     "js/jssor.slider.mini.js"
   ],
   "ignore": [
