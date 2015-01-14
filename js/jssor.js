@@ -640,6 +640,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     // Methods
 
+    //_This.$IsTouchDevice = function () {
+    //    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    //};
+
     _This.$IsBrowserIE = IsBrowserIE;
 
     _This.$IsBrowserIeQuirks = IsBrowserIeQuirks;

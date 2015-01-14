@@ -751,6 +751,7 @@ new function () {
         //constructor
         {
             slideElement = $Jssor$.$CloneNode(slideElement);
+            //$Jssor$.$RemoveAttribute(slideElement, "id");
             DisableHWA(slideElement);
             if ($Jssor$.$IsBrowserIe9Earlier()) {
                 var hasImage = !slideElement["no-image"];
@@ -2562,8 +2563,9 @@ new function () {
                 });
 
                 var innerWrapper = $Jssor$.$CreateDiv(document);
-                $Jssor$.$CssCssText(innerWrapper, $Jssor$.$CssCssText(elmt));
                 $Jssor$.$ClassName(innerWrapper, $Jssor$.$ClassName(elmt));
+                $Jssor$.$CssCssText(innerWrapper, $Jssor$.$CssCssText(elmt));
+                $Jssor$.$CssDisplay(innerWrapper, "block");
 
                 $Jssor$.$CssPosition(innerWrapper, "relative");
                 $Jssor$.$CssTop(innerWrapper, 0);
@@ -2597,9 +2599,6 @@ new function () {
                 $Jssor$.$Each(children, function (child) {
                     $Jssor$.$AppendChild(noMoveElmts[$Jssor$.$AttributeEx(child, "u")] ? elmt : innerWrapper, child);
                 });
-
-                $Jssor$.$ShowElement(innerWrapper);
-                $Jssor$.$ShowElement(_ScaleWrapper);
             }
 
             $JssorDebug$.$Execute(function () {
