@@ -1629,7 +1629,7 @@ new function () {
 
                     if (uAttribute == "caption") {
                         if (!$Jssor$.$IsBrowserIE() && !fresh) {
-                            var captionElement = $Jssor$.$CloneNode(childElement);
+                            var captionElement = $Jssor$.$CloneNode(childElement, false, true);
                             $Jssor$.$InsertBefore(elmt, captionElement, childElement);
                             $Jssor$.$RemoveChild(elmt, childElement);
                             childElement = captionElement;
@@ -2957,7 +2957,7 @@ new function () {
             //$Jssor$.$CssTop(_SlideshowPanel, $Jssor$.$CssTop(_SlidesContainer));
             $Jssor$.$CssZIndex(_SlidesContainer, $Jssor$.$CssZIndex(_SlidesContainer) || 0);
             $Jssor$.$CssPosition(_SlidesContainer, "absolute");
-            _SlideshowPanel = $Jssor$.$CloneNode(_SlidesContainer);
+            _SlideshowPanel = $Jssor$.$CloneNode(_SlidesContainer, true);
             $Jssor$.$InsertBefore($Jssor$.$ParentNode(_SlidesContainer), _SlideshowPanel, _SlidesContainer);
 
             if (_SlideshowOptions) {

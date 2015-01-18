@@ -110,12 +110,12 @@ var $JssorDebug$ = new function () {
         throw new Error("The method is abstract, it should be implemented by subclass.");
     };
 
-    function C_AbstractClass (instance) {
+    function C_AbstractClass(instance) {
         ///	<summary>
         ///		Tells compiler the class is abstract, it should be implemented by subclass.
         ///	</summary>
 
-        if(instance.constructor === C_AbstractClass.caller)
+        if (instance.constructor === C_AbstractClass.caller)
             throw new Error("Cannot create instance of an abstract class.");
     }
 
@@ -475,7 +475,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     }
 
     function IsBrowserIe9Earlier() {
-        return IsBrowserIE() && browserRuntimeVersion < 9; 
+        return IsBrowserIE() && browserRuntimeVersion < 9;
     }
 
     function GetTransformProperty(elmt) {
@@ -1323,7 +1323,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         _This.$ClearInnerHtml(elmt);
         elmt.appendChild(textNode);
     };
-    
+
     _This.$InnerHtml = function (elmt, html) {
         if (html == undefined)
             return elmt.innerHTML;
@@ -1749,8 +1749,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return elmtA == elmtB;
     };
 
-    function CloneNode(elmt, noDeep) {
-        return elmt.cloneNode(!noDeep);
+    function CloneNode(elmt, noDeep, keepId) {
+        var clone = elmt.cloneNode(!noDeep);
+        if (!keepId) {
+            _This.$RemoveAttribute(clone, "id");
+        }
+
+        return clone;
     }
 
     _This.$CloneNode = CloneNode;
@@ -1882,7 +1887,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             _This.$AddEvent(image, "load", LoadImageCompleteHandler);
             _This.$AddEvent(image, "abort", ErrorOrAbortHandler);
             _This.$AddEvent(image, "error", ErrorOrAbortHandler);
-            
+
             image.src = src;
         }
     };
@@ -1913,7 +1918,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         if (!templateHolders.length)
             templateHolders = $Jssor$.$GetElementsByTag(template, tagName);
 
-        for (var j = templateHolders.length -1; j > -1; j--) {
+        for (var j = templateHolders.length - 1; j > -1; j--) {
             var templateHolder = templateHolders[j];
             var replaceItem = CloneNode(replacer);
             ClassName(replaceItem, ClassName(templateHolder));
@@ -2422,6 +2427,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
     var _SubDurings;
     var _Callback;
 
+    var _Shift = 0;
     var _Position_Current = 0;
     var _Position_Display = 0;
     var _Hooked;
@@ -2464,9 +2470,11 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         _Position_Current += offset;
         _Position_Display += offset;
 
-        $Jssor$.$Each(_NestedAnimators, function (animator) {
-            animator, animator.$Shift(offset);
-        });
+        _Shift = offset;
+
+        //$Jssor$.$Each(_NestedAnimators, function (animator) {
+        //    animator, animator.$Shift(offset);
+        //});
     }
 
     function Locate(position, relative) {
@@ -2522,7 +2530,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
 
             $Jssor$.$Each(_NestedAnimators, function (animator, i) {
                 var nestedAnimator = positionOuter < _Position_Current ? _NestedAnimators[_NestedAnimators.length - i - 1] : animator;
-                nestedAnimator.$GoToPosition(positionOuter, force);
+                nestedAnimator.$GoToPosition(positionOuter - _Shift, force);
             });
 
             var positionOld = _Position_Current;
@@ -2535,7 +2543,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         }
     }
 
-    function Join(animator, combineMode) {
+    function Join(animator, combineMode, noExpand) {
         ///	<summary>
         ///		Combine another animator as nested animator
         ///	</summary>
@@ -2554,7 +2562,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         if (combineMode)
             animator.$Locate(_Position_OuterEnd, 1);
 
-        _Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd());
+        !noExpand && (_Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd()));
         _NestedAnimators.push(animator);
     }
 
