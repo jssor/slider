@@ -2562,7 +2562,7 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         if (combineMode)
             animator.$Locate(_Position_OuterEnd, 1);
 
-        !noExpand && (_Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd()));
+        !noExpand && (_Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd() + _Shift));
         _NestedAnimators.push(animator);
     }
 
