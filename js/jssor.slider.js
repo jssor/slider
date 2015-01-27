@@ -1637,24 +1637,11 @@ new function () {
                             fresh = true;
                         }
                     }
-                    else if (!_ContentRefreshed && !level && !_ImageItem && $Jssor$.$AttributeEx(childElement, "u") == "image") {
-                        _ImageItem = childElement;
+                    else if (!_ContentRefreshed && !level && !_ImageItem) {
 
-                        if (_ImageItem) {
-                            if (_ImageItem.tagName == "A") {
-                                _LinkItemOrigin = _ImageItem;
-                                $Jssor$.$SetStyles(_LinkItemOrigin, _StyleDef);
-
-                                _LinkItem = $Jssor$.$CloneNode(_ImageItem, true);
-                                //cancel click event on <A> element when a drag of slide succeeded
-                                $Jssor$.$AddEvent(_LinkItem, "click", LinkClickEventHandler);
-
-                                $Jssor$.$SetStyles(_LinkItem, _StyleDef);
-                                $Jssor$.$CssDisplay(_LinkItem, "block");
-                                $Jssor$.$CssOpacity(_LinkItem, 0);
-                                $Jssor$.$Css(_LinkItem, "backgroundColor", "#000");
-
-                                _ImageItem = $Jssor$.$FindChildByTag(_ImageItem, "IMG");
+                        if (childElement.tagName == "A") {
+                            if ($Jssor$.$AttributeEx(childElement, "u") == "image") {
+                                _ImageItem = $Jssor$.$FindChildByTag(childElement, "IMG");
 
                                 $JssorDebug$.$Execute(function () {
                                     if (!_ImageItem) {
@@ -1662,8 +1649,30 @@ new function () {
                                     }
                                 });
                             }
-                            _ImageItem.border = 0;
+                            else {
+                                _ImageItem = $Jssor$.$FindChild(childElement, "image", true);
+                            }
 
+                            if (_ImageItem) {
+                                _LinkItemOrigin = childElement;
+                                $Jssor$.$SetStyles(_LinkItemOrigin, _StyleDef);
+
+                                _LinkItem = $Jssor$.$CloneNode(_LinkItemOrigin, true);
+                                //cancel click event on <A> element when a drag of slide succeeded
+                                $Jssor$.$AddEvent(_LinkItem, "click", LinkClickEventHandler);
+
+                                $Jssor$.$CssDisplay(_LinkItem, "block");
+                                $Jssor$.$SetStyles(_LinkItem, _StyleDef);
+                                $Jssor$.$CssOpacity(_LinkItem, 0);
+                                $Jssor$.$Css(_LinkItem, "backgroundColor", "#000");
+                            }
+                        }
+                        else if (childElement.tagName == "IMG" && $Jssor$.$AttributeEx(childElement, "u") == "image") {
+                            _ImageItem = childElement;
+                        }
+
+                        if (_ImageItem) {
+                            _ImageItem.border = 0;
                             $Jssor$.$SetStyles(_ImageItem, _StyleDef);
                         }
                     }
@@ -2355,13 +2364,13 @@ new function () {
                             positionTo = Math.floor(positionTo);
                     }
 
-                    if (!_Loop) {
-                        //Stop at threshold
-                        positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
-                    }
-                    else if (_Loop & 2) {
+                    if (_Loop & 2) {
                         //Rewind
                         positionTo = GetRealIndex(positionTo);
+                    }
+                    if (!(_Loop & 1)) {
+                        //Stop at threshold
+                        positionTo = Math.max(0, Math.min(positionTo, _SlideCount - _DisplayPieces));
                     }
 
                     var positionOffset = (positionTo - positionDisplay) % _SlideCount;
