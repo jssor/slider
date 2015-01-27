@@ -3092,6 +3092,7 @@ new function () {
 
             //Arrow Navigator
             if (_ArrowNavigatorOptions && _ArrowLeft && _ArrowRight) {
+                _ArrowNavigatorOptions.$Loop = _Loop;
                 _ArrowNavigator = new _ArrowNavigatorOptions.$Class(_ArrowLeft, _ArrowRight, _ArrowNavigatorOptions, OriginalWidth(), OriginalHeight());
                 _Navigators.push(_ArrowNavigator);
             }
@@ -3395,6 +3396,11 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, steps, true);
     }
 
+    function ShowArrows(hide) {
+        $Jssor$.$ShowElement(arrowLeft, hide || !options.$Loop && _CurrentIndex == 0);
+        $Jssor$.$ShowElement(arrowRight, hide || !options.$Loop && _CurrentIndex == _Length - 1);
+    }
+
     self.$GetCurrentIndex = function () {
         return _CurrentIndex;
     };
@@ -3405,14 +3411,13 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         }
         else {
             _CurrentIndex = index;
+
+            ShowArrows();
         }
         //self.$TriggerEvent($JssorNavigatorEvents$.$INDEXCHANGE, index);
     };
 
-    self.$Show = function (hide) {
-        $Jssor$.$ShowElement(arrowLeft, hide);
-        $Jssor$.$ShowElement(arrowRight, hide);
-    };
+    self.$Show = ShowArrows;
 
     var _Located;
     self.$Relocate = function (conainerWidth, containerHeight) {
