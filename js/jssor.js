@@ -102,6 +102,14 @@ var $JssorDebug$ = new function () {
         }
     };
 
+    this.$C_AbstractProperty = function () {
+        ///	<summary>
+        ///		Tells compiler the property is abstract, it should be implemented by subclass.
+        ///	</summary>
+
+        throw new Error("The property is abstract, it should be implemented by subclass.");
+    };
+
     this.$C_AbstractMethod = function () {
         ///	<summary>
         ///		Tells compiler the method is abstract, it should be implemented by subclass.
@@ -1703,26 +1711,65 @@ var $Jssor$ = window.$Jssor$ = new function () {
         });
     };
 
-    _This.$InsertBefore = function (elmt, child, refObject) {
-        elmt.insertBefore(child, refObject);
+    _This.$InsertBefore = function (newNode, refNode, pNode) {
+        ///	<summary>
+        ///		Insert a node before a reference node
+        ///	</summary>
+        ///	<param name="newNode" type="HTMLElement">
+        ///		A new node to insert
+        ///	</param>
+        ///	<param name="refNode" type="HTMLElement">
+        ///		The reference node to insert a new node before
+        ///	</param>
+        ///	<param name="pNode" type="HTMLElement" optional="true">
+        ///		The parent node to insert node to
+        ///	</param>
+
+        (pNode || refNode.parentNode).insertBefore(newNode, refNode);
+    };
+
+    _This.$InsertAfter = function (newNode, refNode, pNode) {
+        ///	<summary>
+        ///		Insert a node after a reference node
+        ///	</summary>
+        ///	<param name="newNode" type="HTMLElement">
+        ///		A new node to insert
+        ///	</param>
+        ///	<param name="refNode" type="HTMLElement">
+        ///		The reference node to insert a new node after
+        ///	</param>
+        ///	<param name="pNode" type="HTMLElement" optional="true">
+        ///		The parent node to insert node to
+        ///	</param>
+
+        _This.$InsertBefore(newNode, refNode.nextSibling, pNode);
     };
 
     _This.$InsertAdjacentHtml = function (elmt, where, text) {
         elmt.insertAdjacentHTML(where, text);
     };
 
-    _This.$RemoveChild = function (elmt, child) {
-        elmt.removeChild(child);
+    _This.$RemoveElement = function (elmt, pNode) {
+        ///	<summary>
+        ///		Remove element from parent node
+        ///	</summary>
+        ///	<param name="elmt" type="HTMLElement">
+        ///		The element to remove
+        ///	</param>
+        ///	<param name="pNode" type="HTMLElement" optional="true">
+        ///		The parent node to remove elment from
+        ///	</param>
+        (pNode || elmt.parentNode).removeChild(elmt);
     };
 
-    _This.$RemoveChildren = function (elmt, children) {
-        each(children, function (child) {
-            _This.$RemoveChild(elmt, child);
+    _This.$RemoveElements = function (elmts, pNode) {
+        each(elmts, function (elmt) {
+            _This.$RemoveElement(elmt, pNode);
         });
     };
 
-    _This.$ClearChildren = function (elmt) {
-        _This.$RemoveChildren(elmt, _This.$Children(elmt));
+    _This.$Empty = function (elmt) {
+        _This.$RemoveElements(_This.$Children(elmt), elmt);
     };
 
     _This.$ParseInt = function (str, radix) {
@@ -1737,7 +1784,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$IsChild = function (elmtA, elmtB) {
         var body = document.body;
-        while (elmtB && elmtA != elmtB && body != elmtB) {
+
+        while (elmtB && elmtA !== elmtB && body !== elmtB) {
             try {
                 elmtB = elmtB.parentNode;
             } catch (e) {
@@ -1746,7 +1794,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 return false;
             }
         }
-        return elmtA == elmtB;
+
+        return elmtA === elmtB;
     };
 
     function CloneNode(elmt, noDeep, keepId) {
@@ -1866,7 +1915,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$LoadImage = function (src, callback) {
         var image = new Image();
 
-        function LoadImageCompleteHandler(abort) {
+        function LoadImageCompleteHandler(event, abort) {
             _This.$RemoveEvent(image, "load", LoadImageCompleteHandler);
             _This.$RemoveEvent(image, "abort", ErrorOrAbortHandler);
             _This.$RemoveEvent(image, "error", ErrorOrAbortHandler);
@@ -1875,8 +1924,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 callback(image, abort);
         }
 
-        function ErrorOrAbortHandler() {
-            LoadImageCompleteHandler(true);
+        function ErrorOrAbortHandler(event) {
+            LoadImageCompleteHandler(event, true);
         }
 
         if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
@@ -1897,6 +1946,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         var _ImageLoading = imageElmts.length + 1;
 
         function LoadImageCompleteEventHandler(image, abort) {
+
             _ImageLoading--;
             if (mainImageElmt && image && image.src == mainImageElmt.src)
                 mainImageElmt = image;
@@ -1924,9 +1974,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
             ClassName(replaceItem, ClassName(templateHolder));
             $Jssor$.$CssCssText(replaceItem, templateHolder.style.cssText);
 
-            var thumbnailPlaceHolderParent = $Jssor$.$ParentNode(templateHolder);
-            $Jssor$.$InsertBefore(thumbnailPlaceHolderParent, replaceItem, templateHolder);
-            $Jssor$.$RemoveChild(thumbnailPlaceHolderParent, templateHolder);
+            $Jssor$.$InsertBefore(replaceItem, templateHolder);
+            $Jssor$.$RemoveElement(templateHolder);
         }
 
         return template;

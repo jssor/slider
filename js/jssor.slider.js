@@ -1630,8 +1630,8 @@ new function () {
                     if (uAttribute == "caption") {
                         if (!$Jssor$.$IsBrowserIE() && !fresh) {
                             var captionElement = $Jssor$.$CloneNode(childElement, false, true);
-                            $Jssor$.$InsertBefore(elmt, captionElement, childElement);
-                            $Jssor$.$RemoveChild(elmt, childElement);
+                            $Jssor$.$InsertBefore(captionElement, childElement, elmt);
+                            $Jssor$.$RemoveElement(childElement, elmt);
                             childElement = captionElement;
 
                             fresh = true;
@@ -1793,7 +1793,7 @@ new function () {
 
             function UpdateLink() {
 
-                $Jssor$.$ClearChildren(_LinkContainer);
+                $Jssor$.$Empty(_LinkContainer);
 
                 if (_ShowLink && _IsSlideshowRunning && slideItem.$Link) {
                     $Jssor$.$AppendChild(_LinkContainer, slideItem.$Link);
@@ -2967,7 +2967,7 @@ new function () {
             $Jssor$.$CssZIndex(_SlidesContainer, $Jssor$.$CssZIndex(_SlidesContainer) || 0);
             $Jssor$.$CssPosition(_SlidesContainer, "absolute");
             _SlideshowPanel = $Jssor$.$CloneNode(_SlidesContainer, true);
-            $Jssor$.$InsertBefore($Jssor$.$ParentNode(_SlidesContainer), _SlideshowPanel, _SlidesContainer);
+            $Jssor$.$InsertBefore(_SlideshowPanel, _SlidesContainer);
 
             if (_SlideshowOptions) {
                 _ShowLink = _SlideshowOptions.$ShowLink;
@@ -3052,7 +3052,7 @@ new function () {
                     _LinkContainer = CreatePanel();
                     $Jssor$.$Css(_LinkContainer, "backgroundColor", "#000");
                     $Jssor$.$CssOpacity(_LinkContainer, 0);
-                    $Jssor$.$InsertBefore(_SlideboardElmt, _LinkContainer, _SlideboardElmt.firstChild);
+                    $Jssor$.$InsertBefore(_LinkContainer, _SlideboardElmt.firstChild, _SlideboardElmt);
                 }
 
                 for (var i = 0; i < _SlideElmts.length; i++) {
@@ -3346,7 +3346,7 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
         _PrototypeWidth = $Jssor$.$CssWidth(_ItemPrototype);
         _PrototypeHeight = $Jssor$.$CssHeight(_ItemPrototype);
 
-        $Jssor$.$RemoveChild(elmt, _ItemPrototype);
+        $Jssor$.$RemoveElement(_ItemPrototype, elmt);
 
         _Steps = _Options.$Steps || 1;
         _Lanes = _Options.$Lanes || 1;
@@ -3385,6 +3385,7 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         }
     });
 
+    var _Hide;
     var _Length;
     var _CurrentIndex;
     var _Options;
@@ -3398,7 +3399,9 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
 
     function ShowArrows(hide) {
         $Jssor$.$ShowElement(arrowLeft, hide || !options.$Loop && _CurrentIndex == 0);
-        $Jssor$.$ShowElement(arrowRight, hide || !options.$Loop && _CurrentIndex == _Length - 1);
+        $Jssor$.$ShowElement(arrowRight, hide || !options.$Loop && _CurrentIndex == _Length -1);
+
+        _Hide = hide;
     }
 
     self.$GetCurrentIndex = function () {
@@ -3412,7 +3415,7 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         else {
             _CurrentIndex = index;
 
-            ShowArrows();
+            ShowArrows(_Hide);
         }
         //self.$TriggerEvent($JssorNavigatorEvents$.$INDEXCHANGE, index);
     };
@@ -3682,7 +3685,7 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
         _PrototypeWidth = $Jssor$.$CssWidth(_ThumbnailPrototype);
         _PrototypeHeight = $Jssor$.$CssHeight(_ThumbnailPrototype);
 
-        $Jssor$.$RemoveChild(_SlidesContainer, _ThumbnailPrototype);
+        $Jssor$.$RemoveElement(_ThumbnailPrototype, _SlidesContainer);
 
         _Lanes = _Options.$Lanes || 1;
         _SpacingX = _Options.$SpacingX;
