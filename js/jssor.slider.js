@@ -1462,8 +1462,8 @@ new function () {
                 }
                 else {
                     var distance = Math.abs(slideIndex - currentIndex);
-                    var loadRange = _DisplayPieces + _Options.$LazyLoading;
-                    if (!_ImageLazyLoading || distance <= loadRange || _SlideCount - distance <= loadRange) {
+                    var loadRange = _DisplayPieces + _Options.$LazyLoading - 1;
+                    if (!_ImageLazyLoading || distance <= loadRange) {
                         _SelfSlideItem.$LoadImage();
                     }
                 }
@@ -2533,12 +2533,6 @@ new function () {
             if (dimension == undefined)
                 return $Jssor$.$CssWidth(elmt);
 
-            $JssorDebug$.$Execute(function () {
-                if (!dimension || dimension < 0) {
-                    $JssorDebug$.$Fail("'$ScaleWidth' error, 'dimension' should be positive value.");
-                }
-            });
-
             if (!_ScaleWrapper) {
                 $JssorDebug$.$Execute(function () {
                     var originalWidthStr = $Jssor$.$Css(elmt, "width");
@@ -2546,16 +2540,16 @@ new function () {
                     var originalWidth = $Jssor$.$CssP(elmt, "width");
                     var originalHeight = $Jssor$.$CssP(elmt, "height");
 
-                    if (!originalWidthStr) {
-                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'dimension' of 'outer container' not specified. Please specify 'dimension' in pixel. e.g. 'dimension: 600px;'");
+                    if (!originalWidthStr || originalWidthStr.indexOf("px") == -1) {
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not specified. Please specify 'width' in pixel. e.g. 'width: 600px;'");
                     }
 
-                    if (!originalHeightStr) {
+                    if (!originalHeightStr || originalHeightStr.indexOf("px") == -1) {
                         $JssorDebug$.$Fail("Cannot scale jssor slider, 'height' of 'outer container' not specified. Please specify 'height' in pixel. e.g. 'height: 300px;'");
                     }
 
                     if (originalWidthStr.indexOf('%') != -1) {
-                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'dimension' of 'outer container' not valid. Please specify 'dimension' in pixel. e.g. 'dimension: 600px;'");
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. Please specify 'width' in pixel. e.g. 'width: 600px;'");
                     }
 
                     if (originalHeightStr.indexOf('%') != -1) {
@@ -2563,7 +2557,7 @@ new function () {
                     }
 
                     if (!originalWidth) {
-                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'dimension' of 'outer container' not valid. 'dimension' of 'outer container' should be positive number. e.g. 'dimension: 600px;'");
+                        $JssorDebug$.$Fail("Cannot scale jssor slider, 'width' of 'outer container' not valid. 'width' of 'outer container' should be positive number. e.g. 'width: 600px;'");
                     }
 
                     if (!originalHeight) {
@@ -2609,6 +2603,12 @@ new function () {
                     $Jssor$.$AppendChild(noMoveElmts[$Jssor$.$AttributeEx(child, "u")] ? elmt : innerWrapper, child);
                 });
             }
+
+            $JssorDebug$.$Execute(function () {
+                if (!dimension || dimension < 0) {
+                    $JssorDebug$.$Fail("'$ScaleWidth' error, 'dimension' should be positive value.");
+                }
+            });
 
             $JssorDebug$.$Execute(function () {
                 if (!_InitialScrollWidth) {

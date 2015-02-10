@@ -685,12 +685,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$Delay = Delay;
 
     _This.$Inherit = function (instance, baseClass) {
-        baseClass.apply(instance, [].slice.call(arguments, 2));
+        baseClass.call(instance);
         return Extend({}, instance);
     };
 
     function Construct(instance) {
-        instance.constructor === Construct.caller && instance.$Construct && instance.$Construct();
+        instance.constructor === Construct.caller && instance.$Construct && instance.$Construct.apply(instance, Construct.caller.arguments);
     }
 
     _This.$Construct = Construct;
@@ -1742,7 +1742,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         ///		The parent node to insert node to
         ///	</param>
 
-        _This.$InsertBefore(newNode, refNode.nextSibling, pNode);
+        _This.$InsertBefore(newNode, refNode.nextSibling, pNode || refNode.parentNode);
     };
 
     _This.$InsertAdjacentHtml = function (elmt, where, text) {
@@ -2438,13 +2438,7 @@ var $JssorObject$ = window.$JssorObject$ = function () {
         var args = [].slice.call(arguments, 1);
 
         $Jssor$.$Each(_Listeners, function (listener) {
-            try {
-                listener.$EventName == eventName && listener.$Handler.apply(window, args);
-            } catch (e) {
-                // handler threw an error, ignore, go on to next one
-                $JssorDebug$.$Error(e.name + " while executing " + eventName +
-                        " handler: " + e.message, e);
-            }
+            listener.$EventName == eventName && listener.$Handler.apply(window, args);
         });
     };
 
