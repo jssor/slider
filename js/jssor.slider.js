@@ -1403,7 +1403,7 @@ new function () {
 
                         $Jssor$.$CssPosition(_ImageItem, "absolute");
 
-                        _SelfSlider.$TriggerEvent(JssorSlider.$EVT_LOAD_END, slideItem);
+                        _SelfSlider.$TriggerEvent(JssorSlider.$EVT_LOAD_END, slideIndex);
                     }
                 }
 
@@ -1507,7 +1507,7 @@ new function () {
 
                     if (!_ImageLoading) {
                         _ImageLoading = true;
-                        _SelfSlider.$TriggerEvent(JssorSlider.$EVT_LOAD_START);
+                        _SelfSlider.$TriggerEvent(JssorSlider.$EVT_LOAD_START, slideIndex);
 
                         $Jssor$.$Each(_ImageElmts, function (imageElmt) {
 
