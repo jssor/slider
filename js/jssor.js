@@ -264,13 +264,13 @@ var $JssorDirection$ = window.$JssorDirection$ = {
     $TO_BOTTOM: 0x0008,
     $HORIZONTAL: 0x0003,
     $VERTICAL: 0x000C,
-    $LEFTRIGHT: 0x0003,
-    $TOPBOTOM: 0x000C,
-    $TOPLEFT: 0x0005,
-    $TOPRIGHT: 0x0006,
-    $BOTTOMLEFT: 0x0009,
-    $BOTTOMRIGHT: 0x000A,
-    $AROUND: 0x000F,
+    //$LEFTRIGHT: 0x0003,
+    //$TOPBOTOM: 0x000C,
+    //$TOPLEFT: 0x0005,
+    //$TOPRIGHT: 0x0006,
+    //$BOTTOMLEFT: 0x0009,
+    //$BOTTOMRIGHT: 0x000A,
+    //$AROUND: 0x000F,
 
     $GetDirectionHorizontal: function (direction) {
         return direction & 0x0003;
@@ -278,29 +278,29 @@ var $JssorDirection$ = window.$JssorDirection$ = {
     $GetDirectionVertical: function (direction) {
         return direction & 0x000C;
     },
-    $ChessHorizontal: function (direction) {
-        return (~direction & 0x0003) + (direction & 0x000C);
-    },
-    $ChessVertical: function (direction) {
-        return (~direction & 0x000C) + (direction & 0x0003);
-    },
-    $IsToLeft: function (direction) {
-        return (direction & 0x0003) == 0x0001;
-    },
-    $IsToRight: function (direction) {
-        return (direction & 0x0003) == 0x0002;
-    },
-    $IsToTop: function (direction) {
-        return (direction & 0x000C) == 0x0004;
-    },
-    $IsToBottom: function (direction) {
-        return (direction & 0x000C) == 0x0008;
-    },
+    //$ChessHorizontal: function (direction) {
+    //    return (~direction & 0x0003) + (direction & 0x000C);
+    //},
+    //$ChessVertical: function (direction) {
+    //    return (~direction & 0x000C) + (direction & 0x0003);
+    //},
+    //$IsToLeft: function (direction) {
+    //    return (direction & 0x0003) == 0x0001;
+    //},
+    //$IsToRight: function (direction) {
+    //    return (direction & 0x0003) == 0x0002;
+    //},
+    //$IsToTop: function (direction) {
+    //    return (direction & 0x000C) == 0x0004;
+    //},
+    //$IsToBottom: function (direction) {
+    //    return (direction & 0x000C) == 0x0008;
+    //},
     $IsHorizontal: function (direction) {
-        return (direction & 0x0003) > 0;
+        return direction & 0x0003;
     },
     $IsVertical: function (direction) {
-        return (direction & 0x000C) > 0;
+        return direction & 0x000C;
     }
 };
 
@@ -329,82 +329,79 @@ var $JssorKeyCode$ = {
     $UP: 38
 };
 
-var $JssorAlignment$ = {
-    $TopLeft: 0x11,
-    $TopCenter: 0x12,
-    $TopRight: 0x14,
-    $MiddleLeft: 0x21,
-    $MiddleCenter: 0x22,
-    $MiddleRight: 0x24,
-    $BottomLeft: 0x41,
-    $BottomCenter: 0x42,
-    $BottomRight: 0x44,
-
-    $IsTop: function (aligment) {
-        return aligment & 0x10 > 0;
-    },
-    $IsMiddle: function (alignment) {
-        return alignment & 0x20 > 0;
-    },
-    $IsBottom: function (alignment) {
-        return alignment & 0x40 > 0;
-    },
-    $IsLeft: function (alignment) {
-        return alignment & 0x01 > 0;
-    },
-    $IsCenter: function (alignment) {
-        return alignment & 0x02 > 0;
-    },
-    $IsRight: function (alignment) {
-        return alignment & 0x04 > 0;
-    }
-};
-
-var $JssorMatrix$;
-
-var $JssorAnimator$;
+//var $JssorAlignment$ = {
+//    $TopLeft: 0x11,
+//    $TopCenter: 0x12,
+//    $TopRight: 0x14,
+//    $MiddleLeft: 0x21,
+//    $MiddleCenter: 0x22,
+//    $MiddleRight: 0x24,
+//    $BottomLeft: 0x41,
+//    $BottomCenter: 0x42,
+//    $BottomRight: 0x44,
+//    $IsTop: function (aligment) {
+//        return aligment & 0x10 > 0;
+//    },
+//    $IsMiddle: function (alignment) {
+//        return alignment & 0x20 > 0;
+//    },
+//    $IsBottom: function (alignment) {
+//        return alignment & 0x40 > 0;
+//    },
+//    $IsLeft: function (alignment) {
+//        return alignment & 0x01 > 0;
+//    },
+//    $IsCenter: function (alignment) {
+//        return alignment & 0x02 > 0;
+//    },
+//    $IsRight: function (alignment) {
+//        return alignment & 0x04 > 0;
+//    }
+//};
 
 // $Jssor$ is a static class, so make it singleton instance
 var $Jssor$ = window.$Jssor$ = new function () {
-    // Fields
     var _This = this;
 
+    //#region Constants
     var REGEX_WHITESPACE_GLOBAL = /\S+/g;
-
     var ROWSER_UNKNOWN = 0;
     var BROWSER_IE = 1;
     var BROWSER_FIREFOX = 2;
-    var BROWSER_FIREFOX = 3;
+    var BROWSER_SAFARI = 3;
     var BROWSER_CHROME = 4;
     var BROWSER_OPERA = 5;
 
     //var arrActiveX = ["Msxml2.XMLHTTP", "Msxml3.XMLHTTP", "Microsoft.XMLHTTP"];
+    //#endregion
 
-    var browser = 0;
-    var browserRuntimeVersion = 0;
-    var browserEngineVersion = 0;
-    var browserJavascriptVersion = 0;
-    var webkitVersion = 0;
+    //#region Variables
+    var _Browser = 0;
+    var _BrowserRuntimeVersion = 0;
+    var _BrowserEngineVersion = 0;
+    var _BrowserJavascriptVersion = 0;
+    var _WebkitVersion = 0;
 
-    var app = navigator.appName;
-    var ver = navigator.appVersion;
-    var ua = navigator.userAgent;
+    var _AppName = navigator.appName;
+    var _AppVersion = navigator.appVersion;
+    var _UserAgent = navigator.userAgent;
 
     var _DocElmt = document.documentElement;
     var _TransformProperty;
+    //#endregion
 
-    function DetectBrowser() {
-        if (!browser) {
-            if (app == "Microsoft Internet Explorer" &&
+    function DetectBrowser(browser) {
+        if (!_Browser) {
+            if (_AppName == "Microsoft Internet Explorer" &&
                 !!window.attachEvent && !!window.ActiveXObject) {
 
-                var ieOffset = ua.indexOf("MSIE");
-                browser = BROWSER_IE;
-                browserEngineVersion = ParseFloat(ua.substring(ieOffset + 5, ua.indexOf(";", ieOffset)));
+                var ieOffset = _UserAgent.indexOf("MSIE");
+                _Browser = BROWSER_IE;
+                _BrowserEngineVersion = ParseFloat(_UserAgent.substring(ieOffset + 5, _UserAgent.indexOf(";", ieOffset)));
 
                 //check IE javascript version
                 /*@cc_on
-                browserJavascriptVersion = @_jscript_version;
+                _BrowserJavascriptVersion = @_jscript_version;
                 @*/
 
                 // update: for intranet sites and compat view list sites, IE sends
@@ -413,77 +410,74 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 // IE7 UA to JS. we should be robust to self
                 //var docMode = document.documentMode;
                 //if (typeof docMode !== "undefined") {
-                //    browserRuntimeVersion = docMode;
+                //    _BrowserRuntimeVersion = docMode;
                 //}
 
-                browserRuntimeVersion = document.documentMode || browserEngineVersion;
+                _BrowserRuntimeVersion = document.documentMode || _BrowserEngineVersion;
 
             }
-            else if (app == "Netscape" && !!window.addEventListener) {
+            else if (_AppName == "Netscape" && !!window.addEventListener) {
 
-                var ffOffset = ua.indexOf("Firefox");
-                var saOffset = ua.indexOf("Safari");
-                var chOffset = ua.indexOf("Chrome");
-                var webkitOffset = ua.indexOf("AppleWebKit");
+                var ffOffset = _UserAgent.indexOf("Firefox");
+                var saOffset = _UserAgent.indexOf("Safari");
+                var chOffset = _UserAgent.indexOf("Chrome");
+                var webkitOffset = _UserAgent.indexOf("AppleWebKit");
 
                 if (ffOffset >= 0) {
-                    browser = BROWSER_FIREFOX;
-                    browserRuntimeVersion = ParseFloat(ua.substring(ffOffset + 8));
+                    _Browser = BROWSER_FIREFOX;
+                    _BrowserRuntimeVersion = ParseFloat(_UserAgent.substring(ffOffset + 8));
                 }
                 else if (saOffset >= 0) {
-                    var slash = ua.substring(0, saOffset).lastIndexOf("/");
-                    browser = (chOffset >= 0) ? BROWSER_CHROME : BROWSER_FIREFOX;
-                    browserRuntimeVersion = ParseFloat(ua.substring(slash + 1, saOffset));
+                    var slash = _UserAgent.substring(0, saOffset).lastIndexOf("/");
+                    _Browser = (chOffset >= 0) ? BROWSER_CHROME : BROWSER_SAFARI;
+                    _BrowserRuntimeVersion = ParseFloat(_UserAgent.substring(slash + 1, saOffset));
                 }
 
                 if (webkitOffset >= 0)
-                    webkitVersion = ParseFloat(ua.substring(webkitOffset + 12));
+                    _WebkitVersion = ParseFloat(_UserAgent.substring(webkitOffset + 12));
             }
             else {
-                var match = /(opera)(?:.*version|)[ \/]([\w.]+)/i.exec(ua);
+                var match = /(opera)(?:.*version|)[ \/]([\w.]+)/i.exec(_UserAgent);
                 if (match) {
-                    browser = BROWSER_OPERA;
-                    browserRuntimeVersion = ParseFloat(match[2]);
+                    _Browser = BROWSER_OPERA;
+                    _BrowserRuntimeVersion = ParseFloat(match[2]);
                 }
             }
         }
+
+        return browser == _Browser;
     }
 
     function IsBrowserIE() {
-        DetectBrowser();
-        return browser == BROWSER_IE;
+        return DetectBrowser(BROWSER_IE);
     }
 
     function IsBrowserIeQuirks() {
-        return IsBrowserIE() && (browserRuntimeVersion < 6 || document.compatMode == "BackCompat");   //Composite to "CSS1Compat"
+        return IsBrowserIE() && (_BrowserRuntimeVersion < 6 || document.compatMode == "BackCompat");   //Composite to "CSS1Compat"
     }
 
     function IsBrowserFireFox() {
-        DetectBrowser();
-        return browser == BROWSER_FIREFOX;
+        return DetectBrowser(BROWSER_FIREFOX);
     }
 
     function IsBrowserSafari() {
-        DetectBrowser();
-        return browser == BROWSER_FIREFOX;
+        return DetectBrowser(BROWSER_SAFARI);
     }
 
     function IsBrowserChrome() {
-        DetectBrowser();
-        return browser == BROWSER_CHROME;
+        return DetectBrowser(BROWSER_CHROME);
     }
 
     function IsBrowserOpera() {
-        DetectBrowser();
-        return browser == BROWSER_OPERA;
+        return DetectBrowser(BROWSER_OPERA);
     }
 
     function IsBrowserBadTransform() {
-        return IsBrowserSafari() && (webkitVersion > 534) && (webkitVersion < 535);
+        return IsBrowserSafari() && (_WebkitVersion > 534) && (_WebkitVersion < 535);
     }
 
     function IsBrowserIe9Earlier() {
-        return IsBrowserIE() && browserRuntimeVersion < 9;
+        return IsBrowserIE() && _BrowserRuntimeVersion < 9;
     }
 
     function GetTransformProperty(elmt) {
@@ -625,14 +619,14 @@ var $Jssor$ = window.$Jssor$ = new function () {
     }
 
     function SetStyleFilterIE(elmt, value) {
-        if (browserRuntimeVersion < 9) {
+        if (_BrowserRuntimeVersion < 9) {
             elmt.style.filter = value;
         }
     }
 
     function SetStyleMatrixIE(elmt, matrix, offset) {
         //matrix is not for ie9+ running in ie8- mode
-        if (browserJavascriptVersion < 9) {
+        if (_BrowserJavascriptVersion < 9) {
             var oldFilterValue = elmt.style.filter;
             var matrixReg = new RegExp(/[\s]*progid:DXImageTransform\.Microsoft\.Matrix\([^\)]*\)/g);
             var matrixValue = matrix ? "progid:DXImageTransform.Microsoft.Matrix(" + "M11=" + matrix[0][0] + ", M12=" + matrix[0][1] + ", M21=" + matrix[1][0] + ", M22=" + matrix[1][1] + ", SizingMethod='auto expand')" : "";
@@ -649,7 +643,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     // Methods
 
     //_This.$IsTouchDevice = function () {
-    //    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    //    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(_UserAgent);
     //};
 
     _This.$IsBrowserIE = IsBrowserIE;
@@ -669,17 +663,17 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$IsBrowserIe9Earlier = IsBrowserIe9Earlier;
 
     _This.$BrowserVersion = function () {
-        return browserRuntimeVersion;
+        return _BrowserRuntimeVersion;
     };
 
     _This.$BrowserEngineVersion = function () {
-        return browserEngineVersion || browserRuntimeVersion;
+        return _BrowserEngineVersion || _BrowserRuntimeVersion;
     };
 
     _This.$WebKitVersion = function () {
         DetectBrowser();
 
-        return webkitVersion;
+        return _WebkitVersion;
     };
 
     _This.$Delay = Delay;
@@ -714,7 +708,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return event.target || event.srcElement || document;
     };
 
-    _This.$EventDst = function (event) {
+    _This.$EventTarget = function (event) {
         event = GetEvent(event);
         return event.relatedTarget || event.toElement;
     };
@@ -962,7 +956,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     }
 
     function GetStyleOpacity(elmt) {
-        if (IsBrowserIE() && browserEngineVersion < 9) {
+        if (IsBrowserIE() && _BrowserEngineVersion < 9) {
             var match = /opacity=([^)]*)/.exec(elmt.style.filter || "");
             return match ? (ParseFloat(match[1]) / 100) : 1;
         }
@@ -972,8 +966,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     function SetStyleOpacity(elmt, opacity, ie9EarlierForce) {
 
-        if (IsBrowserIE() && browserEngineVersion < 9) {
-            //var filterName = "filter"; // browserEngineVersion < 8 ? "filter" : "-ms-filter";
+        if (IsBrowserIE() && _BrowserEngineVersion < 9) {
+            //var filterName = "filter"; // _BrowserEngineVersion < 8 ? "filter" : "-ms-filter";
             var finalFilter = elmt.style.filter || "";
 
             // for CSS filter browsers (IE), remove alpha filter if it's unnecessary.
@@ -997,7 +991,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             SetStyleFilterIE(elmt, newFilterValue);
         }
 
-            //if (!IsBrowserIE() || browserEngineVersion >= 9) 
+            //if (!IsBrowserIE() || _BrowserEngineVersion >= 9) 
         else {
             elmt.style.opacity = opacity == 1 ? "" : Math.round(opacity * 100) / 100;
         }
@@ -1018,7 +1012,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 var transformValue = "rotate(" + rotate % 360 + "deg) scale(" + scale + ")";
 
                 //needed for touch device, no need for desktop device
-                if (IsBrowserChrome() && webkitVersion > 535 && "ontouchstart" in window)
+                if (IsBrowserChrome() && _WebkitVersion > 535 && "ontouchstart" in window)
                     transformValue += " perspective(2000px)";
 
                 elmt.style[transformProperty] = transformValue;
@@ -1044,7 +1038,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$CssScale = function (elmt, scale) {
 
-        if (IsBrowserIE() && browserEngineVersion < 9 || (browserEngineVersion < 10 && IsBrowserIeQuirks())) {
+        if (IsBrowserIE() && _BrowserEngineVersion < 9 || (_BrowserEngineVersion < 10 && IsBrowserIeQuirks())) {
             elmt.style.zoom = (scale == 1) ? "" : scale;
         }
         else {
@@ -1107,7 +1101,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     //_This.$OnWindowResize = function (window, handler) {
 
-    //    if (IsBrowserIE() && browserEngineVersion < 9) {
+    //    if (IsBrowserIE() && _BrowserEngineVersion < 9) {
     //        if (!ie8WindowResizeCallbackHandlers) {
     //            ie8WindowResizeCallbackHandlers = [handler];
     //            handler = _This.$CreateCallback(null, Ie8WindowResizeFilter, window);
@@ -1312,23 +1306,23 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return callback;
     };
 
-    var _Freeer;
-    _This.$FreeElement = function (elmt) {
-        if (!_Freeer)
-            _Freeer = _This.$CreateDiv();
+    //var _Freeer;
+    //_This.$FreeElement = function (elmt) {
+    //    if (!_Freeer)
+    //        _Freeer = _This.$CreateDiv();
 
-        if (elmt) {
-            $Jssor$.$AppendChild(_Freeer, elmt);
-            $Jssor$.$ClearInnerHtml(_Freeer);
-        }
-    };
+    //    if (elmt) {
+    //        $Jssor$.$AppendChild(_Freeer, elmt);
+    //        $Jssor$.$ClearInnerHtml(_Freeer);
+    //    }
+    //};
 
     _This.$InnerText = function (elmt, text) {
         if (text == undefined)
             return elmt.textContent || elmt.innerText;
 
         var textNode = document.createTextNode(text);
-        _This.$ClearInnerHtml(elmt);
+        _This.$Empty(elmt);
         elmt.appendChild(textNode);
     };
 
@@ -1674,7 +1668,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$CanClearClip = function () {
-        return IsBrowserIE() && browserRuntimeVersion < 10;
+        return IsBrowserIE() && _BrowserRuntimeVersion < 10;
     };
 
     _This.$SetStyleClip = function (elmt, clip) {
@@ -1776,9 +1770,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return parseInt(str, radix || 10);
     };
 
-    function ParseFloat(str) {
-        return parseFloat(str);
-    }
+    var ParseFloat = parseFloat;
 
     _This.$ParseFloat = ParseFloat;
 
@@ -1877,7 +1869,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //    function LoadImage(src) {
     //        _ImageLoading++;
 
-    //        if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
+    //        if (IsBrowserOpera() && _BrowserRuntimeVersion < 11.6 || !src) {
     //            LoadImageCallback(callback, null, !src);
     //        }
     //        else {
@@ -1928,7 +1920,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             LoadImageCompleteHandler(event, true);
         }
 
-        if (IsBrowserOpera() && browserRuntimeVersion < 11.6 || !src) {
+        if (IsBrowserOpera() && _BrowserRuntimeVersion < 11.6 || !src) {
             LoadImageCompleteHandler(!src);
         }
         else {
@@ -2185,7 +2177,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
         _This.$SetStyles(elmt, styles);
     };
 
-    $JssorMatrix$ = new function () {
+    var $JssorMatrix$ = new function () {
         var _ThisMatrix = this;
 
         function Multiply(ma, mb) {
@@ -2255,14 +2247,15 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return Point(Math.min(p1.x, p2.x, p3.x, p4.x) + width / 2, Math.min(p1.y, p2.y, p3.y, p4.y) + height / 2);
     };
 
-    _This.$Transform = function (fromStyles, toStyles, interPosition, easings, durings, rounds, options) {
+    _This.$Cast = function (fromStyles, difStyles, interPosition, easings, durings, rounds, options) {
 
-        var currentStyles = toStyles;
+        var currentStyles = difStyles;
 
         if (fromStyles) {
             currentStyles = {};
 
-            for (var key in toStyles) {
+            for (var key in difStyles) {
+
                 var round = rounds[key] || 1;
                 var during = durings[key] || [0, 1];
                 var propertyInterPosition = (interPosition - during[0]) / during[1];
@@ -2272,19 +2265,20 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 if (propertyInterPosition != floorPosition)
                     propertyInterPosition -= floorPosition;
 
-                var easing = easings[key] || easings.$Default;
+                var easing = easings[key] || easings.$Default || $JssorEasing$.$EaseSwing;
                 var easingValue = easing(propertyInterPosition);
                 var currentPropertyValue;
                 var value = fromStyles[key];
-                var toValue = toStyles[key];
+                var toValue = difStyles[key];
+                var difValue = difStyles[key];
 
-                if ($Jssor$.$IsNumeric(toValue)) {
-                    currentPropertyValue = value + (toValue - value) * easingValue;
+                if ($Jssor$.$IsNumeric(difValue)) {
+                    currentPropertyValue = value + difValue * easingValue;
                 }
                 else {
                     currentPropertyValue = $Jssor$.$Extend({ $Offset: {} }, fromStyles[key]);
 
-                    $Jssor$.$Each(toValue.$Offset, function (rectX, n) {
+                    $Jssor$.$Each(difValue.$Offset, function (rectX, n) {
                         var offsetValue = rectX * easingValue;
                         currentPropertyValue.$Offset[n] = offsetValue;
                         currentPropertyValue[n] += offsetValue;
@@ -2293,12 +2287,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 currentStyles[key] = currentPropertyValue;
             }
 
-            if (fromStyles.$Zoom) {
+            if (difStyles.$Zoom || difStyles.$Rotate) {
                 currentStyles.$Transform = { $Rotate: currentStyles.$Rotate || 0, $Scale: currentStyles.$Zoom, $OriginalWidth: options.$OriginalWidth, $OriginalHeight: options.$OriginalHeight };
             }
         }
 
-        if (toStyles.$Clip && options.$Move) {
+        if (difStyles.$Clip && options.$Move) {
             var styleFrameNClipOffset = currentStyles.$Clip.$Offset;
 
             var offsetY = (styleFrameNClipOffset.$Top || 0) + (styleFrameNClipOffset.$Bottom || 0);
@@ -2320,7 +2314,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 };
 
 //$JssorObject$
-var $JssorObject$ = window.$JssorObject$ = function () {
+function $JssorObject$() {
     var _ThisObject = this;
     // Fields
 
@@ -2453,7 +2447,7 @@ var $JssorObject$ = window.$JssorObject$ = function () {
     $JssorDebug$.$C_AbstractClass(_ThisObject);
 };
 
-$JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles) {
+function $JssorAnimator$(delay, duration, options, elmt, fromStyles, difStyles) {
     delay = delay || 0;
 
     var _ThisAnimator = this;
@@ -2514,10 +2508,6 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
         _Position_Display += offset;
 
         _Shift = offset;
-
-        //$Jssor$.$Each(_NestedAnimators, function (animator) {
-        //    animator, animator.$Shift(offset);
-        //});
     }
 
     function Locate(position, relative) {
@@ -2548,18 +2538,14 @@ $JssorAnimator$ = function (delay, duration, options, elmt, fromStyles, toStyles
             positionToDisplay = Math.max(positionToDisplay, _Position_OuterBegin);
 
             if (!_Hooked || _NoStop || force || positionToDisplay != _Position_Display) {
-                if (toStyles) {
+                if (difStyles) {
 
                     var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
-
-                    //if (options.$Optimize && $Jssor$.$IsBrowserChrome() && duration) {
-                    //    interPosition = Math.round(interPosition / 8 * duration) * 8 / duration;
-                    //}
 
                     if (options.$Reverse)
                         interPosition = 1 - interPosition;
 
-                    var currentStyles = $Jssor$.$Transform(fromStyles, toStyles, interPosition, _SubEasings, _SubDurings, _SubRounds, options);
+                    var currentStyles = $Jssor$.$Cast(fromStyles, difStyles, interPosition, _SubEasings, _SubDurings, _SubRounds, options);
 
                     $Jssor$.$Each(currentStyles, function (value, key) {
                         _StyleSetter[key] && _StyleSetter[key](elmt, value);

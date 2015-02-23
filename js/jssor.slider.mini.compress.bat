@@ -13,7 +13,7 @@ SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ArrowNavigatorOptions,$Scale
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$ThumbnailNavigatorOptions,$DisableDrag
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$SlideshowOptions,$Transitions,$TransitionsOrder,$ShowLink
 SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$CaptionSliderOptions,$CaptionTransitions,$PlayInMode,$PlayOutMode
-SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorSlideshowFormations$,$JssorSlideshowRunner$,$JssorBulletNavigator$,$JssorArrowNavigator$,$JssorThumbnailNavigator$,$JssorCaptionSlider$
+SET RESERVE_MEMBERNAMES3=%RESERVE_MEMBERNAMES3%,$JssorEasing$,$JssorSlider$,$JssorSlideo$,$JssorSlideshowFormations$,$JssorSlideshowRunner$,$JssorBulletNavigator$,$JssorArrowNavigator$,$JssorThumbnailNavigator$,$JssorCaptionSlider$,$JssorCaptionSlideo$
 
 SET RESERVE_MEMBERS=%RESERVE_MEMBERNAMES%
 SET RESERVE_MEMBERS2=%RESERVE_MEMBERNAMES2%
