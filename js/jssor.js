@@ -376,19 +376,54 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //#endregion
 
     //#region Variables
+    var _Device;
     var _Browser = 0;
     var _BrowserRuntimeVersion = 0;
     var _BrowserEngineVersion = 0;
     var _BrowserJavascriptVersion = 0;
     var _WebkitVersion = 0;
 
-    var _AppName = navigator.appName;
-    var _AppVersion = navigator.appVersion;
-    var _UserAgent = navigator.userAgent;
+    var _Navigator = navigator;
+    var _AppName = _Navigator.appName;
+    var _AppVersion = _Navigator.appVersion;
+    var _UserAgent = _Navigator.userAgent;
 
     var _DocElmt = document.documentElement;
     var _TransformProperty;
     //#endregion
+
+    function Device() {
+        if (!_Device) {
+            _Device = {
+                $Evt_Down: "mousedown",
+                $Evt_Move: "mousemove",
+                $Evt_Up: "mouseup"
+            };
+            var msPrefix;
+            if (_Navigator.pointerEnabled || (msPrefix = _Navigator.msPointerEnabled)) {
+                _Device = {
+                    $Evt_Down: msPrefix ? "MSPointerDown" : "pointerdown",
+                    $Evt_Move: msPrefix ? "MSPointerMove" : "pointermove",
+                    $Evt_Up: msPrefix ? "MSPointerUp" : "pointerup",
+                    $Evt_Cancel: msPrefix ? "MSPointerCancel" : "pointercancel",
+                    $TouchActionAttr: msPrefix ? "msTouchAction" : "touchAction",
+                    $Touchable: true
+                };
+            }
+            else if ("ontouchstart" in window || "createTouch" in document) {
+                _Device = {
+                    $Evt_Down: "touchstart",
+                    $Evt_Move: "touchmove",
+                    $Evt_Up: "touchend",
+                    $Evt_Cancel: "touchcancel",
+                    $Touchable: true,
+                    $TouchOnly: true
+                };
+            }
+        }
+
+        return _Device;
+    }
 
     function DetectBrowser(browser) {
         if (!_Browser) {
@@ -645,6 +680,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //_This.$IsTouchDevice = function () {
     //    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(_UserAgent);
     //};
+
+    _This.$Device = Device;
 
     _This.$IsBrowserIE = IsBrowserIE;
 
@@ -1246,13 +1283,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     };
 
-    _This.$AddEventBrowserMouseUp = function (handler, userCapture) {
-        _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
-    };
+    //_This.$AddEventBrowserMouseUp = function (handler, userCapture) {
+    //    _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
+    //};
 
-    _This.$RemoveEventBrowserMouseUp = function (handler, userCapture) {
-        _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
-    };
+    //_This.$RemoveEventBrowserMouseUp = function (handler, userCapture) {
+    //    _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
+    //};
 
     //_This.$AddEventBrowserMouseDown = function (handler, userCapture) {
     //    _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
@@ -1384,11 +1421,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
         }
     };
 
-    _This.$Children = function (elmt) {
+    _This.$Children = function (elmt, includeAll) {
         var children = [];
 
         for (var tmpEl = elmt.firstChild; tmpEl; tmpEl = tmpEl.nextSibling) {
-            if (tmpEl.nodeType == 1) {
+            if (includeAll || tmpEl.nodeType == 1) {
                 children.push(tmpEl);
             }
         }
@@ -1763,7 +1800,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$Empty = function (elmt) {
-        _This.$RemoveElements(_This.$Children(elmt), elmt);
+        _This.$RemoveElements(_This.$Children(elmt, true), elmt);
     };
 
     _This.$ParseInt = function (str, radix) {
@@ -1973,7 +2010,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return template;
     };
 
-    var _MouseDownButtons;
     function JssorButtonEx(elmt) {
         var _Self = this;
 
@@ -2002,29 +2038,29 @@ var $Jssor$ = window.$Jssor$ = new function () {
             ClassName(elmt, className);
         }
 
-        function OnMouseDown(event) {
+        function MouseUpOrCancelEventHandler(event) {
+            _IsMouseDown = false;
+
+            Highlight();
+
+            _This.$RemoveEvent(document, Device().$Evt_Up, MouseUpOrCancelEventHandler);
+            Device().$Evt_Cancel && _This.$RemoveEvent(document, Device().$Evt_Cancel, MouseUpOrCancelEventHandler);
+        }
+
+        function MouseDownEventHandler(event) {
             if (_IsDisabled) {
                 _This.$CancelEvent(event);
             }
             else {
-                _MouseDownButtons.push(_Self);
 
                 _IsMouseDown = true;
 
                 Highlight();
+
+                _This.$AddEvent(document, Device().$Evt_Up, MouseUpOrCancelEventHandler);
+                Device().$Evt_Cancel && _This.$AddEvent(document, Device().$Evt_Cancel, MouseUpOrCancelEventHandler);
             }
         }
-
-        _Self.$MouseUp = function () {
-            ///	<summary>
-            ///		Internal member function, do not use it.
-            ///	</summary>
-            ///	<private />
-
-            _IsMouseDown = false;
-
-            Highlight();
-        };
 
         _Self.$Selected = function (activate) {
             if (activate != undefined) {
@@ -2052,22 +2088,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
         {
             elmt = _This.$GetElement(elmt);
 
-            if (!_MouseDownButtons) {
-                _This.$AddEventBrowserMouseUp(function () {
-                    var oldMouseDownButtons = _MouseDownButtons;
-                    _MouseDownButtons = [];
-
-                    each(oldMouseDownButtons, function (button) {
-                        button.$MouseUp();
-                    });
-                });
-
-                _MouseDownButtons = [];
-            }
-
             _OriginClassName = ClassName(elmt);
 
-            $Jssor$.$AddEvent(elmt, "mousedown", OnMouseDown);
+            $Jssor$.$AddEvent(elmt, Device().$Evt_Down, MouseDownEventHandler);
         }
     }
 

@@ -2821,9 +2821,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
     var _DragOrientationRegistered;
     var _DragInvalid;
 
-    var _HandleTouchEventOnly;
-    var _IsTouchDevice;
-
     var _Navigators = [];
     var _BulletNavigator;
     var _ArrowNavigator;
@@ -2916,10 +2913,14 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         var _SlideshowRunner;
         var _LinkContainer;
 
-        var _DownEvent = "mousedown";
-        var _MoveEvent = "mousemove";
-        var _UpEvent = "mouseup";
-        var _CancelEvent;
+        var _Device = $Jssor$.$Device();
+        var _DownEvent = _Device.$Evt_Down;
+        var _MoveEvent = _Device.$Evt_Move;
+        var _UpEvent = _Device.$Evt_Up;
+        var _CancelEvent = _Device.$Evt_Cancel;
+
+        var _HandleTouchEventOnly = _Device.$TouchOnly;
+        var _IsTouchDevice = _Device.$Touchable;
 
         var _LastTimeMoveByDrag;
         var _Position_OnFreeze;
@@ -2929,15 +2930,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
         //SlideBoard Constructor
         {
-            var msPrefix;
-            if (window.navigator.pointerEnabled || (msPrefix = window.navigator.msPointerEnabled)) {
-                _IsTouchDevice = true;
-
-                _DownEvent = msPrefix ? "MSPointerDown" : "pointerdown";
-                _MoveEvent = msPrefix ? "MSPointerMove" : "pointermove";
-                _UpEvent = msPrefix ? "MSPointerUp" : "pointerup";
-                _CancelEvent = msPrefix ? "MSPointerCancel" : "pointercancel";
-
+            if (_Device.$TouchActionAttr) {
                 if (_DragEnabled) {
                     var touchAction = "auto";
                     if (_DragEnabled == 2) {
@@ -2947,17 +2940,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                         touchAction = "pan-y";
                     }
 
-                    $Jssor$.$Css(_SlideboardElmt, msPrefix ? "msTouchAction" : "touchAction", touchAction);
+                    $Jssor$.$Css(_SlideboardElmt, _Device.$TouchActionAttr, touchAction);
                 }
-            }
-            else if ("ontouchstart" in window || "createTouch" in document) {
-                _HandleTouchEventOnly = true;
-                _IsTouchDevice = true;
-
-                _DownEvent = "touchstart";
-                _MoveEvent = "touchmove";
-                _UpEvent = "touchend";
-                _CancelEvent = "touchcancel";
             }
 
             _Slideshow = new Slideshow();
