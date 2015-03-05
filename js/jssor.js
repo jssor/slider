@@ -407,7 +407,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
                     $Evt_Up: msPrefix ? "MSPointerUp" : "pointerup",
                     $Evt_Cancel: msPrefix ? "MSPointerCancel" : "pointercancel",
                     $TouchActionAttr: msPrefix ? "msTouchAction" : "touchAction",
-                    $Touchable: true
+                    $Touchable: _UserAgent.match(/iemobile/i)
                 };
             }
             else if ("ontouchstart" in window || "createTouch" in document) {

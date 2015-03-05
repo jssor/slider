@@ -573,7 +573,7 @@ var $JssorSlideshowFormations$ = window.$JssorSlideshowFormations$ = new functio
     };
 };
 
-var $JssorSlideshowRunner$ = window.$JssorSlideshowRunner$ = function (slideContainer, slideContainerWidth, slideContainerHeight, slideshowOptions, handleTouchEventOnly) {
+var $JssorSlideshowRunner$ = window.$JssorSlideshowRunner$ = function (slideContainer, slideContainerWidth, slideContainerHeight, slideshowOptions, isTouchDevice) {
 
     var _SelfSlideshowRunner = this;
 
@@ -1034,7 +1034,7 @@ var $JssorSlideshowRunner$ = window.$JssorSlideshowRunner$ = function (slideCont
 
     //Constructor
     {
-        if ($Jssor$.$IsBrowserIe9Earlier() || $Jssor$.$IsBrowserOpera() || (handleTouchEventOnly && $Jssor$.$WebKitVersion() < 537)) {
+        if ($Jssor$.$IsBrowserIe9Earlier() || $Jssor$.$IsBrowserOpera() || (isTouchDevice && $Jssor$.$WebKitVersion() < 537)) {
             _SlideshowPerformance = 16;
         }
 
@@ -2947,7 +2947,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             _Slideshow = new Slideshow();
 
             if (_SlideshowEnabled)
-                _SlideshowRunner = new _SlideshowRunnerClass(_SlideContainer, _SlideWidth, _SlideHeight, _SlideshowOptions, _HandleTouchEventOnly);
+                _SlideshowRunner = new _SlideshowRunnerClass(_SlideContainer, _SlideWidth, _SlideHeight, _SlideshowOptions, _IsTouchDevice);
 
             $Jssor$.$AppendChild(_SlideshowPanel, _Slideshow.$Wrapper);
             $Jssor$.$CssOverflow(_SlidesContainer, "hidden");
