@@ -2998,6 +2998,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         //Arrow Navigator
         if (_ArrowNavigatorOptions && _ArrowLeft && _ArrowRight) {
             _ArrowNavigatorOptions.$Loop = _Loop;
+            _ArrowNavigatorOptions.$DisplayPieces = _DisplayPieces;
             _ArrowNavigator = new _ArrowNavigatorOptions.$Class(_ArrowLeft, _ArrowRight, _ArrowNavigatorOptions, OriginalWidth(), OriginalHeight());
             _Navigators.push(_ArrowNavigator);
         }
@@ -3292,7 +3293,7 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
 
     function ShowArrows(hide) {
         $Jssor$.$ShowElement(arrowLeft, hide || !options.$Loop && _CurrentIndex == 0);
-        $Jssor$.$ShowElement(arrowRight, hide || !options.$Loop && _CurrentIndex == _Length -1);
+        $Jssor$.$ShowElement(arrowRight, hide || !options.$Loop && _CurrentIndex >= _Length - options.$DisplayPieces);
 
         _Hide = hide;
     }
