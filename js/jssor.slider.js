@@ -1405,13 +1405,35 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             }
         }
 
-        function LinkClickEventHandler(event) {
+        function ContentClickEventHandler(event) {
             if (_LastDragSucceded) {
-                $Jssor$.$CancelEvent(event);
+                $Jssor$.$StopEvent(event);
+
+                var checkElement = $Jssor$.$EventSrc(event);
+                while (checkElement && slideElmt !== checkElement) {
+                    if (checkElement.tagName == "A") {
+                        $Jssor$.$CancelEvent(event);
+                    }
+                    try {
+                        checkElement = checkElement.parentNode;
+                    } catch (e) {
+                        // Firefox sometimes fires events for XUL elements, which throws
+                        // a "permission denied" error. so this is not a child.
+                        break;
+                    }
+                }
             }
-            else {
+        }
+
+        function SlideClickEventHandler(event) {
+            if (!_LastDragSucceded) {
                 _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_CLICK, slideIndex, event);
             }
+            //else {
+            //    var tagName = $Jssor$.$EventSrc(event).tagName;
+            //    if (tagName != "INPUT" && tagName != "TEXTAREA" && tagName != "SELECT")
+            //    $Jssor$.$CancelEvent(event);
+            //}
         }
 
         function PlayerAvailableEventHandler() {
@@ -1537,6 +1559,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             $Jssor$.$Each(childElements, function (childElement, i) {
 
+                var childTagName = childElement.tagName;
                 var uAttribute = $Jssor$.$AttributeEx(childElement, "u");
                 if (uAttribute == "player" && !_PlayerInstanceElement) {
                     _PlayerInstanceElement = childElement;
@@ -1550,6 +1573,12 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
                 if (uAttribute == "caption") {
                     if (!$Jssor$.$IsBrowserIE() && !fresh) {
+
+                        if (childTagName == "A") {
+                            $Jssor$.$RemoveEvent(childElement, "click", ContentClickEventHandler);
+                            $Jssor$.$Attribute(childElement, "jssor-content", null);
+                        }
+
                         var captionElement = $Jssor$.$CloneNode(childElement, false, true);
                         $Jssor$.$InsertBefore(captionElement, childElement, elmt);
                         $Jssor$.$RemoveElement(childElement, elmt);
@@ -1560,7 +1589,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 }
                 else if (!_ContentRefreshed && !level && !_ImageItem) {
 
-                    if (childElement.tagName == "A") {
+                    if (childTagName == "A") {
                         if ($Jssor$.$AttributeEx(childElement, "u") == "image") {
                             _ImageItem = $Jssor$.$FindChildByTag(childElement, "IMG");
 
@@ -1579,8 +1608,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                             $Jssor$.$SetStyles(_LinkItemOrigin, _StyleDef);
 
                             _LinkItem = $Jssor$.$CloneNode(_LinkItemOrigin, true);
-                            //cancel click event on <A> element when a drag of slide succeeded
-                            $Jssor$.$AddEvent(_LinkItem, "click", LinkClickEventHandler);
+                            $Jssor$.$AddEvent(_LinkItem, "click", ContentClickEventHandler);
 
                             $Jssor$.$CssDisplay(_LinkItem, "block");
                             $Jssor$.$SetStyles(_LinkItem, _StyleDef);
@@ -1588,7 +1616,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                             $Jssor$.$Css(_LinkItem, "backgroundColor", "#000");
                         }
                     }
-                    else if (childElement.tagName == "IMG" && $Jssor$.$AttributeEx(childElement, "u") == "image") {
+                    else if (childTagName == "IMG" && $Jssor$.$AttributeEx(childElement, "u") == "image") {
                         _ImageItem = childElement;
                     }
 
@@ -1598,7 +1626,13 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                     }
                 }
 
-                RefreshContent(childElement, fresh, level + 1);
+                if (!$Jssor$.$Attribute(childElement, "jssor-content")) {
+                    //cancel click event on <A> element when a drag of slide succeeded
+                    $Jssor$.$AddEvent(childElement, "click", ContentClickEventHandler);
+                    $Jssor$.$Attribute(childElement, "jssor-content", true);
+                }
+
+                RefreshContent(childElement, fresh, level +1);
             });
         }
 
@@ -1662,7 +1696,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             $Jssor$.$CssZIndex(_LoadingScreen, 1000);
 
             //cancel click event on <A> element when a drag of slide succeeded
-            $Jssor$.$AddEvent(slideElmt, "click", LinkClickEventHandler);
+            $Jssor$.$AddEvent(slideElmt, "click", SlideClickEventHandler);
 
             ResetCaptionSlider(true);
 
@@ -1894,8 +1928,9 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
     //Event handling begin
 
     function OnMouseDown(event) {
-        var tagName = $Jssor$.$EventSrc(event).tagName;
-        if (!_DragOrientationRegistered && tagName != "INPUT" && tagName != "TEXTAREA" && tagName != "SELECT" && RegisterDrag()) {
+        var eventSrc = $Jssor$.$EventSrc(event);
+        var tagName = eventSrc.tagName;
+        if (!_DragOrientationRegistered && (tagName != "INPUT" || eventSrc.type != "text") && tagName != "TEXTAREA" && tagName != "SELECT" && RegisterDrag()) {
             OnDragStart(event);
         }
     }
@@ -1955,6 +1990,10 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         }
     }
 
+    function PreventDragStart(event) {
+        $Jssor$.$CancelEvent(event);
+    }
+
     function OnDragStart(event) {
 
         _IsDragging = true;
@@ -1982,7 +2021,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             _DragStartMouseX = mousePoint.x;
             _DragStartMouseY = mousePoint.y;
 
-            $Jssor$.$CancelEvent(event);
+            if ($Jssor$.$IsBrowserFireFox() && $Jssor$.$BrowserVersion() < 4)
+                $Jssor$.$CancelEvent(event);
         }
 
         _DragOffsetTotal = 0;
@@ -2103,7 +2143,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             _LastDragSucceded = _DragOffsetTotal;
 
-            _LastDragSucceded && $Jssor$.$CancelEvent(event);
+            //_LastDragSucceded && $Jssor$.$CancelEvent(event);
 
             _CarouselPlayer.$Stop();
 
@@ -2359,7 +2399,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             }
         });
 
-        $Jssor$.$TranslateTransitions(transitions);    //for old transition compatibility
+        //$Jssor$.$TranslateTransitions(transitions);    //for old transition compatibility
         _Options.$SlideshowOptions.$Transitions = transitions;
     };
 
@@ -2373,7 +2413,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             }
         });
 
-        $Jssor$.$TranslateTransitions(transitions);    //for old transition compatibility
+        //$Jssor$.$TranslateTransitions(transitions);    //for old transition compatibility
         _CaptionSliderOptions.$CaptionTransitions = transitions;
         _CaptionSliderOptions.$Version = $Jssor$.$GetNow();
     };
@@ -2644,7 +2684,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
     var _SlideshowOptions = _Options.$SlideshowOptions;
     var _CaptionSliderOptions = $Jssor$.$Extend({ $Class: $JssorCaptionSliderBase$, $PlayInMode: 1, $PlayOutMode: 1 }, _Options.$CaptionSliderOptions);
-    $Jssor$.$TranslateTransitions(_CaptionSliderOptions.$CaptionTransitions); //for old transition compatibility
+    //$Jssor$.$TranslateTransitions(_CaptionSliderOptions.$CaptionTransitions); //for old transition compatibility
     var _BulletNavigatorOptions = _Options.$BulletNavigatorOptions;
     var _ArrowNavigatorOptions = _Options.$ArrowNavigatorOptions;
     var _ThumbnailNavigatorOptions = _Options.$ThumbnailNavigatorOptions;
@@ -2897,7 +2937,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 }
             });
 
-            $Jssor$.$TranslateTransitions(_SlideshowOptions.$Transitions); //for old transition compatibility
+            //$Jssor$.$TranslateTransitions(_SlideshowOptions.$Transitions); //for old transition compatibility
 
             _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass && (!$Jssor$.$IsBrowserIE() || $Jssor$.$BrowserVersion() >= 8);
         }
@@ -2981,6 +3021,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             if (_DragEnabled) {
                 $Jssor$.$AddEvent(_SlidesContainer, _DownEvent, OnMouseDown);
+                $Jssor$.$AddEvent(_SlidesContainer, "dragstart", PreventDragStart);
                 $Jssor$.$AddEvent(document, _UpEvent, OnDragEnd);
                 _CancelEvent && $Jssor$.$AddEvent(document, _CancelEvent, OnDragEnd);
             }

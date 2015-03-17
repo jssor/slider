@@ -1205,8 +1205,26 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$AddEvent = function (elmt, eventName, handler, useCapture) {
         elmt = _This.$GetElement(elmt);
 
+        $JssorDebug$.$Execute(function () {
+            if (!elmt) {
+                $JssorDebug$.$Fail("Parameter 'elmt' not specified.");
+            }
+
+            if (!handler) {
+                $JssorDebug$.$Fail("Parameter 'handler' not specified.");
+            }
+
+            if (!elmt.addEventListener && !elmt.attachEvent) {
+                $JssorDebug$.$Fail("Unable to attach event handler, no known technique.");
+            }
+        });
+
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
+
+        //function Handler(event) {
+        //    handler(event || window.event);
+        //}
 
         if (elmt.addEventListener) {
             if (eventName == "mousewheel") {
@@ -1222,13 +1240,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 elmt.setCapture();
             }
         }
-
-        $JssorDebug$.$Execute(function () {
-            if (!elmt.addEventListener && !elmt.attachEvent) {
-                $JssorDebug$.$Fail("Unable to attach event handler, no known technique.");
-            }
-        });
-
     };
 
     _This.$RemoveEvent = function (elmt, eventName, handler, useCapture) {
@@ -1838,43 +1849,43 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$CloneNode = CloneNode;
 
-    function TranslateTransition(transition) {
-        if (transition) {
-            var flyDirection = transition.$FlyDirection;
+    //function TranslateTransition(transition) {
+    //    if (transition) {
+    //        var flyDirection = transition.$FlyDirection;
 
-            if (flyDirection & 1) {
-                transition.x = transition.$ScaleHorizontal || 1;
-            }
-            if (flyDirection & 2) {
-                transition.x = -transition.$ScaleHorizontal || -1;
-            }
-            if (flyDirection & 4) {
-                transition.y = transition.$ScaleVertical || 1;
-            }
-            if (flyDirection & 8) {
-                transition.y = -transition.$ScaleVertical || -1;
-            }
+    //        if (flyDirection & 1) {
+    //            transition.x = transition.$ScaleHorizontal || 1;
+    //        }
+    //        if (flyDirection & 2) {
+    //            transition.x = -transition.$ScaleHorizontal || -1;
+    //        }
+    //        if (flyDirection & 4) {
+    //            transition.y = transition.$ScaleVertical || 1;
+    //        }
+    //        if (flyDirection & 8) {
+    //            transition.y = -transition.$ScaleVertical || -1;
+    //        }
 
-            if (transition.$Rotate == true)
-                transition.$Rotate = 1;
+    //        if (transition.$Rotate == true)
+    //            transition.$Rotate = 1;
 
-            TranslateTransition(transition.$Brother);
-        }
-    }
+    //        TranslateTransition(transition.$Brother);
+    //    }
+    //}
 
-    _This.$TranslateTransitions = function (transitions) {
-        ///	<summary>
-        ///		For backward compatibility only.
-        ///	</summary>
-        if (transitions) {
-            for (var i = 0; i < transitions.length; i++) {
-                TranslateTransition(transitions[i]);
-            }
-            for (var name in transitions) {
-                TranslateTransition(transitions[name]);
-            }
-        }
-    };
+    //_This.$TranslateTransitions = function (transitions) {
+    //    ///	<summary>
+    //    ///		For backward compatibility only.
+    //    ///	</summary>
+    //    if (transitions) {
+    //        for (var i = 0; i < transitions.length; i++) {
+    //            TranslateTransition(transitions[i]);
+    //        }
+    //        for (var name in transitions) {
+    //            TranslateTransition(transitions[name]);
+    //        }
+    //    }
+    //};
 
     //function ImageLoader() {
     //    var _ThisImageLoader = this;
