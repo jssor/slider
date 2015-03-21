@@ -1530,7 +1530,12 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         };
 
         function RefreshContent(elmt, fresh, level) {
-            if (elmt["jssor-slider"])
+            $JssorDebug$.$Execute(function () {
+                if ($Jssor$.$Attribute(elmt, "jssor-slider"))
+                    $JssorDebug$.$Log("Child slider found.");
+            });
+
+            if ($Jssor$.$Attribute(elmt, "jssor-slider"))
                 return;
 
             level = level || 0;
@@ -1925,12 +1930,13 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         }
     }
 
-    //Event handling begin
+    //#region Event handling begin
 
     function OnMouseDown(event) {
         var eventSrc = $Jssor$.$EventSrc(event);
-        var tagName = eventSrc.tagName;
-        if (!_DragOrientationRegistered && (tagName != "INPUT" || eventSrc.type != "text") && tagName != "TEXTAREA" && tagName != "SELECT" && RegisterDrag()) {
+        if (!_DragOrientationRegistered && !$Jssor$.$AttributeEx(eventSrc, "nodrag") && RegisterDrag()) {
+            //var tagName = eventSrc.tagName;
+            //(tagName != "INPUT" || eventSrc.type != "text") && tagName != "TEXTAREA" && tagName != "SELECT"
             OnDragStart(event);
         }
     }
@@ -2155,7 +2161,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             Unfreeze(true);
         }
     }
-    //Event handling end
+    //#endregion
 
     function SetCurrentSlideIndex(index) {
         _PrevSlideItem = _SlideItems[_CurrentSlideIndex];
@@ -2915,7 +2921,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
         AdjustSlidesContainerSize();
 
-        elmt["jssor-slider"] = true;
+        $Jssor$.$Attribute(elmt, "jssor-slider", true);
 
         //_SlideshowPanel = CreatePanel();
         //$Jssor$.$CssZIndex(elmt, $Jssor$.$CssZIndex(elmt));
