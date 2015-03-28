@@ -91,6 +91,7 @@
             var jssor_sliderh = new $JssorSlider$(containerId, sliderhOptions);
         };
     </script>
+    
     <!-- sliderh style begin -->
     <style>
         /* jssor slider bullet navigator skin 03 css */
@@ -101,10 +102,20 @@
         .jssorb03 .av:hover     (active mouseover)
         .jssorb03 .dn           (mousedown)
         */
-        .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
-        {
+        .jssorb03 {
+            position: absolute;
+        }
+        .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 21px;
+            height: 21px;
+            text-align: center;
+            line-height: 21px;
+            color: white;
+            font-size: 12px;
             background: url(../img/b03.png) no-repeat;
-            overflow:hidden;
+            overflow: hidden;
             cursor: pointer;
         }
         .jssorb03 div { background-position: -5px -4px; }
@@ -113,8 +124,9 @@
         .jssorb03 .dn, .jssorb03 .dn:hover { background-position: -95px -4px; }
     </style>
     <!-- sliderh style end -->
+
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 809px; height: 456px; overflow: hidden; ">
             <!-- Slides Container -->
             <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 456px;
@@ -132,13 +144,14 @@
                             <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
                         </div>
-                        <!-- Bullet Navigator Skin Begin -->
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
                         <!-- bullet navigator container -->
-                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                        <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                             <!-- bullet navigator item prototype -->
-                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><div u="numbertemplate"></div></div>
+                            <div u="prototype"><div u="numbertemplate"></div></div>
                         </div>
-                        <!-- Bullet Navigator Skin End -->
+                        <!--#endregion Bullet Navigator Skin End -->
                         <!-- Trigger -->
                         <script>
                             jssor_sliderh_starter('sliderh1_container');
@@ -159,13 +172,14 @@
                             <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
                         </div>
-                        <!-- Bullet Navigator Skin Begin -->
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
                         <!-- bullet navigator container -->
-                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                        <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                             <!-- bullet navigator item prototype -->
-                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><div u="numbertemplate"></div></div>
+                            <div u="prototype"><div u="numbertemplate"></div></div>
                         </div>
-                        <!-- Bullet Navigator Skin End -->
+                        <!--#endregion Bullet Navigator Skin End -->
                         <!-- Trigger -->
                         <script>
                             jssor_sliderh_starter('sliderh2_container');
@@ -186,13 +200,14 @@
                             <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
                         </div>
-                        <!-- Bullet Navigator Skin Begin -->
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
                         <!-- bullet navigator container -->
-                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                        <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                             <!-- bullet navigator item prototype -->
-                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><div u="numbertemplate"></div></div>
+                            <div u="prototype"><div u="numbertemplate"></div></div>
                         </div>
-                        <!-- Bullet Navigator Skin End -->
+                        <!--#endregion Bullet Navigator Skin End -->
                         <!-- Trigger -->
                         <script>
                             jssor_sliderh_starter('sliderh3_container');
@@ -212,13 +227,14 @@
                             <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
                             <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
                         </div>
-                        <!-- Bullet Navigator Skin Begin -->
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
                         <!-- bullet navigator container -->
-                        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 10px; right: 10px;">
+                        <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                             <!-- bullet navigator item prototype -->
-                            <div u="prototype" style="position: absolute; width: 21px; height: 21px; text-align:center; line-height:21px; color:white; font-size:12px;"><div u="numbertemplate"></div></div>
+                            <div u="prototype"><div u="numbertemplate"></div></div>
                         </div>
-                        <!-- Bullet Navigator Skin End -->
+                        <!--#endregion Bullet Navigator Skin End -->
                         <!-- Trigger -->
                         <script>
                             jssor_sliderh_starter('sliderh4_container');
@@ -226,9 +242,11 @@
                     </div>
                 </div>
             </div>
-            <!-- Bullet Navigator Skin Begin -->
-            <!-- jssor slider bullet navigator skin 02 -->
+        
+            <!--#region Bullet Navigator Skin Begin -->
+            <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
             <style>
+                /* jssor slider bullet navigator skin 02 css */
                 /*
                 .jssorb02 div           (normal)
                 .jssorb02 div:hover     (normal mouseover)
@@ -236,10 +254,20 @@
                 .jssorb02 .av:hover     (active mouseover)
                 .jssorb02 .dn           (mousedown)
                 */
-                .jssorb02 div, .jssorb02 div:hover, .jssorb02 .av
-                {
+                .jssorb02 {
+                    position: absolute;
+                }
+                .jssorb02 div, .jssorb02 div:hover, .jssorb02 .av {
+                    position: absolute;
+                    /* size of bullet elment */
+                    width: 21px;
+                    height: 21px;
+                    text-align: center;
+                    line-height: 21px;
+                    color: white;
+                    font-size: 12px;
                     background: url(../img/b02.png) no-repeat;
-                    overflow:hidden;
+                    overflow: hidden;
                     cursor: pointer;
                 }
                 .jssorb02 div { background-position: -5px -5px; }
@@ -248,11 +276,11 @@
                 .jssorb02 .dn, .jssorb02 .dn:hover { background-position: -95px -5px; }
             </style>
             <!-- bullet navigator container -->
-            <div u="navigator" class="jssorb02" style="position: absolute; bottom: 8px; left: 6px;">
+            <div u="navigator" class="jssorb02" style="bottom: 16px; left: 6px;">
                 <!-- bullet navigator item prototype -->
-                <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><div u="numbertemplate"></div></div>
+                <div u="prototype"><div u="numbertemplate"></div></div>
             </div>
-            <!-- Bullet Navigator Skin End -->
+            <!--#endregion Bullet Navigator Skin End -->
             <a style="display: none" href="http://www.jssor.com">Image Slider</a>
             <!-- Trigger -->
             <script>

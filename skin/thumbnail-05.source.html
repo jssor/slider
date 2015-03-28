@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../js/jssor.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        init_jssor_slider1 = function (containerId) {
             var options = {
                 $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
@@ -30,8 +30,9 @@
             var jssor_slider1 = new $JssorSlider$(containerId, options);
         };
     </script>
-    <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;
         height: 456px; background: #24262e; overflow: hidden;">
 
@@ -98,78 +99,119 @@
             </div>
         </div>
                 
-        <!-- Thumbnail Navigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort05" style="position: absolute; width: 800px; height: 100px; left:0px; bottom: 0px;">
-            <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 05 css */
-                /*
-                .jssort05 .p           (normal)
-                .jssort05 .p:hover     (normal mouseover)
-                .jssort05 .pav           (active)
-                .jssort05 .pav:hover     (active mouseover)
-                .jssort05 .pdn           (mousedown)
-                */
-                .jssort05 .f
-                {
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail navigator skin 05 css */
+            /*
+            .jssort05 .p           (normal)
+            .jssort05 .p:hover     (normal mouseover)
+            .jssort05 .pav           (active)
+            .jssort05 .pav:hover     (active mouseover)
+            .jssort05 .pdn           (mousedown)
+            */
+            .jssort05 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 800px;
+                height: 100px;
+            }
+
+                .jssort05 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 72px;
+                    height: 72px;
+                }
+
+                .jssort05 .o {
+                    position: absolute;
+                    top: 1px;
+                    left: 1px;
+                    width: 72px;
+                    height: 72px;
+                    overflow: hidden;
+                }
+
+                .jssort05 .b {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 72px;
+                    height: 72px;
+                    border: none;
+                }
+
+                .jssort05 .f {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 72px;
+                    height: 72px;
+                    border: none;
                     clip: rect(8px 63px 63px 8px);
                 }
-                .jssort05 .i
-                {
+
+                .jssort05 .i {
                     position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 72px;
+                    height: 72px;
                     background: #000;
                     filter: alpha(opacity=30);
                     opacity: .3;
-                    width: 72px;
-                    height: 72px;
-                    top: 0;
-                    left: 0;
-                    
-                	transition: background-color .6s;
+                    transition: background-color .6s;
                     -moz-transition: background-color .6s;
                     -webkit-transition: background-color .6s;
                     -o-transition: background-color .6s;
                 }
-                .jssort05 .pav .i
-                {
+
+                .jssort05 .pav .i {
                     background: #fff;
                     filter: alpha(opacity=80);
                     opacity: .8;
                 }
-                .jssort05 .pdn .i { background: none; }
-                
-                .jssort05 .p:hover .i, .jssort05 .pav:hover .i
-                {
+
+                .jssort05 .p:hover .i, .jssort05 .pav:hover .i {
                     background: #fff;
                     filter: alpha(opacity=30);
                     opacity: .3;
                 }
-                .jssort05 .p:hover .i
-                {
-                	transition: none;
+
+                .jssort05 .p:hover .i {
+                    transition: none;
                     -moz-transition: none;
                     -webkit-transition: none;
                     -o-transition: none;
                 }
-            </style>
-            <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 72px; HEIGHT: 72px; TOP: 0; LEFT: 0;">
-                    <div class="o" style="position:absolute;top:1px;left:1px;width:72px;height:72px;overflow:hidden;">
-                        <div u="thumbnailtemplate" class="b" style="width:72px;height:72px; border: none;position:absolute; TOP: 0; LEFT: 0;"></div>
+
+                .jssort05 .p.pdn .i {
+                    background: none;
+                }
+        </style>
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort05" style="left: 0px; bottom: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class="p">
+                    <div class="o">
+                        <div u="thumbnailtemplate" class="b"></div>
                         <div class="i"></div>
-                        <div u="thumbnailtemplate" class="f" style="width:72px;height:72px;border: none;position:absolute; TOP: 0; LEFT: 0;"></div>
+                        <div u="thumbnailtemplate" class="f"></div>
                     </div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
         </div>
-        <!-- Thumbnail Navigator Skin End -->
+        <!--#endregion Thumbnail Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            init_jssor_slider1("slider1_container");
         </script>
     </div>
-    <!-- Jssor Slider End -->
+    <!--#endregion Jssor Slider End -->
 </body>
 </html>

@@ -111,7 +111,7 @@
         };
     </script>
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 602px; height: 331px; background: #fff; overflow: hidden; ">
         
         <!-- Slides Container -->
@@ -137,55 +137,76 @@
                 <div u="thumb">Carousel</div>
             </div>
         </div>
-        
-        <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort12" style="position: absolute; width: 500px; height: 30px; left:0px; top: 0px;">
-            <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 12 css */
-                /*
-                .jssort12 .p            (normal)
-                .jssort12 .p:hover      (normal mouseover)
-                .jssort12 .pav          (active)
-                .jssort12 .pav:hover    (active mouseover)
-                .jssort12 .pdn          (mousedown)
-                */
-                .jssort12 .w, .jssort12 .phv .w
-                {
-                	cursor: pointer;
-                	position: absolute;
-                	WIDTH: 99px;
-                	HEIGHT: 28px;
-                	border: 1px solid gray;
-                	top: 0px;
-                	left: -1px;
+        <!--#region ThumbnailNavigator Skin Begin -->
+        <style>
+            /* jssor slider thumbnail navigator skin 12 css */
+            /*
+            .jssort12 .p            (normal)
+            .jssort12 .p:hover      (normal mouseover)
+            .jssort12 .pav          (active)
+            .jssort12 .pav:hover    (active mouseover)
+            .jssort12 .pdn          (mousedown)
+            */
+            .jssort12 {
+                position: absolute;
+                width: 500px;
+                height: 30px;
+            }
+
+                .jssort12 .w {
+                    cursor: pointer;
+                    position: absolute;
+                    WIDTH: 99px;
+                    HEIGHT: 28px;
+                    border: 1px solid gray;
+                    top: 0px;
+                    left: -1px;
                 }
-                .jssort12 .pav .w, .jssort12 .pdn .w
-                {
-                	border-bottom: 1px solid #fff;
+
+                .jssort12 .p {
+                    position: absolute;
+                    width: 100px;
+                    height: 30px;
+                    top: 0;
+                    left: 0;
+                    padding: 0px;
                 }
-                .jssort12 .c
-                {
+
+                .jssort12 .pav .w, .jssort12 .pdn .w {
+                    border-bottom: 1px solid #fff;
+                }
+
+                .jssort12 .c {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    line-height: 28px;
+                    text-align: center;
                     color: #000;
-                    font-size:13px;             	
+                    font-size: 13px;
                 }
-                .jssort12 .p .c, .jssort12 .pav:hover .c
-                {
-                	background-color:#eee;
+
+                .jssort12 .p .c, .jssort12 .pav:hover .c {
+                    background-color: #eee;
                 }
-                .jssort12 .pav .c, .jssort12 .p:hover .c, .jssort12 .phv .c
-                {
-                	background-color:#fff;
+
+                .jssort12 .pav .c, .jssort12 .p:hover .c {
+                    background-color: #fff;
                 }
-            </style>
-            <div u="slides" style="cursor: move; top:0px; left:0px; border-left: 1px solid gray;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 100px; HEIGHT: 30px; TOP: 0; LEFT: 0; padding:0px;">
-                    <div class=w><div u="thumbnailtemplate" class="c" style=" WIDTH: 100%; HEIGHT: 100%; position:absolute; TOP: 0; LEFT: 0; line-height:28px; text-align:center;"></div></div>
+        </style>
+
+        <div u="thumbnavigator" class="jssort12" style="left:0px; top: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default; top: 0px; left: 0px; border-left: 1px solid gray;">
+                <div u="prototype" class="p">
+                    <div class=w><div u="thumbnailtemplate" class="c"></div></div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
         </div>
-        <!-- ThumbnailNavigator Skin End -->
+        <!--#endregion ThumbnailNavigator Skin End -->
 
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger -->

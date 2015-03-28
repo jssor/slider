@@ -113,7 +113,7 @@
         });
     </script>
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
 
         <!-- Loading Screen -->
@@ -170,102 +170,137 @@
             </div>
         </div>
         
-        <!-- Arrow Navigator Skin Begin -->
+        <!--#region Arrow Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <style>
             /* jssor slider arrow navigator skin 02 css */
             /*
-            .jssora02l              (normal)
-            .jssora02r              (normal)
-            .jssora02l:hover        (normal mouseover)
-            .jssora02r:hover        (normal mouseover)
-            .jssora02ldn            (mousedown)
-            .jssora02rdn            (mousedown)
+            .jssora02l                  (normal)
+            .jssora02r                  (normal)
+            .jssora02l:hover            (normal mouseover)
+            .jssora02r:hover            (normal mouseover)
+            .jssora02l.jssora02ldn      (mousedown)
+            .jssora02r.jssora02rdn      (mousedown)
             */
-            .jssora02l, .jssora02r, .jssora02ldn, .jssora02rdn
-            {
-            	position: absolute;
-            	cursor: pointer;
-            	display: block;
+            .jssora02l, .jssora02r {
+                display: block;
+                position: absolute;
+                /* size of arrow element */
+                width: 55px;
+                height: 55px;
+                cursor: pointer;
                 background: url(../img/a02.png) no-repeat;
-                overflow:hidden;
+                overflow: hidden;
             }
             .jssora02l { background-position: -3px -33px; }
             .jssora02r { background-position: -63px -33px; }
             .jssora02l:hover { background-position: -123px -33px; }
             .jssora02r:hover { background-position: -183px -33px; }
-            .jssora02ldn { background-position: -243px -33px; }
-            .jssora02rdn { background-position: -303px -33px; }
+            .jssora02l.jssora02ldn { background-position: -3px -33px; }
+            .jssora02r.jssora02rdn { background-position: -63px -33px; }
         </style>
         <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora02l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+        <span u="arrowleft" class="jssora02l" style="top: 123px; left: 8px;">
         </span>
         <!-- Arrow Right -->
-        <span u="arrowright" class="jssora02r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+        <span u="arrowright" class="jssora02r" style="top: 123px; right: 8px;">
         </span>
-        <!-- Arrow Navigator Skin End -->
-        
-        <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort03" style="position: absolute; width: 600px; height: 60px; left:0px; bottom: 0px;">
-            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
+        <!--#endregion Arrow Navigator Skin End -->
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail navigator skin 03 css */
+            /*
+            .jssort03 .p            (normal)
+            .jssort03 .p:hover      (normal mouseover)
+            .jssort03 .pav          (active)
+            .jssort03 .pdn          (mousedown)
+            */
 
-            <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 03 css */
-                /*
-                .jssort03 .p            (normal)
-                .jssort03 .p:hover      (normal mouseover)
-                .jssort03 .pav          (active)
-                .jssort03 .pav:hover    (active mouseover)
-                .jssort03 .pdn          (mousedown)
-                */
-                .jssort03 .w, .jssort03 .pav:hover .w
-                {
-                	position: absolute;
-                	width: 60px;
-                	height: 30px;
-                	border: white 1px dashed;
+            .jssort03 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 600px;
+                height: 60px;
+            }
+
+                .jssort03 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 62px;
+                    height: 32px;
                 }
-                * html .jssort03 .w
-                {
-                	width /**/: 62px;
-                	height /**/: 32px;
+
+                .jssort03 .t {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
                 }
-                .jssort03 .pdn .w, .jssort03 .pav .w { border-style: solid; }
-                .jssort03 .c
-                {
-                	width: 62px;
-                	height: 32px;
-                	filter:  alpha(opacity=45);
-                	opacity: .45;
-                	
-                	transition: opacity .6s;
+
+                .jssort03 .w, .jssort03 .pav:hover .w {
+                    position: absolute;
+                    width: 60px;
+                    height: 30px;
+                    border: white 1px dashed;
+                }
+
+                .jssort03 .pdn .w, .jssort03 .pav .w {
+                    border-style: solid;
+                }
+
+                .jssort03 .c {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 62px;
+                    height: 32px;
+                    background-color: #000;
+                    filter: alpha(opacity=45);
+                    opacity: .45;
+                    transition: opacity .6s;
                     -moz-transition: opacity .6s;
                     -webkit-transition: opacity .6s;
                     -o-transition: opacity .6s;
                 }
-                .jssort03 .p:hover .c, .jssort03 .pav .c
-                {
-                	filter:  alpha(opacity=0);
-                	opacity: 0;
+
+                .jssort03 .p:hover .c, .jssort03 .pav .c {
+                    filter: alpha(opacity=0);
+                    opacity: 0;
                 }
-                .jssort03 .p:hover .c
-                {
-                	transition: none;
+
+                .jssort03 .p:hover .c {
+                    transition: none;
                     -moz-transition: none;
                     -webkit-transition: none;
                     -o-transition: none;
                 }
-            </style>
-            <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 62px; HEIGHT: 32px; TOP: 0; LEFT: 0;">
-                    <div class=w><div u="thumbnailtemplate" style=" WIDTH: 100%; HEIGHT: 100%; border: none;position:absolute; TOP: 0; LEFT: 0;"></div></div>
-                    <div class=c style="POSITION: absolute; BACKGROUND-COLOR: #000; TOP: 0; LEFT: 0">
-                    </div>
+
+                * html .jssort03 .w {
+                    width /**/: 62px;
+                    height /**/: 32px;
+                }
+        </style>
+
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort03" style="left: 0px; bottom: 0px;">
+
+            <!-- the following background element is optional -->
+            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
+
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class="p">
+                    <div class=w><div u="thumbnailtemplate" class="t"></div></div>
+                    <div class=c></div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
         </div>
-        <!-- ThumbnailNavigator Skin End -->
+        <!--#endregion Thumbnail Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
     </div>
     <!-- Jssor Slider End -->

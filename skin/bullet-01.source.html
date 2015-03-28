@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../js/jssor.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        init_jssor_slider1 = function (containerId) {
 
             var options = {
                 $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
@@ -31,8 +31,8 @@
         }
     </script>
 
-    <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. --> 
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; width: 600px;
         height: 300px; overflow: hidden;">
  
@@ -45,9 +45,10 @@
             <div><img u="image" src="../img/photography/005.jpg" /></div>
         </div>
         
-        <!-- Bullet Navigator Skin Begin -->
-        <!-- jssor slider bullet navigator skin 01 -->
+        <!--#region Bullet Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
         <style>
+            /* jssor slider bullet navigator skin 01 css */
             /*
             .jssorb01 div           (normal)
             .jssorb01 div:hover     (normal mouseover)
@@ -55,11 +56,17 @@
             .jssorb01 .av:hover     (active mouseover)
             .jssorb01 .dn           (mousedown)
             */
-            .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av
-            {
+            .jssorb01 {
+                position: absolute;
+            }
+            .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 12px;
+                height: 12px;
                 filter: alpha(opacity=70);
                 opacity: .7;
-                overflow:hidden;
+                overflow: hidden;
                 cursor: pointer;
                 border: #000 1px solid;
             }
@@ -69,18 +76,18 @@
             .jssorb01 .dn, .jssorb01 .dn:hover { background-color: #555555; }
         </style>
         <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb01" style="position: absolute; bottom: 16px; right: 10px;">
+        <div u="navigator" class="jssorb01" style="bottom: 16px; right: 10px;">
             <!-- bullet navigator item prototype -->
-            <div u="prototype" style="POSITION: absolute; WIDTH: 12px; HEIGHT: 12px;"></div>
+            <div u="prototype"></div>
         </div>
-        <!-- Bullet Navigator Skin End -->
+        <!--#endregion Bullet Navigator Skin End -->
 
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger --> 
         <script>
-            jssor_slider1_starter('slider1_container');
+            init_jssor_slider1("slider1_container");
         </script> 
     </div> 
-    <!-- Jssor Slider End --> 
+    <!--#endregion Jssor Slider End --> 
 </body> 
 </html>

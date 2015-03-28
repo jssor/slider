@@ -236,7 +236,7 @@
     </script>
 
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. --> 
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->  
     <div id="slider1_container" style="position: relative; width: 980px;
         height: 380px; overflow: hidden;">
  
@@ -472,7 +472,8 @@
             <!-- Example to add fixed static QR code in slider END -->
         </div> 
  
-        <!-- Bullet Navigator Skin Begin -->
+        <!--#region Bullet Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
         <style>
             /* jssor slider bullet navigator skin 03 css */
             /*
@@ -482,10 +483,20 @@
             .jssorb03 .av:hover     (active mouseover)
             .jssorb03 .dn           (mousedown)
             */
-            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
-            {
+            .jssorb03 {
+                position: absolute;
+            }
+            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 21px;
+                height: 21px;
+                text-align: center;
+                line-height: 21px;
+                color: white;
+                font-size: 12px;
                 background: url(../img/b03.png) no-repeat;
-                overflow:hidden;
+                overflow: hidden;
                 cursor: pointer;
             }
             .jssorb03 div { background-position: -5px -4px; }
@@ -494,45 +505,48 @@
             .jssorb03 .dn, .jssorb03 .dn:hover { background-position: -95px -4px; }
         </style>
         <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb03" style="position: absolute; bottom: 16px; left: 6px;">
+        <div u="navigator" class="jssorb03" style="bottom: 16px; right: 6px;">
             <!-- bullet navigator item prototype -->
-            <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px; text-align:center; line-height:21px; color:White; font-size:12px;"><div u="numbertemplate"></div></div>
+            <div u="prototype"><div u="numbertemplate"></div></div>
         </div>
-        <!-- Bullet Navigator Skin End -->
+        <!--#endregion Bullet Navigator Skin End -->
         
-        <!-- Arrow Navigator Skin Begin -->
+        <!--#region Arrow Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
         <style>
             /* jssor slider arrow navigator skin 20 css */
             /*
-            .jssora20l              (normal)
-            .jssora20r              (normal)
-            .jssora20l:hover        (normal mouseover)
-            .jssora20r:hover        (normal mouseover)
-            .jssora20ldn            (mousedown)
-            .jssora20rdn            (mousedown)
+            .jssora20l                  (normal)
+            .jssora20r                  (normal)
+            .jssora20l:hover            (normal mouseover)
+            .jssora20r:hover            (normal mouseover)
+            .jssora20l.jssora20ldn      (mousedown)
+            .jssora20r.jssora20rdn      (mousedown)
             */
-            .jssora20l, .jssora20r, .jssora20ldn, .jssora20rdn
-            {
-            	position: absolute;
-            	cursor: pointer;
-            	display: block;
+            .jssora20l, .jssora20r {
+                display: block;
+                position: absolute;
+                /* size of arrow element */
+                width: 55px;
+                height: 55px;
+                cursor: pointer;
                 background: url(../img/a20.png) no-repeat;
-                overflow:hidden;
+                overflow: hidden;
             }
             .jssora20l { background-position: -3px -33px; }
             .jssora20r { background-position: -63px -33px; }
             .jssora20l:hover { background-position: -123px -33px; }
             .jssora20r:hover { background-position: -183px -33px; }
-            .jssora20ldn { background-position: -243px -33px; }
-            .jssora20rdn { background-position: -303px -33px; }
+            .jssora20l.jssora20ldn { background-position: -243px -33px; }
+            .jssora20r.jssora20rdn { background-position: -303px -33px; }
         </style>
         <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora20l" style="width: 55px; height: 55px; top: 123px; left: 8px;">
+        <span u="arrowleft" class="jssora20l" style="top: 123px; left: 8px;">
         </span>
         <!-- Arrow Right -->
-        <span u="arrowright" class="jssora20r" style="width: 55px; height: 55px; top: 123px; right: 8px">
+        <span u="arrowright" class="jssora20r" style="top: 123px; right: 8px;">
         </span>
-        <!-- Arrow Navigator Skin End -->
+        <!--#endregion Arrow Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
     </div> 
     <!-- Jssor Slider End -->

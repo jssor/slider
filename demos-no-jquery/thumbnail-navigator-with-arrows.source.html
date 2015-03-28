@@ -59,7 +59,7 @@
         };
     </script>
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; width: 720px;
         height: 480px; overflow: hidden;">
 
@@ -134,26 +134,38 @@
                 <img u="thumb" src="../img/travel/thumb-14.jpg" />
             </div>
         </div>
-        
-        <!-- Thumbnail Navigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort07" style="position: absolute; width: 720px; height: 100px; left:0px; bottom: 0px;">
-            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
-            <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 07 css */
-                /*
-                .jssort07 .p            (normal)
-                .jssort07 .p:hover      (normal mouseover)
-                .jssort07 .pav          (active)
-                .jssort07 .pav:hover    (active mouseover)
-                .jssort07 .pdn          (mousedown)
-                */
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail navigator skin 07 css */
+            /*
+            .jssort07 .p            (normal)
+            .jssort07 .p:hover      (normal mouseover)
+            .jssort07 .pav          (active)
+            .jssort07 .pav:hover    (active mouseover)
+            .jssort07 .pdn          (mousedown)
+            */
+            .jssort07 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 800px;
+                height: 100px;
+            }
+
+                .jssort07 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 72px;
+                    height: 72px;
+                }
+
                 .jssort07 .i {
                     position: absolute;
                     top: 0px;
                     left: 0px;
-                    width: 99px;
-                    height: 66px;
+                    width: 72px;
+                    height: 72px;
                     filter: alpha(opacity=80);
                     opacity: .8;
                 }
@@ -167,8 +179,8 @@
                     position: absolute;
                     top: 0px;
                     left: 0px;
-                    width: 97px;
-                    height: 64px;
+                    width: 70px;
+                    height: 70px;
                     border: 1px solid #000;
                     transition: border-color .6s;
                     -moz-transition: border-color .6s;
@@ -176,87 +188,94 @@
                     -o-transition: border-color .6s;
                 }
 
-                * html .jssort07 .o {
-                    /* ie quirks mode adjust */
-                    width /**/: 99px;
-                    height /**/: 66px;
-                }
-
-                .jssort07 .pav .o, .jssort07 .p:hover .o {
-                    border-color: #fff;
-                }
-
-                .jssort07 .pav:hover .o {
-                    border-color: #0099FF;
+                .jssort07 .pav .o {
+                    border-color: #0099ff;
                 }
 
                 .jssort07 .p:hover .o {
+                    border-color: #fff;
                     transition: none;
                     -moz-transition: none;
                     -webkit-transition: none;
                     -o-transition: none;
                 }
-            </style>
-            <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="POSITION: absolute; WIDTH: 99px; HEIGHT: 66px; TOP: 0; LEFT: 0;">
-                    <div u="thumbnailtemplate" class="i" style="position:absolute;"></div>
-                    <div class="o">
-                    </div>
+
+                .jssort07 .p.pdn .o {
+                    border-color: #0099ff;
+                }
+
+                * html .jssort07 .o {
+                    /* ie quirks mode adjust */
+                    width /**/: 72px;
+                    height /**/: 72px;
+                }
+        </style>
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort07" style="width: 720px; height: 100px; left: 0px; bottom: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class="p">
+                    <div u="thumbnailtemplate" class="i"></div>
+                    <div class="o"></div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
-            <!-- Arrow Navigator Skin Begin -->
+            <!--#region Arrow Navigator Skin Begin -->
+            <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
             <style>
-                    /* jssor slider arrow navigator skin 11 css */
-                    /*
-                .jssora11l              (normal)
-                .jssora11r              (normal)
-                .jssora11l:hover        (normal mouseover)
-                .jssora11r:hover        (normal mouseover)
-                .jssora11ldn            (mousedown)
-                .jssora11rdn            (mousedown)
+                /* jssor slider arrow navigator skin 11 css */
+                /*
+                .jssora11l                  (normal)
+                .jssora11r                  (normal)
+                .jssora11l:hover            (normal mouseover)
+                .jssora11r:hover            (normal mouseover)
+                .jssora11l.jssora11ldn      (mousedown)
+                .jssora11r.jssora11rdn      (mousedown)
                 */
-                    .jssora11l, .jssora11r, .jssora11ldn, .jssora11rdn {
-                        position: absolute;
-                        cursor: pointer;
-                        display: block;
-                        background: url(../img/a11.png) no-repeat;
-                        overflow: hidden;
-                    }
+                .jssora11l, .jssora11r {
+                    display: block;
+                    position: absolute;
+                    /* size of arrow element */
+                    width: 37px;
+                    height: 37px;
+                    cursor: pointer;
+                    background: url(../img/a11.png) no-repeat;
+                    overflow: hidden;
+                }
 
-                    .jssora11l {
-                        background-position: -11px -41px;
-                    }
+                .jssora11l {
+                    background-position: -11px -41px;
+                }
 
-                    .jssora11r {
-                        background-position: -71px -41px;
-                    }
+                .jssora11r {
+                    background-position: -71px -41px;
+                }
 
-                    .jssora11l:hover {
-                        background-position: -131px -41px;
-                    }
+                .jssora11l:hover {
+                    background-position: -131px -41px;
+                }
 
-                    .jssora11r:hover {
-                        background-position: -191px -41px;
-                    }
+                .jssora11r:hover {
+                    background-position: -191px -41px;
+                }
 
-                    .jssora11ldn {
-                        background-position: -251px -41px;
-                    }
+                .jssora11l.jssora11ldn {
+                    background-position: -251px -41px;
+                }
 
-                    .jssora11rdn {
-                        background-position: -311px -41px;
-                    }
+                .jssora11r.jssora11rdn {
+                    background-position: -311px -41px;
+                }
             </style>
             <!-- Arrow Left -->
-            <span u="arrowleft" class="jssora11l" style="width: 37px; height: 37px; top: 123px; left: 8px;">
+            <span u="arrowleft" class="jssora11l" style="top: 123px; left: 8px;">
             </span>
             <!-- Arrow Right -->
-            <span u="arrowright" class="jssora11r" style="width: 37px; height: 37px; top: 123px; right: 8px">
+            <span u="arrowright" class="jssora11r" style="top: 123px; right: 8px;">
             </span>
-            <!-- Arrow Navigator Skin End -->
+            <!--#endregion Arrow Navigator Skin End -->
         </div>
-        <!-- ThumbnailNavigator Skin End -->
+        <!--#endregion Thumbnail Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger -->
         <script>

@@ -74,7 +74,7 @@
         };
     </script>
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 810px; height: 300px; background: #000; overflow: hidden; ">
 
         <!-- Loading Screen -->
@@ -126,110 +126,127 @@
                 </div>
             </div>
         </div>
-        
-        <!-- ThumbnailNavigator Skin Begin -->
-        <div u="thumbnavigator" class="jssort11" style="position: absolute; width: 200px; height: 300px; left:605px; top:0px;">
-            <!-- Thumbnail Item Skin Begin -->
-            <style>
-                /* jssor slider thumbnail navigator skin 11 css */
-                /*
+        <!--#region ThumbnailNavigator Skin Begin -->
+        <style>
+            /* jssor slider thumbnail navigator skin 11 css */
+            /*
                 .jssort11 .p            (normal)
                 .jssort11 .p:hover      (normal mouseover)
                 .jssort11 .pav          (active)
                 .jssort11 .pav:hover    (active mouseover)
                 .jssort11 .pdn          (mousedown)
                 */
-                .jssort11
-                {
-                	font-family: Arial, Helvetica, sans-serif;
+            .jssort11 {
+                position: absolute;
+                width: 200px;
+                height: 300px;
+                font-family: Arial, Helvetica, sans-serif;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+                .jssort11 .p {
+                    position: absolute;
+                    width: 200px;
+                    height: 69px;
+                    background: #181818;
                 }
-                .jssort11 .i, .jssort11 .pav:hover .i
-                {
-                	position: absolute;
-                	top:3px;
-                	left:3px;
-                	WIDTH: 60px;
-                	HEIGHT: 30px;
-                	border: white 1px dashed;
+
+                .jssort11 .tp {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
                 }
-                * html .jssort11 .i
-                {
-                	WIDTH /**/: 62px;
-                	HEIGHT /**/: 32px;
+
+                .jssort11 .i, .jssort11 .pav:hover .i {
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    width: 60px;
+                    height: 30px;
+                    border: white 1px dashed;
                 }
-                .jssort11 .pav .i
-                {
-                	border: white 1px solid;
+
+                * html .jssort11 .i {
+                    width /**/: 62px;
+                    height /**/: 32px;
                 }
-                .jssort11 .t, .jssort11 .pav:hover .t
-                {
-                	position: absolute;
-                	top: 3px;
-                	left: 68px;
-                	width:129px;
-                	height: 32px;
-                	line-height:32px;
-                	text-align: center;
-                	color:#fc9835;
-                	font-size:13px;
-                	font-weight:700;
+
+                .jssort11 .pav .i {
+                    border: white 1px solid;
                 }
-                .jssort11 .pav .t, .jssort11 .phv .t, .jssort11 .p:hover .t
-                {
-                	color:#fff;
+
+                .jssort11 .t, .jssort11 .pav:hover .t {
+                    position: absolute;
+                    top: 3px;
+                    left: 68px;
+                    width: 129px;
+                    height: 32px;
+                    line-height: 32px;
+                    text-align: center;
+                    color: #fc9835;
+                    font-size: 13px;
+                    font-weight: 700;
                 }
-                .jssort11 .c, .jssort11 .pav:hover .c
-                {
-                	position: absolute;
-                	top: 38px;
-                	left: 3px;
-                	width:197px;
-                	height: 31px;
-                	line-height:31px;
-                	color:#fff;
-                	font-size:11px;
-                	font-weight:400;
-                	overflow: hidden;
+
+                .jssort11 .pav .t, .jssort11 .p:hover .t {
+                    color: #fff;
                 }
-                .jssort11 .pav .c, .jssort11 .phv .c, .jssort11 .p:hover .c
-                {
-                	color:#fc9835;
+
+                .jssort11 .c, .jssort11 .pav:hover .c {
+                    position: absolute;
+                    top: 38px;
+                    left: 3px;
+                    width: 197px;
+                    height: 31px;
+                    line-height: 31px;
+                    color: #fff;
+                    font-size: 11px;
+                    font-weight: 400;
+                    overflow: hidden;
                 }
-                .jssort11 .t, .jssort11 .c
-                {
-                	transition: color 2s;
+
+                .jssort11 .pav .c, .jssort11 .p:hover .c {
+                    color: #fc9835;
+                }
+
+                .jssort11 .t, .jssort11 .c {
+                    transition: color 2s;
                     -moz-transition: color 2s;
                     -webkit-transition: color 2s;
                     -o-transition: color 2s;
                 }
-                .jssort11 .p:hover .t, .jssort11 .phv .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .phv .c, .jssort11 .pav:hover .c
-                {
-                	transition: none;
+
+                .jssort11 .p:hover .t, .jssort11 .pav:hover .t, .jssort11 .p:hover .c, .jssort11 .pav:hover .c {
+                    transition: none;
                     -moz-transition: none;
                     -webkit-transition: none;
                     -o-transition: none;
                 }
-                .jssort11 .p
-                {
-                	background:#181818;
+
+                .jssort11 .p:hover, .jssort11 .pav:hover {
+                    background: #333;
                 }
-                .jssort11 .pav, .jssort11 .pdn
-                {
-                	background:#462300;
+
+                .jssort11 .pav, .jssort11 .p.pdn {
+                    background: #462300;
                 }
-                .jssort11 .p:hover, .jssort11 .phv, .jssort11 .pav:hover
-                {
-                	background:#333;
-                }
-            </style>
-            <div u="slides" style="cursor: move;">
-                <div u="prototype" class="p" style="position: absolute; width: 200px; height: 69px; top: 0; left: 0;">
-                    <div u="thumbnailtemplate" style=" width: 100%; height: 100%; border: none;position:absolute; top: 0; left: 0;"></div>
+        </style>
+        <div u="thumbnavigator" class="jssort11" style="left: 605px; top:0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class="p" style="top: 0; left: 0;">
+                    <div u="thumbnailtemplate" class="tp"></div>
                 </div>
             </div>
             <!-- Thumbnail Item Skin End -->
         </div>
-        <!-- ThumbnailNavigator Skin End -->
+        <!--#endregion ThumbnailNavigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger -->
         <script>

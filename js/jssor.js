@@ -329,36 +329,6 @@ var $JssorKeyCode$ = {
     $UP: 38
 };
 
-//var $JssorAlignment$ = {
-//    $TopLeft: 0x11,
-//    $TopCenter: 0x12,
-//    $TopRight: 0x14,
-//    $MiddleLeft: 0x21,
-//    $MiddleCenter: 0x22,
-//    $MiddleRight: 0x24,
-//    $BottomLeft: 0x41,
-//    $BottomCenter: 0x42,
-//    $BottomRight: 0x44,
-//    $IsTop: function (aligment) {
-//        return aligment & 0x10 > 0;
-//    },
-//    $IsMiddle: function (alignment) {
-//        return alignment & 0x20 > 0;
-//    },
-//    $IsBottom: function (alignment) {
-//        return alignment & 0x40 > 0;
-//    },
-//    $IsLeft: function (alignment) {
-//        return alignment & 0x01 > 0;
-//    },
-//    $IsCenter: function (alignment) {
-//        return alignment & 0x02 > 0;
-//    },
-//    $IsRight: function (alignment) {
-//        return alignment & 0x04 > 0;
-//    }
-//};
-
 // $Jssor$ is a static class, so make it singleton instance
 var $Jssor$ = window.$Jssor$ = new function () {
     var _This = this;
@@ -371,7 +341,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
     var BROWSER_SAFARI = 3;
     var BROWSER_CHROME = 4;
     var BROWSER_OPERA = 5;
-
     //var arrActiveX = ["Msxml2.XMLHTTP", "Msxml3.XMLHTTP", "Microsoft.XMLHTTP"];
     //#endregion
 
@@ -400,14 +369,16 @@ var $Jssor$ = window.$Jssor$ = new function () {
                 $Evt_Up: "mouseup"
             };
             var msPrefix;
-            if (_Navigator.pointerEnabled || (msPrefix = _Navigator.msPointerEnabled)) {
+            if ((_Navigator.pointerEnabled || (msPrefix = _Navigator.msPointerEnabled)) && _UserAgent.match(/iemobile/i)) {
                 _Device = {
                     $Evt_Down: msPrefix ? "MSPointerDown" : "pointerdown",
                     $Evt_Move: msPrefix ? "MSPointerMove" : "pointermove",
                     $Evt_Up: msPrefix ? "MSPointerUp" : "pointerup",
                     $Evt_Cancel: msPrefix ? "MSPointerCancel" : "pointercancel",
                     $TouchActionAttr: msPrefix ? "msTouchAction" : "touchAction",
-                    $Touchable: _UserAgent.match(/iemobile/i)
+                    $Touchable: true,
+                    $TouchOnly: true//,
+                    //$Touchable: _UserAgent.match(/iemobile/i)
                 };
             }
             else if ("ontouchstart" in window || "createTouch" in document) {
@@ -466,6 +437,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
                     var slash = _UserAgent.substring(0, saOffset).lastIndexOf("/");
                     _Browser = (chOffset >= 0) ? BROWSER_CHROME : BROWSER_SAFARI;
                     _BrowserRuntimeVersion = ParseFloat(_UserAgent.substring(slash + 1, saOffset));
+                }
+                else if(_UserAgent.match(/Trident.*rv[ :]*11\./)){
+                    _Browser = BROWSER_IE;
+                    _BrowserRuntimeVersion = _BrowserEngineVersion = 11;
                 }
 
                 if (webkitOffset >= 0)
@@ -677,10 +652,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     // Methods
 
-    //_This.$IsTouchDevice = function () {
-    //    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(_UserAgent);
-    //};
-
     _This.$Device = Device;
 
     _This.$IsBrowserIE = IsBrowserIE;
@@ -748,6 +719,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$EventTarget = function (event) {
         event = GetEvent(event);
         return event.relatedTarget || event.toElement;
+    };
+
+    _This.$EvtWhich = function (event) {
+        event = GetEvent(event);
+        return event.which || [0, 1, 3, 0, 2][event.button] || event.charCode || event.keyCode;
     };
 
     _This.$MousePosition = function (event) {
@@ -1020,15 +996,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
             var alphaFilter = "";
             if (ieOpacity < 100 || ie9EarlierForce) {
                 alphaFilter = "alpha(opacity=" + ieOpacity + ") ";
-                //elmt.style["-ms-filter"] = "progid:DXImageTransform.Microsoft.Alpha(opacity=" + ieOpacity + ") ";
             }
 
             var newFilterValue = BuildNewCss(finalFilter, [alphaReg], alphaFilter);
 
             SetStyleFilterIE(elmt, newFilterValue);
         }
-
-            //if (!IsBrowserIE() || _BrowserEngineVersion >= 9) 
         else {
             elmt.style.opacity = opacity == 1 ? "" : Math.round(opacity * 100) / 100;
         }
@@ -1101,56 +1074,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$DisableHWA = function (elmt) {
-        //if (force || elmt.style[GetTransformProperty(elmt)] == "perspective(2000px)")
         elmt.style[GetTransformProperty(elmt)] = "none";
     };
 
     var ie8OffsetWidth = 0;
     var ie8OffsetHeight = 0;
-    //var ie8WindowResizeCallbackHandlers;
-    //var ie8LastVerticalScrollbar;
-    //var toggleInfo = "";
-
-    //function Ie8WindowResizeFilter(window, handler) {
-
-    //    var trigger = true;
-
-    //    var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
-    //    if (checkElement) {
-    //        //check vertical bar
-    //        //var hasVerticalBar = checkElement.scrollHeight > checkElement.clientHeight;
-    //        //var verticalBarToggle = hasVerticalBar != ie8LastVerticalScrollbar;
-    //        //ie8LastVerticalScrollbar = hasVerticalBar;
-
-    //        var widthChange = checkElement.offsetWidth - ie8OffsetWidth;
-    //        var heightChange = checkElement.offsetHeight - ie8OffsetHeight;
-    //        if (widthChange || heightChange) {
-
-    //            ie8OffsetWidth += widthChange;
-    //            ie8OffsetHeight += heightChange;
-    //        }
-    //        else
-    //            trigger = false;
-    //    }
-
-    //    trigger && handler();
-    //}
-
-    //_This.$OnWindowResize = function (window, handler) {
-
-    //    if (IsBrowserIE() && _BrowserEngineVersion < 9) {
-    //        if (!ie8WindowResizeCallbackHandlers) {
-    //            ie8WindowResizeCallbackHandlers = [handler];
-    //            handler = _This.$CreateCallback(null, Ie8WindowResizeFilter, window);
-    //        }
-    //        else {
-    //            ie8WindowResizeCallbackHandlers.push(handler);
-    //            return;
-    //        }
-    //    }
-
-    //    _This.$AddEvent(window, "resize", handler);
-    //};
 
     _This.$WindowResizeFilter = function (window, handler) {
         return IsBrowserIe9Earlier() ? function () {
@@ -1159,11 +1087,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
             var checkElement = (IsBrowserIeQuirks() ? window.document.body : window.document.documentElement);
             if (checkElement) {
-                //check vertical bar
-                //var hasVerticalBar = checkElement.scrollHeight > checkElement.clientHeight;
-                //var verticalBarToggle = hasVerticalBar != ie8LastVerticalScrollbar;
-                //ie8LastVerticalScrollbar = hasVerticalBar;
-
                 var widthChange = checkElement.offsetWidth - ie8OffsetWidth;
                 var heightChange = checkElement.offsetHeight - ie8OffsetHeight;
                 if (widthChange || heightChange) {
@@ -1221,10 +1144,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
-
-        //function Handler(event) {
-        //    handler(event || window.event);
-        //}
 
         if (elmt.addEventListener) {
             if (eventName == "mousewheel") {
@@ -1287,28 +1206,10 @@ var $Jssor$ = window.$Jssor$ = new function () {
         else {
             var ieEventName = "on" + eventName;
             evento = document.createEventObject();
-            //event.eventType = ieEventName;
-            //event.eventName = ieEventName;
 
             elmt.fireEvent(ieEventName, evento);
         }
     };
-
-    //_This.$AddEventBrowserMouseUp = function (handler, userCapture) {
-    //    _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
-    //};
-
-    //_This.$RemoveEventBrowserMouseUp = function (handler, userCapture) {
-    //    _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mouseup", handler, userCapture);
-    //};
-
-    //_This.$AddEventBrowserMouseDown = function (handler, userCapture) {
-    //    _This.$AddEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
-    //};
-
-    //_This.$RemoveEventBrowserMouseDown = function (handler, userCapture) {
-    //    _This.$RemoveEvent((IsBrowserIe9Earlier()) ? document : window, "mousedown", handler, userCapture);
-    //};
 
     _This.$CancelEvent = function (event) {
         event = GetEvent(event);
@@ -1353,17 +1254,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         return callback;
     };
-
-    //var _Freeer;
-    //_This.$FreeElement = function (elmt) {
-    //    if (!_Freeer)
-    //        _Freeer = _This.$CreateDiv();
-
-    //    if (elmt) {
-    //        $Jssor$.$AppendChild(_Freeer, elmt);
-    //        $Jssor$.$ClearInnerHtml(_Freeer);
-    //    }
-    //};
 
     _This.$InnerText = function (elmt, text) {
         if (text == undefined)
@@ -1647,14 +1537,16 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return hash;
     }
 
+    function StringToHashObject(str, regExp) {
+        return ToHash((str || "").match(regExp || REGEX_WHITESPACE_GLOBAL));
+    }
+
     _This.$ToHash = ToHash;
 
     function Join(separator, strings) {
         ///	<param name="separator" type="String">
-        ///		The element to show the dialog around
         ///	</param>
         ///	<param name="strings" type="Array" value="['1']">
-        ///		The element to show the dialog around
         ///	</param>
 
         var joined = "";
@@ -1667,16 +1559,19 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return joined;
     }
 
+    function ReplaceClass(elmt, oldClassName, newClassName) {
+        ClassName(elmt, Join(" ", Extend(Unextend(StringToHashObject(ClassName(elmt)), StringToHashObject(oldClassName)), StringToHashObject(newClassName))));
+    }
+
     _This.$Join = Join;
 
     _This.$AddClass = function (elmt, className) {
-        var newClassName = ClassName(elmt) + " " + className;
-        ClassName(elmt, Join(" ", ToHash(newClassName.match(REGEX_WHITESPACE_GLOBAL))));
+        ReplaceClass(elmt, null, className);
     };
 
-    _This.$RemoveClass = function (elmt, className) {
-        ClassName(elmt, Join(" ", _This.$Unextend(ToHash(ClassName(elmt).match(REGEX_WHITESPACE_GLOBAL)), ToHash(className.match(REGEX_WHITESPACE_GLOBAL)))));
-    };
+    _This.$RemoveClass = ReplaceClass;
+
+    _This.$ReplaceClass = ReplaceClass;
 
     _This.$ParentNode = function (elmt) {
         return elmt.parentNode;
@@ -1787,8 +1682,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
         _This.$InsertBefore(newNode, refNode.nextSibling, pNode || refNode.parentNode);
     };
 
-    _This.$InsertAdjacentHtml = function (elmt, where, text) {
-        elmt.insertAdjacentHTML(where, text);
+    _This.$InsertAdjacentHtml = function (elmt, where, html) {
+        elmt.insertAdjacentHTML(where, html);
     };
 
     _This.$RemoveElement = function (elmt, pNode) {
@@ -1848,109 +1743,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
     }
 
     _This.$CloneNode = CloneNode;
-
-    //function TranslateTransition(transition) {
-    //    if (transition) {
-    //        var flyDirection = transition.$FlyDirection;
-
-    //        if (flyDirection & 1) {
-    //            transition.x = transition.$ScaleHorizontal || 1;
-    //        }
-    //        if (flyDirection & 2) {
-    //            transition.x = -transition.$ScaleHorizontal || -1;
-    //        }
-    //        if (flyDirection & 4) {
-    //            transition.y = transition.$ScaleVertical || 1;
-    //        }
-    //        if (flyDirection & 8) {
-    //            transition.y = -transition.$ScaleVertical || -1;
-    //        }
-
-    //        if (transition.$Rotate == true)
-    //            transition.$Rotate = 1;
-
-    //        TranslateTransition(transition.$Brother);
-    //    }
-    //}
-
-    //_This.$TranslateTransitions = function (transitions) {
-    //    ///	<summary>
-    //    ///		For backward compatibility only.
-    //    ///	</summary>
-    //    if (transitions) {
-    //        for (var i = 0; i < transitions.length; i++) {
-    //            TranslateTransition(transitions[i]);
-    //        }
-    //        for (var name in transitions) {
-    //            TranslateTransition(transitions[name]);
-    //        }
-    //    }
-    //};
-
-    //function ImageLoader() {
-    //    var _ThisImageLoader = this;
-    //    var _BaseImageLoader = _This.$Inherit(_ThisImageLoader, $JssorObject$);
-
-    //    var _ImageLoading = 1;
-    //    var _MainImageSrc;
-    //    var _MainImage;
-    //    var _CompleteCallback;
-    //    var _MainImageAbort;
-
-    //    function LoadCompleteCallback(image, abort) {
-    //        _ImageLoading--;
-
-    //        if (image) {
-    //            _This.$RemoveEvent(image, "load");
-    //            _This.$RemoveEvent(image, "abort");
-    //            _This.$RemoveEvent(image, "error");
-
-    //            if (_MainImageSrc == image.src) {
-    //                _MainImage = image;
-    //                _MainImageAbort = abort;
-    //            }
-    //        }
-
-    //        _CompleteCallback && _CompleteCallback(_MainImage, _MainImageAbort);
-    //    }
-
-    //    function LoadImage(src) {
-    //        _ImageLoading++;
-
-    //        if (IsBrowserOpera() && _BrowserRuntimeVersion < 11.6 || !src) {
-    //            LoadImageCallback(callback, null, !src);
-    //        }
-    //        else {
-    //            var image = new Image();
-
-    //            _This.$AddEvent(image, "load", _This.$CreateCallback(null, LoadImageCallback, image, false));
-
-    //            var abortHandler = _This.$CreateCallback(null, LoadImageCallback, image, true);
-    //            _This.$AddEvent(image, "abort", abortHandler);
-    //            _This.$AddEvent(image, "error", abortHandler);
-
-    //            image.src = src;
-    //        }
-    //    }
-
-    //    _ThisImageLoader.$LoadImage = function (src, callback) {
-    //        _MainImageSrc = src;
-    //        _CompleteCallback = callback;
-
-    //        LoadImage(src);
-    //        LoadComplete();
-    //    };
-
-    //    _ThisImageLoader.$LoadImages = function (imageElmts, mainImageElmt, callback) {
-    //        mainImageElmt && (_MainImageSrc = mainImageElmt.src);
-    //        _CompleteCallback = callback;
-
-    //        each(imageElmts, function (imageElmt) {
-    //            LoadImage(imageElmt.src);
-    //        });
-    //        LoadComplete();
-    //    };
-    //}
 
     _This.$LoadImage = function (src, callback) {
         var image = new Image();
@@ -2025,32 +1817,25 @@ var $Jssor$ = window.$Jssor$ = new function () {
         var _Self = this;
 
         var _OriginClassName;
+        var _ToggleClassSuffixes = ["av", "pv", "ds", "dn"];
+        var _ToggleClasses = [];
+        var _ToggleClassName;
 
-        var _IsMouseDown;   //class name 'dn'
-        var _IsSelected;    //class name 1(active): 'av', 2(passive): 'pv'
-        var _IsDisabled;    //class name 'ds'
+        var _IsMouseDown = 0;   //class name 'dn'
+        var _IsSelected = 0;    //class name 1(active): 'av', 2(passive): 'pv'
+        var _IsDisabled = 0;    //class name 'ds'
 
         function Highlight() {
-            var className = _OriginClassName;
-
-            if (_IsDisabled) {
-                className += 'ds';
-            }
-            else if (_IsMouseDown) {
-                className += 'dn';
-            }
-            else if (_IsSelected == 2) {
-                className += "pv";
-            }
-            else if (_IsSelected) {
-                className += "av";
-            }
-
-            ClassName(elmt, className);
+            $JssorDebug$.$Execute(function () {
+                if(_IsSelected) {
+                    var a = 0;
+                }
+            });
+            ReplaceClass(elmt, _ToggleClassName, _ToggleClasses[_IsDisabled || _IsMouseDown || (_IsSelected & 2) || _IsSelected]);
         }
 
         function MouseUpOrCancelEventHandler(event) {
-            _IsMouseDown = false;
+            _IsMouseDown = 0;
 
             Highlight();
 
@@ -2064,7 +1849,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             }
             else {
 
-                _IsMouseDown = true;
+                _IsMouseDown = 4;
 
                 Highlight();
 
@@ -2075,7 +1860,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         _Self.$Selected = function (activate) {
             if (activate != undefined) {
-                _IsSelected = activate;
+                _IsSelected = (activate & 2) || (activate & 1);
 
                 Highlight();
             }
@@ -2085,14 +1870,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
         };
 
         _Self.$Enable = function (enable) {
-            if (enable != undefined) {
-                _IsDisabled = !enable;
-
-                Highlight();
-            }
-            else {
+            if (enable == undefined) {
                 return !_IsDisabled;
             }
+
+            _IsDisabled = enable ? 0 : 3;
+
+            Highlight();
         };
 
         //JssorButtonEx Constructor
@@ -2100,6 +1884,14 @@ var $Jssor$ = window.$Jssor$ = new function () {
             elmt = _This.$GetElement(elmt);
 
             _OriginClassName = ClassName(elmt);
+
+            each(_ToggleClassSuffixes, function (toggleClassSuffix) {
+                _ToggleClasses.push(_OriginClassName + toggleClassSuffix);
+            });
+
+            _ToggleClassName = Join(" ", _ToggleClasses);
+
+            _ToggleClasses.splice(0, 0, "");
 
             $Jssor$.$AddEvent(elmt, Device().$Evt_Down, MouseDownEventHandler);
         }

@@ -98,7 +98,7 @@
         };
     </script>
     <!-- Jssor Slider Begin -->
-    <!-- You can move inline styles to css file or css block. -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
     <div id="slider1_container" style="position: relative; width: 600px; height: 500px; background-color: #000; overflow: hidden; ">
 
         <!-- Loading Screen -->
@@ -148,8 +148,9 @@
                 <a u=image href="#"><img src="../img/paint/11.jpg" /></a>
             </div>
         </div>
-
-        <!-- Bullet Navigator Skin Begin -->
+        
+        <!--#region Bullet Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
         <style>
             /* jssor slider bullet navigator skin 13 css */
             /*
@@ -159,34 +160,29 @@
             .jssorb13 .av:hover     (active mouseover)
             .jssorb13 .dn           (mousedown)
             */
+            .jssorb13 {
+                position: absolute;
+            }
             .jssorb13 div, .jssorb13 div:hover, .jssorb13 .av {
+                position: absolute;
+                /* size of bullet elment */
+                width: 21px;
+                height: 21px;
                 background: url(../img/b13.png) no-repeat;
                 overflow: hidden;
                 cursor: pointer;
             }
-
-            .jssorb13 div {
-                background-position: -5px -5px;
-            }
-
-                .jssorb13 div:hover, .jssorb13 .av:hover {
-                    background-position: -35px -5px;
-                }
-
-            .jssorb13 .av {
-                background-position: -65px -5px;
-            }
-
-            .jssorb13 .dn, .jssorb13 .dn:hover {
-                background-position: -95px -5px;
-            }
+            .jssorb13 div { background-position: -5px -5px; }
+            .jssorb13 div:hover, .jssorb13 .av:hover { background-position: -35px -5px; }
+            .jssorb13 .av { background-position: -65px -5px; }
+            .jssorb13 .dn, .jssorb13 .dn:hover { background-position: -95px -5px; }
         </style>
         <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb13" style="position: absolute; bottom: 16px; right: 6px;">
+        <div u="navigator" class="jssorb13" style="bottom: 16px; right: 6px;">
             <!-- bullet navigator item prototype -->
-            <div u="prototype" style="POSITION: absolute; WIDTH: 21px; HEIGHT: 21px;"></div>
+            <div u="prototype"></div>
         </div>
-        <!-- Bullet Navigator Skin End -->
+        <!--#endregion Bullet Navigator Skin End -->
         <a style="display: none" href="http://www.jssor.com">Image Slider</a>
         <!-- Trigger -->
         <script>

@@ -791,10 +791,6 @@ var $JssorSlideshowRunner$ = window.$JssorSlideshowRunner$ = function (slideCont
                         var leftBenchmark = chessHorizontal ? slideTransition.$Right : slideTransition.$Left;
                         var rightBenchmark = chessHorizontal ? slideTransition.$Left : slideTransition.$Right;
 
-                        //$JssorDebug$.$Execute(function () {
-                        //    topBenchmark = bottomBenchmark = leftBenchmark = rightBenchmark = false;
-                        //});
-
                         slideTransition.$Clip = topBenchmark || bottomBenchmark || leftBenchmark || rightBenchmark;
 
                         _StyleDif = {};
@@ -1154,12 +1150,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
                 if (_Duration) {
                     var interPosition = newPosition / _Duration;
-                    //if ($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserFireFox()) {
-                    //    Math.round(interPosition * 8 / _Duration) / 8 * _Duration;
-
-                    //    if ($Jssor$.$BrowserVersion() < 38)
-                    //        interPosition = parseFloat(interPosition.toFixed(4));
-                    //}
                     toPosition = _Options.$SlideEasing(interPosition) * (_ToPosition - _FromPosition) + _FromPosition;
                 }
             }
@@ -1429,11 +1419,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             if (!_LastDragSucceded) {
                 _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_CLICK, slideIndex, event);
             }
-            //else {
-            //    var tagName = $Jssor$.$EventSrc(event).tagName;
-            //    if (tagName != "INPUT" && tagName != "TEXTAREA" && tagName != "SELECT")
-            //    $Jssor$.$CancelEvent(event);
-            //}
         }
 
         function PlayerAvailableEventHandler() {
@@ -1822,12 +1807,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                     }
                 }
 
-                //$JssorDebug$.$Execute(function () {
-                //    if (currentPosition == _ProgressEnd) {
-                //        debugger;
-                //    }
-                //});
-
                 _SelfSlider.$TriggerEvent(stateEvent, slideIndex, currentPosition, _ProgressBegin, _IdleBegin, _IdleEnd, _ProgressEnd);
 
                 var allowAutoPlay = _AutoPlay && (!_HoverToPause || _NotOnHover);
@@ -1908,21 +1887,11 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         var x = _StepLengthX * position * (orientation & 1);
         var y = _StepLengthY * position * ((orientation >> 1) & 1);
 
-        if ($Jssor$.$IsBrowserChrome() && $Jssor$.$BrowserVersion() < 38) {
-            x = x.toFixed(3);
-            y = y.toFixed(3);
-        }
-        else {
-            x = Math.round(x);
-            y = Math.round(y);
-        }
+        x = Math.round(x);
+        y = Math.round(y);
 
         if ($Jssor$.$IsBrowserIE() && $Jssor$.$BrowserVersion() >= 10 && $Jssor$.$BrowserVersion() < 11) {
             elmt.style.msTransform = "translate(" + x + "px, " + y + "px)";
-        }
-        else if ($Jssor$.$IsBrowserChrome() && $Jssor$.$BrowserVersion() >= 30 && $Jssor$.$BrowserVersion() < 34) {
-            elmt.style.WebkitTransition = "transform 0s";
-            elmt.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, 0px) perspective(2000px)";
         }
         else {
             $Jssor$.$CssLeft(elmt, x);
@@ -1935,22 +1904,17 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
     function OnMouseDown(event) {
         var eventSrc = $Jssor$.$EventSrc(event);
         if (!_DragOrientationRegistered && !$Jssor$.$AttributeEx(eventSrc, "nodrag") && RegisterDrag()) {
-            //var tagName = eventSrc.tagName;
-            //(tagName != "INPUT" || eventSrc.type != "text") && tagName != "TEXTAREA" && tagName != "SELECT"
             OnDragStart(event);
         }
     }
 
     function RecordFreezePoint() {
-
         _CarouselPlaying_OnFreeze = _IsSliding;
         _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
         _Position_OnFreeze = _Conveyor.$GetPosition();
-
     }
 
     function Freeze() {
-
         RecordFreezePoint();
 
         if (_IsDragging || !_NotOnHover && (_HoverToPause & 12)) {
@@ -1958,7 +1922,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_FREEZE);
         }
-
     }
 
     function Unfreeze(byDrag) {
@@ -2040,7 +2003,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
     }
 
     function OnDragMove(event) {
-        if (_IsDragging && (!$Jssor$.$IsBrowserIe9Earlier() || event.button)) {
+        if (_IsDragging) {
+
             var actionPoint;
 
             if (_HandleTouchEventOnly) {
@@ -2125,18 +2089,12 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                         else
                             _CarouselPlayer.$SetStandByPosition(_PositionToGoByDrag);
                     }
-                    else if ($Jssor$.$IsBrowserIe9Earlier()) {
-                        $Jssor$.$CancelEvent(event);
-                    }
                 }
             }
         }
-        else {
-            OnDragEnd(event);
-        }
     }
 
-    function OnDragEnd(event) {
+    function OnDragEnd() {
         UnregisterDrag();
 
         if (_IsDragging) {
@@ -2149,14 +2107,12 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             _LastDragSucceded = _DragOffsetTotal;
 
-            //_LastDragSucceded && $Jssor$.$CancelEvent(event);
-
             _CarouselPlayer.$Stop();
 
             var currentPosition = _Conveyor.$GetPosition();
 
             //Trigger EVT_DRAG_END
-            _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
+            _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze);
 
             Unfreeze(true);
         }
@@ -2789,21 +2745,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         var slidesContainerOverflowY = $Jssor$.$Css(_SlidesContainer, "overflowY");
         if (slidesContainerOverflow != "hidden" && (slidesContainerOverflowX != "hidden" || slidesContainerOverflowY != "hidden"))
             $JssorDebug$.$Fail("Overflow of slides container wrong specification, it should be specified as 'hidden' (style='overflow:hidden;').");
-
-        //var slidesContainerTop = $Jssor$.$CssTop(_SlidesContainer);
-        //var slidesContainerLeft = $Jssor$.$CssLeft(_SlidesContainer);
-
-        //if (isNaN(slidesContainerTop))
-        //    $JssorDebug$.$Fail("Top of slides container wrong specification, it should be specified in pixel (like style='top: 0px;').");
-
-        //if (slidesContainerTop == undefined)
-        //    $JssorDebug$.$Fail("Top of slides container not specified, it should be specified in pixel (like style='top: 0px;').");
-
-        //if (isNaN(slidesContainerLeft))
-        //    $JssorDebug$.$Fail("Left of slides container wrong specification, it should be specified in pixel (like style='left: 0px;').");
-
-        //if (slidesContainerLeft == undefined)
-        //    $JssorDebug$.$Fail("Left of slides container not specified, it should be specified in pixel (like style='left: 0px;').");
     });
 
     $JssorDebug$.$Execute(function () {
@@ -2923,11 +2864,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
         $Jssor$.$Attribute(elmt, "jssor-slider", true);
 
-        //_SlideshowPanel = CreatePanel();
-        //$Jssor$.$CssZIndex(elmt, $Jssor$.$CssZIndex(elmt));
-        //$Jssor$.$CssLeft(_SlideshowPanel, $Jssor$.$CssLeft(_SlidesContainer));
-        //$Jssor$.$CssZIndex(_SlidesContainer, $Jssor$.$CssZIndex(_SlidesContainer));
-        //$Jssor$.$CssTop(_SlideshowPanel, $Jssor$.$CssTop(_SlidesContainer));
         $Jssor$.$CssZIndex(_SlidesContainer, $Jssor$.$CssZIndex(_SlidesContainer) || 0);
         $Jssor$.$CssPosition(_SlidesContainer, "absolute");
         _SlideshowPanel = $Jssor$.$CloneNode(_SlidesContainer, true);
@@ -2942,8 +2878,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                     $JssorDebug$.$Error("Invalid '$SlideshowOptions', no '$Transitions' specified.");
                 }
             });
-
-            //$Jssor$.$TranslateTransitions(_SlideshowOptions.$Transitions); //for old transition compatibility
 
             _SlideshowEnabled = _DisplayPieces == 1 && _SlideCount > 1 && _SlideshowRunnerClass && (!$Jssor$.$IsBrowserIE() || $Jssor$.$BrowserVersion() >= 8);
         }
@@ -3029,6 +2963,9 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 $Jssor$.$AddEvent(_SlidesContainer, _DownEvent, OnMouseDown);
                 $Jssor$.$AddEvent(_SlidesContainer, "dragstart", PreventDragStart);
                 $Jssor$.$AddEvent(document, _UpEvent, OnDragEnd);
+                $Jssor$.$AddEvent(window, "blur", function (event) {
+                    OnDragEnd();
+                });
                 _CancelEvent && $Jssor$.$AddEvent(document, _CancelEvent, OnDragEnd);
             }
         }
@@ -3646,9 +3583,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
         if (!captionSlideOptions.$CaptionTransitions) {
             $JssorDebug$.$Error("'$CaptionSliderOptions' option error, '$CaptionSliderOptions.$CaptionTransitions' not specified.");
         }
-        //else if (!$Jssor$.$IsArray(captionSlideOptions.$CaptionTransitions)) {
-        //    $JssorDebug$.$Error("'$CaptionSliderOptions' option error, '$CaptionSliderOptions.$CaptionTransitions' is not an array.");
-        //}
     });
 
     var _Self = this;
@@ -3681,18 +3615,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
         var namedTransitions = [];
         var namedTransitionOrders = [];
 
-        //$JssorDebug$.$Execute(function () {
-
-        //    var debugInfoElement = $Jssor$.$GetElement("debugInfo");
-
-        //    if (debugInfoElement && playIn) {
-
-        //        var text = $Jssor.$InnerHtml(debugInfoElement) + "<br>";
-
-        //        $Jssor$.$InnerHtml(debugInfoElement, text);
-        //    }
-        //});
-
         function FetchRawTransition(captionElmt, index) {
             var rawTransition = {};
 
@@ -3702,11 +3624,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                     var propertyValue = {};
 
                     if (fetchAttribute == "t") {
-                        //if (($Jssor$.$IsBrowserChrome() || $Jssor$.$IsBrowserSafari() || $Jssor$.$IsBrowserFireFox()) && attributeValue == "*") {
-                        //    attributeValue = Math.floor(Math.random() * captionSlideOptions.$CaptionTransitions.length);
-                        //    $Jssor$.$Attribute(captionElmt, fetchAttribute + (index || ""), attributeValue);
-                        //}
-
                         propertyValue.$Value = attributeValue;
                     }
                     else if (attributeValue.indexOf("%") + 1)
@@ -3831,7 +3748,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                 }
 
                 if ((level % 2) && !k) {
-                    //transitionsWithTuning.$Children = GetCaptionItems(captionElmt, lastTransitionName, [].concat(namedTransitions), [].concat(namedTransitionOrders), level + 1);
                     transitionsWithTuning.$Children = GetCaptionItems(captionElmt, level + 1);
                 }
             });
@@ -3848,8 +3764,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             $Easing: transition.$Easing,
             $Round: transition.$Round,
             $During: transition.$During,
-            $Reverse: playIn && !immediateOut//,
-            //$Optimize: true
+            $Reverse: playIn && !immediateOut
         };
 
         $JssorDebug$.$Execute(function () {
@@ -3864,14 +3779,12 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
         var captionParentWidth = $Jssor$.$CssWidth(captionParent);
         var captionParentHeight = $Jssor$.$CssHeight(captionParent);
 
-        //var toStyles = {};
         var fromStyles = {};
         var difStyles = {};
         var scaleClip = transition.$ScaleClip || 1;
 
         //Opacity
         if (transition.$Opacity) {
-            ///toStyles.$Opacity = 2 - transition.$Opacity;
             difStyles.$Opacity = 1 - transition.$Opacity;
         }
 
@@ -3880,11 +3793,9 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
         //Transform
         if (transition.$Zoom || transition.$Rotate) {
-            //toStyles.$Zoom = transition.$Zoom ? transition.$Zoom - 1 : 1;
             difStyles.$Zoom = (transition.$Zoom || 2) - 2;
 
             if ($Jssor$.$IsBrowserIe9Earlier() || $Jssor$.$IsBrowserOpera()) {
-                //toStyles.$Zoom = Math.min(toStyles.$Zoom, 2);
                 difStyles.$Zoom = Math.min(difStyles.$Zoom, 1);
             }
 
@@ -3892,7 +3803,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
             var rotate = transition.$Rotate || 0;
 
-            //toStyles.$Rotate = rotate * 360;
             difStyles.$Rotate = rotate * 360;
             fromStyles.$Rotate = 0;
         }
@@ -3927,7 +3837,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                 blockOffset.$Left = captionItemWidth * scaleClip;
 
             animatorOptions.$Move = transition.$Move;
-            //toStyles.$Clip = toStyleClip;
             difStyles.$Clip = toStyleClip;
             fromStyles.$Clip = fromStyleClip;
         }
@@ -3944,8 +3853,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
                 toTop -= captionParentHeight * transition.y;
 
             if (toLeft || toTop || animatorOptions.$Move) {
-                //toStyles.$Left = toLeft + $Jssor$.$CssLeft(captionItem);
-                //toStyles.$Top = toTop + $Jssor$.$CssTop(captionItem);
                 difStyles.$Left = toLeft;
                 difStyles.$Top = toTop;
             }
@@ -4024,9 +3931,6 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
     {
         _ImmediateOutCaptionHanger = new $JssorAnimator$(0, 0);
 
-        //var streamLineLength = 0;
-        //var captionItems = GetCaptionItems(container, null, [], [], 1);
-
         CreateAnimators(0, _PlayMode ? GetCaptionItems(container, 1) : []);
     }
 };
@@ -4090,8 +3994,6 @@ var $JssorCaptionSlideo$ = window.$JssorCaptionSlideo$ = function (container, ca
             !forIn == !playIn && _This.$Combine(animator);
 
             var castOptions;
-            //castOptions = { $Move: slideTransition.$Move, $OriginalWidth: slideContainerWidth, $OriginalHeight: slideContainerHeight };
-
             lastStyles = $Jssor$.$Extend(lastStyles, $Jssor$.$Cast(fromStyles, transition, 1, animatorOptions.$Easing, animatorOptions.$During, animatorOptions.$Round, animatorOptions, castOptions));
         });
 
