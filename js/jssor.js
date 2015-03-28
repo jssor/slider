@@ -376,9 +376,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
                     $Evt_Up: msPrefix ? "MSPointerUp" : "pointerup",
                     $Evt_Cancel: msPrefix ? "MSPointerCancel" : "pointercancel",
                     $TouchActionAttr: msPrefix ? "msTouchAction" : "touchAction",
-                    $Touchable: true,
-                    $TouchOnly: true//,
-                    //$Touchable: _UserAgent.match(/iemobile/i)
+                    $Touchable: true
                 };
             }
             else if ("ontouchstart" in window || "createTouch" in document) {
@@ -728,11 +726,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$MousePosition = function (event) {
         event = GetEvent(event);
-        var body = document.body;
+        //var body = document.body;
 
         return {
-            x: event.pageX || event.clientX + (_DocElmt.scrollLeft || body.scrollLeft || 0) - (_DocElmt.clientLeft || body.clientLeft || 0) || 0,
-            y: event.pageY || event.clientY + (_DocElmt.scrollTop || body.scrollTop || 0) - (_DocElmt.clientTop || body.clientTop || 0) || 0
+            x: event.pageX || event.clientX/* + (_DocElmt.scrollLeft || body.scrollLeft || 0) - (_DocElmt.clientLeft || body.clientLeft || 0)*/ || 0,
+            y: event.pageY || event.clientY/* + (_DocElmt.scrollTop || body.scrollTop || 0) - (_DocElmt.clientTop || body.clientTop || 0)*/ || 0
         };
     };
 
