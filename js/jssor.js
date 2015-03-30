@@ -436,9 +436,13 @@ var $Jssor$ = window.$Jssor$ = new function () {
                     _Browser = (chOffset >= 0) ? BROWSER_CHROME : BROWSER_SAFARI;
                     _BrowserRuntimeVersion = ParseFloat(_UserAgent.substring(slash + 1, saOffset));
                 }
-                else if(_UserAgent.match(/Trident.*rv[ :]*11\./)){
-                    _Browser = BROWSER_IE;
-                    _BrowserRuntimeVersion = _BrowserEngineVersion = 11;
+                else {
+                    //(/Trident.*rv[ :]*11\./i
+                    var match = /Trident\/.*rv:([0-9]{1,}[\.0-9]{0,})/i.exec(_UserAgent);
+                    if (match) {
+                        _Browser = BROWSER_IE;
+                        _BrowserRuntimeVersion = _BrowserEngineVersion = ParseFloat(match[1]);
+                    }
                 }
 
                 if (webkitOffset >= 0)
