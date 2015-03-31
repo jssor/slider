@@ -1539,11 +1539,16 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return hash;
     }
 
+    function Split(str, separator) {
+        return str.match(separator || REGEX_WHITESPACE_GLOBAL);
+    }
+
     function StringToHashObject(str, regExp) {
-        return ToHash((str || "").match(regExp || REGEX_WHITESPACE_GLOBAL));
+        return ToHash(Split(str || "", regExp));
     }
 
     _This.$ToHash = ToHash;
+    _This.$Split = Split;
 
     function Join(separator, strings) {
         ///	<param name="separator" type="String">
@@ -1818,7 +1823,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     function JssorButtonEx(elmt) {
         var _Self = this;
 
-        var _OriginClassName;
+        var _OriginClassName = "";
         var _ToggleClassSuffixes = ["av", "pv", "ds", "dn"];
         var _ToggleClasses = [];
         var _ToggleClassName;
@@ -1828,11 +1833,6 @@ var $Jssor$ = window.$Jssor$ = new function () {
         var _IsDisabled = 0;    //class name 'ds'
 
         function Highlight() {
-            $JssorDebug$.$Execute(function () {
-                if(_IsSelected) {
-                    var a = 0;
-                }
-            });
             ReplaceClass(elmt, _ToggleClassName, _ToggleClasses[_IsDisabled || _IsMouseDown || (_IsSelected & 2) || _IsSelected]);
         }
 
@@ -1885,15 +1885,17 @@ var $Jssor$ = window.$Jssor$ = new function () {
         {
             elmt = _This.$GetElement(elmt);
 
-            _OriginClassName = ClassName(elmt);
+            var originalClassNameArray = $Jssor$.$Split(ClassName(elmt));
+            if (originalClassNameArray)
+                _OriginClassName = originalClassNameArray.shift();
 
             each(_ToggleClassSuffixes, function (toggleClassSuffix) {
-                _ToggleClasses.push(_OriginClassName + toggleClassSuffix);
-            });
+                _ToggleClasses.push(_OriginClassName +toggleClassSuffix);
+        });
 
             _ToggleClassName = Join(" ", _ToggleClasses);
 
-            _ToggleClasses.splice(0, 0, "");
+            _ToggleClasses.unshift("");
 
             $Jssor$.$AddEvent(elmt, Device().$Evt_Down, MouseDownEventHandler);
         }
