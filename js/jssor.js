@@ -132,14 +132,11 @@ var $JssorDebug$ = new function () {
 
 //$JssorEasing$
 var $JssorEasing$ = window.$JssorEasing$ = {
-    $EaseLinear: function (t) {
-        return t;
-    },
-    $EaseGoBack: function (t) {
-        return 1 - Math.abs((t *= 2) - 1);
-    },
     $EaseSwing: function (t) {
         return -Math.cos(t * Math.PI) / 2 + .5;
+    },
+    $EaseLinear: function (t) {
+        return t;
     },
     $EaseInQuad: function (t) {
         return t * t;
@@ -243,6 +240,9 @@ var $JssorEasing$ = window.$JssorEasing$ = {
     $EaseInOutBounce: function (t) {
         return t < 1 / 2 ? $JssorEasing$.$EaseInBounce(t * 2) * .5 : $JssorEasing$.$EaseOutBounce(t * 2 - 1) * .5 + .5;
     },
+    $EaseGoBack: function (t) {
+        return 1 - Math.abs((t *= 2) - 1);
+    },
     $EaseInWave: function (t) {
         return 1 - Math.cos(t * Math.PI * 2)
     },
@@ -335,6 +335,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     //#region Constants
     var REGEX_WHITESPACE_GLOBAL = /\S+/g;
+    var ROWSER_OTHER = -1;
     var ROWSER_UNKNOWN = 0;
     var BROWSER_IE = 1;
     var BROWSER_FIREFOX = 2;
@@ -396,6 +397,8 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     function DetectBrowser(browser) {
         if (!_Browser) {
+            _Browser = -1;
+
             if (_AppName == "Microsoft Internet Explorer" &&
                 !!window.attachEvent && !!window.ActiveXObject) {
 
