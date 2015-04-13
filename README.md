@@ -18,7 +18,7 @@ Why jssor slider?
 
 **High Performance**: smooth animation with low cpu usage
 
-**Reliable**: cross browser support (IE6+, Chrome 3+, Firefox 2+, Safari 3.1+, Opera 10+)
+**Reliable**: cross browser support (IE6+, Chrome 3+, Firefox 3.6+, Safari 3.1+, Opera 10+)
 
 **Flexible**: tons of options and api interfaces
 
@@ -70,7 +70,7 @@ Jssor slider auto detect drag orientation, when an user touches and drag the sli
 
 - **most reliable slider**
 
-Jssor slider is cross browser slider, it supports wide range of browsers, Chrome 3+, Firefox 2+, IE 6+, Safari 3.1+, Opera 10+. Jssor slider is also cross plat form browser, iOS, Android, Windows, Windows Surface and Mac are all supported.
+Jssor slider is cross browser slider, it supports wide range of browsers, Chrome 3+, Firefox 3.6+, IE 6+, Safari 3.1+, Opera 10+. Jssor slider is also cross plat form browser, iOS, Android, Windows, Windows Surface and Mac are all supported.
 
 - **most scalable slider**
 

@@ -1399,7 +1399,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             if (_LastDragSucceded) {
                 $Jssor$.$StopEvent(event);
 
-                var checkElement = $Jssor$.$EventSrc(event);
+                var checkElement = $Jssor$.$EvtSrc(event);
                 while (checkElement && slideElmt !== checkElement) {
                     if (checkElement.tagName == "A") {
                         $Jssor$.$CancelEvent(event);
@@ -1896,13 +1896,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
     //#region Event handling begin
 
-    function OnMouseDown(event) {
-        var eventSrc = $Jssor$.$EventSrc(event);
-        if (!_DragOrientationRegistered && !$Jssor$.$AttributeEx(eventSrc, "nodrag") && RegisterDrag()) {
-            OnDragStart(event);
-        }
-    }
-
     function RecordFreezePoint() {
         _CarouselPlaying_OnFreeze = _IsSliding;
         _PlayToPosition_OnFreeze = _CarouselPlayer.$GetPlayToPosition();
@@ -1954,61 +1947,65 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         }
     }
 
-    function PreventDragEvent(event) {
-        if (!$Jssor$.$AttributeEx($Jssor$.$EventSrc(event), "nodrag")) {
+    function PreventDragSelectionEvent(event) {
+        if (!$Jssor$.$AttributeEx($Jssor$.$EvtSrc(event), "nodrag")) {
             $Jssor$.$CancelEvent(event);
         }
     }
 
-    function OnDragStart(event) {
+    function OnTouchStart(event) {
+        OnDragStart(event, 1);
+    }
 
-        _IsDragging = true;
-        _DragInvalid = false;
-        _LoadingTicket = null;
+    function OnDragStart(event, touch) {
+        event = $Jssor$.$GetEvent(event);
+        var eventSrc = $Jssor$.$EvtSrc(event);
 
-        $Jssor$.$AddEvent(document, _MoveEvent, OnDragMove);
+        if (!_DragOrientationRegistered && !$Jssor$.$AttributeEx(eventSrc, "nodrag") && RegisterDrag() && (!touch || event.touches.length == 1)) {
+            _IsDragging = true;
+            _DragInvalid = false;
+            _LoadingTicket = null;
 
-        _LastTimeMoveByDrag = $Jssor$.$GetNow() - 50;
+            $Jssor$.$AddEvent(document, touch ? "touchmove" : "mousemove", OnDragMove);
 
-        _LastDragSucceded = 0;
-        Freeze();
+            _LastTimeMoveByDrag = $Jssor$.$GetNow() - 50;
 
-        if (!_CarouselPlaying_OnFreeze)
-            _DragOrientation = 0;
+            _LastDragSucceded = 0;
+            Freeze();
 
-        if (_HandleTouchEventOnly) {
-            var touchPoint = event.touches[0];
-            _DragStartMouseX = touchPoint.clientX;
-            _DragStartMouseY = touchPoint.clientY;
+            if (!_CarouselPlaying_OnFreeze)
+                _DragOrientation = 0;
+
+            if (touch) {
+                var touchPoint = event.touches[0];
+                _DragStartMouseX = touchPoint.clientX;
+                _DragStartMouseY = touchPoint.clientY;
+            }
+            else {
+                var mousePoint = $Jssor$.$MousePosition(event);
+
+                _DragStartMouseX = mousePoint.x;
+                _DragStartMouseY = mousePoint.y;
+            }
+
+            _DragOffsetTotal = 0;
+            _DragOffsetLastTime = 0;
+            _DragIndexAdjust = 0;
+
+            //Trigger EVT_DRAGSTART
+            _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_DRAG_START, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
         }
-        else {
-            var mousePoint = $Jssor$.$MousePosition(event);
-
-            _DragStartMouseX = mousePoint.x;
-            _DragStartMouseY = mousePoint.y;
-
-            if ($Jssor$.$IsBrowserFireFox() && $Jssor$.$BrowserVersion() < 4)
-                $Jssor$.$CancelEvent(event);
-        }
-
-        _DragOffsetTotal = 0;
-        _DragOffsetLastTime = 0;
-        _DragIndexAdjust = 0;
-
-        //Trigger EVT_DRAGSTART
-        _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_DRAG_START, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze, event);
     }
 
     function OnDragMove(event) {
         if (_IsDragging) {
+            event = $Jssor$.$GetEvent(event);
 
             var actionPoint;
 
-            if (_HandleTouchEventOnly) {
-                var touches = event.touches;
-                if (touches && touches.length > 0) {
-                    actionPoint = { x: touches[0].clientX, y: touches[0].clientY };
-                }
+            if (event.type != "mousemove") {
+                var touch = event.touches[0];
+                actionPoint = { x: touch.clientX, y: touch.clientY };
             }
             else {
                 actionPoint = $Jssor$.$MousePosition(event);
@@ -2100,7 +2097,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             _LastTimeMoveByDrag = $Jssor$.$GetNow();
 
-            $Jssor$.$RemoveEvent(document, _MoveEvent, OnDragMove);
+            $Jssor$.$RemoveEvent(document, "mousemove", OnDragMove);
+            $Jssor$.$RemoveEvent(document, "touchmove", OnDragMove);
 
             _LastDragSucceded = _DragOffsetTotal;
 
@@ -2119,7 +2117,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         if (_LastDragSucceded) {
             $Jssor$.$StopEvent(event);
 
-            var checkElement = $Jssor$.$EventSrc(event);
+            var checkElement = $Jssor$.$EvtSrc(event);
             while (checkElement && _SlidesContainer !== checkElement) {
                 if (checkElement.tagName == "A") {
                     $Jssor$.$CancelEvent(event);
@@ -2913,14 +2911,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         var _SlideshowRunner;
         var _LinkContainer;
 
-        var _Device = $Jssor$.$Device();
-        var _DownEvent = _Device.$Evt_Down;
-        var _MoveEvent = _Device.$Evt_Move;
-        var _UpEvent = _Device.$Evt_Up;
-        var _CancelEvent = _Device.$Evt_Cancel;
-
-        var _HandleTouchEventOnly = _Device.$TouchOnly;
-        var _IsTouchDevice = _Device.$Touchable;
+        var _IsTouchDevice = $Jssor$.$Device().$Touchable;
 
         var _LastTimeMoveByDrag;
         var _Position_OnFreeze;
@@ -2930,19 +2921,19 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
         //SlideBoard Constructor
         {
-            if (_Device.$TouchActionAttr) {
-                if (_DragEnabled) {
-                    var touchAction = "auto";
-                    if (_DragEnabled == 2) {
-                        touchAction = "pan-x";
-                    }
-                    else if (_DragEnabled) {
-                        touchAction = "pan-y";
-                    }
+            //if (_Device.$TouchActionAttr) {
+            //    if (_DragEnabled) {
+            //        var touchAction = "auto";
+            //        if (_DragEnabled == 2) {
+            //            touchAction = "pan-x";
+            //        }
+            //        else if (_DragEnabled) {
+            //            touchAction = "pan-y";
+            //        }
 
-                    $Jssor$.$Css(_SlideboardElmt, _Device.$TouchActionAttr, touchAction);
-                }
-            }
+            //        $Jssor$.$Css(_SlideboardElmt, _Device.$TouchActionAttr, touchAction);
+            //    }
+            //}
 
             _Slideshow = new Slideshow();
 
@@ -2980,12 +2971,14 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             });
 
             if (_DragEnabled) {
-                $Jssor$.$AddEvent(_SlidesContainer, _DownEvent, OnMouseDown);
-                $Jssor$.$AddEvent(_SlidesContainer, "dragstart", PreventDragEvent);
-                $Jssor$.$AddEvent(_SlidesContainer, "selectstart", PreventDragEvent);
-                $Jssor$.$AddEvent(document, _UpEvent, OnDragEnd);
+                $Jssor$.$AddEvent(_SlidesContainer, "mousedown", OnDragStart);
+                $Jssor$.$AddEvent(_SlidesContainer, "touchstart", OnTouchStart);
+                $Jssor$.$AddEvent(_SlidesContainer, "dragstart", PreventDragSelectionEvent);
+                $Jssor$.$AddEvent(_SlidesContainer, "selectstart", PreventDragSelectionEvent);
+                $Jssor$.$AddEvent(document, "mouseup", OnDragEnd);
+                $Jssor$.$AddEvent(document, "touchend", OnDragEnd);
+                $Jssor$.$AddEvent(document, "touchcancel", OnDragEnd);
                 $Jssor$.$AddEvent(window, "blur", OnDragEnd);
-                _CancelEvent && $Jssor$.$AddEvent(document, _CancelEvent, OnDragEnd);
             }
         }
         //SlideBoard

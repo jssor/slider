@@ -363,34 +363,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //#endregion
 
     function Device() {
-        if (!_Device) {
-            _Device = {
-                $Evt_Down: "mousedown",
-                $Evt_Move: "mousemove",
-                $Evt_Up: "mouseup"
-            };
-            var msPrefix;
-            if ((_Navigator.pointerEnabled || (msPrefix = _Navigator.msPointerEnabled)) && _UserAgent.match(/iemobile/i)) {
-                _Device = {
-                    $Evt_Down: msPrefix ? "MSPointerDown" : "pointerdown",
-                    $Evt_Move: msPrefix ? "MSPointerMove" : "pointermove",
-                    $Evt_Up: msPrefix ? "MSPointerUp" : "pointerup",
-                    $Evt_Cancel: msPrefix ? "MSPointerCancel" : "pointercancel",
-                    $TouchActionAttr: msPrefix ? "msTouchAction" : "touchAction",
-                    $Touchable: true
-                };
-            }
-            else if ("ontouchstart" in window || "createTouch" in document) {
-                _Device = {
-                    $Evt_Down: "touchstart",
-                    $Evt_Move: "touchmove",
-                    $Evt_Up: "touchend",
-                    $Evt_Cancel: "touchcancel",
-                    $Touchable: true,
-                    $TouchOnly: true
-                };
-            }
-        }
+        _Device = _Device || { $Touchable: "ontouchstart" in window || "createTouch" in document };
 
         return _Device;
     }
@@ -501,7 +474,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             // Note that in some versions of IE9 it is critical that
             // msTransform appear in this list before MozTransform
 
-            each(['transform', 'WebkitTransform', 'msTransform', 'MozTransform', 'OTransform'], function (property) {
+            Each(['transform', 'WebkitTransform', 'msTransform', 'MozTransform', 'OTransform'], function (property) {
                 if (elmt.style[property] != undefined) {
                     _TransformProperty = property;
                     return true;
@@ -526,73 +499,61 @@ var $Jssor$ = window.$Jssor$ = new function () {
     }
 
     function toString(obj) {
-        return Object.prototype.toString.call(obj);
+        return {}.toString.call(obj);
     }
 
     // [[Class]] -> type pairs
-    var class2type;
+    var _Class2type;
 
-    function each(object, callback) {
-        if (toString(object) == "[object Array]") {
-            for (var i = 0; i < object.length; i++) {
-                if (callback(object[i], i, object)) {
+    function GetClass2Type() {
+        if (!_Class2type) {
+            _Class2type = {};
+            Each(["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object"], function (name) {
+                _Class2type["[object " + name + "]"] = name.toLowerCase();
+            });
+        }
+
+        return _Class2type;
+    }
+
+    function Each(obj, callback) {
+        if (toString(obj) == "[object Array]") {
+            for (var i = 0; i < obj.length; i++) {
+                if (callback(obj[i], i, obj)) {
                     return true;
                 }
             }
         }
         else {
-            for (var name in object) {
-                if (callback(object[name], name, object)) {
+            for (var name in obj) {
+                if (callback(obj[name], name, obj)) {
                     return true;
                 }
             }
         }
     }
 
-    function GetClass2Type() {
-        if (!class2type) {
-            class2type = {};
-            each(["Boolean", "Number", "String", "Function", "Array", "Date", "RegExp", "Object"], function (name) {
-                class2type["[object " + name + "]"] = name.toLowerCase();
-            });
-        }
-
-        return class2type;
-    }
-
-    function type(obj) {
+    function Type(obj) {
         return obj == null ? String(obj) : GetClass2Type()[toString(obj)] || "object";
     }
 
-    function isPlainObject(obj) {
-        // Must be an Object.
-        // Because of IE, we also have to check the presence of the constructor property.
-        // Make sure that DOM nodes and window objects don't pass through, as well
-        if (!obj || type(obj) !== "object" || obj.nodeType || _This.$IsWindow(obj)) {
-            return false;
-        }
+    function IsNotEmpty(obj) {
+        for(var name in obj)
+            return true;
+    }
 
-        var hasOwn = Object.prototype.hasOwnProperty;
-
+    function IsPlainObject(obj) {
+        // Not plain objects:
+        // - Any object or value whose internal [[Class]] property is not "[object Object]"
+        // - DOM nodes
+        // - window
         try {
-            // Not own constructor property must be Object
-            if (obj.constructor &&
-				!hasOwn.call(obj, "constructor") &&
-				!hasOwn.call(obj.constructor.prototype, "isPrototypeOf")) {
-                return false;
-            }
-        } catch (e) {
-            // IE8,9 Will throw exceptions on certain host objects #9897
-            return false;
+            return Type(obj) == "object"
+                && !obj.nodeType
+                && obj != obj.window
+                && (!obj.constructor || { }.hasOwnProperty.call(obj.constructor.prototype, "isPrototypeOf"));
         }
-
-        // Own properties are enumerated firstly, so to speed up,
-        // if last one is own, then all properties are own.
-
-        var key;
-        for (key in obj) { }
-
-        return key === undefined || hasOwn.call(obj, key);
+        catch (e) { }
     }
 
     function Point(x, y) {
@@ -618,7 +579,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     function BuildNewCss(oldCss, removeRegs, replaceValue) {
         var css = (!oldCss || oldCss == "inherit") ? "" : oldCss;
 
-        each(removeRegs, function (removeReg) {
+        Each(removeRegs, function (removeReg) {
             var m = removeReg.exec(css);
 
             if (m) {
@@ -716,12 +677,12 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$GetEvent = GetEvent;
 
-    _This.$EventSrc = function (event) {
+    _This.$EvtSrc = function (event) {
         event = GetEvent(event);
         return event.target || event.srcElement || document;
     };
 
-    _This.$EventTarget = function (event) {
+    _This.$EvtTarget = function (event) {
         event = GetEvent(event);
         return event.relatedTarget || event.toElement;
     };
@@ -1424,16 +1385,81 @@ var $Jssor$ = window.$Jssor$ = new function () {
         return elmt.getElementsByTagName(tagName);
     };
 
-    function Extend(target) {
-        for (var i = 1; i < arguments.length; i++) {
+    //function Extend() {
+    //    var args = arguments;
+    //    var target;
+    //    var options;
+    //    var propName;
+    //    var propValue;
+    //    var targetPropValue;
+    //    var purpose = 7 & args[0];
+    //    var deep = 1 & purpose;
+    //    var unextend = 2 & purpose;
+    //    var i = purpose ? 2 : 1;
+    //    target = args[i - 1] || {};
 
-            var options = arguments[i];
+    //    for (; i < args.length; i++) {
+    //        // Only deal with non-null/undefined values
+    //        if (options = args[i]) {
+    //            // Extend the base object
+    //            for (propName in options) {
+    //                propValue = options[propName];
 
+    //                if (propValue !== undefined) {
+    //                    propValue = options[propName];
+
+    //                    if (unextend) {
+    //                        targetPropValue = target[propName];
+    //                        if (propValue === targetPropValue)
+    //                            delete target[propName];
+    //                        else if (deep && IsPlainObject(targetPropValue)) {
+    //                            Extend(purpose, targetPropValue, propValue);
+    //                        }
+    //                    }
+    //                    else {
+    //                        target[propName] = (deep && IsPlainObject(target[propName])) ? Extend(purpose | 4, {}, propValue) : propValue;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    // Return the modified object
+    //    return target;
+    //}
+
+    //function Unextend() {
+    //    var args = arguments;
+    //    var newArgs = [].slice.call(arguments);
+    //    var purpose = 1 & args[0];
+
+    //    purpose && newArgs.shift();
+    //    newArgs.unshift(purpose | 2);
+
+    //    return Extend.apply(null, newArgs);
+    //}
+
+    function Extend() {
+        var args = arguments;
+        var target;
+        var options;
+        var propName;
+        var propValue;
+        var deep = 1 & args[0];
+        var i = 1 + deep;
+        target = args[i - 1] || {};
+
+        for (; i < args.length; i++) {
             // Only deal with non-null/undefined values
-            if (options) {
+            if (options = args[i]) {
                 // Extend the base object
-                for (var name in options) {
-                    target[name] = options[name];
+                for (propName in options) {
+                    propValue = options[propName];
+
+                    if (propValue !== undefined) {
+                        propValue = options[propName];
+                        target[propName] = (deep && IsPlainObject(target[propName])) ? Extend(deep, {}, propValue) : propValue;
+                    }
                 }
             }
         }
@@ -1444,15 +1470,28 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$Extend = Extend;
 
-    function Unextend(target, options) {
-        $JssorDebug$.$Assert(options);
+    function Unextend(target, option) {
+        $JssorDebug$.$Assert(option);
 
         var unextended = {};
+        var name;
+        var targetProp;
+        var optionProp;
 
         // Extend the base object
-        for (var name in target) {
-            if (target[name] !== options[name]) {
-                unextended[name] = target[name];
+        for (name in target) {
+            targetProp = target[name];
+            optionProp = option[name];
+
+            if (targetProp !== optionProp) {
+                var exclude;
+
+                if (IsPlainObject(targetProp) && IsPlainObject(optionProp)) {
+                    targetProp = Unextend(optionProp);
+                    exclude = !IsNotEmpty(targetProp);
+                }
+                
+                !exclude && (unextended[name] = targetProp);
             }
         }
 
@@ -1462,36 +1501,30 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
     _This.$Unextend = Unextend;
 
-    _This.$IsUndefined = function (obj) {
-        return type(obj) == "undefined";
-    };
-
     _This.$IsFunction = function (obj) {
-        return type(obj) == "function";
+        return Type(obj) == "function";
     };
 
     _This.$IsArray = function (obj) {
-        return type(obj) == "array";
+        return Type(obj) == "array";
     };
 
     _This.$IsString = function (obj) {
-        return type(obj) == "string";
+        return Type(obj) == "string";
     };
 
     _This.$IsNumeric = function (obj) {
         return !isNaN(ParseFloat(obj)) && isFinite(obj);
     };
 
-    _This.$IsWindow = function (obj) {
-        return obj && obj == obj.window;
-    };
-
-    _This.$Type = type;
+    _This.$Type = Type;
 
     // args is for internal usage only
-    _This.$Each = each;
+    _This.$Each = Each;
 
-    _This.$IsPlainObject = isPlainObject;
+    _This.$IsNotEmpty = IsNotEmpty;
+
+    _This.$IsPlainObject = IsPlainObject;
 
     function CreateElement(tagName) {
         return document.createElement(tagName);
@@ -1500,11 +1533,11 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$CreateElement = CreateElement;
 
     _This.$CreateDiv = function () {
-        return CreateElement("DIV", document);
+        return CreateElement("DIV");
     };
 
     _This.$CreateSpan = function () {
-        return CreateElement("SPAN", document);
+        return CreateElement("SPAN");
     };
 
     _This.$EmptyFunction = function () { };
@@ -1535,7 +1568,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     function ToHash(array) {
         var hash = {};
 
-        each(array, function (item) {
+        Each(array, function (item) {
             hash[item] = item;
         });
 
@@ -1561,7 +1594,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         var joined = "";
 
-        each(strings, function (str) {
+        Each(strings, function (str) {
             joined && (joined += separator);
             joined += str;
         });
@@ -1653,7 +1686,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$AppendChildren = function (elmt, children) {
-        each(children, function (child) {
+        Each(children, function (child) {
             _This.$AppendChild(elmt, child);
         });
     };
@@ -1710,7 +1743,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     };
 
     _This.$RemoveElements = function (elmts, pNode) {
-        each(elmts, function (elmt) {
+        Each(elmts, function (elmt) {
             _This.$RemoveElement(elmt, pNode);
         });
     };
@@ -1795,7 +1828,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             !_ImageLoading && callback && callback(mainImageElmt);
         }
 
-        each(imageElmts, function (imageElmt) {
+        Each(imageElmts, function (imageElmt) {
             _This.$LoadImage(imageElmt.src, LoadImageCompleteEventHandler);
         });
 
@@ -1844,8 +1877,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
             Highlight();
 
-            _This.$RemoveEvent(document, Device().$Evt_Up, MouseUpOrCancelEventHandler);
-            Device().$Evt_Cancel && _This.$RemoveEvent(document, Device().$Evt_Cancel, MouseUpOrCancelEventHandler);
+            _This.$RemoveEvent(document, "mouseup", MouseUpOrCancelEventHandler);
+            _This.$RemoveEvent(document, "touchend", MouseUpOrCancelEventHandler);
+            _This.$RemoveEvent(document, "touchcancel", MouseUpOrCancelEventHandler);
         }
 
         function MouseDownEventHandler(event) {
@@ -1858,8 +1892,9 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
                 Highlight();
 
-                _This.$AddEvent(document, Device().$Evt_Up, MouseUpOrCancelEventHandler);
-                Device().$Evt_Cancel && _This.$AddEvent(document, Device().$Evt_Cancel, MouseUpOrCancelEventHandler);
+                _This.$AddEvent(document, "mouseup", MouseUpOrCancelEventHandler);
+                _This.$AddEvent(document, "touchend", MouseUpOrCancelEventHandler);
+                _This.$AddEvent(document, "touchcancel", MouseUpOrCancelEventHandler);
             }
         }
 
@@ -1892,15 +1927,16 @@ var $Jssor$ = window.$Jssor$ = new function () {
             if (originalClassNameArray)
                 _OriginClassName = originalClassNameArray.shift();
 
-            each(_ToggleClassSuffixes, function (toggleClassSuffix) {
+            Each(_ToggleClassSuffixes, function (toggleClassSuffix) {
                 _ToggleClasses.push(_OriginClassName +toggleClassSuffix);
-        });
+            });
 
             _ToggleClassName = Join(" ", _ToggleClasses);
 
             _ToggleClasses.unshift("");
 
-            $Jssor$.$AddEvent(elmt, Device().$Evt_Down, MouseDownEventHandler);
+            _This.$AddEvent(elmt, "mousedown", MouseDownEventHandler);
+            _This.$AddEvent(elmt, "touchstart", MouseDownEventHandler);
         }
     }
 
@@ -1987,7 +2023,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         var styles = {};
 
-        each(originStyles, function (value, key) {
+        Each(originStyles, function (value, key) {
             if (_StyleGetter[key]) {
                 styles[key] = _StyleGetter[key](elmt);
             }
@@ -1999,7 +2035,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$SetStyles = function (elmt, styles) {
         var styleSetter = StyleSetter();
 
-        each(styles, function (value, key) {
+        Each(styles, function (value, key) {
             styleSetter[key] && styleSetter[key](elmt, value);
         });
     };
@@ -2660,7 +2696,7 @@ function $JssorPlayerClass$() {
         var _PlayerInstantces = [];
 
         function OnPlayerInstanceDataAvailable(event) {
-            var srcElement = $Jssor$.$EventSrc(event);
+            var srcElement = $Jssor$.$EvtSrc(event);
             _PlayerInstance = srcElement.pInstance;
 
             $Jssor$.$RemoveEvent(srcElement, "dataavailable", OnPlayerInstanceDataAvailable);
