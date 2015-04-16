@@ -1872,7 +1872,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             _CaptionInBegin = _SelfProcessor.$GetPosition_OuterEnd();
             _SelfProcessor.$Chain(captionSliderIn);
             _IdleBegin = captionSliderIn.$GetPosition_OuterEnd();
-            _IdleEnd = _IdleBegin + ($Jssor$.$ParseFloat($Jssor$.$AttributeEx(slideElmt, "idle")) || _Options.$AutoPlayInterval);
+            _IdleEnd = _IdleBegin + ($Jssor$.$ParseFloat($Jssor$.$AttributeEx(slideElmt, "idle")) || _AutoPlayInterval);
 
             captionSliderOut.$Shift(_IdleEnd);
             _SelfProcessor.$Combine(captionSliderOut);
@@ -1913,8 +1913,6 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
     }
 
     function Unfreeze(byDrag) {
-
-        byDrag && RecordFreezePoint();
 
         if (!_IsDragging && (_NotOnHover || !(_HoverToPause & 12)) && !_CarouselPlayer.$IsPlaying()) {
 
@@ -2108,6 +2106,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             //Trigger EVT_DRAG_END
             _SelfSlider.$TriggerEvent($JssorSlider$.$EVT_DRAG_END, GetRealIndex(currentPosition), currentPosition, GetRealIndex(_Position_OnFreeze), _Position_OnFreeze);
+
+            (_HoverToPause & 12) && RecordFreezePoint();
 
             Unfreeze(true);
         }
@@ -2640,6 +2640,14 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         $DragOrientation: 1             //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 both, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
     }, options);
+
+    //going to use $Idle instead of $AutoPlayInterval
+    if (_Options.$Idle != undefined)
+        _Options.$AutoPlayInterval = _Options.$Idle;
+
+    //going to use $Cols instead of $DisplayPieces
+    if (_Options.$Cols != undefined)
+        _Options.$DisplayPieces = _Options.$Cols;
 
     //Sodo statement for development time intellisence only
     $JssorDebug$.$Execute(function () {
@@ -3545,6 +3553,10 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             $AutoCenter: 3,
             $ActionMode: 1
         }, options);
+
+        //going to use $Rows instead of $Lanes
+        if (_Options.$Rows != undefined)
+            _Options.$Lanes = _Options.$Rows;
 
         //Sodo statement for development time intellisence only
         $JssorDebug$.$Execute(function () {
