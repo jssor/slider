@@ -723,21 +723,10 @@ var $JssorSlideshowRunner$ = window.$JssorSlideshowRunner$ = function (slideCont
             }
         };
 
-        function DisableHWA(elmt) {
-            $Jssor$.$DisableHWA(elmt);
-
-            var children = $Jssor$.$Children(elmt);
-
-            $Jssor$.$Each(children, function (child) {
-                DisableHWA(child);
-            });
-        }
-
         //constructor
         {
             slideElement = $Jssor$.$CloneNode(slideElement);
             //$Jssor$.$RemoveAttribute(slideElement, "id");
-            DisableHWA(slideElement);
             if ($Jssor$.$IsBrowserIe9Earlier()) {
                 var hasImage = !slideElement["no-image"];
                 var slideChildElements = $Jssor$.$FindChildrenByTag(slideElement);
@@ -1268,8 +1257,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 _CaptionSliderCount++;
             });
 
-            _CaptionSliderOut.$GoToBegin();
-            _CaptionSliderIn.$GoToBegin();
+            _CaptionSliderOut.$GoToPosition(0);
+            _CaptionSliderIn.$GoToPosition(0);
         }
 
         function EnsureCaptionSliderVersion() {
@@ -1439,7 +1428,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
                     $Jssor$.$Each(_ImageElmts, function (imageElmt) {
 
-                        if (!imageElmt.src) {
+                        if (!$Jssor$.$Attribute(imageElmt, "src")) {
                             imageElmt.src = $Jssor$.$AttributeEx(imageElmt, "src2");
                             $Jssor$.$CssDisplay(imageElmt, imageElmt["display-origin"]);
                         }
@@ -1529,7 +1518,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 if (elmt.tagName == "IMG") {
                     _ImageElmts.push(elmt);
 
-                    if (!elmt.src) {
+                    if (!$Jssor$.$Attribute(elmt, "src")) {
                         _ImageLazyLoading = true;
                         elmt["display-origin"] = $Jssor$.$CssDisplay(elmt);
                         $Jssor$.$HideElement(elmt);
@@ -1539,7 +1528,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                     $Jssor$.$CssZIndex(elmt, ($Jssor$.$CssZIndex(elmt) || 0) + 1);
                 }
                 if (_Options.$HWA && $Jssor$.$WebKitVersion()) {
-                    if (!_IsTouchDevice || $Jssor$.$WebKitVersion() < 534 || (!_SlideshowEnabled && !$Jssor$.$IsBrowserChrome())) {
+                    if ($Jssor$.$WebKitVersion() < 534 || (!_SlideshowEnabled && !$Jssor$.$IsBrowserChrome())) {
                         $Jssor$.$EnableHWA(elmt);
                     }
                 }
@@ -1645,7 +1634,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
             //        }
             //        //else if (_CaptionSliderOptions.$PlayInMode == 1) {
             //        //    //PlayInMode: 1 chain
-            //        //    _CaptionSliderIn.$GoToBegin();
+            //        //    _CaptionSliderIn.$GoToPosition(0);
             //        //}
             //        else if (_CaptionSliderOptions.$PlayInMode == 2) {
             //            //PlayInMode: 2 parallel
@@ -3949,7 +3938,7 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
 
     _Self.$Revert = function () {
         _Self.$GoToPosition(_Self.$GetPosition_OuterEnd() * (playIn || 0));
-        _ImmediateOutCaptionHanger.$GoToBegin();
+        _ImmediateOutCaptionHanger.$GoToPosition(0);
     };
 
     //Constructor

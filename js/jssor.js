@@ -2407,6 +2407,7 @@ function $JssorAnimator$(delay, duration, options, elmt, fromStyles, difStyles) 
             positionToDisplay = Math.max(positionToDisplay, _Position_OuterBegin);
 
             if (!_Hooked || _NoStop || force || positionToDisplay != _Position_Display) {
+
                 if (difStyles) {
 
                     var interPosition = (positionToDisplay - _Position_InnerBegin) / (duration || 1);
@@ -2422,22 +2423,22 @@ function $JssorAnimator$(delay, duration, options, elmt, fromStyles, difStyles) 
                 }
 
                 _ThisAnimator.$OnInnerOffsetChange(_Position_Display - _Position_InnerBegin, positionToDisplay - _Position_InnerBegin);
+
+                _Position_Display = positionToDisplay;
+
+                $Jssor$.$Each(_NestedAnimators, function (animator, i) {
+                    var nestedAnimator = positionOuter < _Position_Current ? _NestedAnimators[_NestedAnimators.length - i - 1] : animator;
+                    nestedAnimator.$GoToPosition(_Position_Display - _Shift, force);
+                });
+
+                var positionOld = _Position_Current;
+                var positionNew = _Position_Display;
+
+                _Position_Current = trimedPositionOuter;
+                _Hooked = true;
+
+                _ThisAnimator.$OnPositionChange(positionOld, positionNew);
             }
-
-            _Position_Display = positionToDisplay;
-
-            $Jssor$.$Each(_NestedAnimators, function (animator, i) {
-                var nestedAnimator = positionOuter < _Position_Current ? _NestedAnimators[_NestedAnimators.length - i - 1] : animator;
-                nestedAnimator.$GoToPosition(positionOuter - _Shift, force);
-            });
-
-            var positionOld = _Position_Current;
-            var positionNew = positionOuter;
-
-            _Position_Current = trimedPositionOuter;
-            _Hooked = true;
-
-            _ThisAnimator.$OnPositionChange(positionOld, positionNew);
         }
     }
 
@@ -2460,7 +2461,10 @@ function $JssorAnimator$(delay, duration, options, elmt, fromStyles, difStyles) 
         if (combineMode)
             animator.$Locate(_Position_OuterEnd, 1);
 
-        !noExpand && (_Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd() + _Shift));
+        if (!noExpand) {
+            _Position_OuterBegin = Math.min(_Position_OuterBegin, animator.$GetPosition_OuterBegin() + _Shift);
+            _Position_OuterEnd = Math.max(_Position_OuterEnd, animator.$GetPosition_OuterEnd() + _Shift);
+        }
         _NestedAnimators.push(animator);
     }
 
@@ -2472,7 +2476,7 @@ function $JssorAnimator$(delay, duration, options, elmt, fromStyles, difStyles) 
     if ($Jssor$.$IsBrowserSafari() && $Jssor$.$BrowserVersion() < 7) {
         RequestAnimationFrame = null;
 
-        $JssorDebug$.$Log("Custom animation frame for safari before 7.");
+        //$JssorDebug$.$Log("Custom animation frame for safari before 7.");
     }
 
     RequestAnimationFrame = RequestAnimationFrame || function (callback) {
