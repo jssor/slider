@@ -2518,16 +2518,17 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
             $Jssor$.$Css(elmt, "backgroundImage", "");
 
-            var noMoveElmts = {
-                "navigator": _BulletNavigatorOptions && _BulletNavigatorOptions.$Scale == false,
-                "arrowleft": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
-                "arrowright": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
-                "thumbnavigator": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false,
-                "thumbwrapper": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false
-            };
+            //var noMoveElmts = {
+            //    "navigator": _BulletNavigatorOptions && _BulletNavigatorOptions.$Scale == false,
+            //    "arrowleft": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
+            //    "arrowright": _ArrowNavigatorOptions && _ArrowNavigatorOptions.$Scale == false,
+            //    "thumbnavigator": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false,
+            //    "thumbwrapper": _ThumbnailNavigatorOptions && _ThumbnailNavigatorOptions.$Scale == false
+            //};
 
             $Jssor$.$Each(children, function (child) {
-                $Jssor$.$AppendChild(noMoveElmts[$Jssor$.$AttributeEx(child, "u")] ? elmt : innerWrapper, child);
+                $Jssor$.$AppendChild($Jssor$.$AttributeEx(child, "noscale") ? elmt : innerWrapper, child);
+                //$Jssor$.$AppendChild(noMoveElmts[$Jssor$.$AttributeEx(child, "u")] ? elmt : innerWrapper, child);
             });
         }
 
@@ -3141,6 +3142,9 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
     var _Located;
     self.$Relocate = function (containerWidth, containerHeight) {
         if (!_Located || _Options.$Scale == false) {
+            var containerWidth = $Jssor$.$ParentNode(elmt).clientWidth;
+            var containerHeight = $Jssor$.$ParentNode(elmt).clientHeight;
+
             if (_Options.$AutoCenter & 1) {
                 $Jssor$.$CssLeft(elmt, (containerWidth - _Width) / 2);
             }
@@ -3241,6 +3245,10 @@ var $JssorBulletNavigator$ = window.$JssorBulletNavigator$ = function (elmt, opt
         _SpacingX = _Options.$SpacingX;
         _SpacingY = _Options.$SpacingY;
         _Orientation = _Options.$Orientation - 1;
+
+        if (_Options.$Scale == false) {
+            $Jssor$.$Attribute(elmt, "noscale", true);
+        }
     }
 };
 
@@ -3314,6 +3322,9 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
     self.$Relocate = function (conainerWidth, containerHeight) {
         if (!_Located || _Options.$Scale == false) {
 
+            var containerWidth = $Jssor$.$ParentNode(arrowLeft).clientWidth;
+            var containerHeight = $Jssor$.$ParentNode(arrowLeft).clientHeight;
+
             if (_Options.$AutoCenter & 1) {
                 $Jssor$.$CssLeft(arrowLeft, (containerWidth - _ArrowWidth) / 2);
                 $Jssor$.$CssLeft(arrowRight, (containerWidth - _ArrowWidth) / 2);
@@ -3354,6 +3365,11 @@ var $JssorArrowNavigator$ = window.$JssorArrowNavigator$ = function (arrowLeft, 
         }, options);
 
         _Steps = _Options.$Steps;
+
+        if (_Options.$Scale == false) {
+            $Jssor$.$Attribute(arrowLeft, "noscale", true);
+            $Jssor$.$Attribute(arrowRight, "noscale", true);
+        }
     }
 };
 
@@ -3583,6 +3599,10 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
         _SpacingX = _Options.$SpacingX;
         _SpacingY = _Options.$SpacingY;
         _DisplayPieces = _Options.$DisplayPieces;
+
+        if (_Options.$Scale == false) {
+            $Jssor$.$Attribute(elmt, "noscale", true);
+        }
     }
 };
 
