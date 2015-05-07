@@ -2909,7 +2909,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         var _SlideshowRunner;
         var _LinkContainer;
 
-        var _IsTouchDevice = $Jssor$.$Device().$Touchable;
+        var _Device = $Jssor$.$Device();
+        var _IsTouchDevice = _Device.$Touchable;
 
         var _LastTimeMoveByDrag;
         var _Position_OnFreeze;
@@ -2919,19 +2920,9 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
         //SlideBoard Constructor
         {
-            //if (_Device.$TouchActionAttr) {
-            //    if (_DragEnabled) {
-            //        var touchAction = "auto";
-            //        if (_DragEnabled == 2) {
-            //            touchAction = "pan-x";
-            //        }
-            //        else if (_DragEnabled) {
-            //            touchAction = "pan-y";
-            //        }
-
-            //        $Jssor$.$Css(_SlideboardElmt, _Device.$TouchActionAttr, touchAction);
-            //    }
-            //}
+            if (_Device.$TouchActionAttr) {
+                $Jssor$.$Css(_SlideboardElmt, _Device.$TouchActionAttr, [null, "pan-y", "pan-x", "none"][_DragEnabled] || "");
+            }
 
             _Slideshow = new Slideshow();
 

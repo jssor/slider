@@ -363,7 +363,14 @@ var $Jssor$ = window.$Jssor$ = new function () {
     //#endregion
 
     function Device() {
-        _Device = _Device || { $Touchable: "ontouchstart" in window || "createTouch" in document };
+        if (!_Device) {
+            _Device = { $Touchable: "ontouchstart" in window || "createTouch" in document };
+
+            var msPrefix;
+            if ((_Navigator.pointerEnabled || (msPrefix = _Navigator.msPointerEnabled))) {
+                _Device.$TouchActionAttr = msPrefix ? "msTouchAction" : "touchAction";
+            }
+        }
 
         return _Device;
     }
