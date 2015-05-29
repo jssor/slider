@@ -1448,13 +1448,17 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
                 if (slideshowTransition) {
                     var loadingTicket = _LoadingTicket = $Jssor$.$GetNow();
 
-                    var nextIndex = slideIndex + _PlayReverse;
+                    var nextIndex = slideIndex + _Options.$AutoPlaySteps * _PlayReverse;
                     var nextItem = _SlideItems[GetRealIndex(nextIndex)];
                     return nextItem.$LoadImage($Jssor$.$CreateCallback(null, LoadSlideshowImageCompleteEventHandler, nextIndex, nextItem, slideshowTransition, loadingTicket), _LoadingScreen);
                 }
             }
 
-            PlayTo(_CurrentSlideIndex + _Options.$AutoPlaySteps * _PlayReverse);
+            var index = _CurrentSlideIndex;
+            if (_Options.$AutoPlaySteps < 0)
+                index -= _SlideCount;
+
+            PlayTo(index + _Options.$AutoPlaySteps * _PlayReverse);
         };
 
         _SelfSlideItem.$TryActivate = function () {
