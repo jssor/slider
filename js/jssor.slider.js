@@ -1442,23 +1442,36 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         };
 
         _SelfSlideItem.$GoForNextSlide = function () {
-            if (_SlideshowRunner) {
-                var slideshowTransition = _SlideshowRunner.$GetTransition(_SlideCount);
 
-                if (slideshowTransition) {
-                    var loadingTicket = _LoadingTicket = $Jssor$.$GetNow();
-
-                    var nextIndex = slideIndex + _Options.$AutoPlaySteps * _PlayReverse;
-                    var nextItem = _SlideItems[GetRealIndex(nextIndex)];
-                    return nextItem.$LoadImage($Jssor$.$CreateCallback(null, LoadSlideshowImageCompleteEventHandler, nextIndex, nextItem, slideshowTransition, loadingTicket), _LoadingScreen);
-                }
-            }
-
-            var index = _CurrentSlideIndex;
+            var index = slideIndex;
             if (_Options.$AutoPlaySteps < 0)
                 index -= _SlideCount;
 
-            PlayTo(index + _Options.$AutoPlaySteps * _PlayReverse);
+            var nextIndex = index + _Options.$AutoPlaySteps * _PlayReverse;
+
+            if (_Loop & 2) {
+                //Rewind
+                nextIndex = GetRealIndex(nextIndex);
+            }
+            if (!(_Loop & 1)) {
+                //Stop at threshold
+                nextIndex = Math.max(0, Math.min(nextIndex, _SlideCount - _DisplayPieces));
+            }
+
+            if (nextIndex != slideIndex) {
+                if (_SlideshowRunner) {
+                    var slideshowTransition = _SlideshowRunner.$GetTransition(_SlideCount);
+
+                    if (slideshowTransition) {
+                        var loadingTicket = _LoadingTicket = $Jssor$.$GetNow();
+
+                        var nextItem = _SlideItems[GetRealIndex(nextIndex)];
+                        return nextItem.$LoadImage($Jssor$.$CreateCallback(null, LoadSlideshowImageCompleteEventHandler, nextIndex, nextItem, slideshowTransition, loadingTicket), _LoadingScreen);
+                    }
+                }
+
+                PlayTo(nextIndex);
+            }
         };
 
         _SelfSlideItem.$TryActivate = function () {
