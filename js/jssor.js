@@ -1877,6 +1877,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
 
         function Highlight() {
             ReplaceClass(elmt, _ToggleClassName, _ToggleClasses[_IsDisabled || _IsMouseDown || (_IsSelected & 2) || _IsSelected]);
+            $Jssor$.$Css(elmt, "pointer-events", _IsDisabled ? "none" : "");
         }
 
         function MouseUpOrCancelEventHandler(event) {

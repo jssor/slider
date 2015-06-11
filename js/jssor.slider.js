@@ -2338,7 +2338,8 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         ///	<summary>
         ///		instance.$GoTo( slideIndex );   //Go to the specifed slide immediately with no play.
         ///	</summary>
-        PlayTo(slideIndex, 1);
+        //PlayTo(slideIndex, 1);
+        _Conveyor.$GoToPosition(slideIndex);
     };
 
     _SelfSlider.$Next = function () {
