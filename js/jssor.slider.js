@@ -2205,19 +2205,25 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
     //Navigation Request Handler
     function NavigationClickHandler(index, relative) {
+        var toIndex = index;
+
         if (relative) {
             if (!_Loop) {
                 //Stop at threshold
-                index = Math.min(Math.max(index + _TempSlideIndex, 0), _SlideCount - _DisplayPieces);
+                toIndex = Math.min(Math.max(toIndex + _TempSlideIndex, 0), _SlideCount - _DisplayPieces);
                 relative = false;
             }
             else if (_Loop & 2) {
                 //Rewind
-                index = GetRealIndex(index + _TempSlideIndex);
+                toIndex = GetRealIndex(toIndex + _TempSlideIndex);
                 relative = false;
             }
         }
-        PlayTo(index, _Options.$SlideDuration, relative);
+        else if (_Loop) {
+            toIndex = _SelfSlider.$GetVirtualIndex(toIndex);
+        }
+
+        PlayTo(toIndex, _Options.$SlideDuration, relative);
     }
 
     function ShowNavigators() {
@@ -2288,7 +2294,7 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
         ///	</param>
         /// http://msdn.microsoft.com/en-us/library/vstudio/bb385682.aspx
         /// http://msdn.microsoft.com/en-us/library/vstudio/hh542720.aspx
-        if (_CarouselEnabled && (!_IsDragging || _Options.$NaviQuitDrag)) {
+        if (_CarouselEnabled && (!_IsDragging && (_NotOnHover || !(_HoverToPause & 12)) || _Options.$NaviQuitDrag)) {
             _IsSliding = true;
             _IsDragging = false;
             _CarouselPlayer.$Stop();
@@ -2592,16 +2598,16 @@ var $JssorSlider$ = window.$JssorSlider$ = function (elmt, options) {
 
     _SelfSlider.$GetVirtualIndex = function (index) {
         var parkingIndex = Math.ceil(GetRealIndex(_ParkingPosition / _StepLength));
-        var displayIndex = GetRealIndex(index - _CurrentSlideIndex + parkingIndex);
+        var displayIndex = GetRealIndex(index - _TempSlideIndex + parkingIndex);
 
         if (displayIndex > _DisplayPieces) {
-            if (index - _CurrentSlideIndex > _SlideCount / 2)
+            if (index - _TempSlideIndex > _SlideCount / 2)
                 index -= _SlideCount;
-            else if (index - _CurrentSlideIndex <= -_SlideCount / 2)
+            else if (index - _TempSlideIndex <= -_SlideCount / 2)
                 index += _SlideCount;
         }
         else {
-            index = _CurrentSlideIndex + displayIndex - parkingIndex;
+            index = _TempSlideIndex + displayIndex - parkingIndex;
         }
 
         return index;
@@ -3419,12 +3425,14 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
             _Button.$Selected(_CurrentIndex == index);
         }
 
-        function OnNavigationRequest(event) {
-            if (!_Slider.$LastDragSucceded()) {
-                var tail = _Lanes - index % _Lanes;
-                var slideVirtualIndex = _Slider.$GetVirtualIndex((index + tail) / _Lanes - 1);
-                var itemVirtualIndex = slideVirtualIndex * _Lanes + _Lanes - tail;
-                _Self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, itemVirtualIndex);
+        function OnNavigationRequest(byMouseOver, event) {
+            if (byMouseOver || !_Slider.$LastDragSucceded()) {
+                //var tail = _Lanes - index % _Lanes;
+                //var slideVirtualIndex = _Slider.$GetVirtualIndex((index + tail) / _Lanes - 1);
+                //var itemVirtualIndex = slideVirtualIndex * _Lanes + _Lanes - tail;
+                //_Self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, itemVirtualIndex);
+
+                _Self.$TriggerEvent($JssorNavigatorEvents$.$NAVIGATIONREQUEST, index);
             }
 
             //$JssorDebug$.$Log("navigation request");
@@ -3445,9 +3453,9 @@ var $JssorThumbnailNavigator$ = window.$JssorThumbnailNavigator$ = function (elm
 
             _Button = $Jssor$.$Buttonize(_Wrapper);
             if (_Options.$ActionMode & 1)
-                $Jssor$.$AddEvent(_Wrapper, "click", OnNavigationRequest);
+                $Jssor$.$AddEvent(_Wrapper, "click", $Jssor$.$CreateCallback(null, OnNavigationRequest, 0));
             if (_Options.$ActionMode & 2)
-                $Jssor$.$AddEvent(_Wrapper, "mouseover", $Jssor$.$MouseOverOutFilter(OnNavigationRequest, _Wrapper));
+                $Jssor$.$AddEvent(_Wrapper, "mouseover", $Jssor$.$MouseOverOutFilter($Jssor$.$CreateCallback(null, OnNavigationRequest, 1), _Wrapper));
         }
     }
 
