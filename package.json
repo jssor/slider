@@ -1,6 +1,6 @@
 {
   "name": "jssorslider",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Jssor Slider is touch swipe image slider carousel with 390+ caption slide effects. When touch Jssor Slider, it will freeze and then move to the direction that finger",
   "main": "./js/jssor.slider.mini.js",
   "scripts": {
