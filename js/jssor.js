@@ -481,7 +481,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
             // Note that in some versions of IE9 it is critical that
             // msTransform appear in this list before MozTransform
 
-            Each(['transform', 'WebkitTransform', 'msTransform', 'MozTransform', 'OTransform'], function (property) {
+            Each(['transform', 'WebkitTransform', 'msTransform', 'MozTransform', 'OTransform', 'webkitTransform'], function (property) {
                 if (elmt.style[property] != undefined) {
                     _TransformProperty = property;
                     return true;
