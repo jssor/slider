@@ -3926,14 +3926,15 @@ var $JssorCaptionSlider$ = window.$JssorCaptionSlider$ = function (container, ca
             $JssorDebug$.$Execute(function () {
                 if (captionItem.length) {
                     var top = $Jssor$.$CssTop(captionItem.$Elmt);
+                    var bottom = $Jssor$.$CssBottom(captionItem.$Elmt);
                     var left = $Jssor$.$CssLeft(captionItem.$Elmt);
                     var width = $Jssor$.$CssWidth(captionItem.$Elmt);
                     var height = $Jssor$.$CssHeight(captionItem.$Elmt);
 
                     var error = null;
 
-                    if (isNaN(top))
-                        error = "Style 'top' for caption not specified. Please always specify caption like 'position: absolute; top: ...px; left: ...px; width: ...px; height: ...px;'.";
+                    if (isNaN(top) && isNaN(bottom))
+                        error = "Style 'top' or 'bottom' for caption not specified. Please always specify caption like 'position: absolute; top: ...px; left: ...px; width: ...px; height: ...px;'.";
                     else if (isNaN(left))
                         error = "Style 'left' not specified. Please always specify caption like 'position: absolute; top: ...px; left: ...px; width: ...px; height: ...px;'.";
                     else if (isNaN(width))

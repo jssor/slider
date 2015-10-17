@@ -1959,6 +1959,7 @@ var $Jssor$ = window.$Jssor$ = new function () {
     _This.$CssOverflow = CssProxy("overflow");
 
     _This.$CssTop = CssProxy("top", 2);
+    _This.$CssBottom = CssProxy("bottom", 2);
     _This.$CssLeft = CssProxy("left", 2);
     _This.$CssWidth = CssProxy("width", 2);
     _This.$CssHeight = CssProxy("height", 2);
