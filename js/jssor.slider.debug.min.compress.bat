@@ -1,2 +1,0 @@
-"..\tool\Jssor.Compress.exe" -JS -AWRAP -DEBUG -OVERWRITE -ENCOUT:UTF-8 -NOREMOVE:Member -NOREMOVE:GlobalVariable -NORENAME:Member -RENAME:$JssorPlayerClass$=$JssorPlayerClass$ "jssor.js" "jssor.slider.js" -OUT "jssor.slider.debug.min.js"
-PAUSE

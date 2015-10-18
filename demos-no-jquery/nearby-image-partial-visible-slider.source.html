@@ -6,10 +6,9 @@
     <title>Nearby Image Partial Visible Slider - Jssor Slider, Carousel, Slideshow</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
-    <!-- use jssor.slider.min.js instead for release -->
-    <!-- jssor.slider.min.js = (jssor.js + jssor.slider.js) -->
-    <script type="text/javascript" src="../js/jssor.js"></script>
-    <script type="text/javascript" src="../js/jssor.slider.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <!-- use jssor.slider.debug.js instead for debug -->
+
     <script>
 
         jssor_slider1_starter = function (containerId) {
@@ -18,7 +17,7 @@
 
                 $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slideshow is auto playing, default value is false
 
-                $ArrowKeyNavigation: true,   			            //Allows arrow key to navigate or not
+                $ArrowKeyNavigation: true,   			            //Allows arrow key to navigate or not, default value is true
                 $SlideWidth: 600,                                   //[Optional] Width of every slide in pixels, the default is width of 'slides' container
                 //$SlideHeight: 300,                                  //[Optional] Height of every slide in pixels, the default is width of 'slides' container
                 $SlideSpacing: 0, 					                //Space between each slide in pixels
