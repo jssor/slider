@@ -70,7 +70,7 @@
 
             var options = {
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
-                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0),
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0),
 
                 $CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
                     $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
@@ -82,7 +82,7 @@
 
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
             //responsive code begin
-            //you can remove responsive code if you don't want the slider scales while window resizes
+            //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
 
                 //reserve blank width for margin+padding: margin+padding-left (10) + margin+padding-right (10)

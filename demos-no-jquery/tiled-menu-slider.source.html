@@ -63,8 +63,8 @@
     </style>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff; background-image: url(../img/back.jpg);">
-    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-    <!-- use jssor.slider.debug.js instead for debug -->
+    <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
+    <!-- use jssor.slider.js instead for release -->
 
     <script>
         jssor_slider1_starter = function (containerId) {
@@ -80,7 +80,7 @@
             var jssor_slider1 = new $JssorSlider$(containerId, options);
 
             //responsive code begin
-            //you can remove responsive code if you don't want the slider scales while window resizes
+            //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth) {
