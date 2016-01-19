@@ -23,14 +23,7 @@
             var options = {
                 $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
                 $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
-                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
-
-                $CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
-                    $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
-                    $CaptionTransitions: _CaptionTransitions,       //[Required] An array of caption transitions to play caption, see caption transition section at jssor slideshow transition builder
-                    $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
-                    $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
-                }
+                $DragOrientation: 3                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
             };
 
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
@@ -58,11 +51,6 @@ http://www.jssor.com" target="_blank"><img src="../img/landscape/02.jpg"/></a></
             <div><img u="image" src="../img/landscape/03.jpg"/>
                <div style="position: absolute; top: 125px; left: 125px; width: 350px; height: 50px;text-align:center;line-height:50px;background:#fff;">
                             This is static content, can be any html
-                </div>
-            </div>
-            <div><img u="image" src="../img/landscape/04.jpg"/>
-                <div u="caption" t="T" style="position: absolute; top: 125px; left: 125px; width: 350px;height: 50px;text-align:center;line-height:50px;background:#fff;">
-                            This is caption, can be any html
                 </div>
             </div>
         </div>

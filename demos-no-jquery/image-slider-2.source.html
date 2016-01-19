@@ -45,7 +45,7 @@
         }
     </style>
     <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
-    <!-- use jssor.slider.js instead for release -->
+    <!-- use jssor.slider.min.js instead for release -->
 
     <script>
 
@@ -105,7 +105,7 @@
             ScaleSlider();
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             //responsive code end
         };

@@ -7,7 +7,7 @@
 </head>
 <body style="background-color: #ffffff; font-family: Arial, Verdana, Sans-Serif;">
     <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
-    <!-- use jssor.slider.js instead for release -->
+    <!-- use jssor.slider.min.js instead for release -->
 
     <script>
         jssor_slider1_starter = function (containerId) {
@@ -74,13 +74,6 @@
                     $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
                 },
 
-                $CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
-                    $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
-                    $CaptionTransitions: _CaptionTransitions,       //[Required] An array of caption transitions to play caption, see caption transition section at jssor slideshow transition builder
-                    $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
-                    $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
-                },
-
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
@@ -118,7 +111,7 @@
             ScaleSlider();
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             //responsive code end
         }
@@ -144,52 +137,34 @@
             <div>
                 <img u=image src="../img/landscape/01.jpg" />
                 <div u="thumb">Do you notice it scales while window resize?</div>
-                <div u="caption" t="L" style="position: absolute; top: 20px; left: 20px; width: 200px; height: 30px; color: #ffffff; font-size: 20px; line-height: 30px;">What about caption?</div>
-                <div u="caption" t="CLIP|LR" style="position: absolute; top: 135px; left: 100px; width: 400px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">This is 'CLIP|LR' caption transition</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/02.jpg" />
                 <div u="thumb">Do you know this is text format thumbnail?</div>
-                <div u="caption" t="MCLIP|L" style="position: absolute; top: 105px; left: 100px; width: 400px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">This is 'MCLIP|L' caption transition</div>
-                <div u="caption" t="LISTH|L" style="position: absolute; top: 165px; left: 100px; width: 400px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">This is 'LISTH|L' caption transition</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/03.jpg" />
                 <div u="thumb">Do you notice the navigator is in multiline?</div>
-                <div u="caption" t="WAVE|L" t2="T" style="position: absolute; top: 135px; left: 450px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">WAVE|L</div>
-                <div u="caption" t="WAVE|L" t2="T" d="-1150" style="position: absolute; top: 135px; left: 250px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">WAVE|L</div>
-                <div u="caption" t="WAVE|L" t2="T" d="-1150" style="position: absolute; top: 135px; left: 50px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">WAVE|L</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/04.jpg" />
                 <div u="thumb">Do you like navigator to act by mouse hover?</div>
-                <div u="caption" t="JUMPDN|R" t2="B" style="position: absolute; top: 135px; left: 50px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">JUMPDN|R</div>
-                <div u="caption" t="JUMPDN|R" t2="B" d="-850" style="position: absolute; top: 135px; left: 250px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">JUMPDN|R</div>
-                <div u="caption" t="JUMPDN|R" t2="B" d="-850" style="position: absolute; top: 135px; left: 450px; width: 100px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">JUMPDN|R</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/01.jpg" />
                 <div u="thumb">Do you notice arrows appear when mouse over?</div>
-                <div u="caption" t="DDG|TR" style="position: absolute; top: 135px; left: 100px; width: 150px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">DDG|TR</div>
-                <div u="caption" t="DODGEDANCE|L" style="position: absolute; top: 135px; left: 300px; width: 250px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">DODGEDANCE|L</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/02.jpg" />
                 <div u="thumb">Do you notice the slideshow plays outside?</div>
-                <div u="caption" t="FLUTTER|L" style="position: absolute; top: 135px; left: 100px; width: 150px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">FLUTTER|L</div>
-                <div u="caption" t="TORTUOUS|VB" style="position: absolute; top: 135px; left: 300px; width: 250px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">TORTUOUS|VB</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/03.jpg" />
                 <div u="thumb">Do you know there are <a href="../development/tool-slideshow-transition-viewer.html">360+ slideshow transitions</a>?</div>
-                <div u="caption" t="FADE" style="position: absolute; top: 135px; left: 100px; width: 150px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">FADE</div>
-                <div u="caption" t="ZMF|10" style="position: absolute; top: 135px; left: 300px; width: 250px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">ZMF|10</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/04.jpg" />
                 <div u="thumb">Do you know there are <a href="../development/tool-caption-transition-viewer.html">390+ caption transitions</a>?</div>
-                <div u="caption" t="RTT|10" style="position: absolute; top: 135px; left: 100px; width: 150px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">RTT|10</div>
-                <div u="caption" t="RTTL|BR" style="position: absolute; top: 135px; left: 300px; width: 250px; height: 30px; color: #ffffff; font-size: 26px; line-height: 30px; text-align: center;">RTTL|BR</div>
             </div>
         </div>
 

@@ -64,7 +64,7 @@
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff; background-image: url(../img/back.jpg);">
     <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
-    <!-- use jssor.slider.js instead for release -->
+    <!-- use jssor.slider.min.js instead for release -->
 
     <script>
         jssor_slider1_starter = function (containerId) {
@@ -98,7 +98,7 @@
             ScaleSlider();
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             //responsive code end
         };
