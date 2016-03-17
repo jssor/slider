@@ -1,1 +1,0 @@
-"..\tool\Jssor.Compress.exe" -HTML:Js -HTML:Css -HTML:Comment -HTML:Blank -JSSORONLY -AWRAP -OVERWRITE -ENCOUT:UTF-8 "scrolling-logo-thumbnail-slider.source.html" -OUT "scrolling-logo-thumbnail-slider.html"
