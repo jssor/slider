@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Navigator Skin 12 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script>
+
+        init_jssor_slider1 = function (containerId) {
+            var options = {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $AutoCenter: 3,                                 //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
+                    $Rows: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                    $SpacingX: 0,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingY: 0,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                    $Cols: 3,                              //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 0,                          //[Optional] The offset position to park thumbnail
+                    $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                    $NoDrag: false                            //[Optional] Disable drag or not, default value is false
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 400px;">
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
+            <div>
+                <img u="image" src="../img/landscape/05.jpg" />
+                <div u="thumb">
+                    <img src="../img/nested-thumb/landscape.jpg" />
+                    <div class="title_back"></div>
+                    <div class="title">
+                        Landscape
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img u="image" src="../img/motor/001.jpg" />
+                <div u="thumb">
+                    <img src="../img/nested-thumb/motor.jpg" />
+                    <div class="title_back"></div>
+                    <div class="title">
+                        Motor
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img u="image" src="../img/photography/004.jpg" />
+                <div u="thumb">
+                    <img src="../img/nested-thumb/photography.jpg" />
+                    <div class="title_back"></div>
+                    <div class="title">
+                        Photography
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail navigator skin 16 css */
+            /*
+            .jssort16 .p            (normal)
+            .jssort16 .p:hover      (normal mouseover)
+            .jssort16 .pav          (active)
+            .jssort16 .pav:hover    (active mouseover)
+            .jssort16 .pdn          (mousedown)
+            */
+            .jssort16 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 600px;
+                height: 100px;
+            }
+
+                .jssort16 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 200px;
+                    height: 100px;
+                }
+
+                .jssort16 .t {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 200px;
+                    height: 100px;
+                    border: none;
+                }
+
+                .jssort16 .p img {
+                    filter: alpha(opacity=55);
+                    opacity: .55;
+                    transition: opacity .6s;
+                    -moz-transition: opacity .6s;
+                    -webkit-transition: opacity .6s;
+                    -o-transition: opacity .6s;
+                }
+
+                .jssort16 .pav img, .jssort16 .pav:hover img, .jssort16 .p:hover img {
+                    filter: alpha(opacity=100);
+                    opacity: 1;
+                    transition: none;
+                    -moz-transition: none;
+                    -webkit-transition: none;
+                    -o-transition: none;
+                }
+
+                .jssort16 .pav:hover img, .jssort16 .p:hover img {
+                    filter: alpha(opacity=70);
+                    opacity: .7;
+                }
+
+                .jssort16 .title, .jssort16 .title_back {
+                    position: absolute;
+                    top: 70px;
+                    left: 0px;
+                    width: 200px;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    color: #000;
+                    font-size: 20px;
+                }
+
+                .jssort16 .title_back {
+                    background-color: #fff;
+                    filter: alpha(opacity=50);
+                    opacity: .5;
+                }
+
+                .jssort16 .pav .title_back {
+                    background-color: #000;
+                    filter: alpha(opacity=50);
+                    opacity: .5;
+                }
+
+                .jssort16 .pav .title {
+                    color: #fff;
+                }
+
+                .jssort16 .p.pav:hover .title_back, .jssort16 .p:hover .title_back {
+                    filter: alpha(opacity=40);
+                    opacity: .4;
+                }
+
+                .jssort16 .p.pdn img {
+                    filter: alpha(opacity=100);
+                    opacity: 1;
+                }
+        </style>
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort16" style="left: 0px; bottom: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class=p>
+                    <div u="thumbnailtemplate" class="t"></div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!--#endregion Thumbnail Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

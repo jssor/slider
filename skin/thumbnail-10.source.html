@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Navigator Skin 10 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
+</head>
+<body style="background:#fff;">
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script>
+        jssor_sliderb_starter = function (containerId) {
+
+            var options = {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 0,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $NoDrag: true                              //[Optional] Disable drag or not, default value is false
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        }
+    </script>
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->
+    <div id="sliderb_container" style="position: relative; width: 600px;
+        height: 300px;">
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+            overflow: hidden;">
+            <div>
+                <img u=image src="../img/landscape/01.jpg" />
+                <div u="thumb">Do you notice it is draggable by mouse/finger?</div>
+            </div>
+            <div>
+                <img u=image src="../img/landscape/02.jpg" />
+                <div u="thumb">Did you drag by either horizontal or vertical?</div>
+            </div>
+            <div>
+                <img u=image src="../img/landscape/03.jpg" />
+                <div u="thumb">Do you notice navigator responses when drag?</div>
+            </div>
+            <div>
+                <img u=image src="../img/landscape/04.jpg" />
+                <div u="thumb">Do you notice arrow responses when click?</div>
+            </div>
+        </div>
+        
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort10" style="position: absolute; bottom: 0px; left: 0px; height:30px; width:600px;">
+            <div style="filter: alpha(opacity=50); opacity:0.5; position: absolute; display: block;
+                background-color: #000; top: 0px; left: 0px; width: 100%; height: 100%;">
+            </div>
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" style="position: absolute; top: 0; left: 0; width: 600px; height: 30px;">
+                    <div u="thumbnailtemplate" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-family: verdana; font-weight: normal; color:#fff; line-height: 30px; font-size:16px; padding-left:10px;"></div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!--#endregion Thumbnail Navigator Skin End -->
+
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            jssor_sliderb_starter('sliderb_container');
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

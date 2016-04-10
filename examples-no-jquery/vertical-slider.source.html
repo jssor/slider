@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Slider - Jssor Slider, Carousel, Slideshow</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
+    <!-- use jssor.slider.min.js instead for release -->
+
+    <script>
+        jssor_slider1_starter = function (containerId) {
+            var options = {
+                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+                $DragOrientation: 2,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 1,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
+        height: 300px;">
+
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+            overflow: hidden;">
+            <div><img u="image" src="../img/landscape/01.jpg" /></div>
+            <div><img u="image" src="../img/landscape/02.jpg" /></div>
+            <div><img u="image" src="../img/landscape/03.jpg" /></div>
+            <div><img u="image" src="../img/landscape/04.jpg" /></div>
+            <div><img u="image" src="../img/landscape/05.jpg" /></div>
+            <div><img u="image" src="../img/landscape/06.jpg" /></div>
+            <div><img u="image" src="../img/landscape/07.jpg" /></div>
+            <div><img u="image" src="../img/landscape/08.jpg" /></div>
+        </div>
+        
+        <!--#region Arrow Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
+        <style>
+            /* jssor slider arrow navigator skin 08 css */
+            /*
+            .jssora08l                  (normal)
+            .jssora08r                  (normal)
+            .jssora08l:hover            (normal mouseover)
+            .jssora08r:hover            (normal mouseover)
+            .jssora08l.jssora08ldn      (mousedown)
+            .jssora08r.jssora08rdn      (mousedown)
+            */
+            .jssora08l, .jssora08r {
+                display: block;
+                position: absolute;
+                /* size of arrow element */
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+                background: url(../img/a08.png) no-repeat;
+                overflow: hidden;
+                opacity: .4;
+                filter: alpha(opacity=40);
+            }
+            .jssora08l { background-position: -5px -35px; }
+            .jssora08r { background-position: -65px -35px; }
+            .jssora08l:hover { background-position: -5px -35px; opacity: .8; filter:alpha(opacity=80); }
+            .jssora08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
+            .jssora08l.jssora08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
+            .jssora08r.jssora08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
+        </style>
+        <!-- Arrow Left -->
+        <span u="arrowleft" class="jssora08l" style="top: 8px; left: 8px;">
+        </span>
+        <!-- Arrow Right -->
+        <span u="arrowright" class="jssora08r" style="bottom: 8px; left: 8px;">
+        </span>
+        <!--#endregion Arrow Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_starter('slider1_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

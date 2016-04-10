@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Slider with Float Text - Jssor Slider, Carousel, Slideshow</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!-- Caption Style -->
+    <style> 
+        .captionOrange, .captionBlack
+        {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .captionOrange
+        {
+            background: #EB5100;
+            background-color: rgba(235, 81, 0, 0.6);
+        }
+        .captionBlack
+        {
+        	font-size:16px;
+            background: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
+        {
+        	color: #ffffff;
+        	text-decoration: none;
+        }
+        a.captionOrange:hover
+        {
+            color: #eb5100;
+            text-decoration: underline;
+            background-color: #eeeeee;
+            background-color: rgba(238, 238, 238, 0.7);
+        }
+        .bricon
+        {
+            background: url(../img/browser-icons.png);
+        }
+    </style>
+    <!-- it works the same with all jquery version from 1.x to 2.x -->
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.mini.js"></script>
+    <!-- use jssor.slider.debug.js instead for debug -->
+
+    <script>
+        //Reference http://www.jssor.com/development/tip-make-responsive-slider.html
+
+        var _CaptionTransitions = [];
+        _CaptionTransitions["CLIP|L"] = { $Duration: 600, $Clip: 1, $Easing: $JssorEasing$.$EaseInOutCubic };
+        _CaptionTransitions["RTT|10"] = { $Duration: 600, $Zoom: 11, $Rotate: 1, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear, $Rotate: $JssorEasing$.$EaseInExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} };
+        _CaptionTransitions["ZMF|10"] = { $Duration: 600, $Zoom: 11, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 };
+        _CaptionTransitions["FLTTR|R"] = { $Duration: 600, x: -0.2, y: -0.1, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInWave }, $Opacity: 2, $Round: { $Top: 1.3} };
+    </script> 
+    <script>
+        jQuery(document).ready(function ($) {
+            //Reference http://www.jssor.com/development/tip-make-responsive-slider.html
+
+            var _CaptionTransitions = [];
+            _CaptionTransitions["CLIP|L"] = { $Duration: 600, $Clip: 1, $Easing: $JssorEasing$.$EaseInOutCubic };
+            _CaptionTransitions["RTT|10"] = { $Duration: 600, $Zoom: 11, $Rotate: 1, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear, $Rotate: $JssorEasing$.$EaseInExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} };
+            _CaptionTransitions["ZMF|10"] = { $Duration: 600, $Zoom: 11, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 };
+            _CaptionTransitions["FLTTR|R"] = { $Duration: 600, x: -0.2, y: -0.1, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInWave }, $Opacity: 2, $Round: { $Top: 1.3} };
+
+            var options = {
+                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $DragOrientation: 3                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0),
+            };
+
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+
+                //reserve blank width for margin+padding: margin+padding-left (10) + margin+padding-right (10)
+                var paddingWidth = 20;
+
+                //minimum width should reserve for text
+                var minReserveWidth = 150;
+
+                var parentElement = jssor_slider1.$Elmt.parentNode;
+
+                //evaluate parent container width
+                var parentWidth = parentElement.clientWidth;
+
+                if (parentWidth) {
+
+                    //exclude blank width
+                    var availableWidth = parentWidth - paddingWidth;
+
+                    //calculate slider width as 70% of available width
+                    var sliderWidth = availableWidth * 0.7;
+
+                    //slider width is maximum 600
+                    sliderWidth = Math.min(sliderWidth, 600);
+
+                    //slider width is minimum 200
+                    sliderWidth = Math.max(sliderWidth, 200);
+
+                    //evaluate free width for text, if the width is less than minReserveWidth then fill parent container
+                    if (availableWidth - sliderWidth < minReserveWidth) {
+
+                        //set slider width to available width
+                        sliderWidth = availableWidth;
+
+                        //slider width is minimum 200
+                        sliderWidth = Math.max(sliderWidth, 200);
+                    }
+
+                    jssor_slider1.$ScaleWidth(sliderWidth);
+                }
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+            ScaleSlider();
+
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
+    <div style="display: block; margin: 20px auto 0 auto; padding: 10px 5px 5px 10px; width: 96%; max-width:940px; min-width: 240px; border: 1px solid #ccc; background-color: #fff; box-shadow: 2px 2px 10px 2px #dddddd; -webkit-box-shadow: 0px 0px 5px 0px #dddddd; font-size: .8em; line-height: 1.5em;">
+    <!-- Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+        <div id="slider1_container" style="position: relative; margin: 0px 5px 5px 0px; float: left; top: 0px; left: 0px; width: 600px;
+            height: 300px; overflow: hidden;">
+            <!-- Slides Container -->
+            <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+                overflow: hidden;">
+                <div><img u="image" src="../img/landscape/01.jpg" />
+                    <div u="caption" t="CLIP|L" style="position:absolute;left:100px;top:80px;width:110px;height:40px;font-size:36px;color:#fff;line-height:40px;">Resize</div>
+                    <div u="caption" t="CLIP|L" style="position:absolute;left:230px;top:80px;width:120px;height:40px;font-size:36px;color:#fff;line-height:40px;">Window</div>
+                    <div u="caption" t="CLIP|L" style="position:absolute;left:380px;top:80px;width:130px;height:40px;font-size:36px;color:#fff;line-height:40px;">Please!</div>
+                </div>
+                <div><img u="image" src="../img/landscape/02.jpg" />
+                    <div u="caption" t="ZMF|10" style="position:absolute;left:100px;top:80px;width:110px;height:40px;font-size:36px;color:#fff;line-height:40px;">Resize</div>
+                    <div u="caption" t="ZMF|10" style="position:absolute;left:230px;top:80px;width:120px;height:40px;font-size:36px;color:#fff;line-height:40px;">Window</div>
+                    <div u="caption" t="ZMF|10" style="position:absolute;left:380px;top:80px;width:130px;height:40px;font-size:36px;color:#fff;line-height:40px;">Please!</div>
+                </div>
+                <div><img u="image" src="../img/landscape/03.jpg" />
+                    <div u="caption" t="RTT|10" style="position:absolute;left:100px;top:80px;width:110px;height:40px;font-size:36px;color:#fff;line-height:40px;">Resize</div>
+                    <div u="caption" t="RTT|10" style="position:absolute;left:230px;top:80px;width:120px;height:40px;font-size:36px;color:#fff;line-height:40px;">Window</div>
+                    <div u="caption" t="RTT|10" style="position:absolute;left:380px;top:80px;width:130px;height:40px;font-size:36px;color:#fff;line-height:40px;">Please!</div>
+                </div>
+                <div><img u="image" src="../img/landscape/04.jpg" />
+                    <div u="caption" t="FLTTR|R" style="position:absolute;left:100px;top:80px;width:110px;height:40px;font-size:36px;color:#fff;line-height:40px;">Resize</div>
+                    <div u="caption" t="FLTTR|R" style="position:absolute;left:230px;top:80px;width:120px;height:40px;font-size:36px;color:#fff;line-height:40px;">Window</div>
+                    <div u="caption" t="FLTTR|R" style="position:absolute;left:380px;top:80px;width:130px;height:40px;font-size:36px;color:#fff;line-height:40px;">Please!</div>
+                </div>
+            </div>
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+            <!-- Trigger -->
+        </div>
+        <!-- Jssor Slider End -->
+        <img src="../img/icon-slider-12-jquery.png" style="float: left; margin-right: 5px;" /><p style="margin-top:0px;">Jssor Slider is responsive touch swipe javascript slider, <strong>Responsive Web Design (RWD)</strong> is a new web design approach aimed at crafting sites to provide an optimal viewing experience-easy reading and navigation with a minimum of resizing, panning, and scrolling-across a wide range of devices (from desktop computer monitors to mobile phones).</p>
+        <p style="margin-top:0px;">Jssor Slider designed with (RWD) adapts the layout to the viewing environment by using fluid, proportion-based grids, flexible images.</p>
+        <p style="margin-top:0px;">The fluid grid concept calls for page element sizing to be in relative units like percentages, rather than absolute units like pixels or points.</p>
+        <p style="margin-top:0px;">Flexible images are also sized in relative units, so as to prevent them from displaying outside their containing element.</p>
+        <p style="margin-top:0px;">Jssor Slider responds to window resizing, it scales smoothly, it keeps correct ratio, and animation is running with no stop. Wow, touch swipe still works great.</p>
+        <p style="margin-top:0px; font-weight: bold;">Resize window to see how it works!</p>
+    </div>
+</body>
+</html>

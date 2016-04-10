@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Navigator Skin 06 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
+</head>
+<body style="padding: 0; margin: 0; font-family:Arial, Verdana;background-color:#fff;">
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script>
+        init_jssor_slider1 = function (containerId) {
+            var options = {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {                       //[Optional] Options to specify and enable thumbnail navigator or not
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $Rows: 2,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                    $SpacingX: 14,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingY: 12,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                    $Cols: 6,                             //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 156,                          //[Optional] The offset position to park thumbnail
+                    $Orientation: 2                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->
+    <div id="slider1_container" style="position: relative; padding: 0px; margin: 0 auto; top: 0px; left: 0px; width: 960px;
+        height: 480px; background: #24262e;">
+
+        <!-- Loading Screen -->
+        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+            </div>
+        </div>
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 720px; height: 480px; overflow: hidden;">
+            <div>
+                <img u="image" src="../img/travel/01.jpg" />
+                <img u="thumb" src="../img/travel/thumb-01.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/02.jpg" />
+                <img u="thumb" src="../img/travel/thumb-02.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/03.jpg" />
+                <img u="thumb" src="../img/travel/thumb-03.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/04.jpg" />
+                <img u="thumb" src="../img/travel/thumb-04.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/05.jpg" />
+                <img u="thumb" src="../img/travel/thumb-05.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/06.jpg" />
+                <img u="thumb" src="../img/travel/thumb-06.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/07.jpg" />
+                <img u="thumb" src="../img/travel/thumb-07.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/08.jpg" />
+                <img u="thumb" src="../img/travel/thumb-08.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/09.jpg" />
+                <img u="thumb" src="../img/travel/thumb-09.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/10.jpg" />
+                <img u="thumb" src="../img/travel/thumb-10.jpg" />
+            </div>
+            
+            <div>
+                <img u="image" src="../img/travel/11.jpg" />
+                <img u="thumb" src="../img/travel/thumb-11.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/12.jpg" />
+                <img u="thumb" src="../img/travel/thumb-12.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/13.jpg" />
+                <img u="thumb" src="../img/travel/thumb-13.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/travel/14.jpg" />
+                <img u="thumb" src="../img/travel/thumb-14.jpg" />
+            </div>
+        </div>
+        
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail navigator skin 06 css */
+            /*
+            .jssort06 .p            (normal)
+            .jssort06 .p:hover      (normal mouseover)
+            .jssort06 .pav          (active)
+            .jssort06 .pav:hover    (active mouseover)
+            .jssort06 .pdn          (mousedown)
+            */
+            .jssort06 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 240px;
+                height: 480px;
+            }
+
+                .jssort06 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 99px;
+                    height: 66px;
+                }
+
+                .jssort06 .o {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 99px;
+                    height: 66px;
+                    overflow: hidden;
+                }
+
+                .jssort06 .b {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 99px;
+                    height: 66px;
+                    border: none;
+                }
+
+                .jssort06 .f {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 99px;
+                    height: 66px;
+                    border: none;
+                    clip: rect(8px 91px 58px 8px);
+                }
+
+                .jssort06 .pav .f {
+                    clip: rect(2px 97px 64px 2px);
+                }
+
+                .jssort06 .i {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 99px;
+                    height: 66px;
+                    background: #000;
+                    filter: alpha(opacity=30);
+                    opacity: .3;
+                    transition: background-color .6s;
+                    -moz-transition: background-color .6s;
+                    -webkit-transition: background-color .6s;
+                    -o-transition: background-color .6s;
+                }
+
+                .jssort06 .pav .i {
+                    background: #fff;
+                    filter: alpha(opacity=100);
+                    opacity: 1;
+                }
+
+                .jssort06 .p:hover .i, .jssort06 .pav:hover .i {
+                    background: #fff;
+                    filter: alpha(opacity=30);
+                    opacity: .3;
+                }
+
+                .jssort06 .p:hover .i {
+                    transition: none;
+                    -moz-transition: none;
+                    -webkit-transition: none;
+                    -o-transition: none;
+                }
+
+                .jssort06 .p.pdn .i {
+                    background: none;
+                }
+        </style>
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort06" style="right: 0px; bottom: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class="p">
+                    <div class="o">
+                        <div u="thumbnailtemplate" class="b"></div>
+                        <div class="i"></div>
+                        <div u="thumbnailtemplate" class="f"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!--#endregion Thumbnail Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

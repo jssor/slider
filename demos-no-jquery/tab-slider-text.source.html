@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Slider Demo - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
+</head>
+<body style="background:#fff;">
+    <!-- Caption Style -->
+    <style> 
+        .captionOrange, .captionBlack
+        {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .captionOrange
+        {
+            background: #EB5100;
+            background-color: rgba(235, 81, 0, 0.6);
+        }
+        .captionBlack
+        {
+        	font-size:16px;
+            background: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        a.captionOrange, A.captionOrange:active, A.captionOrange:visited
+        {
+        	color: #ffffff;
+        	text-decoration: none;
+        }
+        a.captionOrange:hover
+        {
+            color: #eb5100;
+            text-decoration: underline;
+            background-color: #eeeeee;
+            background-color: rgba(238, 238, 238, 0.7);
+        }
+        .bricon
+        {
+            background: url(../img/browser-icons.png);
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jssor.slider.debug.js"></script>
+    <!-- use jssor.slider.min.js instead for release -->
+
+    <script>
+        jssor_slider2_starter = function (containerId) {
+            var options = {
+                $AutoPlay: false,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
+                $Idle: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+
+                $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                $SlideSpacing: 5, 					                //[Optional] Space between each slide in pixels, default value is 0
+                $Cols: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $AutoCenter: 3,                             //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
+                    $Rows: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                    $SpacingX: 0,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingY: 0,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                    $Cols: 5,                              //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 0,                            //[Optional] The offset position to park thumbnail
+                    $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                    $NoDrag: true                              //[Optional] Disable drag or not, default value is false
+                }
+            };
+
+            var jssor_slider2 = new $JssorSlider$(containerId, options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var parentWidth = jssor_slider2.$Elmt.parentNode.clientWidth;
+                if (parentWidth) {
+                    var sliderWidth = parentWidth;
+
+                    //keep the slider width no more than 602
+                    sliderWidth = Math.min(sliderWidth, 602);
+
+                    jssor_slider2.$ScaleWidth(sliderWidth);
+                }
+                else
+                    $Jssor$.$Delay(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //responsive code end
+        };
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+    <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 602px; height: 331px; background: #fff; overflow: hidden; ">
+        
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 29px; width: 600px; height: 300px; border: 1px solid gray; -webkit-filter: blur(0px); background-color: #fff; overflow: hidden;">
+            <div>
+                <div style="margin: 10px; overflow: hidden; color: #000;">Slide 1 content, place any html here.</div>
+                <div u="thumb">Banner Rotator</div>
+            </div>
+            <div>
+                <div style="margin: 10px; overflow: hidden; color: #000;">Slide 2 content, place any html here.</div>
+                <div u="thumb">Image Gallery</div>
+            </div>
+            <div>
+                <div style="margin: 10px; overflow: hidden; color: #000;">Slide 3 content, place any html here.</div>
+                <div u="thumb">Image Slider</div>
+            </div>
+            <div>
+                <div style="margin: 10px; overflow: hidden; color: #000;">Slide 4 content, place any html here.</div>
+                <div u="thumb">Tab Slider</div>
+            </div>
+            <div>
+                <div style="margin: 10px; overflow: hidden; color: #000;">Slide 5 content, place any html here.</div>
+                <div u="thumb">Carousel</div>
+            </div>
+        </div>
+        <!--#region ThumbnailNavigator Skin Begin -->
+        <style>
+            /* jssor slider thumbnail navigator skin 12 css */
+            /*
+            .jssort12 .p            (normal)
+            .jssort12 .p:hover      (normal mouseover)
+            .jssort12 .pav          (active)
+            .jssort12 .pav:hover    (active mouseover)
+            .jssort12 .pdn          (mousedown)
+            */
+            .jssort12 {
+                position: absolute;
+                width: 500px;
+                height: 30px;
+            }
+
+                .jssort12 .w {
+                    cursor: pointer;
+                    position: absolute;
+                    WIDTH: 99px;
+                    HEIGHT: 28px;
+                    border: 1px solid gray;
+                    top: 0px;
+                    left: -1px;
+                }
+
+                .jssort12 .p {
+                    position: absolute;
+                    width: 100px;
+                    height: 30px;
+                    top: 0;
+                    left: 0;
+                    padding: 0px;
+                }
+
+                .jssort12 .pav .w, .jssort12 .pdn .w {
+                    border-bottom: 1px solid #fff;
+                }
+
+                .jssort12 .c {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    line-height: 28px;
+                    text-align: center;
+                    color: #000;
+                    font-size: 13px;
+                }
+
+                .jssort12 .p .c, .jssort12 .pav:hover .c {
+                    background-color: #eee;
+                }
+
+                .jssort12 .pav .c, .jssort12 .p:hover .c {
+                    background-color: #fff;
+                }
+        </style>
+
+        <div u="thumbnavigator" class="jssort12" style="left:0px; top: 0px;">
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default; top: 0px; left: 0px; border-left: 1px solid gray;">
+                <div u="prototype" class="p">
+                    <div class=w><div u="thumbnailtemplate" class="c"></div></div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!--#endregion ThumbnailNavigator Skin End -->
+
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            jssor_slider2_starter('slider2_container');
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>

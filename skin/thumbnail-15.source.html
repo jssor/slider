@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Navigator Skin 11 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script>
+
+        init_jssor_slider1 = function (containerId) {
+            var options = {
+                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {
+                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $AutoCenter: 3,                                 //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
+                    $Rows: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
+                    $SpacingX: 3,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $SpacingY: 3,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
+                    $Cols: 9,                              //[Optional] Number of pieces to display, default value is 1
+                    $ParkingPosition: 250,                          //[Optional] The offset position to park thumbnail
+                    $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
+                    $NoDrag: false                            //[Optional] Disable drag or not, default value is false
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+    <!--#region Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. -->
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
+        height: 300px;">
+
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
+            <div>
+                <img u="image" src="../img/photography/002.jpg" />
+                <img u="thumb" src="../img/photography/thumb-002.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/003.jpg" />
+                <img u="thumb" src="../img/photography/thumb-003.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/004.jpg" />
+                <img u="thumb" src="../img/photography/thumb-004.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/005.jpg" />
+                <img u="thumb" src="../img/photography/thumb-005.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/006.jpg" />
+                <img u="thumb" src="../img/photography/thumb-006.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/007.jpg" />
+                <img u="thumb" src="../img/photography/thumb-007.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/008.jpg" />
+                <img u="thumb" src="../img/photography/thumb-008.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/009.jpg" />
+                <img u="thumb" src="../img/photography/thumb-009.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/010.jpg" />
+                <img u="thumb" src="../img/photography/thumb-010.jpg" />
+            </div>
+            <div>
+                <img u="image" src="../img/photography/011.jpg" />
+                <img u="thumb" src="../img/photography/thumb-011.jpg" />
+            </div>
+        </div>
+
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-jquery.html -->
+        <style>
+            /* jssor slider thumbnail Navigator Skin 15 css */
+            /*
+            .jssort15 .p            (normal)
+            .jssort15 .p:hover      (normal mouseover)
+            .jssort15 .pav          (active)
+            .jssort15 .pav:hover    (active mouseover)
+            .jssort15 .pdn          (mousedown)
+            */
+
+            .jssort15 {
+                position: absolute;
+                /* size of thumbnail navigator container */
+                width: 600px;
+                height: 60px;
+            }
+
+                .jssort15 .p {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 60px;
+                    height: 30px;
+                }
+
+                .jssort15 .t {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 60px;
+                    height: 30px;
+                    border: none;
+                    filter: alpha(opacity=45);
+                    opacity: .45;
+                    transition: opacity .6s;
+                    -moz-transition: opacity .6s;
+                    -webkit-transition: opacity .6s;
+                    -o-transition: opacity .6s;
+                }
+
+                .jssort15 .pav .t, .jssort15 .p:hover .t {
+                    filter: alpha(opacity=100);
+                    opacity: 1;
+                    transition: none;
+                    -moz-transition: none;
+                    -webkit-transition: none;
+                    -o-transition: none;
+                }
+
+                .jssort15 .p.pdn .t {
+                    filter: alpha(opacity=45);
+                    opacity: .45;
+                }
+        </style>
+        <!-- thumbnail navigator container -->
+        <div u="thumbnavigator" class="jssort15" style="left: 0px; bottom: 0px;">
+            <!-- the following background element is optional -->
+            <div style=" background-color: #000; filter:alpha(opacity=30); opacity:.3; width: 100%; height:100%;"></div>
+
+            <!-- Thumbnail Item Skin Begin -->
+            <div u="slides" style="cursor: default;">
+                <div u="prototype" class=p>
+                    <div u="thumbnailtemplate" class=t></div>
+                </div>
+            </div>
+            <!-- Thumbnail Item Skin End -->
+        </div>
+        <!--#endregion Thumbnail Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>
