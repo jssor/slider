@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool - Sldieshow Transition Viewer - Jssor Slider Development KIT</title>
+    <!-- Link & Block Style -->
+    <style>
+        a:link
+        {
+            color: #fff;
+            text-decoration: none;
+        }
+        a:visited
+        {
+            color: #ff8400;
+            text-decoration: none;
+        }
+        a:hover
+        {
+            color: #fff;
+            text-decoration: underline;
+        }
+        a:active
+        {
+            color: #fff;
+            text-decoration: underline;
+        }
+        a:visited.nav
+        {
+            color: #ff8400;
+        }
+        a:link.nav
+        {
+            color: #fff;
+        }
+        a:hover.nav, a:active.nav
+        {
+            color: #fff;
+        }
+        
+        a:link.featurenav, a:visited.featurenav
+        {
+            color: #fff;
+        }
+        a:hover.featurenav, a:active.featurenav
+        {
+            color: #0080FF;
+        }
+        
+        .backGreen
+        {
+        	/*
+        	background-color: #27a9e3;
+        	background-color: rgba(39, 169, 227, 0.3);
+            */
+        	background-image: url(http://www.jssor.com/img/site/back-green.png);
+        }
+        
+        .backBlackGreen
+        {
+        	background-image: url(http://www.jssor.com/img/site/back-blackgreen.png);
+        }
+        
+        .backBlack
+        {
+        	background-image: url(http://www.jssor.com/img/site/back-black.png);
+        }
+
+        .backWhite
+        {
+        	background-image: url(http://www.jssor.com/img/site/back-white.png);
+        }
+        
+        .backBlue
+        {
+        	/*
+        	background-color: #27a9e3;
+        	background-color: rgba(0, 0, 160, 0.2);
+            */
+        	background-image: url(../img/site/back-blue.png);
+        }
+    </style>
+    <!-- Caption & Effect Button & devNav Style -->
+    <style>
+        A.effectButton, A.effectButton:active, A.effectButton:visited, A.navDev, A.navDev:active, A.navDev:visited
+        {
+            display: block;
+            font-size: 13px;
+            line-height: 26px;
+            text-align: center;
+            background-color: #dadada;
+            color: #EB5100;
+            text-decoration: none;
+            padding: 3px 10px 3px 10px;
+            display: inline;
+            white-space: nowrap;
+        }
+        A.effectButton:hover, A.navDev:hover
+        {
+            color: #EAEAEA;
+            background-color: #EB5100;
+        }
+        A.navDev, A.navDev:active, A.navDev:visited, A.navDev:hover
+        {
+            left:0px;
+            width:255px;
+            line-height:26px;
+            padding: 0px 5px 0px 5px;
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+    <!-- Thumbnail Style Begin -->
+    <style>
+        .thumb
+        {
+            position: relative;
+            float: left;
+            display: inline;
+            margin: 25px;
+            width: 260px;
+            height: 130px;
+        }
+        .thumbb
+        {
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            width: 262px;
+            height: 132px;
+            background-color: #fff;
+        }
+        .thumbb:hover
+        {
+            background-color: #ff8400;
+        }
+        .thumbcb, .thumbc
+        {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 260px;
+            height: 30px;
+        }
+        .thumbcb
+        {
+            background-color: #000;
+            filter: alpha(opacity=50);
+            opacity: .5;
+        }
+        .thumbb:hover .thumbcb
+        {
+            background-color: #ff8400;
+        }
+        .thumbc
+        {
+        	font-size: 18px;
+        	line-height:30px;
+        	text-align:center;
+        }
+        .thumbix01, .thumbix02, .thumbiv01, .thumbiv02
+        {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 260px;
+            height: 130px;
+        }
+        .thumbix01
+        {
+            background: url(../img/demo/thumbnail-slideshow-effects-01.jpg);
+        }
+        .thumbix02
+        {
+            background: url(../img/demo/thumbnail-slideshow-effects-02.jpg);
+        }
+        .thumbiv01
+        {
+            background: url(../img/demo/thumbnail-sliders-01.jpg);
+        }
+        .thumbiv02
+        {
+            background: url(../img/demo/thumbnail-sliders-02.jpg);
+        }
+    </style>
+    <!-- Thumbnail Style End -->
+
+    <!-- Presentation Style -->
+    <style>
+    .bricon
+    {
+        background: url(../img/browser-icons.png);
+    }
+    </style>
+    <!-- Feature Style -->
+    <style>
+        .feature
+        {
+            position: absolute;
+            width: 350px;
+            height: 180px;
+        }
+        .featureb
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #0000A0;
+            filter: alpha(opacity=20);
+            opacity: .2;
+        }
+        .featurecb
+        {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #000;
+            filter: alpha(opacity=30);
+            opacity: .3;
+        }
+        .featurec
+        {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 30px;
+            color: #fff;
+        }
+        .featuret
+        {
+            position: absolute;
+            width: 320px;
+            height: 125px;
+            top: 40px;
+            left: 15px;
+            color: #fff;
+            font-size: 13px;
+            line-height: 26px;
+        }
+    </style>
+    <style>
+        .description
+        {
+            position: relative;
+            margin: 0 auto;
+            padding: 10px;
+            top: 0px;
+            left: 0px;
+            width: 660px;
+        }
+        .descriptiont
+        {
+            position: relative;
+            width: 630px;
+            color: #fff;
+            font-size: 13px;
+            line-height: 26px;
+        }
+    </style>
+    <style>
+        td, label, input, select, option
+        {
+            font-family: Arial,Helvetica,sans-serif;
+            margin: 0;
+            padding:0;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        select
+        {
+            width: 110px;
+        }
+        .inputText
+        {
+    	    border: 1px solid lightgray;
+    	    background: #fff;
+    	    height: 17px;
+        }
+    </style>
+    <script type="text/javascript" src="slideshow-transition-builder-controller.min.js"></script>
+</head>
+<body style="background-image: url(../img/back.jpg); background-color: #191919; color:#fff;  margin: 0px; padding:0px; font-family:Helvetica,Arial,sans-serif;">
+    <table align="center" border="0" cellspacing="0" cellpadding="0" style="width: 960px; height: 60px;">
+        <tr>
+            <td style="text-align: center; font-size: 26px;">
+            Tool - Sldieshow Transition Viewer
+            </td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0" border="0" align="center">
+        <tr>
+            <td width="850" height="20"></td>
+        </tr>
+    </table>
+    
+    <!-- Slideshow Transition Controller Form Begine -->
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EEEEEE" align="center" style="color:#000;">
+        <tr>
+            <td width="10">
+            </td>
+            <td width="110">
+                <b>&nbsp; Select Transition</b>
+            </td>
+            <td width="320" height="40">
+                <select name="ssTransition" id="ssTransition" style="width: 300px">
+                    <option value="">
+                </select>
+            </td>
+            <td width="490">
+                <input type="button" value="Play" id="sButtonPlay" style="width: 110px" name="sButtonPlay" disabled="disabled">
+            </td>
+            <td width="30">
+            </td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0" border="0" bgcolor="#EEEEEE" align="center" style="color:#000; background-color:silver;">
+        <tr>
+            <td width="10" height="40">
+            </td>
+            <td width="110">
+                <b>&nbsp; Transition Code</b>
+            </td>
+            <td width="840" valign=center>
+                <input id="stTransition" style="width: 833px; height: 25px;" type="text" name="stTransition">
+            </td>
+        </tr>
+    </table>
+    <!-- Slideshow Transition Controller Form End -->
+    <table cellpadding="0" cellspacing="0" border="0" align="center">
+        <tr>
+            <td width="850" height="50"></td>
+        </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" width="600" height="300" align="center" bgcolor="#EEEEEE">
+        <tr>
+            <td>
+    <!-- Jssor Slider Begin -->
+    <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+                <div style="position: relative; width: 600px; height: 300px;" id="slider1_container">
+
+                    <!-- Loading Screen -->
+                    <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                        <div style="filter: alpha(opacity=70); opacity:.7; position: absolute; display: block;
+                            background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
+                        </div>
+                        <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                            top: 0px; left: 0px;width: 100%;height:100%;">
+                        </div>
+                    </div>
+
+                    <div u="slides" style="cursor: move; position: absolute; width: 600px; height: 300px;top:0px;left:0px;overflow:hidden;">
+                        <!-- Slide -->
+                        <div>
+                            <img u="image" src="../img/landscape/01.jpg">
+                        </div>
+                        <!-- Slide -->
+                        <div>
+                            <img u="image" src="../img/landscape/02.jpg">
+                        </div>
+                        <!-- Slide -->
+                        <div>
+                            <img u="image" src="../img/landscape/04.jpg">
+                        </div>
+                        <!-- Slide -->
+                        <div>
+                            <img u="image" src="../img/landscape/05.jpg">
+                        </div>
+                    </div>
+                </div>
+                <!-- Jssor Slider End -->
+            </td>
+        </tr>
+    </table>
+    <script>
+        slideshow_transition_controller_starter("slider1_container");
+    </script>
+
+    <table align="center" border="0" cellspacing="0" cellpadding="0" style="width: 800px; height: 50px;">
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+    
+    <div class="backGreen" style="position: relative; margin: 0 auto; padding: 5px; width: 960px;">
+                    <div style="height:25px;"></div>
+                    <div class="description backBlue" style="height:210px;">
+                        <div class="descriptiont">
+                            The form above is to preview slideshow transition. You can select any slideshow transition from 360+ predefined slideshow transitions to play.<br>
+                            A slideshow transition can be any or combination of 'Fly (Hor)', 'Fly (Ver)', 'Clip', 'Zoom' and 'Rotate'.<br>
+Select transition to preview effect, once you get a transition that you prefer, you can copy the transition code from the transition code text box.<br />
+You can change value of '$Duration' to adjust speed of transition. e.g. '$Duration:1200' -> '$Duration: 2000'.<br />
+Also you can change '$Col' or '$Row' value to adjust columns or rows count.
+                        </div>                    </div>
+                </div>
+    <table align="center" border=0 cellSpacing=0 cellPadding=0 style="width: 800px; height: 50px;">
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+
+    <table align="center" border=0 cellSpacing=0 cellPadding=0 style="width: 960px; height: 30px;">
+        <tr>
+            <td valign="top" style="padding:0px;">
+                <div style="position: absolute; width: 960px; height: 30px; overflow:hidden;">
+                    <div style="position: absolute; width: 100%; height: 100%; background-color: #27a9e3;
+                        filter: alpha(opacity=30); opacity: .3;">
+                    </div>
+                    <div style="position: absolute; width: 100%; height: 100%; font-size:13px; color:#fff; line-height:30px;">
+                    <span>&nbsp;&nbsp;Copy right 2009-2013</span><span style="float:right;">Powered by Jssor&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+</body>
+</html>
