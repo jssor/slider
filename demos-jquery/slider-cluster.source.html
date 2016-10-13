@@ -477,7 +477,7 @@
             height: 450px; text-align: left; overflow: hidden;">
  
             <!-- Slides Container --> 
-            <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 960px; height: 450px;
+            <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 960px; height: 450px;
                 overflow: hidden;">
                 <div>
                     <!-- Jssor Slider Begin -->
@@ -496,7 +496,7 @@
                         </div>
 
                         <!-- Slides Container -->
-                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
                             <div>
                                 <a u="image" href="http://www.jssor.com/demos/image-slider.html"><img src="../img/photography/002.jpg" alt="image slider" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
@@ -543,6 +543,8 @@
                             .jssora02r:hover            (normal mouseover)
                             .jssora02l.jssora02ldn      (mousedown)
                             .jssora02r.jssora02rdn      (mousedown)
+                            .jssora02l.jssora02lds      (disabled)
+                            .jssora02r.jssora02rds      (disabled)
                             */
                             .jssora02l, .jssora02r {
                                 display: block;
@@ -560,6 +562,9 @@
                             .jssora02r:hover { background-position: -183px -33px; }
                             .jssora02l.jssora02ldn { background-position: -3px -33px; }
                             .jssora02r.jssora02rdn { background-position: -63px -33px; }
+
+                            .jssora02l.jssora02lds { background-position: -3px -33px; opacity: .3; pointer-events: none; }
+                            .jssora02r.jssora02rds { background-position: -63px -33px; opacity: .3; pointer-events: none; }
                         </style>
                         <!-- Arrow Left -->
                         <span u="arrowleft" class="jssora02l" style="top: 123px; left: 8px;">
@@ -615,7 +620,7 @@
                         </div>
 
                         <!-- Slides Container -->
-                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                             overflow: hidden;">
                             <div>
                                 <a u=image href="http://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/002.jpg" alt="banner rotator" /></a>
@@ -715,7 +720,7 @@
                         </div>
 
                         <!-- Slides Container -->
-                        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                             overflow: hidden;">
                             <div>
                                 <a u=image href="http://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/002.jpg" alt="banner slider" /></a>

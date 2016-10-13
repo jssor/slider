@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <!-- Slides Container -->
-                <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px;
+                <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px;
                     height: 400px; overflow: hidden;">
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -245,6 +245,8 @@
                     .jssora07r:hover            (normal mouseover)
                     .jssora07l.jssora07ldn      (mousedown)
                     .jssora07r.jssora07rdn      (mousedown)
+                    .jssora07l.jssora07lds      (disabled)
+                    .jssora07r.jssora07rds      (disabled)
                     */
                     .jssora07l, .jssora07r {
                         display: block;
@@ -262,6 +264,9 @@
                     .jssora07r:hover { background-position: -185px -35px; }
                     .jssora07l.jssora07ldn { background-position: -245px -35px; }
                     .jssora07r.jssora07rdn { background-position: -305px -35px; }
+
+                    .jssora07l.jssora07lds { background-position: -5px -35px; opacity: .3; pointer-events: none; }
+                    .jssora07r.jssora07rds { background-position: -65px -35px; opacity: .3; pointer-events: none; }
                 </style>
                 <!-- Arrow Left -->
                 <span u="arrowleft" class="jssora07l" style="top: 123px; left: 8px;">

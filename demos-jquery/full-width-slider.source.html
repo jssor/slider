@@ -106,7 +106,7 @@
             .jssorb05 .dn, .jssorb05 .dn:hover {
                 background-position: -97px -7px;
             }
-
+            
         /* jssor slider arrow navigator skin 22 css */
         /*
         .jssora22l                  (normal)
@@ -115,6 +115,8 @@
         .jssora22r:hover            (normal mouseover)
         .jssora22l.jssora22ldn      (mousedown)
         .jssora22r.jssora22rdn      (mousedown)
+        .jssora22l.jssora22lds      (disabled)
+        .jssora22r.jssora22rds      (disabled)
         */
         .jssora22l, .jssora22r {
             display: block;
@@ -123,33 +125,18 @@
             width: 40px;
             height: 58px;
             cursor: pointer;
-            background: url('../img/a22.png') center center no-repeat;
+            background: url(../img/a22.png) center center no-repeat;
             overflow: hidden;
         }
+        .jssora22l { background-position: -10px -31px; }
+        .jssora22r { background-position: -70px -31px; }
+        .jssora22l:hover { background-position: -130px -31px; }
+        .jssora22r:hover { background-position: -190px -31px; }
+        .jssora22l.jssora22ldn { background-position: -250px -31px; }
+        .jssora22r.jssora22rdn { background-position: -310px -31px; }
 
-        .jssora22l {
-            background-position: -10px -31px;
-        }
-
-        .jssora22r {
-            background-position: -70px -31px;
-        }
-
-        .jssora22l:hover {
-            background-position: -130px -31px;
-        }
-
-        .jssora22r:hover {
-            background-position: -190px -31px;
-        }
-
-        .jssora22l.jssora22ldn {
-            background-position: -250px -31px;
-        }
-
-        .jssora22r.jssora22rdn {
-            background-position: -310px -31px;
-        }
+        .jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
+        .jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
     </style>
 
 

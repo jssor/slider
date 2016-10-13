@@ -66,48 +66,8 @@
             //responsive code end
         });
     </script>
-
+    
     <style>
-        /* jssor slider bullet navigator skin 01 css */
-        /*
-        .jssorb01 div           (normal)
-        .jssorb01 div:hover     (normal mouseover)
-        .jssorb01 .av           (active)
-        .jssorb01 .av:hover     (active mouseover)
-        .jssorb01 .dn           (mousedown)
-        */
-        .jssorb01 {
-            position: absolute;
-        }
-
-            .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
-                position: absolute;
-                /* size of bullet elment */
-                width: 12px;
-                height: 12px;
-                filter: alpha(opacity=70);
-                opacity: .7;
-                overflow: hidden;
-                cursor: pointer;
-                border: #000 1px solid;
-            }
-
-            .jssorb01 div {
-                background-color: gray;
-            }
-
-                .jssorb01 div:hover, .jssorb01 .av:hover {
-                    background-color: #d3d3d3;
-                }
-
-            .jssorb01 .av {
-                background-color: #fff;
-            }
-
-            .jssorb01 .dn, .jssorb01 .dn:hover {
-                background-color: #555555;
-            }
-
         /* jssor slider arrow navigator skin 05 css */
         /*
         .jssora05l                  (normal)
@@ -116,6 +76,8 @@
         .jssora05r:hover            (normal mouseover)
         .jssora05l.jssora05ldn      (mousedown)
         .jssora05r.jssora05rdn      (mousedown)
+        .jssora05l.jssora05lds      (disabled)
+        .jssora05r.jssora05rds      (disabled)
         */
         .jssora05l, .jssora05r {
             display: block;
@@ -124,33 +86,18 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            background: url('../img/a17.png') no-repeat;
+            background: url(../img/a17.png) no-repeat;
             overflow: hidden;
         }
+        .jssora05l { background-position: -10px -40px; }
+        .jssora05r { background-position: -70px -40px; }
+        .jssora05l:hover { background-position: -130px -40px; }
+        .jssora05r:hover { background-position: -190px -40px; }
+        .jssora05l.jssora05ldn { background-position: -250px -40px; }
+        .jssora05r.jssora05rdn { background-position: -310px -40px; }
 
-        .jssora05l {
-            background-position: -10px -40px;
-        }
-
-        .jssora05r {
-            background-position: -70px -40px;
-        }
-
-        .jssora05l:hover {
-            background-position: -130px -40px;
-        }
-
-        .jssora05r:hover {
-            background-position: -190px -40px;
-        }
-
-        .jssora05l.jssora05ldn {
-            background-position: -250px -40px;
-        }
-
-        .jssora05r.jssora05rdn {
-            background-position: -310px -40px;
-        }
+        .jssora05l.jssora05lds { background-position: -10px -40px; opacity: .3; pointer-events: none; }
+        .jssora05r.jssora05rds { background-position: -70px -40px; opacity: .3; pointer-events: none; }
     </style>
 
 

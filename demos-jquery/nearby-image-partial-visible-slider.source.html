@@ -58,7 +58,7 @@
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px;
         height: 300px; overflow: hidden;">
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 300px;
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 800px; height: 300px;
             overflow: hidden;">
             <div><img u="image" src="../img/photography/002.jpg" /></div>
             <div><img u="image" src="../img/photography/003.jpg" /></div>
@@ -81,6 +81,8 @@
             .jssora13r:hover            (normal mouseover)
             .jssora13l.jssora13ldn      (mousedown)
             .jssora13r.jssora13rdn      (mousedown)
+            .jssora13l.jssora13lds      (disabled)
+            .jssora13r.jssora13rds      (disabled)
             */
             .jssora13l, .jssora13r {
                 display: block;
@@ -98,6 +100,9 @@
             .jssora13r:hover { background-position: -190px -35px; }
             .jssora13l.jssora13ldn { background-position: -250px -35px; }
             .jssora13r.jssora13rdn { background-position: -310px -35px; }
+
+            .jssora13l.jssora13lds { background-position: -10px -35px; opacity: .3; pointer-events: none; }
+            .jssora13r.jssora13rds { background-position: -70px -35px; opacity: .3; pointer-events: none; }
         </style>
         <!-- Arrow Left -->
         <span u="arrowleft" class="jssora13l" style="top: 123px; left: 30px;">

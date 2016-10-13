@@ -73,7 +73,7 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 720px; height: 480px;
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 720px; height: 480px;
             overflow: hidden;">
             <div>
                 <img u="image" src="../img/travel/01.jpg" />
@@ -231,6 +231,8 @@
                 .jssora11r:hover            (normal mouseover)
                 .jssora11l.jssora11ldn      (mousedown)
                 .jssora11r.jssora11rdn      (mousedown)
+                .jssora11l.jssora11lds      (disabled)
+                .jssora11r.jssora11rds      (disabled)
                 */
                 .jssora11l, .jssora11r {
                     display: block;
@@ -242,30 +244,15 @@
                     background: url(../img/a11.png) no-repeat;
                     overflow: hidden;
                 }
+                .jssora11l { background-position: -11px -41px; }
+                .jssora11r { background-position: -71px -41px; }
+                .jssora11l:hover { background-position: -131px -41px; }
+                .jssora11r:hover { background-position: -191px -41px; }
+                .jssora11l.jssora11ldn { background-position: -251px -41px; }
+                .jssora11r.jssora11rdn { background-position: -311px -41px; }
 
-                .jssora11l {
-                    background-position: -11px -41px;
-                }
-
-                .jssora11r {
-                    background-position: -71px -41px;
-                }
-
-                .jssora11l:hover {
-                    background-position: -131px -41px;
-                }
-
-                .jssora11r:hover {
-                    background-position: -191px -41px;
-                }
-
-                .jssora11l.jssora11ldn {
-                    background-position: -251px -41px;
-                }
-
-                .jssora11r.jssora11rdn {
-                    background-position: -311px -41px;
-                }
+                .jssora11l.jssora11lds { background-position: -11px -41px; opacity: .3; pointer-events: none; }
+                .jssora11r.jssora11rds { background-position: -71px -41px; opacity: .3; pointer-events: none; }
             </style>
             <!-- Arrow Left -->
             <span u="arrowleft" class="jssora11l" style="top: 123px; left: 8px;">

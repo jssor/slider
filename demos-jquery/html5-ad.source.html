@@ -90,7 +90,7 @@
         .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
         .jssorb05 .av { background-position: -67px -7px; }
         .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
-
+        
         /* jssor slider arrow navigator skin 12 css */
         /*
         .jssora12l                  (normal)
@@ -99,6 +99,8 @@
         .jssora12r:hover            (normal mouseover)
         .jssora12l.jssora12ldn      (mousedown)
         .jssora12r.jssora12rdn      (mousedown)
+        .jssora12l.jssora12lds      (disabled)
+        .jssora12r.jssora12rds      (disabled)
         */
         .jssora12l, .jssora12r {
             display: block;
@@ -107,7 +109,7 @@
             width: 30px;
             height: 46px;
             cursor: pointer;
-            background: url('../img/a12.png') no-repeat;
+            background: url(../img/a12.png) no-repeat;
             overflow: hidden;
         }
         .jssora12l { background-position: -16px -37px; }
@@ -116,6 +118,9 @@
         .jssora12r:hover { background-position: -195px -37px; }
         .jssora12l.jssora12ldn { background-position: -256px -37px; }
         .jssora12r.jssora12rdn { background-position: -315px -37px; }
+
+        .jssora12l.jssora12lds { background-position: -16px -37px; opacity: .3; pointer-events: none; }
+        .jssora12r.jssora12rds { background-position: -75px -37px; opacity: .3; pointer-events: none; }
     </style>
 
 

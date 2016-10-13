@@ -119,6 +119,8 @@
         .jssora02r:hover            (normal mouseover)
         .jssora02l.jssora02ldn      (mousedown)
         .jssora02r.jssora02rdn      (mousedown)
+        .jssora02l.jssora02lds      (disabled)
+        .jssora02r.jssora02rds      (disabled)
         */
         .jssora02l, .jssora02r {
             display: block;
@@ -127,35 +129,19 @@
             width: 55px;
             height: 55px;
             cursor: pointer;
-            background: url('../img/a02.png') no-repeat;
+            background: url(../img/a02.png) no-repeat;
             overflow: hidden;
         }
+        .jssora02l { background-position: -3px -33px; }
+        .jssora02r { background-position: -63px -33px; }
+        .jssora02l:hover { background-position: -123px -33px; }
+        .jssora02r:hover { background-position: -183px -33px; }
+        .jssora02l.jssora02ldn { background-position: -3px -33px; }
+        .jssora02r.jssora02rdn { background-position: -63px -33px; }
 
-        .jssora02l {
-            background-position: -3px -33px;
-        }
-
-        .jssora02r {
-            background-position: -63px -33px;
-        }
-
-        .jssora02l:hover {
-            background-position: -123px -33px;
-        }
-
-        .jssora02r:hover {
-            background-position: -183px -33px;
-        }
-
-        .jssora02l.jssora02ldn {
-            background-position: -3px -33px;
-        }
-
-        .jssora02r.jssora02rdn {
-            background-position: -63px -33px;
-        }
+        .jssora02l.jssora02lds { background-position: -3px -33px; opacity: .3; pointer-events: none; }
+        .jssora02r.jssora02rds { background-position: -63px -33px; opacity: .3; pointer-events: none; }
     </style>
-
 
     <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
         <!-- Loading Screen -->
@@ -215,7 +201,7 @@
                         </p>
                         You can put
 
-                        <a href="http://wwww.jssor.com">
+                        <a href="http://www.jssor.com">
                             a link
                         </a> or an image
 

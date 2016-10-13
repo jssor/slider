@@ -6,11 +6,13 @@
     <title>Arrow Navigator Skin 08 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
-    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script type="text/javascript" src="../js/jssor.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         init_jssor_slider1 = function (containerId) {
 
             var options = {
+                $Loop: 0,
                 $PlayOrientation: 2,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
                 $DragOrientation: 2,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
                 $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
@@ -33,7 +35,7 @@
         height: 300px; overflow: hidden;">
  
         <!-- Slides Container --> 
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
             overflow: hidden;">
             <div><img u="image" src="../img/photography/002.jpg" /></div>
             <div><img u="image" src="../img/photography/003.jpg" /></div>
@@ -52,6 +54,8 @@
             .jssora08r:hover            (normal mouseover)
             .jssora08l.jssora08ldn      (mousedown)
             .jssora08r.jssora08rdn      (mousedown)
+            .jssora08l.jssora08lds      (disabled)
+            .jssora08r.jssora08rds      (disabled)
             */
             .jssora08l, .jssora08r {
                 display: block;
@@ -71,6 +75,9 @@
             .jssora08r:hover { background-position: -65px -35px; opacity: .8; filter:alpha(opacity=80); }
             .jssora08l.jssora08ldn { background-position: -5px -35px; opacity: .3; filter:alpha(opacity=30); }
             .jssora08r.jssora08rdn { background-position: -65px -35px; opacity: .3; filter:alpha(opacity=30); }
+
+            .jssora08l.jssora08lds { background-position: -5px -35px; opacity: .3; pointer-events: none; }
+            .jssora08r.jssora08rds { background-position: -65px -35px; opacity: .3; pointer-events: none; }
         </style>
         <!-- Arrow Left -->
         <span u="arrowleft" class="jssora08l" style="top: 8px; left: 8px;">

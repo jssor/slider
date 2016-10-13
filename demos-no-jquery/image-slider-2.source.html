@@ -125,7 +125,7 @@
         </div>
 
         <!-- Slides Container -->
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
             <div>
                 <img u="image" src="../img/photography/002.jpg" />
                 <img u="thumb" src="../img/photography/thumb-002.jpg" />
@@ -179,6 +179,8 @@
             .jssora02r:hover            (normal mouseover)
             .jssora02l.jssora02ldn      (mousedown)
             .jssora02r.jssora02rdn      (mousedown)
+            .jssora02l.jssora02lds      (disabled)
+            .jssora02r.jssora02rds      (disabled)
             */
             .jssora02l, .jssora02r {
                 display: block;
@@ -196,6 +198,9 @@
             .jssora02r:hover { background-position: -183px -33px; }
             .jssora02l.jssora02ldn { background-position: -3px -33px; }
             .jssora02r.jssora02rdn { background-position: -63px -33px; }
+
+            .jssora02l.jssora02lds { background-position: -3px -33px; opacity: .3; pointer-events: none; }
+            .jssora02r.jssora02rds { background-position: -63px -33px; opacity: .3; pointer-events: none; }
         </style>
         <!-- Arrow Left -->
         <span u="arrowleft" class="jssora02l" style="top: 123px; left: 8px;">

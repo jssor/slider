@@ -6,11 +6,13 @@
     <title>Arrow Navigator Skin 14 - Jssor Slider, Carousel, Slideshow with Javascript Source Code</title>
 </head>
 <body style="font-family:Arial, Verdana;background-color:#fff;">
-    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script type="text/javascript" src="../js/jssor.js"></script>
+    <script type="text/javascript" src="../js/jssor.slider.js"></script>
     <script>
         init_jssor_slider1 = function (containerId) {
 
             var options = {
+                $Loop: 0,
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
                 $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 
@@ -31,7 +33,7 @@
         height: 300px; overflow: hidden;">
  
         <!-- Slides Container --> 
-        <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
             overflow: hidden;">
             <div><img u="image" src="../img/photography/002.jpg" /></div>
             <div><img u="image" src="../img/photography/003.jpg" /></div>
@@ -50,6 +52,8 @@
             .jssora14r:hover            (normal mouseover)
             .jssora14l.jssora14ldn      (mousedown)
             .jssora14r.jssora14rdn      (mousedown)
+            .jssora14l.jssora14lds      (disabled)
+            .jssora14r.jssora14rds      (disabled)
             */
             .jssora14l, .jssora14r {
                 display: block;
@@ -67,6 +71,9 @@
             .jssora14r:hover { background-position: -195px -35px; }
             .jssora14l.jssora14ldn { background-position: -255px -35px; }
             .jssora14r.jssora14rdn { background-position: -315px -35px; }
+
+            .jssora14l.jssora14lds { background-position: -15px -35px; opacity: .3; pointer-events: none; }
+            .jssora14r.jssora14rds { background-position: -75px -35px; opacity: .3; pointer-events: none; }
         </style>
         <!-- Arrow Left -->
         <span u="arrowleft" class="jssora14l" style="top: 123px; left: 0px;">
