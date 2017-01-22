@@ -1,1 +1,0 @@
-"..\tool\Jssor.Compress.exe" -HTML:Js -HTML:Css -HTML:Comment -HTML:Blank -JSSORONLY -AWRAP -OVERWRITE -ENCOUT:UTF-8 "slider-with-bullet-navigator.source.html" -OUT "slider-with-bullet-navigator.html"
