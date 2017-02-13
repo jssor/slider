@@ -1,7 +1,7 @@
 {
   "name": "jssor-slider",
   "description": "Responsive jQuery Image Slider/Slideshow/Carousel/Gallery/Banner",
-  "version": "21.1.5",
+  "version": "22.2.6",
   "keywords": [
     "jquery",
     "javascript",
@@ -28,7 +28,7 @@
   "homepage": "http://jssor.com",
   "license": "MIT",
   "main": [
-    "js/jssor.slider.mini.js"
+    "js/jssor.slider.min.js"
   ],
   "ignore": [
     "demos-jquery",
@@ -51,33 +51,11 @@
     "img/qr",
     "img/share",
     "img/travel",
-    "img/Icon-Slider-11-No-jQuery.png",
-    "img/Icon-Slider-11-jQuery.png",
-    "img/Icon-Slider-12-No-jQuery.png",
-    "img/Icon-Slider-12-jQuery.png",
-    "img/back.jpg",
-    "img/browser-icons.png",
-    "js/jquery-1.9.1.min.js",
-    "js/jquery-2.1.0.min.js",
-    "js/jssor.js",
-    "js/jssor.player.ytiframe.compress.bat",
-    "js/jssor.player.ytiframe.js",
-    "js/jssor.slider.debug.min.compress.bat",
-    "js/jssor.slider.debug.min.js",
-    "js/jssor.slider.js",
-    "js/jssor.slider.min.compress.bat",
-    "js/jssor.slider.min.js",
-    "js/jssor.slider.mini.compress.bat",
-    "js/jssor.sliderc.mini.compress.bat",
-    "js/jssor.sliderc.mini.js",
-    "js/jssor.sliders.mini.compress.bat",
-    "js/jssor.sliders.mini.js",
     "skin",
     "tool",
     "transition-builder",
     "transitions"
   ],
   "dependencies": {
-    "jquery": ">= 1.4.0"
   }
 }
