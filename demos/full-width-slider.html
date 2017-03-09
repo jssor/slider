@@ -1,14 +1,13 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Width Slider - Jssor Slider</title>
 </head>
-<body style="padding:0px; margin:0px; background-color:#fff;font-family:Arial, sans-serif">
-
+<body style="margin:0;padding:0;font-family:Helvetica,Verdana,Geneva,sans-serif,-apple-system,BlinkMacSystemFont,'Open Sans',Arial,Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue','Segoe UI',Tahoma;">
     <!-- #region Jssor Slider Begin -->
     <!-- Generator: Jssor Slider Maker -->
+    <!-- Source: http://www.jssor.com -->
     <!-- This code works without jquery library. -->
     <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -48,6 +47,26 @@
         };
     </script>
     <style>
+        /* jssor slider loading skin oval css */
+
+        .jssorl-oval img {
+            animation-name: jssorl-oval;
+            animation-duration: 1.2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-oval {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
         /* jssor slider bullet navigator skin 05 css */
         /*
         .jssorb05 div           (normal)
@@ -103,23 +122,45 @@
         .jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
         .jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
     </style>
-    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;visibility:hidden;">
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1500px;height:600px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
-        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-            <div style="position:absolute;display:block;background:url('../img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        <div data-u="loading" class="jssorl-oval" style="position:absolute;top:0px;left:0px;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19.0px;position:relative;top:50%;width:38px;height:38px;" src="../img/loading/static-svg/oval.svg" />
         </div>
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1500px;height:600px;overflow:hidden;">
             <div>
-                <img data-u="image" src="../img/1920/red.jpg" />
-                <div style="position:absolute;top:30px;left:30px;width:480px;height:120px;z-index:0;font-size:50px;color:#ffffff;line-height:60px;">TOUCH SWIPE SLIDER</div>
-                <div style="position:absolute;top:300px;left:30px;width:480px;height:120px;z-index:0;font-size:30px;color:#ffffff;line-height:38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
+                <img data-u="image" src="../img/full-width/android.jpg" />
+                <div style="position:absolute;top:85px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(0,0,0,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#ffffff;line-height:40px;">Build slider with anything</div>
+                    <div style="position:absolute;top:60px;left:15px;width:570px;height:40px;z-index:0;font-size:22px;color:#ffffff;line-height:38px;">image, text, html, svg, content, photo, picture, graphic</div>
+                </div>
+                <div style="position:absolute;top:370px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(255,255,255,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#000000;line-height:40px;">Run slider on any device</div>
+                    <div style="position:absolute;top:60px;left:15px;width:500px;height:40px;z-index:0;font-size:22px;color:#000000;line-height:38px;">windows, android, mac</div>
+                </div>
+            </div>
+            <a data-u="any" href="http://www.jssor.com" style="display:none">WordPress Slider</a>
+            <div>
+                <img data-u="image" src="../img/full-width/windows.jpg" />
+                <div style="position:absolute;top:85px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(0,0,0,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#ffffff;line-height:40px;">Build slider with anything</div>
+                    <div style="position:absolute;top:60px;left:15px;width:570px;height:40px;z-index:0;font-size:22px;color:#ffffff;line-height:38px;">image, text, html, svg, content, photo, picture, graphic</div>
+                </div>
+                <div style="position:absolute;top:370px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(255,255,255,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#000000;line-height:40px;">Run slider on any device</div>
+                    <div style="position:absolute;top:60px;left:15px;width:500px;height:40px;z-index:0;font-size:22px;color:#000000;line-height:38px;">windows, android, mac</div>
+                </div>
             </div>
             <div>
-                <img data-u="image" src="../img/1920/purple.jpg" />
-            </div>
-            <div>
-                <img data-u="image" src="../img/1920/blue.jpg" />
+                <img data-u="image" src="../img/full-width/mac.jpg" />
+                <div style="position:absolute;top:85px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(0,0,0,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#ffffff;line-height:40px;">Build slider with anything</div>
+                    <div style="position:absolute;top:60px;left:15px;width:570px;height:40px;z-index:0;font-size:22px;color:#ffffff;line-height:38px;">image, text, html, svg, content, photo, picture, graphic</div>
+                </div>
+                <div style="position:absolute;top:370px;left:100px;width:600px;height:120px;z-index:0;background-color:rgba(255,255,255,0.5);">
+                    <div style="position:absolute;top:15px;left:15px;width:500px;height:40px;z-index:0;font-size:30px;color:#000000;line-height:40px;">Run slider on any device</div>
+                    <div style="position:absolute;top:60px;left:15px;width:500px;height:40px;z-index:0;font-size:22px;color:#000000;line-height:38px;">windows, android, mac</div>
+                </div>
             </div>
         </div>
         <!-- Bullet Navigator -->
