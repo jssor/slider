@@ -1,0 +1,34 @@
+{
+    "name": "jssor-slider",
+    "repo": "jssor/slick",
+    "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
+    "version": "23.0.0",
+    "homepage": "http://www.jssor.com",
+    "keywords": [
+        "javascript",
+        "slider",
+        "carousel",
+        "slideshow",
+        "gallery",
+        "html5 ad",
+        "banner",
+        "photo",
+        "image",
+        "picture",
+        "content",
+        "text",
+        "js",
+        "mobile",
+        "responsive",
+        "front-end",
+        "touch",
+        "swipe",
+        "web",
+        "website",
+        "web page"
+    ],
+    "development": { },
+    "scripts": {
+        "js/jssor.slider.min.js": "jssor.slider.min.js"
+    }
+}

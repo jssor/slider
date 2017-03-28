@@ -8,12 +8,15 @@
 <body style="padding:0px; margin:0px; background-color:#fff;font-family:Arial, sans-serif">
     
     <!-- #region Jssor Slider Begin -->
+    <!-- Source: http://www.jssor.com/demos/introduction-slider.slider -->
     <!-- Generator: Jssor Slider Maker -->
-    <!-- This code works without jquery library. -->
+    <!-- Generator: Jssor Slider Maker -->
     <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         jssor_1_slider_init = function() {
 
+            //Reference http://www.jssor.com/development/slider-with-slideshow-no-jquery.html
+            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
             var jssor_1_SlideshowTransitions = [
               {$Duration:1000,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Easing:$Jease$.$OutQuad},
               {$Duration:1200,y:0.3,$Cols:2,$During:{$Top:[0.3,0.7]},$ChessMode:{$Column:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
@@ -30,6 +33,7 @@
               {$Duration:1200,$Delay:20,$Clip:3,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
             ];
 
+            //Reference http://www.jssor.com/help/layer-animation.html
             var jssor_1_SlideoTransitions = [
               [{b:-1,d:1,o:-1},{b:0,d:1200,y:300,o:1,e:{y:24,o:6}},{b:5600,d:800,y:-200,o:-1,e:{y:5}}],
               [{b:-1,d:1,o:-1},{b:400,d:800,x:200,o:1,e:{x:27,o:6}},{b:5600,d:800,x:-200,o:-1,e:{x:5}}],
@@ -115,7 +119,7 @@
             ];
 
             var jssor_1_options = {
-              $AutoPlay: true,
+              $AutoPlay: 1,
               $SlideDuration: 800,
               $SlideEasing: $Jease$.$OutQuint,
               $SlideshowOptions: {
@@ -379,7 +383,6 @@
     </div>
     <script type="text/javascript">jssor_1_slider_init();</script>
     <!-- #endregion Jssor Slider End -->
-
 
 </body>
 </html>

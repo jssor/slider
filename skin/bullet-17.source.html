@@ -11,7 +11,7 @@
         init_jssor_slider1 = function (containerId) {
 
             var options = {
-                $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $AutoPlay: 0,                                   //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
                 $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
@@ -45,7 +45,7 @@
         </div>
 
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/tutorial/set-bullet-navigator.html -->
+        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
         <style>
             /* jssor slider bullet navigator skin 17 css */
             /*

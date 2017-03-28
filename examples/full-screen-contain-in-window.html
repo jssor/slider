@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Slider Contain in Window with Javascript Source Code - Jssor Slider</title>
+</head>
+<body style="background:#fff; margin: 0px; overflow: hidden;">
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+
+    <script>
+        jssor_slider1_starter = function (containerId) {
+
+            var options = {
+                $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $Idle: 1500                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+            };
+
+            var wrapperElement = $Jssor$.$GetElement("wrapper");
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+
+            //responsive code begin
+            //remove responsive code if you don't want the slider to scale along with window
+            function ScaleSlider() {
+                var w = window,
+                d = document,
+                e = d.documentElement,
+                g = d.getElementsByTagName('body')[0];
+
+                var windowWidth = w.innerWidth || e.clientWidth || g.clientWidth;
+
+                if (windowWidth) {
+                    var windowHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+
+                    var originalWidth = jssor_slider1.$OriginalWidth();
+                    var originalHeight = jssor_slider1.$OriginalHeight();
+
+                    if (originalWidth / windowWidth > originalHeight / windowHeight) {
+                        jssor_slider1.$ScaleWidth(windowWidth);
+
+                        var scaleHeight = jssor_slider1.$ScaleHeight();
+                        $Jssor$.$Css(wrapperElement, "marginTop", ((windowHeight - scaleHeight) / 2) + "px");
+                    }
+                    else {
+                        jssor_slider1.$ScaleHeight(windowHeight);
+                        $Jssor$.$Css(wrapperElement, "marginTop", "0px");
+                    }
+                }
+                else
+                    window.setTimeout(ScaleSlider, 30);
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            //responsive code end
+        };
+
+
+    </script>
+
+    <div id="wrapper" style="position: relative; width: 100%; overflow: hidden;">
+        <div style="position: relative; left: 50%; width: 5000px; text-align: center; margin-left: -2500px;">
+            <!-- Jssor Slider Begin -->
+            <!-- To move inline styles to css file/block, please specify a class name for each element. -->
+            <div id="slider1_container" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px;">
+
+                <!-- Loading Screen -->
+                <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                    <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
+                background-color: #000; top: 0px; left: 0px;width: 100%;height:100%;">
+                    </div>
+                    <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px;width: 100%;height:100%;">
+                    </div>
+                </div>
+
+                <!-- Slides Container -->
+                <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px;  height: 300px;
+            overflow: hidden;">
+                    <div>
+                        <img u=image src="../img/landscape/01.jpg" />
+                    </div>
+                    <div>
+                        <img u=image src="../img/landscape/02.jpg" />
+                    </div>
+                    <div>
+                        <img u=image src="../img/landscape/03.jpg" />
+                    </div>
+                    <div>
+                        <img u=image src="../img/landscape/04.jpg" />
+                    </div>
+                </div>
+                <a style="display: none" href="http://www.jssor.com">Image Slider</a>                <!-- Trigger -->
+                <script>
+                    jssor_slider1_starter('slider1_container');
+                </script>
+            </div>
+            <!-- Jssor Slider End -->
+        </div>
+    </div>
+</body>
+</html>

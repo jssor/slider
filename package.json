@@ -1,0 +1,39 @@
+{
+  "name": "jssor-slider",
+  "version": "23.0.0",
+  "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
+  "main": "js/jssor.slider.min.js",
+  "homepage": "http://www.jssor.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jssor/slider.git"
+  },
+  "keywords": [
+    "javascript",
+    "slider",
+    "carousel",
+    "slideshow",
+    "gallery",
+    "html5 ad",
+    "banner",
+    "photo",
+    "image",
+    "picture",
+    "content",
+    "text",
+    "js",
+    "mobile",
+    "responsive",
+    "front-end",
+    "touch",
+    "swipe",
+    "web",
+    "website",
+    "web page"
+  ],
+  "author": "jssor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jssor/slider/issues"
+  }
+}
