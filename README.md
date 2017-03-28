@@ -1,5 +1,5 @@
 
-Responsive Javascript Image/Content Slider/Carousel/Slideshow/Gallery/HTML5 Ad
+Responsive Javascript Image/Text Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 --------------------------------------
 
 1. [Live Demo](http://www.jssor.com)
