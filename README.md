@@ -13,7 +13,7 @@ Responsive Javascript Image/Content Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 
 ```sh
 # Download from GitHub
-[https://github.com/jssor/slider/archive/master.zip](https://github.com/jssor/slider/archive/master.zip)
+https://github.com/jssor/slider/archive/master.zip
 
 # Bower
 bower install jssor-slider --save
@@ -22,6 +22,7 @@ bower install jssor-slider --save
 npm install jssor-slider
 ```
 
+--------------------------------------
 #### Example
 ```html
 <script type="text/javascript" src="jssor.slider.min.js"></script>
@@ -31,8 +32,8 @@ npm install jssor-slider
         var jssor_slider1 = new $JssorSlider$(containerId, options);
     };
 </script>
-<div id="jssor_slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px;">
-    <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;">
+<div id="jssor_slider1_container" style="position:relative;top:0px;left:0px;width:600px;height:300px;">
+    <div u="slides" style="position:absolute;overflow:hidden;left:0px;top:0px;width:600px;height:300px;">
         <div><img u="image" src="image1.jpg" /></div>
         <div><img u="image" src="image2.jpg" /></div>
     </div>
