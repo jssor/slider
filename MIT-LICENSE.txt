@@ -1,4 +1,4 @@
-﻿Copyright 2014 Jssor Foundation and other contributors
+﻿Copyright 2017 Jssor Foundation and other contributors
 http://www.jssor.com/
 
 
