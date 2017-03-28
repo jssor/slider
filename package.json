@@ -1,0 +1,30 @@
+{
+  "name": "jssorslider",
+  "version": "1.0.3",
+  "description": "Jssor Slider is touch swipe image slider carousel with 390+ caption slide effects. When touch Jssor Slider, it will freeze and then move to the direction that finger",
+  "main": "./js/jssor.component.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crisys11/slider.git"
+  },
+  "keywords": [
+    "Browserify",
+    "slider",
+    "responsive",
+    "slider",
+    "animate",
+    "slider",
+    "jsor",
+    "npm",
+    "slider"
+  ],
+  "author": "Cristian Cedeño",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crisys11/slider/issues"
+  },
+  "homepage": "https://github.com/crisys11/slider#readme"
+}
