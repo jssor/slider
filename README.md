@@ -15,11 +15,11 @@ Responsive Javascript Image/Text Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 # Download from GitHub
 https://github.com/jssor/slider/archive/master.zip
 
-# Bower
-bower install jssor-slider --save
-
 # NPM
 npm install jssor-slider
+
+# Bower
+bower install jssor-slider --save
 ```
 
 --------------------------------------
