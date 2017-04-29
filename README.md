@@ -15,6 +15,12 @@ Responsive Javascript Image/Text Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 # Download from GitHub
 https://github.com/jssor/slider/archive/master.zip
 
+# WordPress Plugin
+https://wordpress.org/plugins/jssor-slider
+
+# Download Bootstrap Carousel Slider Example
+http://www.jssor.com/download-bootstrap-carousel-slider-example.html
+
 # NPM
 npm install jssor-slider
 
