@@ -1,5 +1,5 @@
 ﻿Copyright 2017 Jssor Foundation and other contributors
-http://www.jssor.com/
+https://www.jssor.com/
 
 
 Permission is hereby granted, free of charge, to any person obtaining
