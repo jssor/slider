@@ -9,7 +9,7 @@
     <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider2_starter = function (containerId) {
+        jssor_slider2_init = function () {
             var options = {
                 $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
                 $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
@@ -54,7 +54,7 @@
                 }
             };
 
-            var jssor_slider2 = new $JssorSlider$(containerId, options);
+            var jssor_slider2 = new $JssorSlider$('slider2_container', options);
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
@@ -119,19 +119,19 @@
             </div>
             <div>
                 <img u=image src="../img/landscape/03.jpg" />
-                <div u="thumb">Do you know that you can add css3 transition to thumbnail?<br />Do you know that <a href="http://www.jssor.com/demos/x-flutter.html">thumbnail is also draggable</a>?<br /><br />
-                Do you like <a href="http://www.jssor.com/demos/tab-slider.html">Tab Implementation</a> of thumbnail navigator?</div>
+                <div u="thumb">Do you know that you can add css3 transition to thumbnail?<br />Do you know that <a href="https://www.jssor.com/demos/x-flutter.html">thumbnail is also draggable</a>?<br /><br />
+                Do you like <a href="https://www.jssor.com/demos/tab-slider.html">Tab Implementation</a> of thumbnail navigator?</div>
             </div>
             <div>
                 <img u=image src="../img/landscape/04.jpg" />
-                <div u="thumb">Would you like vertical thumbnail navigator?<br />Would you like <a href="http://www.jssor.com/demos/image-gallery-vertical-bar.html">multiline thumbnail navigator</a>?<br />
+                <div u="thumb">Would you like vertical thumbnail navigator?<br />Would you like <a href="https://www.jssor.com/demos/image-gallery-vertical-bar.html">multiline thumbnail navigator</a>?<br />
                 Do you know that you can <a href="../examples-jquery/thumbnail-navigator-with-arrows.source.html">add arrows for thumbnail navogator?</a><br />
                 Do you know that you can design jssor slider to any look that you can imagine?</div>
             </div>
         </div>
 
         <!--#region Thumbnail Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
         <!-- thumbnail navigator container -->
         <div u="thumbnavigator" style="position: absolute; top: 100px; left: 0px; width:250px; height:200px;">
             <div style="filter: alpha(opacity=60); opacity:0.6; position: absolute; display: block;
@@ -148,7 +148,7 @@
         <!--#endregion ThumbnailNavigator Skin End -->
         
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
             /* jssor slider bullet navigator skin 01 css */
             /*
@@ -227,7 +227,7 @@
 
         <!-- Trigger -->
         <script>
-            jssor_slider2_starter('slider2_container');
+            jssor_slider2_init();
         </script>
     </div>
     <!-- Jssor Slider End -->

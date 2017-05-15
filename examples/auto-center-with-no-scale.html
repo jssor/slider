@@ -5,10 +5,9 @@
     <title>Auto Center with No Scale Example - Jssor Slider</title>
 </head>
 <body style="margin:0;font-family:Arial, Verdana;background-color:#fff;">
-    <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
 
             var options = {
                 $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
@@ -42,7 +41,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
         };
     </script>
     <div style="position: relative; width: 100%; background-color: #003399; overflow: hidden;">
@@ -68,7 +67,7 @@
                 </div>
                 
                 <!--#region Bullet Navigator Skin Begin -->
-                <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
+                <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                 <style>
                     /* jssor slider bullet navigator skin 21 css */
                     /*
@@ -108,7 +107,7 @@
 
                 <!-- Trigger -->
                 <script>
-                    jssor_slider1_starter('slider1_container');
+                    jssor_slider1_init();
                 </script>
             </div>
             <!-- Jssor Slider End -->

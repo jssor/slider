@@ -9,9 +9,9 @@
     <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
-            //Reference http://www.jssor.com/development/slider-with-slideshow-no-jquery.html
-            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+        jssor_slider1_init = function () {
+            //Reference https://www.jssor.com/development/slider-with-slideshow.html
+            //Reference https://www.jssor.com/development/tool-slideshow-transition-viewer.html
 
             var _SlideshowTransitions = [
                 //Fade Twins
@@ -75,7 +75,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -139,7 +139,7 @@
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
             /* jssor slider bullet navigator skin 13 css */
             /*
@@ -175,7 +175,7 @@
 
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            jssor_slider1_init();
         </script>
 
     </div>

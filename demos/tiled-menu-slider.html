@@ -67,7 +67,7 @@
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
             var options = {
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
@@ -77,7 +77,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -113,132 +113,132 @@
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 800px; height: 380px;
             overflow: hidden; background-color: #191919;">
             <div>
-                <a class=appicon01 style="left: 0px; top: 0px; background-position:0px 0px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 0px; top: 0px; background-position:0px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 01</div>
                 </a>
-                <a class=appicon01 style="left: 160px; top: 0px; background-position:-160px 0px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 160px; top: 0px; background-position:-160px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 02</div>
                 </a>
-                <a class=appicon01 style="left: 320px; top: 0px; background-position:-320px 0px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 320px; top: 0px; background-position:-320px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 03</div>
                 </a>
-                <a class=appicon01 style="left: 480px; top: 0px; background-position:-480px 0px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 480px; top: 0px; background-position:-480px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 04</div>
                 </a>
-                <a class=appicon01 style="left: 640px; top: 0px; background-position:-640px 0px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 640px; top: 0px; background-position:-640px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 05</div>
                 </a>
                                 
-                <a class=appicon01 style="left: 0px; top: 160px; background-position:0px -160px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 06</div>
                 </a>
-                <a class=appicon01 style="left: 160px; top: 160px; background-position:-160px -160px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 160px; top: 160px; background-position:-160px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 07</div>
                 </a>
-                <a class=appicon01 style="left: 320px; top: 160px; background-position:-320px -160px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 320px; top: 160px; background-position:-320px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 08</div>
                 </a>
-                <a class=appicon01 style="left: 480px; top: 160px; background-position:-480px -160px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 480px; top: 160px; background-position:-480px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 09</div>
                 </a>
-                <a class=appicon01 style="left: 640px; top: 160px; background-position:-640px -160px;" href="http://www.jssor.com">
+                <a class=appicon01 style="left: 640px; top: 160px; background-position:-640px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 10</div>
                 </a>
             </div>
                             
             <div>
-                <a class=appicon02 style="left: 0px; top: 0px; background-position:0px 0px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 0px; top: 0px; background-position:0px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 11</div>
                 </a>
-                <a class=appicon02 style="left: 160px; top: 0px; background-position:-160px 0px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 160px; top: 0px; background-position:-160px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 12</div>
                 </a>
-                <a class=appicon02 style="left: 320px; top: 0px; background-position:-320px 0px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 320px; top: 0px; background-position:-320px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 13</div>
                 </a>
-                <a class=appicon02 style="left: 480px; top: 0px; background-position:-480px 0px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 480px; top: 0px; background-position:-480px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 14</div>
                 </a>
-                <a class=appicon02 style="left: 640px; top: 0px; background-position:-640px 0px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 640px; top: 0px; background-position:-640px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 15</div>
                 </a>
                                 
-                <a class=appicon02 style="left: 0px; top: 160px; background-position:0px -160px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 16</div>
                 </a>
-                <a class=appicon02 style="left: 160px; top: 160px; background-position:-160px -160px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 160px; top: 160px; background-position:-160px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 17</div>
                 </a>
-                <a class=appicon02 style="left: 320px; top: 160px; background-position:-320px -160px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 320px; top: 160px; background-position:-320px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 18</div>
                 </a>
-                <a class=appicon02 style="left: 480px; top: 160px; background-position:-480px -160px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 480px; top: 160px; background-position:-480px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 19</div>
                 </a>
-                <a class=appicon02 style="left: 640px; top: 160px; background-position:-640px -160px;" href="http://www.jssor.com">
+                <a class=appicon02 style="left: 640px; top: 160px; background-position:-640px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 20</div>
                 </a>
             </div>
                             
             <div>
-                <a class=appicon03 style="left: 0px; top: 0px; background-position:0px 0px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 0px; top: 0px; background-position:0px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 21</div>
                 </a>
-                <a class=appicon03 style="left: 160px; top: 0px; background-position:-160px 0px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 160px; top: 0px; background-position:-160px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 22</div>
                 </a>
-                <a class=appicon03 style="left: 320px; top: 0px; background-position:-320px 0px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 320px; top: 0px; background-position:-320px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 23</div>
                 </a>
-                <a class=appicon03 style="left: 480px; top: 0px; background-position:-480px 0px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 480px; top: 0px; background-position:-480px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 24</div>
                 </a>
-                <a class=appicon03 style="left: 640px; top: 0px; background-position:-640px 0px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 640px; top: 0px; background-position:-640px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 25</div>
                 </a>
                                 
-                <a class=appicon03 style="left: 0px; top: 160px; background-position:0px -160px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 26</div>
                 </a>
-                <a class=appicon03 style="left: 160px; top: 160px; background-position:-160px -160px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 160px; top: 160px; background-position:-160px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 27</div>
                 </a>
-                <a class=appicon03 style="left: 320px; top: 160px; background-position:-320px -160px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 320px; top: 160px; background-position:-320px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 28</div>
                 </a>
-                <a class=appicon03 style="left: 480px; top: 160px; background-position:-480px -160px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 480px; top: 160px; background-position:-480px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 29</div>
                 </a>
-                <a class=appicon03 style="left: 640px; top: 160px; background-position:-640px -160px;" href="http://www.jssor.com">
+                <a class=appicon03 style="left: 640px; top: 160px; background-position:-640px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 30</div>
                 </a>
@@ -246,7 +246,7 @@
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
             /* jssor slider bullet navigator skin 18 css */
             /*
@@ -289,7 +289,7 @@
 
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            jssor_slider1_init();
         </script>
     </div>
     <!-- Jssor Slider End -->

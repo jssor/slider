@@ -9,7 +9,7 @@
     <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
             var options = {
                 $AutoPlay: 1,
 
@@ -30,7 +30,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
@@ -67,7 +67,7 @@
         </div>
         
         <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
             /* jssor slider arrow navigator skin 13 css */
             /*
@@ -109,7 +109,7 @@
         <!--#endregion Arrow Navigator Skin End -->
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            jssor_slider1_init();
         </script>
 
     </div>

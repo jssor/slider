@@ -71,9 +71,9 @@
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     
     <script>
-        jssor_sliderc_starter = function (containerId) {
-            //Reference http://www.jssor.com/development/slider-with-slideshow-no-jquery.html
-            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+        jssor_sliderc_starter = function () {
+            //Reference https://www.jssor.com/development/slider-with-slideshow.html
+            //Reference https://www.jssor.com/development/tool-slideshow-transition-viewer.html
 
             var _SlideshowTransitions = [
                 //Fade Twins
@@ -112,9 +112,9 @@
                 { $Duration: 1600, x: -0.2, $Delay: 40, $Cols: 12, $During: { $Left: [0.4, 0.6] }, $SlideOut: true, $Formation: $JssorSlideshowFormations$.$FormationStraight, $Assembly: 260, $Easing: { $Left: $Jease$.$InOutExpo, $Opacity: $Jease$.$InOutQuad }, $Opacity: 2, $Outside: true, $Round: { $Top: 0.5 }, $Brother: { $Duration: 1000, x: 0.2, $Delay: 40, $Cols: 12, $Formation: $JssorSlideshowFormations$.$FormationStraight, $Assembly: 1028, $Easing: { $Left: $Jease$.$InOutExpo, $Opacity: $Jease$.$InOutQuad }, $Opacity: 2, $Round: { $Top: 0.5 } } }
             ];
 
-            //Reference http://www.jssor.com/development/slider-with-caption-no-jquery.html
-            //Reference http://www.jssor.com/development/reference-ui-definition.html#captiondefinition
-            //Reference http://www.jssor.com/development/tool-caption-transition-viewer.html
+            //Reference https://www.jssor.com/development/slider-with-caption-no-jquery.html
+            //Reference https://www.jssor.com/development/reference-ui-definition.html#captiondefinition
+            //Reference https://www.jssor.com/development/tool-caption-transition-viewer.html
 
             var captionTransitions = [];
 
@@ -290,7 +290,7 @@
                 }
             };
 
-            var jssorSliderc = new $JssorSlider$(containerId, slidercOptions);
+            var jssorSliderc = new $JssorSlider$('sliderc_container', slidercOptions);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -399,25 +399,25 @@
                         <!-- Slides Container -->
                         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
                             <div>
-                                <a u="image" href="http://www.jssor.com/demos/image-slider.html"><img src="../img/photography/002.jpg" alt="image slider" /></a>
+                                <a u="image" href="https://www.jssor.com/demos/image-slider.html"><img src="../img/photography/002.jpg" alt="image slider" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 mobile ready, touch swipe
                                 </div>
                             </div>
                             <div>
-                                <a u="image" href="http://www.jssor.com/demos/image-slider.html"><img src="../img/photography/003.jpg" alt="jqeury image slider" /></a>
+                                <a u="image" href="https://www.jssor.com/demos/image-slider.html"><img src="../img/photography/003.jpg" alt="jqeury image slider" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 finger catchable right to left
                                 </div>
                             </div>
                             <div>
-                                <a u="image" href="http://www.jssor.com/demos/image-slider.html"><img src="../img/photography/004.jpg" alt="responsive image slider" /></a>
+                                <a u="image" href="https://www.jssor.com/demos/image-slider.html"><img src="../img/photography/004.jpg" alt="responsive image slider" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 responsive, scale smoothly
                                 </div>
                             </div>
                             <div>
-                                <a u="image" href="http://www.jssor.com/demos/image-slider.html"><img src="../img/photography/005.jpg" alt="touch swipe image slider" /></a>
+                                <a u="image" href="https://www.jssor.com/demos/image-slider.html"><img src="../img/photography/005.jpg" alt="touch swipe image slider" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 random caption transition
                                 </div>
@@ -425,7 +425,7 @@
                         </div>
         
                         <!--#region Bullet Navigator Skin Begin -->
-                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                         <!-- bullet navigator container -->
                         <div u="navigator" class="jssorb01" style="bottom: 16px; right: 10px;">
                             <!-- bullet navigator item prototype -->
@@ -434,7 +434,7 @@
                         <!--#endregion Bullet Navigator Skin End -->
         
                         <!--#region Arrow Navigator Skin Begin -->
-                        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
                         <style>
                             /* jssor slider arrow navigator skin 02 css */
                             /*
@@ -516,25 +516,25 @@
                         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                             overflow: hidden;">
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/002.jpg" alt="banner rotator" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/002.jpg" alt="banner rotator" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 slideshow transition twins
                                 </div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/003.jpg" alt="jquery banner rotator" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/003.jpg" alt="jquery banner rotator" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 random caption transition
                                 </div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/004.jpg" alt="responsive banner rotator" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/004.jpg" alt="responsive banner rotator" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 mobile ready, touch swipe
                                 </div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/005.jpg" alt="touch swipe banner rotator" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-rotator.html"><img src="../img/photography/005.jpg" alt="touch swipe banner rotator" /></a>
                                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                                 responsive, scale smoothly
                                 </div>
@@ -542,7 +542,7 @@
                         </div>
         
                         <!--#region Bullet Navigator Skin Begin -->
-                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                         <!-- bullet navigator container -->
                         <div u="navigator" class="jssorb01" style="bottom: 16px; right: 10px;">
                             <!-- bullet navigator item prototype -->
@@ -563,7 +563,7 @@
                     <div u="caption" t="T|IE*IE" t2="B*IB" style="position: absolute; left: 360px;top:360px;width:600px;height:30px;font-size:28px;color:#fff;line-height:30px; text-align: center;">
                     worldwide popular banner rotator example
                     </div>
-                    <a class="captionTextBlack" u="caption" t="CLIP|L" d="-200" href="http://www.jssor.com/help/layer-animation.html"
+                    <a class="captionTextBlack" u="caption" t="CLIP|L" d="-200" href="https://www.jssor.com/help/layer-animation.html"
                         style="position: absolute; top: 30px; left: 0px; width: 320px; height: 30px; font-size: 26px; background-color:transparent;">Timelined Layer Animation</a>
 
                     <div u="caption" t="ZM" t2="NO" style="position: absolute; top: 80px; left: 0px; width: 320px; height: 80px;">
@@ -578,8 +578,8 @@
                         </div>
                     </div>
 
-                    <a class="captionTextBlack" u="caption" t="L|EP" href="http://www.jssor.com/development/tool-slideshow-transition-viewer.html"
-                        style="position: absolute; top: 210px; left: 0px; width: 320px; height: 30px; font-size: 26px; background-color:transparent;">360+
+                    <a class="captionTextBlack" u="caption" t="L|EP" href="https://www.jssor.com/development/tool-slideshow-transition-viewer.html"
+                        style="position: absolute; top: 210px; left: 0px; width: 320px; height: 30px; font-size: 26px; background-color:transparent;">200+
                         slideshow transitions</a>
 
                     <div u="caption" t="B*IB" t2="NO" style="position: absolute; top: 260px; left: 0px; width: 320px; height: 80px;">
@@ -607,25 +607,25 @@
                         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                             overflow: hidden;">
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/002.jpg" alt="banner slider" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/002.jpg" alt="banner slider" /></a>
                                 <div u="thumb">Do you notice it is draggable by mouse/finger?</div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/003.jpg" alt="jquery banner slider" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/003.jpg" alt="jquery banner slider" /></a>
                                 <div u="thumb">Did you drag by either horizontal or vertical?</div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/004.jpg" alt="responsive banner slider" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/004.jpg" alt="responsive banner slider" /></a>
                                 <div u="thumb">Do you notice navigator responses when drag?</div>
                             </div>
                             <div>
-                                <a u=image href="http://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/005.jpg" alt="touch swipe banner slider" /></a>
+                                <a u=image href="https://www.jssor.com/demos/banner-slider.html"><img src="../img/photography/005.jpg" alt="touch swipe banner slider" /></a>
                                 <div u="thumb">Do you notice arrow responses when click?</div>
                             </div>
                         </div>
 
                         <!--#region Thumbnail Navigator Skin Begin -->
-                        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-no-jquery.html -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
                         <!-- thumbnail navigator container -->
                         <div u="thumbnavigator" class="slider3-T" style="position: absolute; bottom: 0px; left: 0px; height:45px; width:600px;">
                             <div style="filter: alpha(opacity=40); opacity:0.4; position: absolute; display: block;
@@ -642,7 +642,7 @@
                         <!--#endregion ThumbnailNavigator Skin End -->
         
                         <!--#region Bullet Navigator Skin Begin -->
-                        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                         <!-- bullet navigator container -->
                         <div u="navigator" class="jssorb01" style="bottom: 16px; right: 10px;">
                             <!-- bullet navigator item prototype -->
@@ -658,7 +658,7 @@
                         <span u="arrowright" class="jssora05r" style="top: 123px; right: 8px;">
                         </span>
                         <!--#endregion Arrow Navigator Skin End -->
-                        <a style="display: none" href="http://www.jssor.com">jQuery Slider</a>
+                        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
                     </div>
                     <!-- Jssor Slider End -->
                     <div u="caption" t="L*IB" t2="SPACESHIP|LB" style="position: absolute; left: 360px;top:30px;width:600px;height:30px;font-size:28px;color:#fff;line-height:30px; text-align: center;">
@@ -700,7 +700,7 @@
             </div> 
  
             <!--#region Bullet Navigator Skin Begin -->
-            <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+            <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
             <style>
                 /* jssor slider bullet navigator skin 03 css */
                 /*
@@ -739,7 +739,7 @@
             <!--#endregion Bullet Navigator Skin End -->
         
             <!--#region Arrow Navigator Skin Begin -->
-            <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+            <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
             <style>
                 /* jssor slider arrow navigator skin 20 css */
                 /*
@@ -776,7 +776,7 @@
             <!--#endregion Arrow Navigator Skin End -->
             <!-- Trigger --> 
             <script>
-                jssor_sliderc_starter('sliderc_container');
+                jssor_sliderc_starter();
             </script> 
         </div> 
         <!-- Jssor Slider End -->

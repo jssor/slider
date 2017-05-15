@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
 
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
 
             var options = {
                 $SlideDuration: 800,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
@@ -19,7 +19,7 @@
             };
 
             var wrapperElement = $Jssor$.$GetElement("wrapper");
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             //responsive code begin
             //remove responsive code if you don't want the slider to scale along with window
@@ -91,7 +91,7 @@
 
                 <!-- Trigger -->
                 <script>
-                    jssor_slider1_starter('slider1_container');
+                    jssor_slider1_init();
                 </script>
             </div>
             <!-- Jssor Slider End -->

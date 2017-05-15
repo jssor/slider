@@ -9,7 +9,7 @@
     <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
             var options = {
                 $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
                 $AutoPlaySteps: 4,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
@@ -47,7 +47,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -100,7 +100,7 @@
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
             /* jssor slider bullet navigator skin 03 css */
             /*
@@ -139,7 +139,7 @@
         <!--#endregion Bullet Navigator Skin End -->
         
         <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
             /* jssor slider arrow navigator skin 03 css */
             /*
@@ -181,7 +181,7 @@
         <!--#endregion Arrow Navigator Skin End -->
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            jssor_slider1_init();
         </script>
     </div>
     <!-- Jssor Slider End -->

@@ -9,9 +9,9 @@
     <!-- Jssor Slider Begin -->
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_2_slider_init = function (containerId) {
-            //Reference http://www.jssor.com/development/slider-with-slideshow-no-jquery.html
-            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+        jssor_2_slider_init = function () {
+            //Reference https://www.jssor.com/development/slider-with-slideshow.html
+            //Reference https://www.jssor.com/development/tool-slideshow-transition-viewer.html
 
             var _SlideshowTransitions = [
             //Swing Outside in Stairs
@@ -88,7 +88,7 @@
                 }
             };
 
-            var jssor_slider2 = new $JssorSlider$(containerId, options);
+            var jssor_slider2 = new $JssorSlider$('slider2_container', options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -131,7 +131,7 @@
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
             /* jssor slider bullet navigator skin 01 css */
             /*
@@ -168,7 +168,7 @@
         <!--#endregion Bullet Navigator Skin End -->
         
         <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
             /* jssor slider arrow navigator skin 05 css */
             /*
@@ -209,7 +209,7 @@
         </span>
         <!-- Trigger -->
         <script>
-            jssor_2_slider_init('slider2_container');
+            jssor_2_slider_init();
         </script>
     </div>
     <!-- Jssor Slider End -->

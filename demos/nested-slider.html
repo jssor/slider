@@ -11,7 +11,7 @@
     
     <script>
 
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
 
             var nestedSliders = [];
 
@@ -76,7 +76,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             function OnMainSliderPark(currentIndex, fromIndex) {
                 $Jssor$.$Each(nestedSliders, function (nestedSlider) {
@@ -168,7 +168,7 @@
                         <div><img u="image" src="../img/landscape/04.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                     <!-- bullet navigator container -->
                     <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                         <!-- bullet navigator item prototype -->
@@ -201,7 +201,7 @@
                         <div><img u="image" src="../img/motor/008.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                     <!-- bullet navigator container -->
                     <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                         <!-- bullet navigator item prototype -->
@@ -235,7 +235,7 @@
                         <div><img u="image" src="../img/photography/012.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-no-jquery.html -->
+                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
                     <!-- bullet navigator container -->
                     <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
                         <!-- bullet navigator item prototype -->
@@ -253,7 +253,7 @@
             </div>
         </div>
         <!--#region Thumbnail Navigator Skin Begin -->
-        <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-no-jquery.html -->
+        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
         <style>
             /* jssor slider thumbnail navigator skin 12 css */
             /*
@@ -362,7 +362,7 @@
 
         <!-- Trigger -->
         <script>
-            jssor_slider1_starter('slider1_container');
+            jssor_slider1_init();
         </script>
 
     </div>

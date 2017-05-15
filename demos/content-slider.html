@@ -8,7 +8,7 @@
 <body style="padding: 0; margin: 0; font-family: Arial, Verdana; background-color: #fff;">
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
     <script>
-        jssor_slider1_starter = function (containerId) {
+        jssor_slider1_init = function () {
             var options = {
                 $AutoPlay: 1,                                       //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
                 $Idle: 4000,                                        //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
@@ -49,7 +49,7 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$(containerId, options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             //responsive code begin
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -98,7 +98,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="auction slider" width="215"
                                      height="50" />
                             </a>
@@ -118,7 +118,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="ebay slideshow" width="215"
                                      height="50" />
                             </a>
@@ -137,7 +137,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="listing slider" width="215"
                                      height="50" />
                             </a>
@@ -158,7 +158,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="ebay store slider" width="215"
                                      height="50" />
                             </a>
@@ -177,7 +177,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="listing template slider"
                                      width="215" height="50" />
                             </a>
@@ -197,7 +197,7 @@
                             </span>
                             <br />
                             <br />
-                            <a href="http://www.jssor.com">
+                            <a href="https://www.jssor.com">
                                 <img src="../img/major/find-out-more-bt.png" border="0" alt="auction template slider"
                                      width="215" height="50" />
                             </a>
@@ -215,7 +215,7 @@
                                 Stay connected to your customers on the go with a MajorMedia custom mobile app.
                                 <br />
                                 <br />
-                                <a href="http://www.jssor.com">
+                                <a href="https://www.jssor.com">
                                     <img src="../img/major/find-out-more-bt.png" border="0" alt="ebay slider" width="215"
                                          height="50" />
                                 </a>
@@ -226,7 +226,7 @@
                 </div>
                 
                 <!--#region Arrow Navigator Skin Begin -->
-                <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-no-jquery.html -->
+                <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
                 <style>
                 /* jssor slider arrow navigator skin 07 css */
                 /*
@@ -268,7 +268,7 @@
                 <!--#endregion Arrow Navigator Skin End -->
                 
                 <!--#region Thumbnail Navigator Skin Begin -->
-                <!-- Help: http://www.jssor.com/development/slider-with-thumbnail-navigator-no-jquery.html -->
+                <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
                 <style>
                     /* jssor slider thumbnail navigator skin 04 css */
                     /*
@@ -362,7 +362,7 @@
             </div>
             <!-- Trigger -->
             <script>
-                jssor_slider1_starter('slider1_container');
+                jssor_slider1_init();
             </script>
             <!-- Jssor Slider End -->
         </div>
