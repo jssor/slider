@@ -2,7 +2,7 @@
     "name": "jssor-slider",
     "repo": "jssor/slider",
     "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
-    "version": "23.1.6",
+    "version": "24.0.0",
     "homepage": "https://www.jssor.com",
     "keywords": [
         "javascript",
@@ -28,7 +28,7 @@
         "web page"
     ],
     "development": { },
-    "scripts": {
-        "js/jssor.slider.min.js": "jssor.slider.min.js"
-    }
+    "scripts": [
+        "js/jssor.slider.min.js"
+    ]
 }

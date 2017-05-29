@@ -21,13 +21,13 @@
 
                 $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
                 $SlideEasing: $Jease$.$Linear,          //[Optional] Specifies easing for right to left animation, default value is $Jease$.$OutQuad
-                $SlideDuration: 1600,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $SlideDuration: 5000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
                 $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
                 $SlideWidth: 140,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
                 //$SlideHeight: 100,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
                 $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
                 $Cols: 7,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
-                $ParkingPosition: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                $Align: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
                 $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
                 $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
                 $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
@@ -61,13 +61,10 @@
 
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px; height: 100px; overflow: hidden;">
-            <div><img u="image" alt="amazon" src="../img/logo/amazon.jpg" /></div>
             <div><img u="image" alt="android" src="../img/logo/android.jpg" /></div>
-            <div><img u="image" alt="bitly" src="../img/logo/bitly.jpg" /></div>
             <div><img u="image" alt="blogger" src="../img/logo/blogger.jpg" /></div>
             <div><img u="image" alt="dnn" src="../img/logo/dnn.jpg" /></div>
             <div><img u="image" alt="drupal" src="../img/logo/drupal.jpg" /></div>
-            <div><img u="image" alt="ebay" src="../img/logo/ebay.jpg" /></div>
             <div><img u="image" alt="facebook" src="../img/logo/facebook.jpg" /></div>
             <div><img u="image" alt="google" src="../img/logo/google.jpg" /></div>
             <div><img u="image" alt="ibm" src="../img/logo/ibm.jpg" /></div>
@@ -75,13 +72,10 @@
             <div><img u="image" alt="joomla" src="../img/logo/joomla.jpg" /></div>
             <div><img u="image" alt="linkedin" src="../img/logo/linkedin.jpg" /></div>
             <div><img u="image" alt="mac" src="../img/logo/mac.jpg" /></div>
-            <div><img u="image" alt="magento" src="../img/logo/magento.jpg" /></div>
             <div><img u="image" alt="pinterest" src="../img/logo/pinterest.jpg" /></div>
-            <div><img u="image" alt="samsung" src="../img/logo/samsung.jpg" /></div>
             <div><img u="image" alt="twitter" src="../img/logo/twitter.jpg" /></div>
             <div><img u="image" alt="windows" src="../img/logo/windows.jpg" /></div>
             <div><img u="image" alt="wordpress" src="../img/logo/wordpress.jpg" /></div>
-            <div><img u="image" alt="youtube" src="../img/logo/youtube.jpg" /></div>
         </div>
         <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
     </div>
