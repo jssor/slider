@@ -11,15 +11,14 @@
     <script>
         jssor_slider1_init = function () {
             var options = {
-                $AutoPlay: 0,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
                 $AutoPlaySteps: 4,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
                 $Idle: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
                 $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
 
-                $Loop: 0,
-                $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                $ArrowKeyNavigation: 4,   			            //[Optional] Steps to go for each navigation request by pressing arrow key, default value is 1.
                 $SlideDuration: 160,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide, default value is 20
                 $SlideWidth: 200,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
                 //$SlideHeight: 150,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
                 $SlideSpacing: 3, 					                //[Optional] Space between each slide in pixels, default value is 0
@@ -66,41 +65,6 @@
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             ////responsive code end
-
-            //#region api test
-
-            function PlayTo01() {
-                jssor_slider1.$PlayTo(-1);
-            }
-
-            function PlayTo10() {
-                jssor_slider1.$PlayTo(0);
-            }
-
-            function PlayTo11() {
-                jssor_slider1.$PlayTo(1);
-            }
-
-            function PlayTo12() {
-                jssor_slider1.$PlayTo(2);
-            }
-
-            function PlayTo13() {
-                jssor_slider1.$PlayTo(3);
-            }
-
-            function PlayTo21() {
-                jssor_slider1.$PlayTo(4);
-            }
-
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTO01"), "click", PlayTo01);
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTo10"), "click", PlayTo10);
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTo11"), "click", PlayTo11);
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTo12"), "click", PlayTo12);
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTo13"), "click", PlayTo13);
-            $Jssor$.$AddEvent($Jssor$.$GetElement("GoTO21"), "click", PlayTo21);
-
-            //#endregion
         };
     </script>
 
@@ -115,6 +79,24 @@
             <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/019.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/020.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/021.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/022.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/024.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/029.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/030.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/031.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/032.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/039.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/043.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
+            <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->
@@ -197,20 +179,11 @@
         <span u="arrowright" class="jssora03r" style="top: 123px; right: 8px;">
         </span>
         <!--#endregion Arrow Navigator Skin End -->
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_init();
+        </script>
     </div>
     <!-- Jssor Slider End -->
-
-    <br />
-    <input id="GoTO01" type="button" value="GoTO01" />
-    <input id="GoTo10" type="button" value="GoTo10" />
-    <input id="GoTo11" type="button" value="GoTo11" />
-    <input id="GoTo12" type="button" value="GoTo12" />
-    <input id="GoTo13" type="button" value="GoTo13" />
-    <input id="GoTO21" type="button" value="GoTO21" />
-
-    <!-- Trigger -->
-    <script>
-            jssor_slider1_init();
-    </script>
 </body>
 </html>
