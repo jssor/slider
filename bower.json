@@ -1,7 +1,7 @@
 {
     "name": "jssor-slider",
     "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
-    "version": "25.0.7",
+    "version": "25.0.8",
     "homepage": "https://www.jssor.com",
     "keywords": [
         "javascript",
@@ -36,24 +36,29 @@
         "transitions/",
 
         "img/alila/",
-        "img/landscape/",
-        "img/motor/",
-        "img/nested-thumb/",
-        "img/photography/",
-        "img/travel/",
-
-        "img/1920",
         "img/ancient-lady",
         "img/appicon",
         "img/full-width",
-        "img/home",
-        "img/html5-ad",
+        "img/gallery",
         "img/icons",
-        "img/loading",
+        "img/landscape/",
         "img/logo",
         "img/major",
+
+        "img/motor/",
+        "img/nested-thumb/",
         "img/paint",
+
+        "img/photography/",
         "img/present",
+        "img/presentation",
+        "img/qr",
+        "img/travel/",
+        
+        "img/html5-ad",
+        "img/1920",
+        "img/home",
+        "img/loading",
         "img/simple-fade-slideshow",
         "img/simple-layer-animation"
     ],

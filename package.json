@@ -1,6 +1,6 @@
 {
   "name": "jssor-slider",
-  "version": "25.0.7",
+  "version": "25.0.8",
   "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
   "main": "js/jssor.slider.min.js",
   "homepage": "https://www.jssor.com",
@@ -37,56 +37,16 @@
     "url": "https://github.com/jssor/slider/issues"
   },
   "files": [
-    "js/",
+    "js/jssor.slider.min.js",
     "skin/",
+    "svg/",
     "README.md",
     "bower.json",
     "component.json",
     "package.json",
     "MIT-LICENSE.txt",
-
-    "img/a01.png",
-    "img/a02.png",
-    "img/a03.png",
-    "img/a04.png",
-    "img/a06.png",
-    "img/a07.png",
-    "img/a08.png",
-    "img/a09.png",
-    "img/a10.png",
-    "img/a11.png",
-    "img/a12.png",
-    "img/a13.png",
-    "img/a14.png",
-    "img/a15.png",
-    "img/a16.png",
-    "img/a17.png",
-    "img/a18.png",
-    "img/a19.png",
-    "img/a20.png",
-    "img/a21.png",
-    "img/a22.png",
-
-    "img/b02.png",
-    "img/b03.png",
-    "img/b05.png",
-    "img/b06.png",
-    "img/b07.png",
-    "img/b10.png",
-    "img/b11.png",
-    "img/b12.png",
-    "img/b13.png",
-    "img/b14.png",
-    "img/b16.png",
-    "img/b17.png",
-    "img/b18.png",
-    "img/b20.png",
-    "img/b21.png",
-
-    "img/t01.png",
     
     "img/loading.gif",
-    "img/loading2.gif",
-    "img/loading3.gif"
+    "img/loading2.gif"
   ]
 }
