@@ -66,7 +66,6 @@
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
                     $Rows: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
                     $SpacingX: 10,                                  //[Optional] Horizontal space between each item in pixel, default value is 0
@@ -77,7 +76,7 @@
 
             var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
@@ -92,7 +91,7 @@
 
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         };
     </script>
     <div id="slider1_container" style="position: relative; width: 600px; height: 500px; background-color: #000; overflow: hidden; ">
@@ -104,72 +103,57 @@
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 500px;
             overflow: hidden;">
             <div>
-                <a u=image href="#"><img src="../img/paint/01.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/01.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/02.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/02.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/03.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/03.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/04.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/04.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/05.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/05.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/06.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/06.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/07.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/07.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/08.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/08.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/09.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/09.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/10.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/10.jpg" /></a>
             </div>
             <div>
-                <a u=image href="#"><img src="../img/paint/11.jpg" /></a>
+                <a href="#"><img data-u="image" src="../img/paint/11.jpg" /></a>
             </div>
         </div>
-        
+
         <!--#region Bullet Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
-            /* jssor slider bullet navigator skin 13 css */
-            /*
-            .jssorb13 div           (normal)
-            .jssorb13 div:hover     (normal mouseover)
-            .jssorb13 .av           (active)
-            .jssorb13 .av:hover     (active mouseover)
-            .jssorb13 .dn           (mousedown)
-            */
-            .jssorb13 {
-                position: absolute;
-            }
-            .jssorb13 div, .jssorb13 div:hover, .jssorb13 .av {
-                position: absolute;
-                /* size of bullet elment */
-                width: 21px;
-                height: 21px;
-                background: url(../img/b13.png) no-repeat;
-                overflow: hidden;
-                cursor: pointer;
-            }
-            .jssorb13 div { background-position: -5px -5px; }
-            .jssorb13 div:hover, .jssorb13 .av:hover { background-position: -35px -5px; }
-            .jssorb13 .av { background-position: -65px -5px; }
-            .jssorb13 .dn, .jssorb13 .dn:hover { background-position: -95px -5px; }
+            .jssorb072 .i {position:absolute;color:#000;font-family:"Helvetica neue",Helvetica,Arial,sans-serif;text-align:center;cursor:pointer;z-index:0;}
+            .jssorb072 .i .b {fill:#fff;opacity:.3;}
+            .jssorb072 .i:hover {opacity:.7;}
+            .jssorb072 .iav {color:#fff;}
+            .jssorb072 .iav .b {fill:#000;opacity:.5;}
+            .jssorb072 .i.idn {opacity:.3;}
         </style>
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb13" style="bottom: 16px; right: 6px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"></div>
+        <div data-u="navigator" class="jssorb072" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:24px;height:24px;font-size:12px;line-height:24px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;">
+                    <circle class="b" cx="8000" cy="8000" r="6666.7"></circle>
+                </svg>
+                <div data-u="numbertemplate" class="n"></div>
+            </div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
 

@@ -72,14 +72,13 @@
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 1,                                  //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $SpacingX: 25                                   //[Optional] Horizontal space between each item in pixel, default value is 0
                 }
             };
 
             var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
@@ -96,15 +95,15 @@
             }
 
             ScaleSlider();
-            $(window).bind(window, "load", ScaleSlider);
+            $(window).bind("load", ScaleSlider);
 
-            $(window).bind(window, "resize", ScaleSlider);
-            $(window).bind(window, "orientationchange", ScaleSlider);
-            //responsive code end
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
         });
     </script>
-
-
+    
+    
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 800px; height: 350px; overflow: hidden; ">
         <!-- Loading Screen -->
         <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
@@ -133,7 +132,7 @@
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 05</div>
                 </a>
-
+                                
                 <a class=appicon01 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 06</div>
@@ -155,7 +154,7 @@
                     <div class=appiconc>Menu Item 10</div>
                 </a>
             </div>
-
+                            
             <div>
                 <a class=appicon02 style="left: 0px; top: 0px; background-position:0px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
@@ -177,7 +176,7 @@
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 15</div>
                 </a>
-
+                                
                 <a class=appicon02 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 16</div>
@@ -199,7 +198,7 @@
                     <div class=appiconc>Menu Item 20</div>
                 </a>
             </div>
-
+                            
             <div>
                 <a class=appicon03 style="left: 0px; top: 0px; background-position:0px 0px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
@@ -221,7 +220,7 @@
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 25</div>
                 </a>
-
+                                
                 <a class=appicon03 style="left: 0px; top: 160px; background-position:0px -160px;" href="https://www.jssor.com">
                     <div class=appiconcb></div>
                     <div class=appiconc>Menu Item 26</div>
@@ -244,65 +243,21 @@
                 </a>
             </div>
         </div>
-
+        
         <!--#region Bullet Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
-            /* jssor slider bullet navigator skin 18 css */
-            /*
-            .jssorb18 div           (normal)
-            .jssorb18 div:hover     (normal mouseover)
-            .jssorb18 .av           (active)
-            .jssorb18 .av:hover     (active mouseover)
-            .jssorb18 .dn           (mousedown)
-            */
-            .jssorb18 {
-                position: absolute;
-            }
-
-                .jssorb18 div, .jssorb18 div:hover, .jssorb18 .av {
-                    position: absolute;
-                    /* size of bullet elment */
-                    width: 24px;
-                    height: 24px;
-                    text-align: center;
-                    line-height: 24px;
-                    font-size: 16px;
-                    background: url(../img/b18.png) no-repeat;
-                    overflow: hidden;
-                    cursor: pointer;
-                }
-
-                .jssorb18 div {
-                    background-position: -3px -3px;
-                }
-
-                    .jssorb18 div:hover, .jssorb18 .av:hover {
-                        background-position: -33px -3px;
-                    }
-
-                .jssorb18 .av {
-                    background-position: -63px -3px;
-                }
-
-                .jssorb18 .dn, .jssorb18 .dn:hover {
-                    background-position: -93px -3px;
-                }
-
-                .jssorb18 .n {
-                    display: none;
-                    color: #000;
-                }
-
-                .jssorb18 div:hover .n, .jssorb18 .av .n, .jssorb18 .av:hover .n, .jssorb18 .dn .n {
-                    display: block;
-                }
+            .jssorb051 .i {position:absolute;cursor:pointer;}
+            .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
+            .jssorb051 .i:hover .b {fill-opacity:.7;}
+            .jssorb051 .iav .b {fill-opacity: 1;}
+            .jssorb051 .i.idn {opacity:.3;}
         </style>
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb18" style="bottom: 16px; right: 6px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype">
-                <div u="numbertemplate" class=n></div>
+        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
             </div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->

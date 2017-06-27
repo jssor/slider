@@ -48,7 +48,6 @@
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
                     $Rows: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
                     $SpacingX: 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
@@ -64,7 +63,7 @@
             };
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
@@ -78,11 +77,10 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         });
     </script>
-    <!-- Jssor Slider Begin -->
-
+    
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
 
         <!-- Loading Screen -->
@@ -121,123 +119,46 @@
                 <img u="image" src="../img/landscape/11.jpg" />
             </div>
         </div>
-
+        
         <!--#region Bullet Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
-            /* jssor slider bullet navigator skin 05 css */
-            /*
-            .jssorb05 div           (normal)
-            .jssorb05 div:hover     (normal mouseover)
-            .jssorb05 .av           (active)
-            .jssorb05 .av:hover     (active mouseover)
-            .jssorb05 .dn           (mousedown)
-            */
-            .jssorb05 {
-                position: absolute;
-            }
-
-                .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
-                    position: absolute;
-                    /* size of bullet elment */
-                    width: 16px;
-                    height: 16px;
-                    background: url(../img/b05.png) no-repeat;
-                    overflow: hidden;
-                    cursor: pointer;
-                }
-
-                .jssorb05 div {
-                    background-position: -7px -7px;
-                }
-
-                    .jssorb05 div:hover, .jssorb05 .av:hover {
-                        background-position: -37px -7px;
-                    }
-
-                .jssorb05 .av {
-                    background-position: -67px -7px;
-                }
-
-                .jssorb05 .dn, .jssorb05 .dn:hover {
-                    background-position: -97px -7px;
-                }
+            .jssorb051 .i {position:absolute;cursor:pointer;}
+            .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
+            .jssorb051 .i:hover .b {fill-opacity:.7;}
+            .jssorb051 .iav .b {fill-opacity: 1;}
+            .jssorb051 .i.idn {opacity:.3;}
         </style>
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb05" style="bottom: 16px; right: 6px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"></div>
+        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
+        
         <!--#region Arrow Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
-            /* jssor slider arrow navigator skin 12 css */
-            /*
-            .jssora12l                  (normal)
-            .jssora12r                  (normal)
-            .jssora12l:hover            (normal mouseover)
-            .jssora12r:hover            (normal mouseover)
-            .jssora12l.jssora12ldn      (mousedown)
-            .jssora12r.jssora12rdn      (mousedown)
-            .jssora12l.jssora12lds      (disabled)
-            .jssora12r.jssora12rds      (disabled)
-            */
-            .jssora12l, .jssora12r {
-                display: block;
-                position: absolute;
-                /* size of arrow element */
-                width: 30px;
-                height: 46px;
-                cursor: pointer;
-                background: url(../img/a12.png) no-repeat;
-                overflow: hidden;
-            }
-
-            .jssora12l {
-                background-position: -16px -37px;
-            }
-
-            .jssora12r {
-                background-position: -75px -37px;
-            }
-
-            .jssora12l:hover {
-                background-position: -136px -37px;
-            }
-
-            .jssora12r:hover {
-                background-position: -195px -37px;
-            }
-
-            .jssora12l.jssora12ldn {
-                background-position: -256px -37px;
-            }
-
-            .jssora12r.jssora12rdn {
-                background-position: -315px -37px;
-            }
-
-            .jssora12l.jssora12lds {
-                background-position: -16px -37px;
-                opacity: .3;
-                pointer-events: none;
-            }
-
-            .jssora12r.jssora12rds {
-                background-position: -75px -37px;
-                opacity: .3;
-                pointer-events: none;
-            }
+            .jssora051 {display:block;position:absolute;cursor:pointer;}
+            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+            .jssora051:hover {opacity:.8;}
+            .jssora051.jssora051dn {opacity:.5;}
+            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
         </style>
-        <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora12l" style="top: 123px; left: 0px;">
-        </span>
-        <!-- Arrow Right -->
-        <span u="arrowright" class="jssora12r" style="top: 123px; right: 0px;">
-        </span>
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
         <!--#endregion Arrow Navigator Skin End -->
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
+
     </div>
     <!-- Jssor Slider End -->
 </body>

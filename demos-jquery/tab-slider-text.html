@@ -36,7 +36,6 @@
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
 
                     $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
-                    $AutoCenter: 3,                             //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
                     $Rows: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
                     $SpacingX: 0,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
                     $SpacingY: 0,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
@@ -49,7 +48,7 @@
 
             var jssor_slider2 = new $JssorSlider$("slider2_container", options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider2.$Elmt.parentNode.clientWidth;
@@ -69,7 +68,7 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         });
     </script>
     <!-- Jssor Slider Begin -->

@@ -34,7 +34,6 @@
                     $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                         $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                         $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                        $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                         $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
                         $Rows: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
                         $SpacingX: 0,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
@@ -68,14 +67,13 @@
                 $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 2,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $SpacingY: 5,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                     $Orientation: 2                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                 }
             };
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
@@ -95,210 +93,151 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         });
     </script>
-
-    <!-- sliderh style begin -->
+    
     <style>
-        /* jssor slider bullet navigator skin 03 css */
-        /*
-        .jssorb03 div           (normal)
-        .jssorb03 div:hover     (normal mouseover)
-        .jssorb03 .av           (active)
-        .jssorb03 .av:hover     (active mouseover)
-        .jssorb03 .dn           (mousedown)
-        */
-        .jssorb03 {
-            position: absolute;
-        }
-
-            .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
-                position: absolute;
-                /* size of bullet elment */
-                width: 21px;
-                height: 21px;
-                text-align: center;
-                line-height: 21px;
-                color: white;
-                font-size: 12px;
-                background: url(../img/b03.png) no-repeat;
-                overflow: hidden;
-                cursor: pointer;
-            }
-
-            .jssorb03 div {
-                background-position: -5px -4px;
-            }
-
-                .jssorb03 div:hover, .jssorb03 .av:hover {
-                    background-position: -35px -4px;
-                }
-
-            .jssorb03 .av {
-                background-position: -65px -4px;
-            }
-
-            .jssorb03 .dn, .jssorb03 .dn:hover {
-                background-position: -95px -4px;
-            }
+        .jssorb051 .i {position:absolute;cursor:pointer;}
+        .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
+        .jssorb051 .i:hover .b {fill-opacity:.7;}
+        .jssorb051 .iav .b {fill-opacity: 1;}
+        .jssorb051 .i.idn {opacity:.3;}
     </style>
-    <!-- sliderh style end -->
-    <!-- Jssor Slider Begin -->
 
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 809px; height: 456px; overflow: hidden; ">
-        <!-- Slides Container -->
-        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 456px;
+            <!-- Slides Container -->
+            <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 456px;
                 overflow: hidden;">
-            <div>
-                <div id="sliderh1_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                <div>
+                    <div id="sliderh1_container" style="position: relative; top: 0px; left: 0px; width: 809px;
                         height: 150px;">
 
-                    <!-- Slides Container -->
-                    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                        <!-- Slides Container -->
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
                             overflow: hidden;">
-                        <div><img u="image" src="../img/ancient-lady/005.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/006.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/005.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/006.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
+                        </div>
+                        
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
+                        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--#endregion Bullet Navigator Skin End -->
                     </div>
-                    <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-                    <!-- bullet navigator container -->
-                    <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
-                        <!-- bullet navigator item prototype -->
-                        <div u="prototype"><div u="numbertemplate"></div></div>
-                    </div>
-                    <!--#endregion Bullet Navigator Skin End -->
                 </div>
-            </div>
-            <div>
-                <div id="sliderh2_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                <div>
+                    <div id="sliderh2_container" style="position: relative; top: 0px; left: 0px; width: 809px;
                         height: 150px;">
 
-                    <!-- Slides Container -->
-                    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                        <!-- Slides Container -->
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
                             overflow: hidden;">
-                        <div><img u="image" src="../img/ancient-lady/020.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/021.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/022.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/024.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/020.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/021.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/022.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/024.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
+                        </div>
+
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
+                        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--#endregion Bullet Navigator Skin End -->
                     </div>
-                    <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-                    <!-- bullet navigator container -->
-                    <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
-                        <!-- bullet navigator item prototype -->
-                        <div u="prototype"><div u="numbertemplate"></div></div>
-                    </div>
-                    <!--#endregion Bullet Navigator Skin End -->
                 </div>
-            </div>
-            <div>
-                <div id="sliderh3_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                <div>
+                    <div id="sliderh3_container" style="position: relative; top: 0px; left: 0px; width: 809px;
                         height: 150px;">
 
-                    <!-- Slides Container -->
-                    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                        <!-- Slides Container -->
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
                             overflow: hidden;">
-                        <div><img u="image" src="../img/ancient-lady/029.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/030.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/031.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/032.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/029.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/030.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/031.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/032.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
+                        </div>
+
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
+                        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--#endregion Bullet Navigator Skin End -->
                     </div>
-                    <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-                    <!-- bullet navigator container -->
-                    <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
-                        <!-- bullet navigator item prototype -->
-                        <div u="prototype"><div u="numbertemplate"></div></div>
-                    </div>
-                    <!--#endregion Bullet Navigator Skin End -->
                 </div>
-            </div>
-            <div>
-                <div id="sliderh4_container" style="position: relative; top: 0px; left: 0px; width: 809px;
+                <div>
+                    <div id="sliderh4_container" style="position: relative; top: 0px; left: 0px; width: 809px;
                         height: 150px;">
 
-                    <!-- Slides Container -->
-                    <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
+                        <!-- Slides Container -->
+                        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 809px; height: 150px;
                             overflow: hidden;">
-                        <div><img u="image" src="../img/ancient-lady/039.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/043.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
-                        <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/039.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/043.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
+                            <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
+                        </div>
+
+                        <!--#region Bullet Navigator Skin Begin -->
+                        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
+                        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--#endregion Bullet Navigator Skin End -->
                     </div>
-                    <!--#region Bullet Navigator Skin Begin -->
-                    <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-                    <!-- bullet navigator container -->
-                    <div u="navigator" class="jssorb03" style="bottom: 10px; right: 10px;">
-                        <!-- bullet navigator item prototype -->
-                        <div u="prototype"><div u="numbertemplate"></div></div>
-                    </div>
-                    <!--#endregion Bullet Navigator Skin End -->
                 </div>
             </div>
+        
+            <!--#region Bullet Navigator Skin Begin -->
+            <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
+            <style>
+                .jssorb052 .i {position:absolute;cursor:pointer;}
+                .jssorb052 .i .b {fill:#000;fill-opacity:0.3;stroke:#fff;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.7;}
+                .jssorb052 .i:hover .b {fill-opacity:.7;}
+                .jssorb052 .iav .b {fill-opacity: 1;}
+                .jssorb052 .i.idn {opacity:.3;}
+            </style>
+            <div data-u="navigator" class="jssorb052" style="position:absolute;top:0px;left:12px;" data-autocenter="2" data-scale="0.5" data-scale-bottom="0.75">
+                <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                    </svg>
+                </div>
+            </div>
+            <!--#endregion Bullet Navigator Skin End -->
+
+            <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
+
         </div>
-
-        <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-        <style>
-            /* jssor slider bullet navigator skin 02 css */
-            /*
-                .jssorb02 div           (normal)
-                .jssorb02 div:hover     (normal mouseover)
-                .jssorb02 .av           (active)
-                .jssorb02 .av:hover     (active mouseover)
-                .jssorb02 .dn           (mousedown)
-                */
-            .jssorb02 {
-                position: absolute;
-            }
-
-                .jssorb02 div, .jssorb02 div:hover, .jssorb02 .av {
-                    position: absolute;
-                    /* size of bullet elment */
-                    width: 21px;
-                    height: 21px;
-                    text-align: center;
-                    line-height: 21px;
-                    color: white;
-                    font-size: 12px;
-                    background: url(../img/b02.png) no-repeat;
-                    overflow: hidden;
-                    cursor: pointer;
-                }
-
-                .jssorb02 div {
-                    background-position: -5px -5px;
-                }
-
-                    .jssorb02 div:hover, .jssorb02 .av:hover {
-                        background-position: -35px -5px;
-                    }
-
-                .jssorb02 .av {
-                    background-position: -65px -5px;
-                }
-
-                .jssorb02 .dn, .jssorb02 .dn:hover {
-                    background-position: -95px -5px;
-                }
-        </style>
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb02" style="bottom: 16px; left: 6px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"><div u="numbertemplate"></div></div>
-        </div>
-        <!--#endregion Bullet Navigator Skin End -->
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
-    </div>
     <!-- Jssor Slider End -->
 </body>
 </html>

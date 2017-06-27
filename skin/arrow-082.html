@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Navigator Skin 082 - Jssor Slider</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script>
+        init_jssor_slider1 = function (containerId) {
+
+            var options = {
+                $Loop: 0,
+                $DragOrientation: 3,                        //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+                $SlideDuration: 500,                        //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ArrowNavigatorOptions: {                   //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,          //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 2,                       //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 2,                         //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1                               //[Optional] Steps to go for each navigation request, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+
+    <!--#region Jssor Slider Begin -->
+    
+    <div id="slider1_container" style="position: relative; width: 980px; height: 380px; overflow: hidden;">
+ 
+        <!-- Slides Container --> 
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
+            overflow: hidden;">
+            <div><img u="image" src="img/slide.png" /></div>
+            <div><img u="image" src="img/slide.png" /></div>
+            <div><img u="image" src="img/slide.png" /></div>
+            <div><img u="image" src="img/slide.png" /></div>
+        </div>
+
+        <!--#region Arrow Navigator Skin Begin -->
+        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
+        <style>
+            .jssora081 {display:block;position:absolute;cursor:pointer;}
+            .jssora081 .c {fill:#000;fill-opacity:.5;stroke:#fff;stroke-width:120;stroke-miterlimit:10;stroke-opacity:0.5;}
+            .jssora081 .a {fill:#fff;opacity:.8;}
+            .jssora081:hover .c {fill-opacity:.3;}
+            .jssora081:hover .a {opacity:1;}
+            .jssora081.jssora081dn {opacity:.5;}
+            .jssora081.jssora081ds {opacity:.3;pointer-events:none;}
+        </style>
+        <div data-u="arrowleft" class="jssora081" style="width:30px;height:40px;top:0px;left:30px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="2000 0 12000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <path class="c" d="M4800,14080h6400c528,0,960-432,960-960V2880c0-528-432-960-960-960H4800c-528,0-960,432-960,960 v10240C3840,13648,4272,14080,4800,14080z"></path>
+                <path class="a" d="M6860.8,8102.7l1693.9,1693.9c28.9,28.9,63.2,43.4,102.7,43.4s73.8-14.5,102.7-43.4l379-379 c28.9-28.9,43.4-63.2,43.4-102.7c0-39.6-14.5-73.8-43.4-102.7L7926.9,8000l1212.2-1212.2c28.9-28.9,43.4-63.2,43.4-102.7 c0-39.6-14.5-73.8-43.4-102.7l-379-379c-28.9-28.9-63.2-43.4-102.7-43.4s-73.8,14.5-102.7,43.4L6860.8,7897.3 c-28.9,28.9-43.4,63.2-43.4,102.7S6831.9,8073.8,6860.8,8102.7L6860.8,8102.7z"></path>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora081" style="width:30px;height:40px;top:0px;right:30px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="2000 0 12000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <path class="c" d="M11200,14080H4800c-528,0-960-432-960-960V2880c0-528,432-960,960-960h6400 c528,0,960,432,960,960v10240C12160,13648,11728,14080,11200,14080z"></path>
+                <path class="a" d="M9139.2,8102.7L7445.3,9796.6c-28.9,28.9-63.2,43.4-102.7,43.4c-39.6,0-73.8-14.5-102.7-43.4 l-379-379c-28.9-28.9-43.4-63.2-43.4-102.7c0-39.6,14.5-73.8,43.4-102.7L8073.1,8000L6860.8,6787.8 c-28.9-28.9-43.4-63.2-43.4-102.7c0-39.6,14.5-73.8,43.4-102.7l379-379c28.9-28.9,63.2-43.4,102.7-43.4 c39.6,0,73.8,14.5,102.7,43.4l1693.9,1693.9c28.9,28.9,43.4,63.2,43.4,102.7S9168.1,8073.8,9139.2,8102.7L9139.2,8102.7z"></path>
+            </svg>
+        </div>
+        <!--#endregion Arrow Navigator Skin End -->
+
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

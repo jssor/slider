@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Navigator Skin 052 - Jssor Slider</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script>
+        init_jssor_slider1 = function (containerId) {
+
+            var options = {
+                $Loop: 0,
+                $DragOrientation: 3,                        //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+                $SlideDuration: 500,                        //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+
+                $ThumbnailNavigatorOptions: {               //[Optional] Options to specify and enable thumbnail navigator or not
+                    $Class: $JssorThumbnailNavigator$,      //[Required] Class to create thumbnail navigator instance
+                    $ChanceToShow: 2,                       //[Required] 0 Never, 1 Mouse Over, 2 Always
+
+                    $ActionMode: 1,                         //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
+                    $SpacingX: 0,                           //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
+                    $Cols: 5,                               //[Optional] Number of pieces to display, default value is 1
+                    $Align: 400                             //[Optional] The offset position to park thumbnail
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+
+    <!--#region Jssor Slider Begin -->
+    
+    <div id="slider1_container" style="position: relative; width: 980px; height: 380px; overflow: hidden;">
+ 
+        <!-- Slides Container --> 
+
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+            <div>
+                <img data-u="image" src="img/slide.png" />
+                <img data-u="thumb" src="img/thumb.png" />
+            </div>
+        </div>
+
+        <!--#region Thumbnail Navigator Skin Begin -->
+        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
+        <style>
+            .jssort052 .p {position:absolute;top:0;left:0;background-color:#fff;}
+            .jssort052 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.45;}
+            .jssort052 .p:hover .t{opacity:.8;}
+            .jssort052 .pav .t, .jssort052 .pdn .t, .jssort052 .p:hover.pdn .t{opacity:1;}
+        </style>
+        <div data-u="thumbnavigator" class="jssort052" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;" data-autocenter="1" data-scale-bottom="0.75">
+            <div data-u="slides">
+                <div data-u="prototype" class="p" style="width:200px;height:100px;">
+                    <div data-u="thumbnailtemplate" class="t"></div>
+                </div>
+            </div>
+        </div>
+        <!--#endregion Thumbnail Navigator Skin End -->
+
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

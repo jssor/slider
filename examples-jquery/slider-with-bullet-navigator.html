@@ -21,19 +21,18 @@
                     $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                     $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
-                    $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
                     $Rows: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
                     $SpacingX: 0,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
-                    $SpacingY: 0,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                    $SpacingY: 10,                                   //[Optional] Vertical space between each item in pixel, default value is 0
                     $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
                 }
             };
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
         });
     </script>
-    <!-- Jssor Slider Begin -->
-
+    
+    
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
         height: 300px;">
 
@@ -52,60 +51,24 @@
             <div><img u="image" src="../img/landscape/07.jpg" /></div>
             <div><img u="image" src="../img/landscape/08.jpg" /></div>
         </div>
-
-
+        
         <!--#region Bullet Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
         <style>
-            /* jssor slider bullet navigator skin 03 css */
-            /*
-            .jssorb03 div           (normal)
-            .jssorb03 div:hover     (normal mouseover)
-            .jssorb03 .av           (active)
-            .jssorb03 .av:hover     (active mouseover)
-            .jssorb03 .dn           (mousedown)
-            */
-            .jssorb03 {
-                position: absolute;
-            }
-
-                .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av {
-                    position: absolute;
-                    /* size of bullet elment */
-                    width: 21px;
-                    height: 21px;
-                    text-align: center;
-                    line-height: 21px;
-                    color: white;
-                    font-size: 12px;
-                    background: url(../img/b03.png) no-repeat;
-                    overflow: hidden;
-                    cursor: pointer;
-                }
-
-                .jssorb03 div {
-                    background-position: -5px -4px;
-                }
-
-                    .jssorb03 div:hover, .jssorb03 .av:hover {
-                        background-position: -35px -4px;
-                    }
-
-                .jssorb03 .av {
-                    background-position: -65px -4px;
-                }
-
-                .jssorb03 .dn, .jssorb03 .dn:hover {
-                    background-position: -95px -4px;
-                }
+            .jssorb051 .i {position:absolute;cursor:pointer;}
+            .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
+            .jssorb051 .i:hover .b {fill-opacity:.7;}
+            .jssorb051 .iav .b {fill-opacity: 1;}
+            .jssorb051 .i.idn {opacity:.3;}
         </style>
-        <!-- bullet navigator container -->
-        <div u="navigator" class="jssorb03" style="bottom: 16px; right: 6px;">
-            <!-- bullet navigator item prototype -->
-            <div u="prototype"><div u="numbertemplate"></div></div>
+        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
         </div>
         <!--#endregion Bullet Navigator Skin End -->
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
     </div>
     <!-- Jssor Slider End -->
 </body>

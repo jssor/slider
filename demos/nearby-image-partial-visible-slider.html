@@ -25,13 +25,12 @@
                 $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
                     $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                 }
             };
 
             var jssor_slider1 = new $JssorSlider$('slider1_container', options);
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
@@ -46,7 +45,7 @@
 
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         };
     </script>
     
@@ -69,44 +68,24 @@
         <!--#region Arrow Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
-            /* jssor slider arrow navigator skin 13 css */
-            /*
-            .jssora13l                  (normal)
-            .jssora13r                  (normal)
-            .jssora13l:hover            (normal mouseover)
-            .jssora13r:hover            (normal mouseover)
-            .jssora13l.jssora13ldn      (mousedown)
-            .jssora13r.jssora13rdn      (mousedown)
-            .jssora13l.jssora13lds      (disabled)
-            .jssora13r.jssora13rds      (disabled)
-            */
-            .jssora13l, .jssora13r {
-                display: block;
-                position: absolute;
-                /* size of arrow element */
-                width: 40px;
-                height: 50px;
-                cursor: pointer;
-                background: url(../img/a13.png) no-repeat;
-                overflow: hidden;
-            }
-            .jssora13l { background-position: -10px -35px; }
-            .jssora13r { background-position: -70px -35px; }
-            .jssora13l:hover { background-position: -130px -35px; }
-            .jssora13r:hover { background-position: -190px -35px; }
-            .jssora13l.jssora13ldn { background-position: -250px -35px; }
-            .jssora13r.jssora13rdn { background-position: -310px -35px; }
-
-            .jssora13l.jssora13lds { background-position: -10px -35px; opacity: .3; pointer-events: none; }
-            .jssora13r.jssora13rds { background-position: -70px -35px; opacity: .3; pointer-events: none; }
+            .jssora051 {display:block;position:absolute;cursor:pointer;}
+            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+            .jssora051:hover {opacity:.8;}
+            .jssora051.jssora051dn {opacity:.5;}
+            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
         </style>
-        <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora13l" style="top: 123px; left: 30px;">
-        </span>
-        <!-- Arrow Right -->
-        <span u="arrowright" class="jssora13r" style="top: 123px; right: 30px;">
-        </span>
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
         <!--#endregion Arrow Navigator Skin End -->
+
         <!-- Trigger -->
         <script>
             jssor_slider1_init();

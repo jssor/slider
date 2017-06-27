@@ -13,9 +13,10 @@
 
     <script>
         jQuery(document).ready(function ($) {
+
             var options = {
-                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
-                $Idle: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $AutoPlay: 1,                                       //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $Idle: 4000,                                        //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
                 $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
 
                 $ArrowKeyNavigation: 1,   			            //[Optional] Steps to go for each navigation request by pressing arrow key, default value is 1.
@@ -24,54 +25,40 @@
                 //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
                 //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
                 $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
-                $Cols: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                $Cols: 1,                                           //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
                 $Align: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
                 $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
                 $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
                 $DragOrientation: 1,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
 
-                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                    $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
-                },
-
-                $ThumbnailNavigatorOptions: {
-                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
+                $ArrowNavigatorOptions: {                           //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,                  //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-
-                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
-                    $AutoCenter: 0,                                 //[Optional] Auto center thumbnail items in the thumbnail navigator container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 3
-                    $Rows: 1,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
-                    $SpacingX: 3,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
-                    $SpacingY: 3,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
-                    $Cols: 9,                              //[Optional] Number of pieces to display, default value is 1
-                    $Align: 260,                          //[Optional] The offset position to park thumbnail
-                    $Orientation: 1,                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
-                    $NoDrag: false                            //[Optional] Disable drag or not, default value is false
+                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var bodyWidth = document.body.clientWidth;
                 if (bodyWidth)
                     jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 980));
                 else
-                    window.setTimeout(ScaleSlider, 30);
+                    $Jssor$.$Delay(ScaleSlider, 30);
             }
+
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         });
     </script>
+    
     <div style="position: relative; width: 100%; background-color: #003399; overflow: hidden;">
         <div style="position: relative; left: 50%; width: 5000px; text-align: center; margin-left: -2500px;">
             <!-- Jssor Slider Begin -->
@@ -107,7 +94,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s2.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s2t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -127,7 +113,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s3.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s3t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -146,7 +131,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s4.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s4t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -167,7 +151,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s5.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s5t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -186,7 +169,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s6.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s6t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -206,7 +188,6 @@
                             </a>
                         </div>
                         <img src="../img/major/s7.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s7t.jpg" />
                     </div>
                     <div>
                         <div style="position: absolute; width: 480px; height: 300px; top: 10px; left: 10px;
@@ -215,180 +196,40 @@
                                 color: #FFFFFF;">mobile applications</span>
                             <br />
                             <span style="display: block; line-height: 1.1em; font-size: 2.5em; color: #FFFFFF;">
-                                Stay connected to your customers on the go with a MajorMedia custom mobile app.
-                                <br />
-                                <br />
-                                <a href="https://www.jssor.com">
-                                    <img src="../img/major/find-out-more-bt.png" border="0" alt="ebay slider" width="215"
-                                         height="50" />
-                                </a>
+                            </span>
+                            Stay connected to your customers on the go with a MajorMedia custom mobile app.
+                            <br />
+                            <br />
+                            <a href="https://www.jssor.com">
+                                <img src="../img/major/find-out-more-bt.png" border="0" alt="ebay slider" width="215"
+                                        height="50" />
+                            </a>
                         </div>
                         <img src="../img/major/s8.png" style="position: absolute; top: 23px; left: 480px; width: 500px; height: 300px;" />
-                        <img u="thumb" src="../img/major/s8t.jpg" />
                     </div>
                 </div>
-
+        
                 <!--#region Arrow Navigator Skin Begin -->
                 <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
                 <style>
-                    /* jssor slider arrow navigator skin 07 css */
-                    /*
-                    .jssora07l                  (normal)
-                    .jssora07r                  (normal)
-                    .jssora07l:hover            (normal mouseover)
-                    .jssora07r:hover            (normal mouseover)
-                    .jssora07l.jssora07ldn      (mousedown)
-                    .jssora07r.jssora07rdn      (mousedown)
-                    .jssora07l.jssora07lds      (disabled)
-                    .jssora07r.jssora07rds      (disabled)
-                    */
-                    .jssora07l, .jssora07r {
-                        display: block;
-                        position: absolute;
-                        /* size of arrow element */
-                        width: 50px;
-                        height: 50px;
-                        cursor: pointer;
-                        background: url(../img/a07.png) no-repeat;
-                        overflow: hidden;
-                    }
-
-                    .jssora07l {
-                        background-position: -5px -35px;
-                    }
-
-                    .jssora07r {
-                        background-position: -65px -35px;
-                    }
-
-                    .jssora07l:hover {
-                        background-position: -125px -35px;
-                    }
-
-                    .jssora07r:hover {
-                        background-position: -185px -35px;
-                    }
-
-                    .jssora07l.jssora07ldn {
-                        background-position: -245px -35px;
-                    }
-
-                    .jssora07r.jssora07rdn {
-                        background-position: -305px -35px;
-                    }
-
-                    .jssora07l.jssora07lds {
-                        background-position: -5px -35px;
-                        opacity: .3;
-                        pointer-events: none;
-                    }
-
-                    .jssora07r.jssora07rds {
-                        background-position: -65px -35px;
-                        opacity: .3;
-                        pointer-events: none;
-                    }
+                    .jssora073 {display:block;position:absolute;cursor:pointer;}
+                    .jssora073 .a {fill:#ddd;fill-opacity:.7;stroke:#000;stroke-width:160;stroke-miterlimit:10;stroke-opacity:.7;}
+                    .jssora073:hover {opacity:.8;}
+                    .jssora073.jssora073dn {opacity:.4;}
+                    .jssora073.jssora073ds {opacity:.3;pointer-events:none;}
                 </style>
-                <!-- Arrow Left -->
-                <span u="arrowleft" class="jssora07l" style="top: 123px; left: 8px;">
-                </span>
-                <!-- Arrow Right -->
-                <span u="arrowright" class="jssora07r" style="top: 123px; right: 8px;">
-                </span>
-                <!--#endregion Arrow Navigator Skin End -->
-                <!--#region Thumbnail Navigator Skin Begin -->
-                <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
-                <style>
-                        /* jssor slider thumbnail navigator skin 04 css */
-                        /*
-                    .jssort04 .p            (normal)
-                    .jssort04 .p:hover      (normal mouseover)
-                    .jssort04 .pav          (active)
-                    .jssort04 .pav:hover    (active mouseover)
-                    .jssort04 .pdn          (mousedown)
-                    */
-
-                        .jssort04 {
-                            position: absolute;
-                            /* size of thumbnail navigator container */
-                            width: 600px;
-                            height: 60px;
-                        }
-
-                            .jssort04 .p {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 62px;
-                                height: 32px;
-                            }
-
-                            .jssort04 .t {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                border: none;
-                            }
-
-                            .jssort04 .w, .jssort04 .pav:hover .w {
-                                position: absolute;
-                                width: 60px;
-                                height: 30px;
-                                border: #0099FF 1px solid;
-                                box-sizing: content-box;
-                            }
-
-                            .jssort04 .pdn .w, .jssort04 .pav .w {
-                                border-style: dashed;
-                            }
-
-                            .jssort04 .c {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 62px;
-                                height: 32px;
-                                background-color: #000;
-                                filter: alpha(opacity=45);
-                                opacity: .45;
-                                transition: opacity .6s;
-                                -moz-transition: opacity .6s;
-                                -webkit-transition: opacity .6s;
-                                -o-transition: opacity .6s;
-                            }
-
-                            .jssort04 .p:hover .c, .jssort04 .pav .c {
-                                filter: alpha(opacity=0);
-                                opacity: 0;
-                            }
-
-                            .jssort04 .p:hover .c {
-                                transition: none;
-                                -moz-transition: none;
-                                -webkit-transition: none;
-                                -o-transition: none;
-                            }
-
-                            * html .jssort04 .w {
-                                width /**/: 62px;
-                                height /**/: 32px;
-                            }
-                </style>
-                <!-- thumbnail navigator container -->
-                <div u="thumbnavigator" class="jssort04" style="right: 0px; bottom: 0px;">
-                    <!-- Thumbnail Item Skin Begin -->
-                    <div u="slides" style="bottom: 25px; right: 30px; cursor: default;">
-                        <div u="prototype" class="p">
-                            <div class=w><div u="thumbnailtemplate" class="t"></div></div>
-                            <div class=c></div>
-                        </div>
-                    </div>
-                    <!-- Thumbnail Item Skin End -->
+                <div data-u="arrowleft" class="jssora073" style="width:50px;height:50px;top:0px;left:30px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <path class="a" d="M4037.7,8357.3l5891.8,5891.8c100.6,100.6,219.7,150.9,357.3,150.9s256.7-50.3,357.3-150.9 l1318.1-1318.1c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3L7745.9,8000l4216.4-4216.4 c100.6-100.6,150.9-219.7,150.9-357.3c0-137.6-50.3-256.7-150.9-357.3l-1318.1-1318.1c-100.6-100.6-219.7-150.9-357.3-150.9 s-256.7,50.3-357.3,150.9L4037.7,7642.7c-100.6,100.6-150.9,219.7-150.9,357.3C3886.8,8137.6,3937.1,8256.7,4037.7,8357.3 L4037.7,8357.3z"></path>
+                    </svg>
                 </div>
-                <!--#endregion Thumbnail Navigator Skin End -->
-                <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
+                <div data-u="arrowright" class="jssora073" style="width:50px;height:50px;top:0px;right:30px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                    <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <path class="a" d="M11962.3,8357.3l-5891.8,5891.8c-100.6,100.6-219.7,150.9-357.3,150.9s-256.7-50.3-357.3-150.9 L4037.7,12931c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3L8254.1,8000L4037.7,3783.6 c-100.6-100.6-150.9-219.7-150.9-357.3c0-137.6,50.3-256.7,150.9-357.3l1318.1-1318.1c100.6-100.6,219.7-150.9,357.3-150.9 s256.7,50.3,357.3,150.9l5891.8,5891.8c100.6,100.6,150.9,219.7,150.9,357.3C12113.2,8137.6,12062.9,8256.7,11962.3,8357.3 L11962.3,8357.3z"></path>
+                    </svg>
+                </div>
+                <!--#endregion Arrow Navigator Skin End -->
+
             </div>
             <!-- Jssor Slider End -->
         </div>

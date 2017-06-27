@@ -35,7 +35,7 @@
 
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
 
-            //responsive code begin
+            /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
                 var bodyWidth = document.body.clientWidth;
@@ -49,7 +49,7 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
+            /*#endregion responsive code end*/
         });
     </script>
     <!-- Jssor Slider Begin -->

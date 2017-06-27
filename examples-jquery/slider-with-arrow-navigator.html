@@ -18,7 +18,6 @@
                 $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
                     $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
                     $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                     $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
                 }
             };
@@ -26,8 +25,8 @@
             var jssor_slider1 = new $JssorSlider$("slider1_container", options);
         });
     </script>
-    <!-- Jssor Slider Begin -->
-
+    
+    
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
         height: 300px; ">
 
@@ -42,76 +41,27 @@
             <div><img u="image" src="../img/photography/007.jpg" /></div>
             <div><img u="image" src="../img/photography/008.jpg" /></div>
         </div>
-
+        
         <!--#region Arrow Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
         <style>
-            /* jssor slider arrow navigator skin 03 css */
-            /*
-            .jssora03l                  (normal)
-            .jssora03r                  (normal)
-            .jssora03l:hover            (normal mouseover)
-            .jssora03r:hover            (normal mouseover)
-            .jssora03l.jssora03ldn      (mousedown)
-            .jssora03r.jssora03rdn      (mousedown)
-            .jssora03l.jssora03lds      (disabled)
-            .jssora03r.jssora03rds      (disabled)
-            */
-            .jssora03l, .jssora03r {
-                display: block;
-                position: absolute;
-                /* size of arrow element */
-                width: 55px;
-                height: 55px;
-                cursor: pointer;
-                background: url(../img/a03.png) no-repeat;
-                overflow: hidden;
-            }
-
-            .jssora03l {
-                background-position: -3px -33px;
-            }
-
-            .jssora03r {
-                background-position: -63px -33px;
-            }
-
-            .jssora03l:hover {
-                background-position: -123px -33px;
-            }
-
-            .jssora03r:hover {
-                background-position: -183px -33px;
-            }
-
-            .jssora03l.jssora03ldn {
-                background-position: -243px -33px;
-            }
-
-            .jssora03r.jssora03rdn {
-                background-position: -303px -33px;
-            }
-
-            .jssora03l.jssora03lds {
-                background-position: -3px -33px;
-                opacity: .3;
-                pointer-events: none;
-            }
-
-            .jssora03r.jssora03rds {
-                background-position: -63px -33px;
-                opacity: .3;
-                pointer-events: none;
-            }
+            .jssora051 {display:block;position:absolute;cursor:pointer;}
+            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+            .jssora051:hover {opacity:.8;}
+            .jssora051.jssora051dn {opacity:.5;}
+            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
         </style>
-        <!-- Arrow Left -->
-        <span u="arrowleft" class="jssora03l" style="top: 123px; left: 8px;">
-        </span>
-        <!-- Arrow Right -->
-        <span u="arrowright" class="jssora03r" style="top: 123px; right: 8px;">
-        </span>
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
         <!--#endregion Arrow Navigator Skin End -->
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
     </div>
     <!-- Jssor Slider End -->
 </body>

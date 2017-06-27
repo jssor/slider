@@ -19,7 +19,7 @@ https://github.com/jssor/slider/archive/master.zip
 https://wordpress.org/plugins/jssor-slider
 
 # Download Bootstrap Carousel Slider Example
-http://www.jssor.com/download-bootstrap-carousel-slider-example.html
+https://github.com/jssor/jssor-slider-bootstrap-example/archive/master.zip
 
 # NPM
 npm install jssor-slider
