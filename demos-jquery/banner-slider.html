@@ -1,18 +1,19 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Banner Slider - Jssor Slider</title>
 </head>
-<body style="background:#fff;">
-    <!-- Jssor Slider Begin -->
+<body style="margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; background-color: #262626;">
     
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Maker -->
+    <!-- Source: https://www.jssor.com -->
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
-    <script>
+    <script type="text/javascript">
         jQuery(document).ready(function ($) {
+
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
               {$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
@@ -29,28 +30,35 @@
                 $Class: $JssorArrowNavigator$
               },
               $ThumbnailNavigatorOptions: {
-                  $Class: $JssorThumbnailNavigator$,
-                  $Cols: 1,
-                  $Orientation: 2,
-                  $Align: 0,
-                  $NoDrag: true
+                $Class: $JssorThumbnailNavigator$,
+                $Cols: 1,
+                $Orientation: 2,
+                $Align: 0,
+                $NoDrag: true
               }
             };
 
             var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
             /*#region responsive code begin*/
-            /*remove responsive code if you don't want the slider scales while window resizing*/
+
+            var MAX_WIDTH = 980;
+
             function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 980);
-                    jssor_1_slider.$ScaleWidth(refSize);
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
                 }
                 else {
                     window.setTimeout(ScaleSlider, 30);
                 }
             }
+
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
@@ -59,41 +67,87 @@
             /*#endregion responsive code end*/
         });
     </script>
-    <!-- Jssor Slider Begin -->
-    
+    <style>
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .jssora061 {display:block;position:absolute;cursor:pointer;}
+        .jssora061 .a {fill:none;stroke:#fff;stroke-width:360;stroke-linecap:round;}
+        .jssora061:hover {opacity:.8;}
+        .jssora061.jssora061dn {opacity:.5;}
+        .jssora061.jssora061ds {opacity:.3;pointer-events:none;}
+    </style>
     <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%;background-color:rgba(0, 0, 0, 0.7);"></div>
-
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
         <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
             <div>
-                <img data-u="image" src="../img/gallery/980x380/011.jpg" />
-                <div u="thumb">Slide description #001</div>
+                <img data-u="image" src="../img/gallery/980x380/045.jpg" />
+                <div u="thumb">Slide Description 001</div>
             </div>
             <div>
-                <img data-u="image" src="../img/gallery/980x380/002.jpg" />
-                <div u="thumb">Slide description #002</div>
+                <img data-u="image" src="../img/gallery/980x380/043.jpg" />
+                <div u="thumb">Slide Description 002</div>
             </div>
             <div>
-                <img data-u="image" src="../img/gallery/980x380/003.jpg" />
-                <div u="thumb">Slide description #003</div>
+                <img data-u="image" src="../img/gallery/980x380/046.jpg" />
+                <div u="thumb">Slide Description 003</div>
             </div>
             <div>
-                <img data-u="image" src="../img/gallery/980x380/004.jpg" />
-                <div u="thumb">Slide description #004</div>
+                <img data-u="image" src="../img/gallery/980x380/047.jpg" />
+                <div u="thumb">Slide Description 004</div>
             </div>
             <div>
-                <img data-u="image" src="../img/gallery/980x380/005.jpg" />
-                <div u="thumb">Slide description #005</div>
+                <img data-u="image" src="../img/gallery/980x380/048.jpg" />
+                <div u="thumb">Slide Description 005</div>
             </div>
             <div>
-                <img data-u="image" src="../img/gallery/980x380/006.jpg" />
-                <div u="thumb">Slide description #006</div>
+                <img data-u="image" src="../img/gallery/980x380/044.jpg" />
+                <div u="thumb">Slide Description 006</div>
             </div>
+            <div>
+                <img data-u="image" src="../img/gallery/980x380/050.jpg" />
+                <div u="thumb">Slide Description 007</div>
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/980x380/049.jpg" />
+                <div u="thumb">Slide Description 008</div>
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/980x380/052.jpg" />
+                <div u="thumb">Slide Description 009</div>
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/980x380/051.jpg" />
+                <div u="thumb">Slide Description 010</div>
+            </div>
+            <div style="background-color:#ff7c28;">
+                <div style="position:absolute;top:50px;left:50px;width:450px;height:62px;z-index:0;font-size:16px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">Photos in this slider are to demostrate jssor slider,<br />
+                    which are not licensed for any other purpose.
+                </div>
+                <div u="thumb">Terms of use photos in this slider</div>
+            </div>
+            <a data-u="any" href="https://www.jssor.com" style="display:none">bootstrap slider</a>
         </div>
-
-        <!--#region Thumbnail Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
+        <!-- Thumbnail Navigator -->
         <div u="thumbnavigator" style="position:absolute;bottom:0px;left:0px;width:980px;height:50px;color:#FFF;overflow:hidden;cursor:default;background-color:rgba(0,0,0,.5);">
             <div u="slides">
                 <div u="prototype" style="position:absolute;top:0;left:0;width:980px;height:50px;">
@@ -101,30 +155,18 @@
                 </div>
             </div>
         </div>
-        <!--#endregion Thumbnail Navigator Skin End -->
-        
-        <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
-        <style>
-            .jssora051 {display:block;position:absolute;cursor:pointer;}
-            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
-            .jssora051:hover {opacity:.8;}
-            .jssora051.jssora051dn {opacity:.5;}
-            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
-        </style>
-        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora061" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+                <path class="a" d="M11949,1919L5964.9,7771.7c-127.9,125.5-127.9,329.1,0,454.9L11949,14079"></path>
             </svg>
         </div>
-        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+        <div data-u="arrowright" class="jssora061" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                <path class="a" d="M5869,1919l5984.1,5852.7c127.9,125.5,127.9,329.1,0,454.9L5869,14079"></path>
             </svg>
         </div>
-        <!--#endregion Arrow Navigator Skin End -->
-
     </div>
-    <!-- Jssor Slider End -->
+    <!-- #endregion Jssor Slider End -->
 </body>
 </html>

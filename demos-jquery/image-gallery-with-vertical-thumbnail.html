@@ -1,98 +1,78 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Gallery with Vertical Thumbnail - Jssor Slider</title>
 </head>
-<body style="background:#fff;">
-    <!-- Jssor Slider Begin -->
-    
+<body style="margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; background-color: #262626;">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Maker -->
+    <!-- Source: https://www.jssor.com -->
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
-    <script>
+    <script type="text/javascript">
         jQuery(document).ready(function ($) {
-            var _SlideshowTransitions = [
-            //Zoom- in
-            {$Duration: 1200, $Zoom: 1, $Easing: { $Zoom: $Jease$.$InCubic, $Opacity: $Jease$.$OutQuad }, $Opacity: 2 },
-            //Zoom+ out
-            {$Duration: 1000, $Zoom: 11, $SlideOut: true, $Easing: { $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            //Rotate Zoom- in
-            {$Duration: 1200, $Zoom: 1, $Rotate: 1, $During: { $Zoom: [0.2, 0.8], $Rotate: [0.2, 0.8] }, $Easing: { $Zoom: $Jease$.$Swing, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$Swing }, $Opacity: 2, $Round: { $Rotate: 0.5} },
-            //Rotate Zoom+ out
-            {$Duration: 1000, $Zoom: 11, $Rotate: 1, $SlideOut: true, $Easing: { $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$InExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} },
 
-            //Zoom HDouble- in
-            {$Duration: 1200, x: 0.5, $Cols: 2, $Zoom: 1, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $Jease$.$InCubic, $Zoom: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-            //Zoom HDouble+ out
-            {$Duration: 1200, x: 4, $Cols: 2, $Zoom: 11, $SlideOut: true, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $Jease$.$InExpo, $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
-
-            //Rotate Zoom- in L
-            {$Duration: 1200, x: 0.6, $Zoom: 1, $Rotate: 1, $During: { $Left: [0.2, 0.8], $Zoom: [0.2, 0.8], $Rotate: [0.2, 0.8] }, $Easing: { $Left: $Jease$.$Swing, $Zoom: $Jease$.$Swing, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$Swing }, $Opacity: 2, $Round: { $Rotate: 0.5} },
-            //Rotate Zoom+ out R
-            {$Duration: 1000, x: -4, $Zoom: 11, $Rotate: 1, $SlideOut: true, $Easing: { $Left: $Jease$.$InExpo, $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$InExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} },
-            //Rotate Zoom- in R
-            {$Duration: 1200, x: -0.6, $Zoom: 1, $Rotate: 1, $During: { $Left: [0.2, 0.8], $Zoom: [0.2, 0.8], $Rotate: [0.2, 0.8] }, $Easing: { $Left: $Jease$.$Swing, $Zoom: $Jease$.$Swing, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$Swing }, $Opacity: 2, $Round: { $Rotate: 0.5} },
-            //Rotate Zoom+ out L
-            {$Duration: 1000, x: 4, $Zoom: 11, $Rotate: 1, $SlideOut: true, $Easing: { $Left: $Jease$.$InExpo, $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$InExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} },
-
-            //Rotate HDouble- in
-            {$Duration: 1200, x: 0.5, y: 0.3, $Cols: 2, $Zoom: 1, $Rotate: 1, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Zoom: $Jease$.$InCubic, $Opacity: $Jease$.$OutQuad, $Rotate: $Jease$.$InCubic }, $Opacity: 2, $Round: { $Rotate: 0.7} },
-            //Rotate HDouble- out
-            {$Duration: 1000, x: 0.5, y: 0.3, $Cols: 2, $Zoom: 1, $Rotate: 1, $SlideOut: true, $Assembly: 2049, $ChessMode: { $Column: 15 }, $Easing: { $Left: $Jease$.$InExpo, $Top: $Jease$.$InExpo, $Zoom: $Jease$.$InExpo, $Opacity: $Jease$.$Linear, $Rotate: $Jease$.$InExpo }, $Opacity: 2, $Round: { $Rotate: 0.7} },
-            //Rotate VFork in
-            {$Duration: 1200, x: -4, y: 2, $Rows: 2, $Zoom: 11, $Rotate: 1, $Assembly: 2049, $ChessMode: { $Row: 28 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Zoom: $Jease$.$InCubic, $Opacity: $Jease$.$OutQuad, $Rotate: $Jease$.$InCubic }, $Opacity: 2, $Round: { $Rotate: 0.7} },
-            //Rotate HFork in
-            {$Duration: 1200, x: 1, y: 2, $Cols: 2, $Zoom: 11, $Rotate: 1, $Assembly: 2049, $ChessMode: { $Column: 19 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Zoom: $Jease$.$InCubic, $Opacity: $Jease$.$OutQuad, $Rotate: $Jease$.$InCubic }, $Opacity: 2, $Round: { $Rotate: 0.8} }
+            var jssor_1_SlideshowTransitions = [
+              {$Duration:1200,$Zoom:1,$Easing:{$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad},$Opacity:2},
+              {$Duration:1000,$Zoom:11,$SlideOut:true,$Easing:{$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear},$Opacity:2},
+              {$Duration:1200,$Zoom:1,$Rotate:1,$During:{$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$Easing:{$Zoom:$Jease$.$Swing,$Opacity:$Jease$.$Linear,$Rotate:$Jease$.$Swing},$Opacity:2,$Round:{$Rotate:0.5}},
+              {$Duration:1000,$Zoom:11,$Rotate:1,$SlideOut:true,$Easing:{$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear,$Rotate:$Jease$.$InExpo},$Opacity:2,$Round:{$Rotate:0.8}},
+              {$Duration:1200,x:0.5,$Cols:2,$Zoom:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$Jease$.$InCubic,$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+              {$Duration:1200,x:4,$Cols:2,$Zoom:11,$SlideOut:true,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$Jease$.$InExpo,$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear},$Opacity:2},
+              {$Duration:1200,x:0.6,$Zoom:1,$Rotate:1,$During:{$Left:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$Easing:$Jease$.$Swing,$Opacity:2,$Round:{$Rotate:0.5}},
+              {$Duration:1000,x:-4,$Zoom:11,$Rotate:1,$SlideOut:true,$Easing:{$Left:$Jease$.$InExpo,$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear,$Rotate:$Jease$.$InExpo},$Opacity:2,$Round:{$Rotate:0.8}},
+              {$Duration:1200,x:-0.6,$Zoom:1,$Rotate:1,$During:{$Left:[0.2,0.8],$Zoom:[0.2,0.8],$Rotate:[0.2,0.8]},$Easing:$Jease$.$Swing,$Opacity:2,$Round:{$Rotate:0.5}},
+              {$Duration:1000,x:4,$Zoom:11,$Rotate:1,$SlideOut:true,$Easing:{$Left:$Jease$.$InExpo,$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear,$Rotate:$Jease$.$InExpo},$Opacity:2,$Round:{$Rotate:0.8}},
+              {$Duration:1200,x:0.5,y:0.3,$Cols:2,$Zoom:1,$Rotate:1,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad,$Rotate:$Jease$.$InCubic},$Opacity:2,$Round:{$Rotate:0.7}},
+              {$Duration:1000,x:0.5,y:0.3,$Cols:2,$Zoom:1,$Rotate:1,$SlideOut:true,$Assembly:2049,$ChessMode:{$Column:15},$Easing:{$Left:$Jease$.$InExpo,$Top:$Jease$.$InExpo,$Zoom:$Jease$.$InExpo,$Opacity:$Jease$.$Linear,$Rotate:$Jease$.$InExpo},$Opacity:2,$Round:{$Rotate:0.7}},
+              {$Duration:1200,x:-4,y:2,$Rows:2,$Zoom:11,$Rotate:1,$Assembly:2049,$ChessMode:{$Row:28},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad,$Rotate:$Jease$.$InCubic},$Opacity:2,$Round:{$Rotate:0.7}},
+              {$Duration:1200,x:1,y:2,$Cols:2,$Zoom:11,$Rotate:1,$Assembly:2049,$ChessMode:{$Column:19},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Zoom:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad,$Rotate:$Jease$.$InCubic},$Opacity:2,$Round:{$Rotate:0.8}}
             ];
 
-            var options = {
-                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
-                $Idle: 1500,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
-                $PauseOnHover: 1,                                //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
-
-                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
-                $ArrowKeyNavigation: 1,   			            //[Optional] Steps to go for each navigation request by pressing arrow key, default value is 1.
-                $SlideDuration: 600,                                //Specifies default duration (swipe) for slide in milliseconds
-
-                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
-                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
-                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
-                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
-                    $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
-                },
-
-                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                    $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
-                },
-
-                $ThumbnailNavigatorOptions: {                       //[Optional] Options to specify and enable thumbnail navigator or not
-                    $Class: $JssorThumbnailNavigator$,              //[Required] Class to create thumbnail navigator instance
-                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-
-                    $ActionMode: 1,                                 //[Optional] 0 None, 1 act by click, 2 act by mouse hover, 3 both, default value is 1
-                    $Rows: 2,                                      //[Optional] Specify lanes to arrange thumbnails, default value is 1
-                    $SpacingX: 14,                                   //[Optional] Horizontal space between each thumbnail in pixel, default value is 0
-                    $SpacingY: 12,                                   //[Optional] Vertical space between each thumbnail in pixel, default value is 0
-                    $Cols: 6,                             //[Optional] Number of pieces to display, default value is 1
-                    $Align: 156,                          //[Optional] The offset position to park thumbnail
-                    $Orientation: 2                                //[Optional] Orientation to arrange thumbnails, 1 horizental, 2 vertical, default value is 1
-                }
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $SlideshowOptions: {
+                $Class: $JssorSlideshowRunner$,
+                $Transitions: jssor_1_SlideshowTransitions,
+                $TransitionsOrder: 1
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $ThumbnailNavigatorOptions: {
+                $Class: $JssorThumbnailNavigator$,
+                $Rows: 2,
+                $Cols: 6,
+                $SpacingX: 14,
+                $SpacingY: 12,
+                $Orientation: 2,
+                $Align: 156
+              }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
             /*#region responsive code begin*/
-            //you can remove responsive code if you don't want the slider scales while window resizing
+
+            var MAX_WIDTH = 960;
+
             function ScaleSlider() {
-                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
-                if (parentWidth)
-                    jssor_slider1.$ScaleWidth(Math.max(Math.min(parentWidth, 960), 300));
-                else
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
                     window.setTimeout(ScaleSlider, 30);
+                }
             }
+
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
@@ -101,198 +81,141 @@
             /*#endregion responsive code end*/
         });
     </script>
-    
-    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 960px;
-        height: 480px; background: #191919; overflow: hidden;">
+    <style>
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
 
-        <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
-
-        <!-- Slides Container -->
-        <div u="slides" style="position: absolute; left: 240px; top: 0px; width: 720px; height: 480px; overflow: hidden;">
-            <div>
-                <img u="image" src="../img/travel/01.jpg" />
-                <img u="thumb" src="../img/travel/thumb-01.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/02.jpg" />
-                <img u="thumb" src="../img/travel/thumb-02.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/03.jpg" />
-                <img u="thumb" src="../img/travel/thumb-03.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/04.jpg" />
-                <img u="thumb" src="../img/travel/thumb-04.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/05.jpg" />
-                <img u="thumb" src="../img/travel/thumb-05.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/06.jpg" />
-                <img u="thumb" src="../img/travel/thumb-06.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/07.jpg" />
-                <img u="thumb" src="../img/travel/thumb-07.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/08.jpg" />
-                <img u="thumb" src="../img/travel/thumb-08.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/09.jpg" />
-                <img u="thumb" src="../img/travel/thumb-09.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/10.jpg" />
-                <img u="thumb" src="../img/travel/thumb-10.jpg" />
-            </div>
-            
-            <div>
-                <img u="image" src="../img/travel/11.jpg" />
-                <img u="thumb" src="../img/travel/thumb-11.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/12.jpg" />
-                <img u="thumb" src="../img/travel/thumb-12.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/13.jpg" />
-                <img u="thumb" src="../img/travel/thumb-13.jpg" />
-            </div>
-            <div>
-                <img u="image" src="../img/travel/14.jpg" />
-                <img u="thumb" src="../img/travel/thumb-14.jpg" />
-            </div>
-        </div>
-        
-        <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
-        <style>
-            .jssora051 {display:block;position:absolute;cursor:pointer;}
-            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
-            .jssora051:hover {opacity:.8;}
-            .jssora051.jssora051dn {opacity:.5;}
-            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
-        </style>
-        <div data-u="arrowleft" class="jssora051" style="width:50px;height:50px;top:158px;left:248px;" data-autocenter="2" data-scale="0.75">
-            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
-            </svg>
-        </div>
-        <div data-u="arrowright" class="jssora051" style="width:50px;height:50px;top:158px;right:8px;" data-autocenter="2" data-scale="0.75">
-            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
-            </svg>
-        </div>
-        <!--#endregion Arrow Navigator Skin End -->
-
-        <!--#region Thumbnail Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-thumbnail-navigator.html -->
-        <style>
-            /* jssor slider thumbnail navigator skin 02 css */
-            /*
-            .jssort02 .p            (normal)
-            .jssort02 .p:hover      (normal mouseover)
-            .jssort02 .p.pav        (active)
-            .jssort02 .p.pdn        (mousedown)
-            */
-
-            .jssort02 {
-                position: absolute;
-                /* size of thumbnail navigator container */
-                width: 240px;
-                height: 480px;
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
             }
 
-                .jssort02 .p {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 99px;
-                    height: 66px;
-                }
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-                .jssort02 .t {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                }
 
-                .jssort02 .w {
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 100%;
-                    height: 100%;
-                }
+        .jssora093 {display:block;position:absolute;cursor:pointer;}
+        .jssora093 .c {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
+        .jssora093 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
+        .jssora093:hover {opacity:.8;}
+        .jssora093.jssora093dn {opacity:.6;}
+        .jssora093.jssora093ds {opacity:.3;pointer-events:none;}
 
-                .jssort02 .c {
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 95px;
-                    height: 62px;
-                    border: #000 2px solid;
-                    box-sizing: content-box;
-                    background: url(../img/t01.png) -800px -800px no-repeat;
-                    _background: none;
-                }
-
-                .jssort02 .pav .c {
-                    top: 2px;
-                    _top: 0px;
-                    left: 2px;
-                    _left: 0px;
-                    width: 95px;
-                    height: 62px;
-                    border: #000 0px solid;
-                    _border: #fff 2px solid;
-                    background-position: 50% 50%;
-                }
-
-                .jssort02 .p:hover .c {
-                    top: 0px;
-                    left: 0px;
-                    width: 97px;
-                    height: 64px;
-                    border: #fff 1px solid;
-                    background-position: 50% 50%;
-                }
-
-                .jssort02 .p.pdn .c {
-                    background-position: 50% 50%;
-                    width: 95px;
-                    height: 62px;
-                    border: #000 2px solid;
-                }
-
-                * html .jssort02 .c, * html .jssort02 .pdn .c, * html .jssort02 .pav .c {
-                    /* ie quirks mode adjust */
-                    width /**/: 99px;
-                    height /**/: 66px;
-                }
-        </style>
-
-        <!-- thumbnail navigator container -->
-        <div u="thumbnavigator" class="jssort02" style="left: 0px; bottom: 0px;">
-            <!-- Thumbnail Item Skin Begin -->
-            <div u="slides" style="cursor: default;">
-                <div u="prototype" class="p">
-                    <div class=w><div u="thumbnailtemplate" class="t"></div></div>
-                    <div class=c></div>
+        .jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;}
+        .jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
+        .jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
+        .jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
+        .jssort101 .p:hover{padding:2px;}
+        .jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
+        .jssort101 .p:hover.pdn{padding:0;}
+        .jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
+        .jssort101 .pav .cv {border-color:#fff;opacity:.35;}
+        .jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
+        .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
+        .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
+    </style>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:960px;height:480px;overflow:hidden;visibility:hidden;background-color:#24262e;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:240px;width:720px;height:480px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/004.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/004-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/005.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/005-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/006.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/006-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/007.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/007-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/008.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/008-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/009.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/009-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/010.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/010-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/013.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/013-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/014.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/014-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/015.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/015-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/016.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/016-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/017.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/017-s99x66.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/720x480/018.jpg" />
+                <img data-u="thumb" src="../img/gallery/720x480/018-s99x66.jpg" />
+            </div>
+            <div style="background-color:#ff7c28;">
+                <div style="position:absolute;top:50px;left:50px;width:450px;height:62px;z-index:0;font-size:16px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">Photos in this slider are to demostrate jssor slider,<br />
+                    which are not licensed for any other purpose.
+                </div>
+                <img data-u="thumb" src="../img/gallery/720x480/019.jpg" />
+            </div>
+            <a data-u="any" href="https://www.jssor.com" style="display:none">bootstrap slider</a>
+        </div>
+        <!-- Thumbnail Navigator -->
+        <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;top:0px;width:240px;height:480px;background-color:#000;" data-autocenter="2" data-scale-left="0.75">
+            <div data-u="slides">
+                <div data-u="prototype" class="p" style="width:99px;height:66px;">
+                    <div data-u="thumbnailtemplate" class="t"></div>
+                    <svg viewBox="0 0 16000 16000" class="cv">
+                        <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                        <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                        <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+                    </svg>
                 </div>
             </div>
-            <!-- Thumbnail Item Skin End -->
         </div>
-        <!--#endregion Thumbnail Navigator Skin End -->
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora093" style="width:50px;height:50px;top:0px;left:270px;" data-autocenter="2">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="c" cx="8000" cy="8000" r="5920"></circle>
+                <polyline class="a" points="7777.8,6080 5857.8,8000 7777.8,9920 "></polyline>
+                <line class="a" x1="10142.2" y1="8000" x2="5857.8" y2="8000"></line>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora093" style="width:50px;height:50px;top:0px;right:30px;" data-autocenter="2">
+            <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="c" cx="8000" cy="8000" r="5920"></circle>
+                <polyline class="a" points="8222.2,6080 10142.2,8000 8222.2,9920 "></polyline>
+                <line class="a" x1="5857.8" y1="8000" x2="10142.2" y2="8000"></line>
+            </svg>
+        </div>
     </div>
-    <!-- Jssor Slider End -->
+    <!-- #endregion Jssor Slider End -->
 </body>
 </html>

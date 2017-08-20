@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
-<body style="background:#fff;">
+<body style="font-family:Arial, Verdana;background-color:#fff;">
     <!-- Jssor Slider Begin -->
-    
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
+   
     <script>
-
         jQuery(document).ready(function ($) {
 
             var nestedSliders = [];
 
-            $.each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (index, containerId) {
+            $Jssor$.$Each(["sliderh1_container", "sliderh2_container", "sliderh3_container"], function (containerId) {
                 var nestedSliderOptions = {
                     $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
                     $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
@@ -76,10 +74,10 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
             function OnMainSliderPark(currentIndex, fromIndex) {
-                $.each(nestedSliders, function (index, nestedSlider) {
+                $Jssor$.$Each(nestedSliders, function (nestedSlider) {
                     nestedSlider.$Pause();
                 });
 
@@ -94,14 +92,14 @@
             /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
-                var bodyWidth = document.body.clientWidth;
-                if (bodyWidth)
-                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 600));
+                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+                if (parentWidth)
+                    jssor_slider1.$ScaleWidth(Math.min(parentWidth, 600));
                 else
-                    window.setTimeout(ScaleSlider, 30);
+                    $Jssor$.$Delay(ScaleSlider, 30);
             }
-            ScaleSlider();
 
+            ScaleSlider();
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
@@ -123,7 +121,9 @@
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 400px; overflow: hidden; ">
 
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
@@ -135,13 +135,13 @@
                     <!-- Slides Container -->
                     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                         overflow: hidden;">
-                        <div><img u="image" src="../img/landscape/05.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/06.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/07.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/01.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/02.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/03.jpg" /></div>
-                        <div><img u="image" src="../img/landscape/04.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/005.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/006.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/007.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/001.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/002.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/003.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/004.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
                     <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
@@ -155,7 +155,7 @@
                     <!--#endregion Bullet Navigator Skin End -->
                 </div>
                 <div u="thumb">
-                    <img src="../img/nested-thumb/landscape.jpg" />
+                    <img src="../img/gallery/980x380/031-s190x90.jpg" />
                     <div class="title_back"></div>
                     <div class="title">
                         Landscape
@@ -169,14 +169,14 @@
                     <!-- Slides Container -->
                     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                         overflow: hidden;">
-                        <div><img u="image" src="../img/motor/001.jpg" /></div>
-                        <div><img u="image" src="../img/motor/002.jpg" /></div>
-                        <div><img u="image" src="../img/motor/003.jpg" /></div>
-                        <div><img u="image" src="../img/motor/004.jpg" /></div>
-                        <div><img u="image" src="../img/motor/005.jpg" /></div>
-                        <div><img u="image" src="../img/motor/006.jpg" /></div>
-                        <div><img u="image" src="../img/motor/007.jpg" /></div>
-                        <div><img u="image" src="../img/motor/008.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/011.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/012.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/013.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/014.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/015.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/016.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/017.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/018.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
                     <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
@@ -190,7 +190,7 @@
                     <!--#endregion Bullet Navigator Skin End -->
                 </div>
                 <div u="thumb">
-                    <img src="../img/nested-thumb/motor.jpg" />
+                    <img src="../img/gallery/980x380/032-s190x90.jpg" />
                     <div class="title_back"></div>
                     <div class="title">
                         Motor
@@ -204,15 +204,15 @@
                     <!-- Slides Container -->
                     <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                         overflow: hidden;">
-                        <div><img u="image" src="../img/photography/004.jpg" /></div>
-                        <div><img u="image" src="../img/photography/005.jpg" /></div>
-                        <div><img u="image" src="../img/photography/006.jpg" /></div>
-                        <div><img u="image" src="../img/photography/007.jpg" /></div>
-                        <div><img u="image" src="../img/photography/008.jpg" /></div>
-                        <div><img u="image" src="../img/photography/009.jpg" /></div>
-                        <div><img u="image" src="../img/photography/010.jpg" /></div>
-                        <div><img u="image" src="../img/photography/011.jpg" /></div>
-                        <div><img u="image" src="../img/photography/012.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/024.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/025.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/026.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/027.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/028.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/029.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/030.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/031.jpg" /></div>
+                        <div><img u="image" src="../img/gallery/980x380/032.jpg" /></div>
                     </div>
                     <!--#region Bullet Navigator Skin Begin -->
                     <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
@@ -226,7 +226,7 @@
                     <!--#endregion Bullet Navigator Skin End -->
                 </div>
                 <div u="thumb">
-                    <img src="../img/nested-thumb/photography.jpg" />
+                    <img src="../img/gallery/980x380/033-s190x90.jpg" />
                     <div class="title_back"></div>
                     <div class="title">
                         Photography
@@ -341,7 +341,6 @@
             <!-- Thumbnail Item Skin End -->
         </div>
         <!--#endregion Thumbnail Navigator Skin End -->
-
     </div>
     <!-- Jssor Slider End -->
 </body>

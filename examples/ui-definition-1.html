@@ -15,7 +15,7 @@
 
             var _SlideshowTransitions = [
             //Fade Fly in R
-            {$Duration: 1200, x: -0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2, $Outside: true }
+            { $Duration: 1200, x: -0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2, $Outside: true }
             //Fade Fly out L
             , { $Duration: 1200, x: 0.3, $SlideOut: true, $Easing: { $Left: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2, $Outside: true }
             ];
@@ -85,48 +85,49 @@
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
             /*#endregion responsive code end*/
-        }
+        };
     </script>
     
     <div id="slider1_container" style="position: relative; width: 600px;
         height: 300px;">
-
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
             overflow: hidden;">
             <div>
-                <img u=image src="../img/landscape/01.jpg" />
+                <img u=image src="../img/gallery/980x380/001.jpg" />
                 <div u="thumb">Do you notice it scales while window resize?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/02.jpg" />
+                <img u=image src="../img/gallery/980x380/002.jpg" />
                 <div u="thumb">Do you know this is text format thumbnail?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/03.jpg" />
+                <img u=image src="../img/gallery/980x380/003.jpg" />
                 <div u="thumb">Do you notice the navigator is in multiline?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/04.jpg" />
+                <img u=image src="../img/gallery/980x380/004.jpg" />
                 <div u="thumb">Do you like navigator to act by mouse hover?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/01.jpg" />
+                <img u=image src="../img/gallery/980x380/001.jpg" />
                 <div u="thumb">Do you notice arrows appear when mouse over?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/02.jpg" />
+                <img u=image src="../img/gallery/980x380/002.jpg" />
                 <div u="thumb">Do you notice the slideshow plays outside?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/03.jpg" />
+                <img u=image src="../img/gallery/980x380/003.jpg" />
                 <div u="thumb">Do you know there are <a href="../development/tool-slideshow-transition-viewer.html">360+ slideshow transitions</a>?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/04.jpg" />
+                <img u=image src="../img/gallery/980x380/004.jpg" />
                 <div u="thumb">Do you know <a href="https://www.jssor.com/help">Jssor Slider Maker</a> is ready to create layer animation?</div>
             </div>
         </div>

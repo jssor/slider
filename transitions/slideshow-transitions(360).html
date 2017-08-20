@@ -47,39 +47,6 @@
         {
             color: #0080FF;
         }
-        
-        .backGreen
-        {
-        	/*
-        	background-color: #27a9e3;
-        	background-color: rgba(39, 169, 227, 0.3);
-            */
-        	background-image: url(http://www.jssor.com/img/site/back-green.png);
-        }
-        
-        .backBlackGreen
-        {
-        	background-image: url(http://www.jssor.com/img/site/back-blackgreen.png);
-        }
-        
-        .backBlack
-        {
-        	background-image: url(http://www.jssor.com/img/site/back-black.png);
-        }
-
-        .backWhite
-        {
-        	background-image: url(http://www.jssor.com/img/site/back-white.png);
-        }
-        
-        .backBlue
-        {
-        	/*
-        	background-color: #27a9e3;
-        	background-color: rgba(0, 0, 160, 0.2);
-            */
-        	background-image: url(../img/site/back-blue.png);
-        }
     </style>
     <!-- Caption & Effect Button & devNav Style -->
     <style>
@@ -166,22 +133,6 @@
             top: 1px;
             width: 260px;
             height: 130px;
-        }
-        .thumbix01
-        {
-            background: url(../img/demo/thumbnail-slideshow-effects-01.jpg);
-        }
-        .thumbix02
-        {
-            background: url(../img/demo/thumbnail-slideshow-effects-02.jpg);
-        }
-        .thumbiv01
-        {
-            background: url(../img/demo/thumbnail-sliders-01.jpg);
-        }
-        .thumbiv02
-        {
-            background: url(../img/demo/thumbnail-sliders-02.jpg);
         }
     </style>
     <!-- Thumbnail Style End -->
@@ -282,7 +233,7 @@
     </style>
     <script type="text/javascript" src="slideshow-transition-builder-controller.min.js"></script>
 </head>
-<body style="background-image: url(../img/back.jpg); background-color: #191919; color:#fff;  margin: 0px; padding:0px; font-family:Helvetica,Arial,sans-serif;">
+<body style="background-color: #191919; color:#fff;  margin: 0px; padding:0px; font-family:Helvetica,Arial,sans-serif;">
     <table align="center" border="0" cellspacing="0" cellpadding="0" style="width: 960px; height: 60px;">
         <tr>
             <td style="text-align: center; font-size: 26px;">
@@ -332,34 +283,21 @@
     <div style="height: 60px;"></div>
     <!-- Jssor Slider Begin -->
     <!-- To move inline styles to css file/block, please specify a class name for each element. -->
-    <div style="position: relative; margin: 0 auto; width: 600px; height: 300px;" id="slider1_container">
+    <div style="position: relative; margin: 0 auto; width: 600px; height: 240px;" id="slider1_container">
 
         <!-- Loading Screen -->
-        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
-            <div style="filter: alpha(opacity=70); opacity:.7; position: absolute; display: block;
-                            background-color: #000000; top: 0px; left: 0px;width: 100%;height:100%;">
-            </div>
-            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
-                            top: 0px; left: 0px;width: 100%;height:100%;">
-            </div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
         </div>
 
-        <div u="slides" style="position: absolute; width: 600px; height: 300px;top:0px;left:0px;overflow:hidden;">
+        <div u="slides" style="position: absolute; width: 600px; height: 240px;top:0px;left:0px;overflow:hidden;">
             <!-- Slide -->
             <div>
-                <img u="image" src="../img/landscape/01.jpg">
+                <img u="image" src="../img/gallery/600x240/001.jpg">
             </div>
             <!-- Slide -->
             <div>
-                <img u="image" src="../img/landscape/02.jpg">
-            </div>
-            <!-- Slide -->
-            <div>
-                <img u="image" src="../img/landscape/04.jpg">
-            </div>
-            <!-- Slide -->
-            <div>
-                <img u="image" src="../img/landscape/05.jpg">
+                <img u="image" src="../img/gallery/600x240/013.jpg">
             </div>
         </div>
     </div>
@@ -398,5 +336,8 @@ Also you can change '$Col' or '$Row' value to adjust columns or rows count.
                     <span>&nbsp;&nbsp;Copy right 2009-2017</span><span style="float:right;">Powered by Jssor&nbsp;&nbsp;</span>
                     </div>
                 </div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

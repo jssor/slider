@@ -43,20 +43,23 @@
             <div><img u="image" src="img/slide.png" /></div>
             <div><img u="image" src="img/slide.png" /></div>
         </div>
-
+        
         <!--#region Bullet Navigator Skin Begin -->
         <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-        <style>
+        <style type="text/css">
+            .jssorb061 {position:absolute;}
             .jssorb061 .i {position:absolute;cursor:pointer;}
             .jssorb061 .i .b {fill:#fff;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
             .jssorb061 .i:hover .b {fill-opacity:.7;}
-            .jssorb061 .iav .b {fill:#54fcff;}
+            .jssorb061 .iav .b {fill:#00fbff;stroke:#00bbff;stroke-opacity:.7;stroke-width:2000;}
             .jssorb061 .i.idn {opacity:.3;}
         </style>
-        <div data-u="navigator" class="jssorb061" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+
+        <!-- bullet navigator container -->
+        <div data-u="navigator" class="jssorb061" style="bottom:16px;right:16px;">
             <div data-u="prototype" class="i" style="width:16px;height:16px;">
                 <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                    <circle class="b" cx="8000" cy="8000" r="5800" />
                 </svg>
             </div>
         </div>

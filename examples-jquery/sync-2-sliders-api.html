@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
 
     <script>
+
         jQuery(document).ready(function ($) {
             function InitSlider1() {
 
@@ -58,14 +59,14 @@
                     if (parentWidth)
                         jssor_slider1.$ScaleWidth(Math.min(parentWidth, 600));
                     else
-                        window.setTimeout(ScaleSlider, 30);
+                        $Jssor$.$Delay(ScaleSlider, 30);
                 }
 
                 ScaleSlider();
-                $(window).bind("load", ScaleSlider);
+                $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-                $(window).bind("resize", ScaleSlider);
-                $(window).bind("orientationchange", ScaleSlider);
+                $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+                $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
                 /*#endregion responsive code end*/
 
                 return jssor_slider1;
@@ -120,10 +121,10 @@
                 }
 
                 ScaleSlider();
-                $(window).bind("load", ScaleSlider);
+                $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-                $(window).bind("resize", ScaleSlider);
-                $(window).bind("orientationchange", ScaleSlider);
+                $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+                $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
                 ///*#endregion responsive code end*/
 
                 return jssor_slider2;
@@ -139,73 +140,73 @@
             });
         });
     </script>
-    
 
     <!-- Jssor Slider Begin -->
     
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; ">
-
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px; overflow: hidden;">
             <div>
-                <img u="image" src="../img/photography/002.jpg" />
+                <img u="image" src="../img/gallery/980x380/002.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 mobile ready, touch swipe
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/003.jpg" />
+                <img u="image" src="../img/gallery/980x380/003.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 finger catchable right to left
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/004.jpg" />
+                <img u="image" src="../img/gallery/980x380/004.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 responsive, scale smoothly
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/005.jpg" />
+                <img u="image" src="../img/gallery/980x380/005.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 random caption transition
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/006.jpg" />
+                <img u="image" src="../img/gallery/980x380/006.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 mobile ready, touch swipe
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/007.jpg" />
+                <img u="image" src="../img/gallery/980x380/007.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 finger catchable right to left
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/008.jpg" />
+                <img u="image" src="../img/gallery/980x380/008.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 responsive, scale smoothly
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/009.jpg" />
+                <img u="image" src="../img/gallery/980x380/009.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 random caption transition
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/010.jpg" />
+                <img u="image" src="../img/gallery/980x380/010.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 mobile ready, touch swipe
                 </div>
             </div>
             <div>
-                <img u="image" src="../img/photography/011.jpg" />
+                <img u="image" src="../img/gallery/980x380/011.jpg" />
                 <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
                 finger catchable right to left
                 </div>
@@ -260,35 +261,49 @@
     <!-- Jssor Slider Begin -->
     
     <div id="slider2_container" style="position: relative; top: 0px; left: 0px; width: 809px; height: 150px; overflow: hidden; ">
-
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 809px; height: 150px; overflow: hidden;">
-            <div><img u="image" src="../img/ancient-lady/005.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/006.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/014.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/019.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/020.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/021.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/022.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/024.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/025.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/027.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/029.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/030.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/031.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/032.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/034.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/038.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/039.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/043.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
-            <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/001.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/005.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/006.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/007.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/008.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/009.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/010.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/011.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/024.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/025.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/026.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/027.jpg" />
+            </div>
         </div>
         
         <!--#region Bullet Navigator Skin Begin -->

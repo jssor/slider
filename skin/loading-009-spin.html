@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading skin 009 spin - Jssor Slider</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script>
+        init_jssor_slider1 = function (containerId) {
+
+            var options = {
+                $Loop: 0,
+                $DragOrientation: 3,                        //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+                $SlideDuration: 500                         //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+            };
+
+            var jssor_slider1 = new $JssorSlider$(containerId, options);
+        };
+    </script>
+
+    <!--#region Jssor Slider Begin -->
+
+    <style>
+        /* jssor slider loading skin spin css */
+
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+    
+    <div id="slider1_container" style="position: relative; width: 980px; height: 380px; overflow: hidden;">
+        <!-- Help: https://www.jssor.com/development/slider-with-loading-screen.html -->
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
+
+        <!-- Slides Container --> 
+        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
+            overflow: hidden;">
+            <div>
+                <div class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                    <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+                </div>
+            </div>
+            <div>
+                <div class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                    <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+                </div>
+            </div>
+            <div>
+                <div class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                    <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+                </div>
+            </div>
+            <div>
+                <div class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                    <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Trigger -->
+        <script>
+            init_jssor_slider1("slider1_container");
+        </script>
+    </div>
+    <!--#endregion Jssor Slider End -->
+</body>
+</html>

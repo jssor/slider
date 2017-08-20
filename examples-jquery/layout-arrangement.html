@@ -3,20 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Layout Arrangement Example - Jssor Slider</title>
 </head>
-<body style="background:#fff;">
+<body style="font-family:Arial, Verdana;background-color:#fff;">
     <!-- Jssor Slider Begin -->
-    
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
     <script>
         jQuery(document).ready(function ($) {
             var options = {
                 $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
                 $BulletNavigatorOptions: {
-                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+                    $Class: $JssorBulletNavigator$,                 //[Required] Class to create navigator instance
                     $ChanceToShow: 2                                //[Required] 0 Never, 1 Mouse Over, 2 Always
                 },
 
@@ -26,14 +24,15 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
         });
     </script>
     
     <div id="slider1_container" class=slider1 title="Outer Container" style="position: relative; width: 800px; height: 400px; background-color: Gray;">
-
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" title="Slides Container" style="position: absolute; left: 100px; top: 50px; width: 600px;

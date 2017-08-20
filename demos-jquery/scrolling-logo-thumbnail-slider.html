@@ -1,49 +1,50 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scrolling Logo Thumbnail Slider - Jssor Slider</title>
 </head>
-<body style="background:#fff;">
-    <!-- Jssor Slider Begin -->
+<body style="margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; background-color: #262626;">
     
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Maker -->
+    <!-- Source: https://www.jssor.com -->
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
-    <script>
+    <script type="text/javascript">
         jQuery(document).ready(function ($) {
-            var options = {
-                $AutoPlay: 1,                                    //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
-                $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
-                $Idle: 0,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
-                $PauseOnHover: 4,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
 
-                $ArrowKeyNavigation: 1,   			            //[Optional] Steps to go for each navigation request by pressing arrow key, default value is 1.
-                $SlideEasing: $Jease$.$Linear,          //[Optional] Specifies easing for right to left animation, default value is $Jease$.$OutQuad
-                $SlideDuration: 5000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide, default value is 20
-                $SlideWidth: 140,                                   //[Optional] Width of every slide in pixels, default value is width of 'slides' container
-                //$SlideHeight: 100,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
-                $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
-                $Cols: 7,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
-                $Align: 0,                              //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
-                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
-                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
-                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $Idle: 0,
+              $SlideDuration: 5000,
+              $SlideEasing: $Jease$.$Linear,
+              $PauseOnHover: 4,
+              $SlideWidth: 140,
+              $Cols: 7
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
             /*#region responsive code begin*/
-            //you can remove responsive code if you don't want the slider scales while window resizing
+
+            var MAX_WIDTH = 980;
+
             function ScaleSlider() {
-                var bodyWidth = document.body.clientWidth;
-                if (bodyWidth)
-                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 980));
-                else
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
                     window.setTimeout(ScaleSlider, 30);
+                }
             }
+
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
@@ -52,33 +53,73 @@
             /*#endregion responsive code end*/
         });
     </script>
-    <!-- Jssor Slider Begin -->
+    <style>
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
 
-    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 980px; height: 100px; overflow: hidden; ">
+        @keyframes jssorl-009-spin {
+            from {
+                transform: rotate(0deg);
+            }
 
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:100px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
-
-        <!-- Slides Container -->
-        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px; height: 100px; overflow: hidden;">
-            <div><img u="image" alt="android" src="../img/logo/android.jpg" /></div>
-            <div><img u="image" alt="blogger" src="../img/logo/blogger.jpg" /></div>
-            <div><img u="image" alt="dnn" src="../img/logo/dnn.jpg" /></div>
-            <div><img u="image" alt="drupal" src="../img/logo/drupal.jpg" /></div>
-            <div><img u="image" alt="facebook" src="../img/logo/facebook.jpg" /></div>
-            <div><img u="image" alt="google" src="../img/logo/google.jpg" /></div>
-            <div><img u="image" alt="ibm" src="../img/logo/ibm.jpg" /></div>
-            <div><img u="image" alt="ios" src="../img/logo/ios.jpg" /></div>
-            <div><img u="image" alt="joomla" src="../img/logo/joomla.jpg" /></div>
-            <div><img u="image" alt="linkedin" src="../img/logo/linkedin.jpg" /></div>
-            <div><img u="image" alt="mac" src="../img/logo/mac.jpg" /></div>
-            <div><img u="image" alt="pinterest" src="../img/logo/pinterest.jpg" /></div>
-            <div><img u="image" alt="twitter" src="../img/logo/twitter.jpg" /></div>
-            <div><img u="image" alt="windows" src="../img/logo/windows.jpg" /></div>
-            <div><img u="image" alt="wordpress" src="../img/logo/wordpress.jpg" /></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
         </div>
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:100px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/001.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/002.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/003.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/004.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/009.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/010.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/019.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/020.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/021.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/022.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/200x150/024.jpg" />
+            </div>
+            <div style="background-color:#ff7c28;">
+                <div style="position:absolute;top:-3px;left:-4px;width:150px;height:62px;z-index:0;font-size:12px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">Photos in this slider are to demostrate jssor slider,<br />
+                    which are not licensed for any other purpose.
+                </div>
+            </div>
+            <a data-u="any" href="https://www.jssor.com" style="display:none">image gallery</a>
+        </div>
     </div>
-    <!-- Jssor Slider End -->
+    <!-- #endregion Jssor Slider End -->
 </body>
 </html>

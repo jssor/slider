@@ -7,10 +7,8 @@
 </head>
 <body style="background:#fff;">
     <!-- Jssor Slider Begin -->
-    
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
     <script>
         jQuery(document).ready(function ($) {
             var options = {
@@ -46,7 +44,7 @@
                 }
             };
 
-            var jssor_slider3 = new $JssorSlider$("slider3_container", options);
+            var jssor_slider3 = new $JssorSlider$('slider3_container', options);
 
             /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
@@ -61,20 +59,18 @@
                     jssor_slider3.$ScaleWidth(sliderWidth);
                 }
                 else
-                    window.setTimeout(ScaleSlider, 30);
+                    $Jssor$.$Delay(ScaleSlider, 30);
             }
-            ScaleSlider();
 
+            ScaleSlider();
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
             /*#endregion responsive code end*/
         });
     </script>
-    <!-- Jssor Slider Begin -->
-
     <div id="slider3_container" style="position: relative; top: 0px; left: 0px; width: 701px; height: 302px; background: #fff; overflow: hidden; ">
-
+        
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 99px; top: 0px; width: 600px; height: 300px; border: 1px solid gray; -webkit-filter: blur(0px); background-color: #fff; overflow: hidden;">
             <div>
@@ -98,7 +94,6 @@
                 <div u="thumb">Carousel</div>
             </div>
         </div>
-
         <!--#region ThumbnailNavigator Skin Begin -->
 
         <style>
@@ -171,8 +166,6 @@
             <!-- Thumbnail Item Skin End -->
         </div>
         <!--#endregion ThumbnailNavigator Skin End -->
-
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
     </div>
     <!-- Jssor Slider End -->
 </body>

@@ -3,22 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Slider with Slideshow - Jssor Slider</title>
 </head>
 <body style="background:#fff;">
     <!-- Jssor Slider Begin -->
-    
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
     <script>
         jQuery(document).ready(function ($) {
             //Reference https://www.jssor.com/development/slider-with-slideshow.html
             //Reference https://www.jssor.com/development/tool-slideshow-transition-viewer.html
 
             var _SlideshowTransitions = [
-            //Fade
-            { $Duration: 1200, $Opacity: 2 }
+                //Fade
+                { $Duration: 1200, $Opacity: 2 }
             ];
 
             var options = {
@@ -34,35 +32,32 @@
                 }
             };
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
-
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
         });
     </script>
-    <!-- Jssor Slider Begin -->
-
-    <div id="slider1_container" style="position: relative; width: 600px;
-        height: 300px;">
-
+    
+    <div id="slider1_container" style="position:relative;width:600px;height:300px;">
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
             overflow: hidden;">
             <div>
-                <img u=image src="../img/landscape/01.jpg" />
+                <img u=image src="../img/gallery/980x380/001.jpg" />
             </div>
             <div>
-                <img u=image src="../img/landscape/02.jpg" />
+                <img u=image src="../img/gallery/980x380/002.jpg" />
             </div>
             <div>
-                <img u=image src="../img/landscape/03.jpg" />
+                <img u=image src="../img/gallery/980x380/003.jpg" />
             </div>
             <div>
-                <img u=image src="../img/landscape/04.jpg" />
+                <img u=image src="../img/gallery/980x380/004.jpg" />
             </div>
         </div>
-        <a style="display: none" href="https://www.jssor.com">jQuery Slider</a>
     </div>
 </body>
 </html>

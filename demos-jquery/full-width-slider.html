@@ -1,62 +1,82 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Full Width Slider - Jssor Slider</title>
 </head>
-<body style="margin:0;padding:0;font-family:Helvetica,Verdana,Geneva,sans-serif,-apple-system,BlinkMacSystemFont,'Open Sans',Arial,Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue','Segoe UI',Tahoma;">
-
+<body style="margin:0;padding:0;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; background-color: #262626;">
+    
     <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Maker -->
+    <!-- Source: https://www.jssor.com -->
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
-    <script>
-
+    <script type="text/javascript">
         jQuery(document).ready(function ($) {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:-1,d:1,o:-0.7}],
+              [{b:900,d:2000,x:-379,e:{x:7}}],
+              [{b:900,d:2000,x:-379,e:{x:7}}],
+              [{b:-1,d:1,o:-1,sX:2,sY:2},{b:0,d:900,x:-171,y:-341,o:1,sX:-2,sY:-2,e:{x:3,y:3,sX:3,sY:3}},{b:900,d:1600,x:-283,o:-1,e:{x:16}}]
+            ];
+
             var jssor_1_options = {
-                $AutoPlay: 1,
-                $SlideDuration: 800,
-                $SlideEasing: $Jease$.$OutQuint,
-                $ArrowNavigatorOptions: {
-                    $Class: $JssorArrowNavigator$
-                },
-                $BulletNavigatorOptions: {
-                    $Class: $JssorBulletNavigator$
-                }
+              $AutoPlay: 1,
+              $SlideDuration: 800,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
             };
 
             var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
             /*#region responsive code begin*/
-            /*you can remove responsive code if you don't want the slider scales while window resizing*/
+
+            var MAX_WIDTH = 3000;
+
             function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 1920);
-                    jssor_1_slider.$ScaleWidth(refSize);
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
                 }
                 else {
                     window.setTimeout(ScaleSlider, 30);
                 }
             }
+
             ScaleSlider();
+
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
             /*#endregion responsive code end*/
         });
     </script>
-    
     <style>
-        /* jssor slider loading skin oval css */
-        .jssorl-oval img {
-            animation-name: jssorl-oval;
-            animation-duration: 1.2s;
+        /* jssor slider loading skin spin css */
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         }
 
-        @keyframes jssorl-oval {
+        @keyframes jssorl-009-spin {
             from {
                 transform: rotate(0deg);
             }
@@ -65,67 +85,77 @@
                 transform: rotate(360deg);
             }
         }
-    </style>
-    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1500px;height:600px;overflow:hidden;visibility:hidden;">
-        <!-- Loading Screen -->
-        <div data-u="loading" class="jssorl-oval" style="position:absolute;top:0px;left:0px;text-align:center;background-color:rgba(0,0,0,0.7);">
-            <img style="margin-top:-19.0px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/oval.svg" />
-        </div>
 
-        <!-- slides container -->
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1500px;height:600px;overflow:hidden;">
-            <div>
-                <img data-u="image" src="../img/full-width/android.jpg" />
-            </div>
-            <div>
-                <img data-u="image" src="../img/full-width/windows.jpg" />
-            </div>
-            <div>
-                <img data-u="image" src="../img/full-width/mac.jpg" />
-            </div>
+
+        .jssorb032 {position:absolute;}
+        .jssorb032 .i {position:absolute;cursor:pointer;}
+        .jssorb032 .i .b {fill:#fff;fill-opacity:0.7;stroke:#000;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.25;}
+        .jssorb032 .i:hover .b {fill:#000;fill-opacity:.6;stroke:#fff;stroke-opacity:.35;}
+        .jssorb032 .iav .b {fill:#000;fill-opacity:1;stroke:#fff;stroke-opacity:.35;}
+        .jssorb032 .i.idn {opacity:.3;}
+
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+    </style>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
         </div>
-        
-        <!--#region Bullet Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-bullet-navigator.html -->
-        <style>
-            .jssorb051 .i {position:absolute;cursor:pointer;}
-            .jssorb051 .i .b {fill:#fff;fill-opacity:0.5;stroke:#000;stroke-width:400;stroke-miterlimit:10;stroke-opacity:0.5;}
-            .jssorb051 .i:hover .b {fill-opacity:.7;}
-            .jssorb051 .iav .b {fill-opacity: 1;}
-            .jssorb051 .i.idn {opacity:.3;}
-        </style>
-        <div data-u="navigator" class="jssorb051" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-            <div data-u="prototype" class="i" style="width:20px;height:20px;">
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="../img/gallery/1300x500/001.jpg" />
+                <div data-u="caption" data-t="0" style="position:absolute;top:120px;left:75px;width:470px;height:220px;z-index:0;">
+                    <img style="position:absolute;top:0px;left:0px;width:470px;height:220px;z-index:0;" src="../img/1920/c-phone-horizontal.png" />
+                    <div style="position:absolute;top:4px;left:45px;width:379px;height:213px;z-index:0; overflow:hidden;">
+                        <img data-u="caption" data-t="1" style="position:absolute;top:0px;left:0px;width:379px;height:213px;z-index:0;" src="../img/1920/c-slide-1.jpg" />
+                        <img data-u="caption" data-t="2" style="position:absolute;top:0px;left:379px;width:379px;height:213px;z-index:0;" src="../img/1920/c-slide-3.jpg" />
+                    </div>
+                    <img style="position:absolute;top:4px;left:45px;width:379px;height:213px;z-index:0;" src="../img/1920/c-navigator-horizontal.png" />
+                    <img data-u="caption" data-t="3" style="position:absolute;top:476px;left:454px;width:63px;height:77px;z-index:0;" src="../img/1920/hand.png" />
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/1300x500/002.jpg" />
+            </div>
+            <div>
+                <img data-u="image" src="../img/gallery/1300x500/003.jpg" />
+                <div style="position:absolute;top:30px;left:30px;width:480px;height:130px;z-index:0;background-color:rgba(255,188,5,0.8);font-size:40px;font-weight:100;color:#000000;line-height:60px;padding:5px;box-sizing:border-box;">TOUCH SWIPE
+<br />
+                    RESPONSIVE SLIDER
+                </div>
+                <div style="position:absolute;top:300px;left:30px;width:480px;height:130px;z-index:0;background-color:rgba(255,188,5,0.8);font-size:30px;color:#000000;line-height:38px;padding:5px;box-sizing:border-box;">Build your slider with anything, includes image, svg, text, html, photo, picture content</div>
+            </div>
+            <div style="background-color:#ff7c28;">
+                <div style="position:absolute;top:50px;left:50px;width:450px;height:62px;z-index:0;font-size:16px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">Photos in this slider are to demostrate jssor slider,<br />
+                    which are not licensed for any other purpose.
+                </div>
+            </div>
+            <a data-u="any" href="https://www.jssor.com" style="display:none">bootstrap carousel</a>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb032" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
                 <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                     <circle class="b" cx="8000" cy="8000" r="5800"></circle>
                 </svg>
             </div>
         </div>
-        <!--#endregion Bullet Navigator Skin End -->
-        
-        <!--#region Arrow Navigator Skin Begin -->
-        <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
-        <style>
-            .jssora051 {display:block;position:absolute;cursor:pointer;}
-            .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
-            .jssora051:hover {opacity:.8;}
-            .jssora051.jssora051dn {opacity:.5;}
-            .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
-        </style>
-        <div data-u="arrowleft" class="jssora051" style="width:75px;height:75px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:65px;height:65px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                 <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
             </svg>
         </div>
-        <div data-u="arrowright" class="jssora051" style="width:75px;height:75px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+        <div data-u="arrowright" class="jssora051" style="width:65px;height:65px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
             <svg viewBox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
                 <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
             </svg>
         </div>
-        <!--#endregion Arrow Navigator Skin End -->
-
     </div>
-
     <!-- #endregion Jssor Slider End -->
 </body>
 </html>

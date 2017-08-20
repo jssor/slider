@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <title>Auto Center with No Scale Example - Jssor Slider</title>
 </head>
-<body style="margin:0;font-family:Arial, Verdana;background-color:#fff;">
+<body style="margin:0;padding:0;font-family:Arial, Verdana;background-color:#fff;">
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+
     <script>
         jQuery(document).ready(function ($) {
 
@@ -51,18 +52,18 @@
 
                     jssor_slider1.$Elmt.style.left = ((containerWidth - scaleWidth) / 2) + "px";
                 }
-                else
+                else {
                     window.setTimeout(ScaleSlider, 30);
+                }
             }
 
             ScaleSlider();
 
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
             //#endregion responsive code end
         });
-
     </script>
     
     <!-- make a div with 100% width, place jssor slider in the div -->
@@ -70,9 +71,10 @@
 
         <!--#region Jssor Slider Begin -->
         <div id="slider1_container" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 980px; height: 380px;">
-
             <!-- Loading Screen -->
-            <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+            <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+            </div>
 
             <!-- Slides Container -->
             <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px;  height: 380px; overflow: hidden;">

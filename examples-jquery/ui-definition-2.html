@@ -3,14 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>UI Definition Demo 2 - Jssor Slider</title>
 </head>
-<body style="background:#fff;">
+<body style="background-color: #191919;">
     <!-- Jssor Slider Begin -->
-    
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
-
     <script>
         jQuery(document).ready(function ($) {
             var options = {
@@ -55,7 +53,7 @@
                 }
             };
 
-            var jssor_slider2 = new $JssorSlider$("slider2_container", options);
+            var jssor_slider2 = new $JssorSlider$('slider2_container', options);
             /*#region responsive code begin*/
             //you can remove responsive code if you don't want the slider scales while window resizing
             function ScaleSlider() {
@@ -63,10 +61,10 @@
                 if (parentWidth)
                     jssor_slider2.$ScaleWidth(Math.min(parentWidth, 800));
                 else
-                    window.setTimeout(ScaleSlider, 30);
+                    $Jssor$.$Delay(ScaleSlider, 30);
             }
-            ScaleSlider();
 
+            ScaleSlider();
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
@@ -74,18 +72,18 @@
         });
     </script>
     
-    
     <div id="slider2_container" style="position: relative; width: 800px;
         height: 400px; overflow: hidden;">
-
         <!-- Loading Screen -->
-        <div data-u="loading" style="position:absolute;top:0px;left:0px;background:url('../img/loading.gif') no-repeat 50% 50%; background-color: rgba(0, 0, 0, .7);"></div>
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
+        </div>
 
         <!-- Slides Container -->
         <div u="slides" style="position: absolute; left: 100px; top: 50px; width: 600px; height: 300px;
             overflow: hidden;">
             <div>
-                <img u=image src="../img/landscape/01.jpg" />
+                <img u=image src="../img/gallery/980x380/001.jpg" />
                 <div u="thumb">This is thumbnail as well.<br />
                 Do you know that you can place thumbnail navigator anywhere?<br /><br />
                 <img src="../img/icons/icon_chrome.png" style="float: left; margin-right: 8px;" />
@@ -93,38 +91,38 @@
                 </div>
             </div>
             <div>
-                <img u=image src="../img/landscape/02.jpg" />
+                <img u=image src="../img/gallery/980x380/002.jpg" />
                 <div u="thumb">Do you notice that this slider is simple right to left moving image slider?
                 Do you notice that auto play paused when mouse over?<br />
                 Do you notice that you can touch (with mouse on pc, finger on mobile device) to catch the moving?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/03.jpg" />
+                <img u=image src="../img/gallery/980x380/003.jpg" />
                 <div u="thumb">Do you notice the navigator is vertical?<br /><br />
                 Do you know that you can spepcify steps (by '$Steps' option) to go for each navigation request?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/04.jpg" />
+                <img u=image src="../img/gallery/980x380/004.jpg" />
                 <div u="thumb">Do you notice that the arrow navigator appears with css3 transition?<br /><br />
                 Do you know that you can spepcify steps (by '$Steps' option) to go for each navigation request?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/01.jpg" />
+                <img u=image src="../img/gallery/980x380/001.jpg" />
                 <div u="thumb">Do you know that you can place navigator, arrow navigator anywhere?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/02.jpg" />
+                <img u=image src="../img/gallery/980x380/002.jpg" />
                 <div u="thumb">Do you know that you can customize navigator, arrow navigator to any format?<br /><br />
                 Do you know that you can insert your own shadow into jssor slider?<br />
                 Do you know that you can insert any UI into jssor slider?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/03.jpg" />
+                <img u=image src="../img/gallery/980x380/003.jpg" />
                 <div u="thumb">Do you know that you can add css3 transition to thumbnail?<br />Do you know that <a href="https://www.jssor.com/demos/x-flutter.html">thumbnail is also draggable</a>?<br /><br />
                 Do you like <a href="https://www.jssor.com/demos/tab-slider.html">Tab Implementation</a> of thumbnail navigator?</div>
             </div>
             <div>
-                <img u=image src="../img/landscape/04.jpg" />
+                <img u=image src="../img/gallery/980x380/004.jpg" />
                 <div u="thumb">Would you like vertical thumbnail navigator?<br />Would you like <a href="https://www.jssor.com/demos/image-gallery-vertical-bar.html">multiline thumbnail navigator</a>?<br />
                 Do you know that you can <a href="../examples-jquery/thumbnail-navigator-with-arrows.source.html">add arrows for thumbnail navogator?</a><br />
                 Do you know that you can design jssor slider to any look that you can imagine?</div>

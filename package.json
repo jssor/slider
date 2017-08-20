@@ -1,6 +1,6 @@
 {
   "name": "jssor-slider",
-  "version": "25.2.0",
+  "version": "25.3.1",
   "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
   "main": "js/jssor.slider.min.js",
   "homepage": "https://www.jssor.com",
@@ -44,9 +44,6 @@
     "bower.json",
     "component.json",
     "package.json",
-    "MIT-LICENSE.txt",
-    
-    "img/loading.gif",
-    "img/loading2.gif"
+    "MIT-LICENSE.txt"
   ]
 }
