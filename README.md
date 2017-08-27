@@ -9,26 +9,6 @@ Responsive Javascript Image/Text Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 3. Support: [Ask a question on StackOverflow](https://stackoverflow.com/search?tab=relevance&q=jssor)
 
 --------------------------------------
-#### Download Package
-
-```sh
-# Download from GitHub
-https://github.com/jssor/slider/archive/master.zip
-
-# WordPress Plugin
-https://wordpress.org/plugins/jssor-slider
-
-# Download Bootstrap Carousel Slider Example
-https://github.com/jssor/jssor-slider-bootstrap-example/archive/master.zip
-
-# NPM
-npm install jssor-slider
-
-# Bower
-bower install jssor-slider --save
-```
-
---------------------------------------
 #### Example
 ```html
 <script type="text/javascript" src="jssor.slider.min.js"></script>

@@ -1,0 +1,2 @@
+﻿jssor.slider.min.js javascript codes and html codes are free under MIT license
+photos in this package are to demostrate jssor slider, which are not licensed for other purpose
