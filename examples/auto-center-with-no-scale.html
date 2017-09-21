@@ -44,10 +44,10 @@
                 var containerWidth = containerElement.clientWidth;
 
                 if (containerWidth) {
-                    var scaleWidth = Math.min(containerWidth, jssor_slider1.$OriginalWidth());
+                    var expectedWidth = Math.min(containerWidth, jssor_slider1.$OriginalWidth());
 
                     //scale the slider to original height with no change
-                    jssor_slider1.$ScaleSize(scaleWidth, jssor_slider1.$OriginalHeight());
+                    jssor_slider1.$ScaleSize(expectedWidth, jssor_slider1.$OriginalHeight());
 
                     jssor_slider1.$Elmt.style.left = ((containerWidth - scaleWidth) / 2) + "px";
                 }
