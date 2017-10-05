@@ -49,7 +49,7 @@
                     //scale the slider to original height with no change
                     jssor_slider1.$ScaleSize(expectedWidth, jssor_slider1.$OriginalHeight());
 
-                    jssor_slider1.$Elmt.style.left = ((containerWidth - scaleWidth) / 2) + "px";
+                    jssor_slider1.$Elmt.style.left = ((containerWidth - expectedWidth) / 2) + "px";
                 }
                 else {
                     window.setTimeout(ScaleSlider, 30);
