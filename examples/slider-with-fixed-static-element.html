@@ -20,7 +20,8 @@
 
             function DisplayIndex(slideIndex, fromIndex) {
                 var myFixedElement = $Jssor$.$GetElement("myfixedelement");
-                $Jssor$.$InnerText(myFixedElement, slideIndex + 1 + " of " + jssor_slider1.$SlidesCount());
+                myFixedElement.innerHTML = "";
+                myFixedElement.appendChild(document.createTextNode(slideIndex + 1 + " of " + jssor_slider1.$SlidesCount()));
             }
 
             jssor_slider1.$On($JssorSlider$.$EVT_PARK, DisplayIndex);
@@ -31,19 +32,19 @@
     <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px;
         height: 300px;">
         <!-- Slides Container -->
-        <div u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
+        <div data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
             overflow: hidden;">
-            <div><img u="image" src="../img/gallery/980x380/001.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/002.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/003.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/004.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/005.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/006.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/007.jpg" /></div>
-            <div><img u="image" src="../img/gallery/980x380/008.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/001.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/002.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/003.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/004.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/005.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/006.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/007.jpg" /></div>
+            <div><img data-u="image" src="../img/gallery/980x380/008.jpg" /></div>
 
             <!-- the following element is at the same level of all other slides, it would be a slide element if the 'u="any"' attribute were not specified -->
-            <div id="myfixedelement" u="any" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 26px; background-color: #fff; user-select: none; -ms-user-select: none; -moz-user-select: none;">
+            <div id="myfixedelement" data-u="any" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 26px; background-color: #fff; user-select: none; -ms-user-select: none; -moz-user-select: none;">
                 <!-- with 'u="any"' attribute specified, this element is no longer treated as slide, it is a fixed element now, it will always stay where it is. -->
                 <!-- reference: Hhttp://www.jssor.com/development/slider-with-fixed-static-element.html -->
             </div>

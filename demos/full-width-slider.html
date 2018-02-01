@@ -14,21 +14,10 @@
     <script type="text/javascript">
         jssor_1_slider_init = function() {
 
-            var jssor_1_SlideoTransitions = [
-              [{b:-1,d:1,o:-0.7}],
-              [{b:900,d:2000,x:-379,e:{x:7}}],
-              [{b:900,d:2000,x:-379,e:{x:7}}],
-              [{b:-1,d:1,o:-1,sX:2,sY:2},{b:0,d:900,x:-171,y:-341,o:1,sX:-2,sY:-2,e:{x:3,y:3,sX:3,sY:3}},{b:900,d:1600,x:-283,o:-1,e:{x:16}}]
-            ];
-
             var jssor_1_options = {
               $AutoPlay: 1,
               $SlideDuration: 800,
               $SlideEasing: $Jease$.$OutQuint,
-              $CaptionSliderOptions: {
-                $Class: $JssorCaptionSlideo$,
-                $Transitions: jssor_1_SlideoTransitions
-              },
               $ArrowNavigatorOptions: {
                 $Class: $JssorArrowNavigator$
               },
@@ -67,7 +56,7 @@
         };
     </script>
     <style>
-        /* jssor slider loading skin spin css */
+        /*jssor slider loading skin spin css*/
         .jssorl-009-spin img {
             animation-name: jssorl-009-spin;
             animation-duration: 1.6s;
@@ -76,23 +65,19 @@
         }
 
         @keyframes jssorl-009-spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-
+        
+        /*jssor slider bullet skin 032 css*/
         .jssorb032 {position:absolute;}
         .jssorb032 .i {position:absolute;cursor:pointer;}
         .jssorb032 .i .b {fill:#fff;fill-opacity:0.7;stroke:#000;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.25;}
         .jssorb032 .i:hover .b {fill:#000;fill-opacity:.6;stroke:#fff;stroke-opacity:.35;}
         .jssorb032 .iav .b {fill:#000;fill-opacity:1;stroke:#fff;stroke-opacity:.35;}
         .jssorb032 .i.idn {opacity:.3;}
-
+        
+        /*jssor slider arrow skin 051 css*/
         .jssora051 {display:block;position:absolute;cursor:pointer;}
         .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
         .jssora051:hover {opacity:.8;}
@@ -107,15 +92,6 @@
         <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1300px;height:500px;overflow:hidden;">
             <div>
                 <img data-u="image" src="../img/gallery/1300x500/001.jpg" />
-                <div data-u="caption" data-t="0" style="position:absolute;top:120px;left:75px;width:470px;height:220px;z-index:0;">
-                    <img style="position:absolute;top:0px;left:0px;width:470px;height:220px;z-index:0;" src="../img/1920/c-phone-horizontal.png" />
-                    <div style="position:absolute;top:4px;left:45px;width:379px;height:213px;z-index:0; overflow:hidden;">
-                        <img data-u="caption" data-t="1" style="position:absolute;top:0px;left:0px;width:379px;height:213px;z-index:0;" src="../img/1920/c-slide-1.jpg" />
-                        <img data-u="caption" data-t="2" style="position:absolute;top:0px;left:379px;width:379px;height:213px;z-index:0;" src="../img/1920/c-slide-3.jpg" />
-                    </div>
-                    <img style="position:absolute;top:4px;left:45px;width:379px;height:213px;z-index:0;" src="../img/1920/c-navigator-horizontal.png" />
-                    <img data-u="caption" data-t="3" style="position:absolute;top:476px;left:454px;width:63px;height:77px;z-index:0;" src="../img/1920/hand.png" />
-                </div>
             </div>
             <div>
                 <img data-u="image" src="../img/gallery/1300x500/002.jpg" />

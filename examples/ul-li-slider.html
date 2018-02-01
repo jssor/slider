@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ul/li Slider Example - Jssor Slider</title>
+</head>
+<body style="font-family:Arial, Verdana;background-color:#fff;">
+    <!--
+        define slides as below to make ul/li slider
+        <ul data-u="slides" ...>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+        </ul>
+    -->
+
+    <!-- Jssor Slider Begin -->
+    <script type="text/javascript" src="../js/jssor.slider.min.js"></script>
+    <script>
+        jssor_slider1_init = function () {
+            var options = {
+                $AutoPlay: 0,                                   //[Optional] Auto play or not, to enable slideshow, this option must be set to greater than 0. Default value is 0. 0: no auto play, 1: continuously, 2: stop at last slide, 4: stop on click, 8: stop on user navigation (by arrow/bullet/thumbnail/drag/arrow key navigation)
+                $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $Cols is greater than 1, or parking position is not 0)
+            };
+
+            var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+        };
+    </script>
+    <div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 980px; height: 380px;">
+        <!-- Slides Container -->
+        <ul data-u="slides" style="position: absolute; left: 0px; top: 0px; width: 980px; height: 380px; overflow: hidden;">
+            <li><img data-u="image" src="../img/gallery/980x380/001.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/002.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/003.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/004.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/005.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/006.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/007.jpg" /></li>
+            <li><img data-u="image" src="../img/gallery/980x380/008.jpg" /></li>
+        </ul>
+        <!-- Trigger -->
+        <script>
+            jssor_slider1_init();
+        </script>
+    </div>
+    <!-- Jssor Slider End -->
+</body>
+</html>
