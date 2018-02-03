@@ -16,8 +16,8 @@ Responsive Javascript Image/Text Slider/Carousel/Slideshow/Gallery/HTML5 Ad
 #### Example
 ```html
 <script src="jssor.slider.min.js"></script>
-<div id="jssor_1" style="position:relative;top:0px;left:0px;width:980px;height:300px;overflow:hidden;">
-    <div data-u="slides" style="position:absolute;top:0px;left:0px;width:980px;height:300px;overflow:hidden;">
+<div id="jssor_1" style="position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+    <div data-u="slides" style="position:absolute;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
         <div><img data-u="image" src="image1.jpg" /></div>
         <div><img data-u="image" src="image2.jpg" /></div>
     </div>
