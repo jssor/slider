@@ -30,5 +30,3 @@ skin/* linguist-documentation
 transitions/* linguist-documentation
 img/* linguist-vendored
 svg/* linguist-vendored
-js/* linguist-language=JavaScript
-*.js linguist-language=JavaScript
