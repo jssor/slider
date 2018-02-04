@@ -24,9 +24,10 @@
 # Code Language Spec
 demos/* linguist-documentation
 demos-jquery/* linguist-documentation
-examples/* linguist-documentation
-examples-jquery/* linguist-documentation
+# examples/* linguist-documentation
+# examples-jquery/* linguist-documentation
 skin/* linguist-documentation
 transitions/* linguist-documentation
 img/* linguist-vendored
 svg/* linguist-vendored
+*.html linguist-documentation
