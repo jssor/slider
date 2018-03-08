@@ -1,7 +1,7 @@
 {
     "name": "jssor-slider",
     "repo": "jssor/slider",
-    "description": "Responsive Javascript Image/Content Slider/Slideshow/Carousel/Gallery/Banner/HTML5 AD",
+    "description": "touch swipe image slider/slideshow/gallery/carousel/banner mobile responsive bootstrap",
     "version": "27.1.0",
     "homepage": "https://www.jssor.com",
     "keywords": [
@@ -30,5 +30,6 @@
     "development": { },
     "scripts": [
         "js/jssor.slider.min.js"
-    ]
+    ],
+    "license": "MIT"
 }
