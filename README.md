@@ -6,7 +6,7 @@ Responsive Javascript Image/Text Slider/Slideshow/Gallery/Carousel/HTML5 Ad
 2. [https://www.jssor.com/development](https://www.jssor.com/development)
 2. [Slides HTML Code](https://www.jssor.com/development/define-slides-html-code.html)
 2. [API: Options](https://www.jssor.com/development/api-options.html)
-2. [API: Methods, properties & Events](https://www.jssor.com/development/api-methods-properties-events.html)
+2. [API: Methods, Properties & Events](https://www.jssor.com/development/api-methods-properties-events.html)
 2. [API: UI Definition](https://www.jssor.com/development/api-ui-definition.html)
 2. [https://www.jssor.com/help](https://www.jssor.com/help)
 2. [https://www.jssor.com/tutorial](https://www.jssor.com/tutorial)

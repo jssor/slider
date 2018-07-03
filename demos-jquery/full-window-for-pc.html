@@ -48,8 +48,8 @@
                     0.1: flex mode, allow up to 10% to bleed outside, this is better way to make full window slider, especially for mobile devices
             */
 
-            var MAX_WIDTH = 3000;
-            var MAX_HEIGHT = 3000;
+            var MAX_WIDTH = 10000;
+            var MAX_HEIGHT = 10000;
             var MAX_BLEEDING = 1;
 
             function ScaleSlider() {
@@ -91,14 +91,16 @@
                 }
             }
 
-            /*ios disable scrolling and bounce effect*/
-            //$Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
+            function OnOrientationChange() {
+                ScaleSlider();
+                window.setTimeout(ScaleSlider, 800);
+            }
 
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
-            $(window).bind("orientationchange", ScaleSlider);
+            $(window).bind("orientationchange", OnOrientationChange);
             /*#endregion responsive code end*/
         });
     </script>
@@ -157,11 +159,11 @@
                 <div>
                     <img data-u="image" src="../img/gallery/960x640/001.jpg" />
                     <div style="position:absolute;top:195px;left:330px;width:300px;height:250px;z-index:0;background-color:rgba(255,188,5,0.8);font-size:16px;color:#ffffff;line-height:30px;text-align:left;padding:10px;box-sizing:border-box;">Layout Settings <br /><br />
-                        Slider Size: 960 x 640<br /> 
+                        Slider Size: 1366 x 768<br />
                         Scale To: Full Window (Flex Mode) <br />
                         Bleeding: 100% <br />
-                        Max Width: 3000<br />
-                        Max Height: 3000
+                        Max Width: 10000<br />
+                        Max Height: 10000
                     </div>
                 </div>
                 <div>

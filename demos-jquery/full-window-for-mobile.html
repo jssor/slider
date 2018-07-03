@@ -91,28 +91,39 @@
                 }
             }
 
-            /*ios disable scrolling and bounce effect*/
-            //$Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
+            function OnOrientationChange() {
+                ScaleSlider();
+                window.setTimeout(ScaleSlider, 800);
+            }
 
             ScaleSlider();
 
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
-            $(window).bind("orientationchange", ScaleSlider);
+            $(window).bind("orientationchange", OnOrientationChange);
             /*#endregion responsive code end*/
         });
     </script>
     <style>
-        html, body {
-            position:absolute;
+        html {
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
             margin: 0;
             padding: 0;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
-
 
         /* jssor slider loading skin spin css */
         .jssorl-009-spin img {

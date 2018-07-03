@@ -90,28 +90,39 @@
                 }
             }
 
-            /*ios disable scrolling and bounce effect*/
-            //$Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
+            function OnOrientationChange() {
+                ScaleSlider();
+                window.setTimeout(ScaleSlider, 800);
+            }
 
             ScaleSlider();
 
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", OnOrientationChange);
             /*#endregion responsive code end*/
         };
     </script>
     <style>
-        html, body {
-            position:absolute;
+        html {
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
             margin: 0;
             padding: 0;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
-
 
         /* jssor slider loading skin spin css */
         .jssorl-009-spin img {
@@ -122,15 +133,10 @@
         }
 
         @keyframes jssorl-009-spin {
-            from {
-                transform: rotate(0deg);
-            }
+            from { transform: rotate(0deg); }
 
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
-
 
         .jssorb064 {position:absolute;}
         .jssorb064 .i {position:absolute;cursor:pointer;}

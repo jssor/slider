@@ -47,8 +47,8 @@
                     0.1: flex mode, allow up to 10% to bleed outside, this is better way to make full window slider, especially for mobile devices
             */
 
-            var MAX_WIDTH = 3000;
-            var MAX_HEIGHT = 3000;
+            var MAX_WIDTH = 10000;
+            var MAX_HEIGHT = 10000;
             var MAX_BLEEDING = 1;
 
             function ScaleSlider() {
@@ -89,28 +89,39 @@
                 }
             }
 
-            /*ios disable scrolling and bounce effect*/
-            //$Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
+            function OnOrientationChange() {
+                ScaleSlider();
+                window.setTimeout(ScaleSlider, 800);
+            }
 
             ScaleSlider();
 
             $Jssor$.$AddEvent(window, "load", ScaleSlider);
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", OnOrientationChange);
             /*#endregion responsive code end*/
         };
     </script>
     <style>
-        html, body {
-            position:absolute;
+        html {
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            position: relative;
             margin: 0;
             padding: 0;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
         }
-
 
         /* jssor slider loading skin spin css */
         .jssorl-009-spin img {
@@ -119,17 +130,11 @@
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         }
-
+        
         @keyframes jssorl-009-spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
 
         .jssorb064 {position:absolute;}
         .jssorb064 .i {position:absolute;cursor:pointer;}
@@ -146,20 +151,20 @@
         .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
     </style>
     <div style="position:relative;top:0;left:0;width:100%;height:100%;overflow:hidden;">
-        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:960px;height:640px;overflow:hidden;visibility:hidden;">
+        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1366px;height:768px;overflow:hidden;visibility:hidden;">
             <!-- Loading Screen -->
             <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
                 <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="../svg/loading/static-svg/spin.svg" />
             </div>
-            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:960px;height:640px;overflow:hidden;">
+            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1366px;height:768px;overflow:hidden;">
                 <div>
                     <img data-u="image" src="../img/gallery/960x640/001.jpg" />
                     <div style="position:absolute;top:195px;left:330px;width:300px;height:250px;z-index:0;background-color:rgba(255,188,5,0.8);font-size:16px;color:#ffffff;line-height:30px;text-align:left;padding:10px;box-sizing:border-box;">Layout Settings <br /><br />
-                        Slider Size: 960 x 640<br /> 
+                        Slider Size: 1366 x 768<br /> 
                         Scale To: Full Window (Flex Mode) <br />
                         Bleeding: 100% <br />
-                        Max Width: 3000<br />
-                        Max Height: 3000
+                        Max Width: 10000<br />
+                        Max Height: 10000
                     </div>
                 </div>
                 <div>
