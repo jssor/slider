@@ -42,13 +42,12 @@
             <div><img data-u="image" src="../img/gallery/980x380/006.jpg" /></div>
             <div><img data-u="image" src="../img/gallery/980x380/007.jpg" /></div>
             <div><img data-u="image" src="../img/gallery/980x380/008.jpg" /></div>
-
-            <!-- the following element is at the same level of all other slides, it would be a slide element if the 'u="any"' attribute were not specified -->
-            <div id="myfixedelement" data-u="any" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 26px; background-color: #fff; user-select: none; -ms-user-select: none; -moz-user-select: none;">
-                <!-- with 'u="any"' attribute specified, this element is no longer treated as slide, it is a fixed element now, it will always stay where it is. -->
-                <!-- reference: Hhttp://www.jssor.com/development/slider-with-fixed-static-element.html -->
-            </div>
         </div>
+        <!-- every element outside slides container is fixed/static element. -->
+        <!-- reference: http://www.jssor.com/development/slider-with-fixed-static-element.html -->
+        <div id="myfixedelement" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 26px; background-color: #fff; user-select: none; -ms-user-select: none; -moz-user-select: none;">
+        </div>
+        <img src="../img/qr/jssor.com.png" style="position: absolute;bottom:8px;right:8px;width:80px;height:80px;opacity:.6;" />
 
         <!-- Trigger -->
         <script>
