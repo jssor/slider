@@ -1,49 +1,51 @@
 {
-  "name": "jssor-slider",
-  "version": "27.5.0",
-  "description": "touch swipe image slider/slideshow/gallery/carousel/banner mobile responsive bootstrap",
-  "main": "js/jssor.slider.min.js",
-  "homepage": "https://www.jssor.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jssor/slider.git"
-  },
-  "keywords": [
-    "javascript",
-    "slider",
-    "carousel",
-    "slideshow",
-    "gallery",
-    "html5 ad",
-    "banner",
-    "photo",
-    "image",
-    "picture",
-    "content",
-    "text",
-    "js",
-    "mobile",
-    "responsive",
-    "front-end",
-    "touch",
-    "swipe",
-    "web",
-    "website",
-    "web page"
-  ],
-  "author": "jssor",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jssor/slider/issues"
-  },
-  "files": [
-    "js/jssor.slider.min.js",
-    "skin/",
-    "svg/",
-    "README.md",
-    "bower.json",
-    "component.json",
-    "package.json",
-    "LICENSE"
-  ]
+    "name": "jssor-slider",
+    "version": "28.0.0",
+    "description": "touch swipe image slider/slideshow/gallery/carousel/banner mobile responsive bootstrap",
+    "main": "js/jssor.slider.min.js",
+    "homepage": "https://www.jssor.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jssor/slider.git"
+    },
+    "keywords": [
+        "javascript",
+        "slider",
+        "carousel",
+        "slideshow",
+        "gallery",
+        "html5 ad",
+        "banner",
+        "photo",
+        "image",
+        "picture",
+        "content",
+        "text",
+        "layer",
+        "animation",
+        "js",
+        "mobile",
+        "responsive",
+        "front-end",
+        "touch",
+        "swipe",
+        "web",
+        "website",
+        "web page"
+    ],
+    "author": "jssor",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jssor/slider/issues"
+    },
+    "files": [
+        "js/jssor.slider.min.js",
+        "skin/",
+        "svg/",
+        "README.md",
+        "bower.json",
+        "component.json",
+        "package.json",
+        "LICENSE"
+    ]
 }

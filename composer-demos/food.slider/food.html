@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Composer -->
+    <!-- Source: https://www.jssor.com/premium/food/food.slider/=edit -->
+    <script src="../../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function() {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:-1,d:1,sX:0.6,sY:0.6},{b:0,d:800,x:-245,y:288,e:{x:7,y:7}}],
+              [{b:200,d:800,x:-245,y:288,e:{x:7,y:7}}],
+              [{b:400,d:800,x:-245,y:288,e:{x:7,y:7}}],
+              [{b:-1,d:1201,rp:1}],
+              [{b:1000,d:500,o:1}],
+              [{b:1000,d:1500,y:-15,o:1,e:{y:28},p:{y:{d:3,dO:9,r:0.5}}}],
+              [{b:-1,d:1,x:150,y:40,rY:180,sX:0.5,sY:0.5,p:{x:{c:68},y:{c:0}}},{b:1500,d:1500,x:0,y:0,o:1,rY:0,sX:1,sY:1,e:{x:35,y:35,o:4,rY:13,sX:34,sY:34},p:{x:{dl:0.1,o:68},y:{dl:0.1,o:68,rd:2},o:{dl:0.1,o:2,rd:2},rY:{dl:0.1,o:68,rd:4},sX:{dl:0.1,o:68},sY:{dl:0.1,o:68}}}],
+              [{b:-1,d:1,x:150,y:40,rY:180,sX:0.5,sY:0.5,p:{x:{c:68},y:{c:0}}},{b:2000,d:1500,x:0,y:0,o:1,rY:0,sX:1,sY:1,e:{x:35,y:35,o:4,rY:13,sX:34,sY:34},p:{x:{dl:0.1,o:68},y:{dl:0.1,o:68,rd:2},o:{dl:0.1,o:2,rd:2},rY:{dl:0.1,o:68,rd:4},sX:{dl:0.1,o:68},sY:{dl:0.1,o:68}}}],
+              [{b:2000,d:2000,y:68,e:{y:4}}],
+              [{b:2000,d:2000,y:125,e:{y:4}}],
+              [{b:-1,d:1,rY:90},{b:0,d:1000,o:0.75,rY:0,e:{rY:7}},{b:1000,d:1000,o:0.3,p:{o:{c:8}}}],
+              [{b:-1,d:1,rY:90},{b:1000,d:1000,o:0.75,rY:0,e:{rY:7}},{b:2000,d:1000,o:0.3,p:{o:{c:8}}}],
+              [{b:2000,d:2000,o:0.3,sX:0.75,sY:0.75,e:{sX:7,sY:7}}],
+              [{b:2000,d:2000,o:1,sX:0.75,sY:0.75,e:{sX:7,sY:7}}],
+              [{b:-1,d:1,rY:90},{b:0,d:1000,o:0.75,rY:0,e:{rY:7}},{b:1000,d:1000,o:0.5,p:{o:{c:8}}}],
+              [{b:-1,d:1,rY:90},{b:1000,d:1000,o:0.75,rY:0,e:{rY:7}},{b:2000,d:1000,o:0.5,p:{o:{c:8}}}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider loading skin double-tail-spin css*/
+        .jssorl-004-double-tail-spin img {
+            animation-name: jssorl-004-double-tail-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-004-double-tail-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 031 css*/
+        .jssorb031 {position:absolute;}
+        .jssorb031 .i {position:absolute;cursor:pointer;}
+        .jssorb031 .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
+        .jssorb031 .i:hover .b {fill:#fff;fill-opacity:.7;stroke:#000;stroke-opacity:.5;}
+        .jssorb031 .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
+        .jssorb031 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 051 css*/
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+    </style>
+    <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+        <defs>
+            <mask id="jssor_1_msk_2">
+                <svg viewbox="0 0 980 380" data-ts="preserve-3d" id="jssor_1_lyr_1" x="0" y="0" width="980" height="380" style="position:absolute;mix-blend-mode:screen;overflow:visible;">
+                    <g>
+                        <path fill="#ffffff" d="M980,0L980,380L0,380L0,0Z" x="0" y="0" style="position:absolute;overflow:visible;"></path>
+                        <image data-load="href" width="400" height="352" data-to="750px -130px" x="550" y="-306" data-t="0" style="position:absolute;max-width:400px;" href="img/cookie-mask.png"></image>
+                        <image data-load="href" width="400" height="352" data-to="898px -159px" x="698" y="-335" data-t="1" style="position:absolute;max-width:400px;" href="img/cookie-mask.png"></image>
+                        <image data-load="href" width="400" height="352" data-to="949px -92px" x="749" y="-268" data-t="2" style="position:absolute;max-width:400px;" href="img/cookie-mask.png"></image>
+                    </g>
+                </svg>
+            </mask>
+            <filter id="jssor_1_flt_3" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage x="0" y="0" width="980" height="380" data-load="href" result="r1" href="img/glass-2.jpg"></feImage>
+                <feDisplacementMap in="SourceGraphic" in2="r1" scale="0" xchannelselector="R" ychannelselector="G" result="r2"></feDisplacementMap>
+                <feBlend mode="color" in="r2" in2="r1" result="r3"></feBlend>
+                <feComposite operator="in" in="r3" in2="r2" result="r4"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/glass-1.jpg" />
+                <svg viewbox="0 0 980 380" data-ts="preserve-3d" width="980" height="380" data-t="3" data-tchd="jssor_1_msk_2" style="left:0px;top:0px;display:block;position:absolute;mix-blend-mode:screen;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_2)">
+                        <image data-load="href" width="980" height="380" x="0" y="0" style="position:absolute;max-width:980px;" href="img/glass-2.jpg"></image>
+                    </g>
+                </svg>
+                <img style="left:0px;top:0px;width:980px;height:380px;position:absolute;max-width:980px;mix-blend-mode:screen;" src="img/freshly-baked-chocolate-cookies-picjumbo-com-cookie.jpg" />
+                <div data-ts="flat" data-p="340" style="filter:url('#jssor_1_flt_3');left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <svg viewbox="0 0 160 91" width="160" height="91" data-t="4" style="left:396px;top:37px;display:block;position:absolute;opacity:0;overflow:visible;">
+                        <path fill="#290a00" stroke="none" stroke-width="1" d="M157.16456,45.29777C157.16456,67.54223 122.73418,85.54 80,85.54C37.26582,85.54 2.83544,67.74444 2.63291,45.5C2.43038,23.25556 37.06329,5.25777 79.79747,5.25777C122.53164,5.25777 157.16456,23.25556 157.16456,45.29777ZM80,0C35.8481,0 0,20.42444 0,45.70223C0,70.98 35.8481,91 80,91C124.1519,91 160,70.57556 160,45.29777C160,20.02 124.1519,0 80,0Z"></path>
+                    </svg>
+                    <div data-to="50% 50%" data-arr="5" style="left:395px;top:73px;width:166px;height:24px;position:absolute;opacity:0;color:#290a00;font-size:20px;line-height:1.2;letter-spacing:0.4em;text-align:center;">COOKIE</div>
+                    <div data-to="50% 50%" data-arr="6" style="left:100px;top:220px;width:380px;height:24px;position:absolute;opacity:0;color:#00afe8;font-size:20px;line-height:1.2;letter-spacing:0.2em;">Handcrafted sweet treats</div>
+                    <div data-to="50% 50%" data-arr="7" style="left:100px;top:258px;width:380px;height:24px;position:absolute;opacity:0;color:#00afe8;font-size:20px;line-height:1.2;letter-spacing:0.2em;">Fun with foods &amp; friends</div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/fruit.jpg" />
+                <img data-to="50% 50%" data-t="8" style="left:705px;top:108px;width:40px;height:37px;position:absolute;max-width:40px;" src="img/raspberry-1.png" />
+                <img data-to="50% 50%" data-t="9" style="left:677px;top:145px;width:37px;height:36px;position:absolute;max-width:37px;" src="img/raspberry-2.png" />
+                <div data-ts="flat" data-p="170" style="left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50%" data-arr="10" style="left:365px;top:25px;width:30px;height:299px;position:absolute;opacity:0;color:#000000;font-family:'Roboto Condensed',sans-serif;font-size:16px;line-height:1.2;text-align:center;">L<br />O<br />O<br />K<br />&nbsp;<br />L<br />I<br />K<br />E<br />&nbsp;<br />F<br />R<br />U<br />I<br />T<br />S<br /></div>
+                    <div data-to="50% 50%" data-arr="11" style="left:390px;top:25px;width:30px;height:299px;position:absolute;opacity:0;color:#000000;font-family:'Roboto Condensed',sans-serif;font-size:16px;line-height:1.2;text-align:center;">A<br />L<br />L<br /><br />Y<br />O<br />U<br />R<br /><br />L<br />I<br />F<br />E<br /></div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/fast-food.jpg" />
+                <img data-to="50% 50%" data-t="12" style="left:479px;top:140px;width:140px;height:151px;position:absolute;opacity:0;max-width:140px;" src="img/bread-shadow.png" />
+                <img data-to="50% 50%" data-t="13" style="left:475px;top:137px;width:140px;height:151px;position:absolute;opacity:0;max-width:140px;" src="img/bread.png" />
+                <div data-ts="flat" data-p="170" style="left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50%" data-arr="14" style="left:320px;top:20px;width:30px;height:380px;position:absolute;opacity:0;color:#ffffff;font-family:'Roboto Condensed',sans-serif;font-size:16px;line-height:1.2;text-align:center;">S<br />I<br />M<br />P<br />L<br />E<br />R<br /><br />A<br />N<br />D<br /><br />B<br />E<br />T<br />T<br />E<br />R<br /></div>
+                    <div data-to="50% 50%" data-arr="15" style="left:345px;top:20px;width:30px;height:299px;position:absolute;opacity:0;color:#ffffff;font-family:'Roboto Condensed',sans-serif;font-size:16px;line-height:1.2;text-align:center;">T<br />H<br />E<br /><br />T<br />A<br />S<br />T<br />E<br /><br />O<br />F<br /><br />J<br />O<br />Y<br /></div>
+                </div>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb031" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
+    <!-- #endregion Jssor Slider End -->
+</body>
+</html>

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Composer -->
+    <!-- Source: https://www.jssor.com/premium/sales/sales.slider/=edit -->
+    <script src="../../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function() {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:0,d:1000,x:-460,e:{x:7}}],
+              [{b:500,d:1000,y:265,e:{y:7}}],
+              [{b:0,d:1000,y:360,e:{y:7}}],
+              [{b:-1,d:1,x:30,p:{x:{o:33,r:0.5}}},{b:1000,d:500,o:1,p:{o:{o:32,r:0.5}}},{b:1500,d:500,x:0,o:1,e:{x:3},p:{x:{dl:0}}}],
+              [{b:-1,d:1,x:30,p:{x:{o:33,r:0.5}}},{b:2000,d:500,o:1,p:{o:{o:32,r:0.5}}},{b:2500,d:500,x:0,o:1,e:{x:3},p:{x:{dl:0}}}],
+              [{b:-1,d:1,sX:2,sY:2},{b:0,d:600,o:1,sX:1,sY:1,e:{sX:6,sY:6}}],
+              [{b:300,d:600,o:1}],
+              [{b:0,d:600,y:87,e:{y:6}}],
+              [{b:600,d:600,o:1}],
+              [{b:600,d:600,rp:1}],
+              [{b:-1,d:1,x:-10},{b:600,d:600,x:0,o:1,e:{x:6}}],
+              [{b:-1,d:1,ls:-0.5},{b:600,d:600,ls:0,e:{ls:6}}],
+              [{b:-1,d:1,x:-10},{b:1100,d:600,x:0,o:1,e:{x:6}}],
+              [{b:-1,d:1,ls:-0.5},{b:1100,d:600,ls:0,e:{ls:6}}],
+              [{b:-1,d:1,x:-10},{b:1600,d:600,x:0,o:1,e:{x:6}}],
+              [{b:-1,d:1,ls:-0.5},{b:1600,d:600,ls:0,e:{ls:6}}],
+              [{b:0,d:1000,y:-151,e:{y:7}}],
+              [{b:-1,d:1,x:50},{b:1000,d:500,x:0,o:1,e:{x:7,o:7},p:{x:{dl:0.8},o:{dl:0.8}}}],
+              [{b:-1,d:1,x:50},{b:1500,d:500,x:0,o:1,e:{x:7,o:7},p:{x:{dl:0.8},o:{dl:0.8}}}],
+              [{b:1500,d:500,x:540}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $SlideDuration: 800,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider loading skin spin css*/
+        .jssorl-009-spin img {
+            animation-name: jssorl-009-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-009-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 032 css*/
+        .jssorb032 {position:absolute;}
+        .jssorb032 .i {position:absolute;cursor:pointer;}
+        .jssorb032 .i .b {fill:#fff;fill-opacity:0.7;stroke:#000;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.25;}
+        .jssorb032 .i:hover .b {fill:#000;fill-opacity:.6;stroke:#fff;stroke-opacity:.35;}
+        .jssorb032 .iav .b {fill:#000;fill-opacity:1;stroke:#fff;stroke-opacity:.35;}
+        .jssorb032 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 051 css*/
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+    </style>
+    <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+        <defs>
+            <mask id="jssor_1_msk_1">
+                <path fill="#ffffff" d="M450,0L450,180L0,180L0,0Z" x="0" y="0" style="position:absolute;overflow:visible;"></path>
+            </mask>
+            <mask id="jssor_1_msk_2">
+                <image data-load="href" width="980" height="380" x="0" y="0" style="position:absolute;max-width:980px;" href="img/dreamstime_m_90430524-sales-mask-black.png"></image>
+            </mask>
+            <filter id="jssor_1_flt_3" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="3" result="r1"></feGaussianBlur>
+                <feComposite operator="arithmetic" in="r1" in2="r1" k1="3" k2="0" k3="0" k4="0" result="r2"></feComposite>
+                <feComposite operator="in" in="r2" in2="r2" result="r3"></feComposite>
+            </filter>
+            <mask id="jssor_1_msk_3">
+                <svg viewbox="0 0 468 382" id="jssor_1_lyr_4" x="0" y="0" width="468" height="382" style="position:absolute;overflow:visible;">
+                    <g>
+                        <path fill="#ffffff" d="M468.28-0.28L468.28,381.28L0.72,381.28L0.72-0.28L468.28-0.28Z" x="0" y="-1" style="position:absolute;overflow:visible;"></path>
+                        <path fill="#000000" d="M259.08,164.36C259.08,128.3064 288.3064,99.08 324.36,99.08C360.4136,99.08 389.64,128.3064 389.64,164.36C389.64,200.4136 360.4136,229.64 324.36,229.64C288.3064,229.64 259.08,200.4136 259.08,164.36Z" x="255" y="95" data-t="8" style="position:absolute;opacity:0;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </mask>
+            <filter id="jssor_1_flt_5" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="2.2" result="r1"></feGaussianBlur>
+                <feComposite operator="arithmetic" in="r1" in2="r1" k1="2.2" k2="0" k3="0" k4="0" result="r2"></feComposite>
+                <feComposite operator="in" in="r2" in2="r2" result="r3"></feComposite>
+            </filter>
+            <mask id="jssor_1_msk_6">
+                <image data-load="href" width="980" height="380" x="0" y="0" style="position:absolute;max-width:980px;" href="img/summer-person-mask.png"></image>
+            </mask>
+            <filter id="jssor_1_flt_7" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage x="0" y="0" width="980" height="380" data-load="href" result="r1" href="img/summer-bg-image.jpg"></feImage>
+                <feDisplacementMap in="SourceGraphic" in2="r1" scale="10" xchannelselector="R" ychannelselector="G" result="r2"></feDisplacementMap>
+                <feBlend mode="normal" in="r2" in2="r1" result="r3"></feBlend>
+                <feComposite operator="in" in="r3" in2="r2" result="r4"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/dreamstime_m_90430524-sales-bw-color.jpg" />
+                <svg viewbox="0 0 980 380" data-ts="preserve-3d" width="980" height="380" data-tchd="jssor_1_msk_2" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_2)">
+                        <svg viewbox="0 0 450 180" data-ts="preserve-3d" x="-20" y="130" width="450" height="180" data-tchd="jssor_1_msk_1" style="position:absolute;overflow:visible;">
+                            <g mask="url(#jssor_1_msk_1)">
+                                <path data-to="685px 90px" fill="rgba(238,238,146,0.8)" d="M910,0L910,180L460,180L460,0Z" x="460" y="0" data-t="0" style="position:absolute;overflow:visible;"></path>
+                            </g>
+                        </svg>
+                        <path data-to="645px -135px" fill="rgba(89,186,146,0.8)" d="M730-265L730-5L560-5L560-265Z" x="560" y="-265" data-t="1" style="position:absolute;mix-blend-mode:multiply;overflow:visible;"></path>
+                        <path data-to="800px -140px" fill="rgba(89,130,186,0.8)" d="M885-270L885-10L715-10L715-270Z" x="715" y="-270" data-t="2" style="position:absolute;overflow:visible;"></path>
+                    </g>
+                </svg>
+                <div data-ts="preserve-3d" style="left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50%" data-arr="3" style="left:461px;top:20px;width:40px;height:300px;position:absolute;opacity:0;color:#c74648;font-family:'Roboto Condensed',sans-serif;font-size:32px;font-weight:700;text-align:center;text-shadow:-2px 2px rgba(238,238,146,0.3);">A<br />U<br />T<br />U<br />M<br />N</div>
+                    <div data-to="50% 50%" data-arr="4" style="left:502px;top:70px;width:22px;height:280px;position:absolute;opacity:0;color:#c74648;font-family:'Roboto Condensed',sans-serif;font-size:20px;font-weight:700;text-align:center;text-shadow:-2px 2px rgba(238,238,146,0.3);">C<br />O<br />L<br />L<br />E<br />C<br />T<br />I<br />O<br />N</div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/model.jpg" />
+                <div data-ts="preserve-3d" style="left:89px;top:28px;width:300px;height:300px;position:absolute;">
+                    <img data-to="50% 50%" data-t="5" style="left:69px;top:213px;width:198px;height:59px;position:absolute;opacity:0;max-width:198px;" src="img/shadow.png" />
+                    <img data-t="6" style="left:33px;top:28px;width:177px;height:146px;position:absolute;opacity:0;max-width:177px;" src="img/sample.png" />
+                    <img data-to="50% 50%" data-t="7" style="left:94px;top:-208px;width:145px;height:176px;position:absolute;max-width:145px;" src="img/bottle.png" />
+                </div>
+                <svg viewbox="0 0 468 382" width="468" height="382" data-t="9" data-tchd="jssor_1_msk_3" style="left:521px;top:-1px;display:block;position:absolute;opacity:0.9;mix-blend-mode:saturation;overflow:hidden;">
+                    <g filter="url(#jssor_1_flt_3)" mask="url(#jssor_1_msk_3)">
+                        <path fill="#ffffff" d="M468.28,0.72L468.28,382.28L0.72,382.28L0.72,0.72L468.28,0.72Z" x="0" y="0" style="position:absolute;overflow:visible;"></path>
+                    </g>
+                </svg>
+                <div data-ts="preserve-3d" style="filter:url('#jssor_1_flt_5');left:480px;top:172px;width:405px;height:184px;position:absolute;">
+                    <div data-to="50% 50%" data-t="11" data-arr="10" style="left:18px;top:20px;width:200px;height:48px;position:absolute;opacity:0;color:#ffffff;font-size:40px;line-height:1.2;letter-spacing:-0.5em;text-shadow:2px 2px #f0cbb9;">YOUR</div>
+                    <div data-to="50% 50%" data-t="13" data-arr="12" style="left:53px;top:68px;width:309px;height:48px;position:absolute;opacity:0;color:#ffffff;font-size:40px;line-height:1.2;letter-spacing:-0.5em;text-shadow:2px 2px #f0cbb9;">SKIN CARE</div>
+                    <div data-to="50% 50%" data-t="15" data-arr="14" style="left:90px;top:116px;width:309px;height:48px;position:absolute;opacity:0;color:#ffffff;font-size:40px;line-height:1.2;letter-spacing:-0.5em;text-shadow:2px 2px #f0cbb9;">SPECIALIST</div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/summer.jpg" />
+                <svg viewbox="0 0 980 380" data-ts="preserve-3d" width="980" height="380" data-tchd="jssor_1_msk_6" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_6)">
+                        <image data-load="href" width="980" height="380" data-to="490px 341px" x="0" y="151" data-t="16" style="position:absolute;max-width:980px;" href="img/summer-person.png"></image>
+                    </g>
+                </svg>
+                <div data-ts="preserve-3d" style="filter:url('#jssor_1_flt_7');left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50%" data-arr="17" style="left:492px;top:95px;width:400px;height:40px;position:absolute;opacity:0;color:#4d2311;font-size:32px;font-weight:900;line-height:1.2;letter-spacing:0.4em;">SUMMER</div>
+                    <div data-to="50% 50%" data-t="19" data-arr="18" style="left:550px;top:160px;width:400px;height:40px;position:absolute;opacity:0;color:#4d2311;font-size:32px;font-weight:900;line-height:1.2;letter-spacing:0.4em;">COLLECTION</div>
+                </div>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb032" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:65px;height:65px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:65px;height:65px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
+    <!-- #endregion Jssor Slider End -->
+</body>
+</html>

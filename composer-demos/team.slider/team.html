@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Composer -->
+    <!-- Source: https://www.jssor.com/premium/team/team.slider/=edit -->
+    <script src="../../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function() {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:-1,d:1,x:-100},{b:0,d:1000,x:0,o:1,rY:720,e:{x:6,o:1,rY:1},p:{x:{o:1},o:{dl:0.2,o:1},rY:{o:1}}}],
+              [{b:-1,d:1,ls:1},{b:0,d:1000,ls:0,e:{ls:1}}],
+              [{b:-1,d:1,x:-100},{b:500,d:1000,x:0,o:1,rY:720,e:{x:6,o:1,rY:1},p:{x:{o:1},o:{dl:0.2,o:1},rY:{o:1}}}],
+              [{b:-1,d:1,ls:2},{b:500,d:1000,ls:0,e:{ls:1}}],
+              [{b:-1,d:1,x:-100},{b:2500,d:1000,x:0,o:1,rY:720,e:{x:6,o:1,rY:1},p:{x:{o:1},o:{dl:0.2,o:1},rY:{o:1}}}],
+              [{b:-1,d:1,ls:1.04},{b:2500,d:1000,ls:0.04,e:{ls:1}}],
+              [{b:-1,d:1,x:-100},{b:2000,d:1000,x:0,o:1,rY:720,e:{x:6,o:1,rY:1},p:{x:{o:1},o:{dl:0.2,o:1},rY:{o:1}}}],
+              [{b:-1,d:1,ls:1},{b:2000,d:1000,ls:0,e:{ls:1}}],
+              [{b:-1,d:1,rY:180},{b:1000,d:1500,o:1,rY:720,e:{o:1,rY:1}}],
+              [{b:-1,d:1,rY:180},{b:1000,d:1500,o:1,rY:720,e:{o:1,rY:1}}],
+              [{b:-1,d:1,rY:180},{b:1000,d:1500,o:1,rY:720,e:{o:1,rY:1}}],
+              [{b:-1,d:1,rY:180},{b:1000,d:1500,o:1,rY:720,e:{o:1,rY:1}}],
+              [{b:700,d:1500,o:1,e:{o:1}}],
+              [{b:-1,d:1,rY:5,tZ:-20},{b:1100,d:1500,x:0,rY:0,tZ:0,e:{x:7,rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-100},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-60},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-100},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-60},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-60},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-20},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-60},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-20},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-30},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,rY:10,tZ:-10},{b:1100,d:1500,rY:0,tZ:0,e:{rY:7,tZ:7}}],
+              [{b:-1,d:1,ls:1},{b:0,d:1500,o:1,ls:0.05,e:{ls:6}}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider loading skin double-tail-spin css*/
+        .jssorl-004-double-tail-spin img {
+            animation-name: jssorl-004-double-tail-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-004-double-tail-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 031 css*/
+        .jssorb031 {position:absolute;}
+        .jssorb031 .i {position:absolute;cursor:pointer;}
+        .jssorb031 .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
+        .jssorb031 .i:hover .b {fill:#fff;fill-opacity:.7;stroke:#000;stroke-opacity:.5;}
+        .jssorb031 .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
+        .jssorb031 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 051 css*/
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+    </style>
+    <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+        <defs>
+            <mask id="jssor_1_msk_1">
+                <svg viewbox="0 0 600 380" x="0" y="0" width="600" height="380" style="position:absolute;overflow:visible;">
+                    <g>
+                        <path fill="#ffffff" d="M600.28-0.28L600.28,380.28L-0.28,380.28L-0.28-0.28L600.28-0.28Z" x="0" y="0" style="position:absolute;overflow:visible;"></path>
+                        <path fill="#000000" d="M107.1,110.2L111,135L104.7,141.9C104.7,141.9 104.2,144.3 104.2,145.1C104.2,145.9 105.2,149.2 105.2,149.8C105.2,150.5 104.5,151.7 104.5,151.7C104.5,151.7 105.7,153.1 105.5,153.7C105.3,154.4 105.7,155.7 105.3,156.9C105,158.1 105.6,158.9 105.5,160C105.3,161 106.9,162.4 106.8,163.4C106.7,164.4 106.2,165.6 105.7,166.8C105.2,168 106.8,169.7 106.8,169.7C106.8,169.7 106.9,170.9 106.7,171.4C106.5,171.9 107.4,174.1 105.7,176.7C104,179.2 102,180.7 101.7,181.3C101.4,182 101.3,183.4 100.6,185.7C99.9,188 98.7,191.1 98.4,192.1C98.1,193.1 96,208 96,208.5C96,209 95,210 95,210C95,210 85.2,249.3 84.8,250.5C84.5,251.7 80.4,271.7 80.1,272.5C79.8,273.3 79.8,273.9 79.1,273.7C78.4,273.5 77.7,272.3 77.7,272.3C77.2,270.8 78,268.6 78,268.6C78,268.6 79.4,260.8 79.9,258.3C80.4,255.8 81.8,241.9 81.3,238.6C80.8,235.4 82.1,233.7 83,232C83.8,230.3 84.1,225.1 84.1,225.1C84.1,225.1 83.3,225.5 83,225.1C82.8,224.7 82.8,223.6 82.6,222.6C82.4,221.6 81.2,219.1 79.5,216.9C77.8,214.7 77.4,215.4 76.7,214.6C76,213.9 75.1,212.5 74,211.3C73,210.1 72.1,206.8 72.1,205.8C72.2,204.8 73.1,204.2 73.1,203.2C73.2,200.7 72.8,199.1 72.4,195.8C72,192.9 72.1,184.6 72.1,184.6C72.1,184.6 72.7,172.5 73.1,169.8C73.6,166.6 74.3,166.1 74.5,164.9C74.7,163.7 78.7,154.7 79.4,152.2C80.1,149.7 80.4,148.9 81.8,145.7C83.2,142.5 82.5,140.9 83.5,139.2C85.1,136.4 86.4,136.8 87.5,131.5C88.1,128.3 93.9,112 93.9,112L107.1,110.2ZM330.4,261.4C330.6,261.2 330.8,260.6 330.8,259.8C330.9,257.9 330.4,254.3 330.6,254.1C330.9,253.8 331.8,254.4 332.5,254.5C333.1,254.5 333.6,254.1 333.6,253.4C333.6,252.9 332.9,251.7 332.8,250.4C332.8,249.7 333.1,249.2 333.1,248.3C333.1,247 332.9,244.1 332.8,241.9C332.7,239.6 333.1,237.9 332.8,236.9C332,233.9 330.9,230 329.7,228.1C329.7,228.1 330.2,227.9 330.2,227.5C330.2,227.1 328.3,211.7 328.1,210C327.9,208.4 328.1,204.3 328.1,202.5C328.1,200.6 327.8,197.8 327.6,196.6C327.3,195.3 327.5,195.6 327.3,194.7C327,193.9 327.1,191 326.8,189.3C326.5,187.6 327.8,174 327.8,172.8C327.8,171.6 328.1,171.5 329.2,169.3C330.2,167.1 330.6,163.9 330.7,162.6C330.8,161.3 330.6,156.8 330.9,155.4C331.2,154 332.3,153.2 333,152.7C333.7,152.2 333.9,151.5 333.8,151.3C333.6,151 333,148.1 333.3,146.7C333.6,145.3 333.6,144.2 333.9,143.2C334.2,142.2 333.7,139.9 333.5,138.7C333.2,137.5 333.4,136.2 333.4,136.2L347.5,134.9L354.7,108.5C354.7,108.5 321.6,81.8 321,82.2C320.4,82.6 320,83 319.7,84C319.4,85 312.3,113.7 310.4,121.7C308.5,129.8 305.7,148.6 304,159.7C302.3,170.8 302,181 303.2,197.3C303.5,201 304.4,207.9 304.6,214.8C304.9,224.3 304.6,233.6 305.1,234C305.9,234.8 308.4,236.3 308.4,236.3L308.4,235.3L310.6,235.6C310.6,235.6 310.1,249.6 310.9,251C311.8,252.7 312.7,253.2 314.4,254.3C315.7,255.1 316.2,254.5 316.8,254.6C317.4,254.7 317.5,255.7 318.3,256.2C319.1,256.7 320.8,257.3 321.4,257.5C322,257.7 323.3,260.5 325,260.5C326.2,260.5 326.2,259.9 326.5,260C326.8,260.1 327.6,262.4 328.8,262.4C330,262.4 330.3,261.7 330.4,261.4Z" x="72" y="82" style="position:absolute;opacity:0.75;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </mask>
+        </defs>
+    </svg>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:380px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/artist.jpg" />
+                <div data-ts="flat" data-p="1360" style="left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50% -26px" data-t="1" data-arr="0" style="left:-268px;top:11px;width:400px;height:30px;position:absolute;opacity:0;color:#d9c6bd;font-size:26px;font-weight:700;line-height:1.2;letter-spacing:1em;text-align:right;">Artist 01</div>
+                    <div data-to="50% 50% -12px" data-t="3" data-arr="2" style="left:401px;top:41px;width:200px;height:14px;position:absolute;opacity:0;color:#b65e12;font-size:12px;font-weight:700;line-height:1.2;letter-spacing:2em;text-align:right;">WORKS</div>
+                    <div data-to="50% 50% -30px" data-t="5" data-arr="4" style="left:19px;top:227px;width:500px;height:36px;position:absolute;opacity:0;color:#b65e12;font-size:30px;font-weight:700;line-height:1.2;letter-spacing:1.04em;text-align:right;">Australia</div>
+                    <div data-to="50% 50% -120px" data-t="7" data-arr="6" style="left:-657px;top:196px;width:1200px;height:144px;position:absolute;opacity:0;color:rgba(143,204,20,0.3);font-size:120px;font-weight:700;line-height:1.2;letter-spacing:1em;text-align:right;">James</div>
+                </div>
+                <div data-ts="flat" data-p="554" style="left:545px;top:50px;width:340px;height:214px;position:absolute;">
+                    <img data-to="0% 50% -100px" data-t="8" style="left:10px;top:10px;width:155px;height:92px;position:absolute;opacity:0;max-width:155px;" src="img/artwork-01.jpg" />
+                    <img data-to="50% 50% -100px" data-t="9" style="left:175px;top:10px;width:155px;height:92px;position:absolute;opacity:0;max-width:155px;" src="img/artwork-02.jpg" />
+                    <img data-to="100% 50% -100px" data-t="10" style="left:175px;top:112px;width:155px;height:92px;position:absolute;opacity:0;max-width:155px;" src="img/artwork-04.jpg" />
+                    <img data-to="50% 50% -100px" data-t="11" style="left:10px;top:112px;width:155px;height:92px;position:absolute;opacity:0;max-width:155px;" src="img/artwork-03.jpg" />
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/team-work.jpg" />
+                <div data-ts="flat" data-p="340" data-t="12" style="left:0px;top:0px;width:980px;height:380px;position:absolute;opacity:0;">
+                    <div data-to="50% 50%" data-ts="preserve-3d" data-t="13" style="left:100px;top:0px;width:980px;height:380px;position:absolute;">
+                        <svg viewbox="0 0 88 77" data-to="50% 50%" width="88" height="77" data-t="14" style="left:620px;top:126px;display:block;position:absolute;overflow:visible;">
+                            <path fill="rgba(241,145,73,0.26)" stroke="#ffffff" d="M22.5,0L66.2,0L87.8,37.8L65.3,76.8L22.1,76.8L0,38.2L22.5,0Z"></path>
+                        </svg>
+                        <div data-to="50% 50%" data-t="15" style="left:625px;top:155px;width:78px;height:18px;position:absolute;color:#ffffff;font-size:9px;line-height:2;text-align:center;">PERFORMANCE</div>
+                        <svg viewbox="0 0 88 77" data-to="50% 50%" width="88" height="77" data-t="16" style="left:550px;top:167px;display:block;position:absolute;overflow:visible;">
+                            <path fill="rgba(49,0,74,0.26)" stroke="#ffffff" d="M22.5,0L66.2,0L87.8,37.8L65.3,76.8L22.1,76.8L0,38.2L22.5,0Z"></path>
+                        </svg>
+                        <img data-to="50% 50%" data-t="17" style="left:568px;top:178px;width:52px;height:52px;position:absolute;max-width:52px;" src="img/performance.png" />
+                        <svg viewbox="0 0 88 77" data-to="50% 50%" width="88" height="77" data-t="18" style="left:620px;top:208px;display:block;position:absolute;overflow:visible;">
+                            <path fill="rgba(49,0,74,0.26)" stroke="#ffffff" d="M22.5,0L66.2,0L87.8,37.8L65.3,76.8L22.1,76.8L0,38.2L22.5,0Z"></path>
+                        </svg>
+                        <div data-to="50% 50%" data-t="19" style="left:632px;top:228px;width:64px;height:36px;position:absolute;color:#ffffff;font-size:18px;line-height:2;text-align:center;">GOALS</div>
+                        <svg viewbox="0 0 88 77" data-to="50% 50%" width="88" height="77" data-t="20" style="left:690px;top:167px;display:block;position:absolute;overflow:visible;">
+                            <path fill="rgba(49,0,74,0.26)" stroke="#ffffff" d="M22.5,0L66.2,0L87.8,37.8L65.3,76.8L22.1,76.8L0,38.2L22.5,0Z"></path>
+                        </svg>
+                        <img data-to="50% 50%" data-t="21" style="left:708px;top:179px;width:52px;height:52px;position:absolute;max-width:52px;" src="img/goals.png" />
+                        <svg viewbox="0 0 88 77" data-to="50% 50%" width="88" height="77" data-t="22" style="left:760px;top:208px;display:block;position:absolute;overflow:visible;">
+                            <path fill="rgba(49,0,74,0.09)" stroke="#ffffff" d="M22.5,0L66.2,0L87.8,37.8L65.3,76.8L22.1,76.8L0,38.2L22.5,0Z"></path>
+                        </svg>
+                        <img data-to="50% 50%" data-t="23" style="left:778px;top:220px;width:52px;height:52px;position:absolute;max-width:52px;" src="img/values.png" />
+                    </div>
+                </div>
+                <svg viewbox="0 0 600 380" width="600" height="380" data-tchd="jssor_1_msk_1" style="left:0px;top:0px;display:block;position:absolute;overflow:hidden;">
+                    <g mask="url(#jssor_1_msk_1)">
+                        <text fill="#991f1f" text-anchor="middle" x="280" y="240" data-t="24" style="position:absolute;opacity:0;font-size:80px;font-weight:700;letter-spacing:1em;overflow:visible;">TEAM WORK
+                        </text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb031" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
+    <!-- #endregion Jssor Slider End -->
+</body>
+</html>

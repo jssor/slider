@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Composer -->
+    <!-- Source: https://www.jssor.com/premium/village-tour/village-tour.slider/=edit -->
+    <script src="../../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function() {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:0,d:1000,o:1}],
+              [{b:0,d:1000,y:-88,ls:0.1,e:{y:3,ls:1}}],
+              [{b:-1,d:1,da:[0,2000]},{b:600,d:1500,da:[460,2000],e:{da:1}}],
+              [{b:1600,d:500,o:0.4}],
+              [{b:1500,d:500,o:0.4}],
+              [{b:1400,d:500,o:0.7}],
+              [{b:600,d:1000,o:1}],
+              [{b:-1,d:1,tZ:-100},{b:600,d:1000,x:668,y:302,rY:12,tZ:-30,e:{x:1,y:1,rY:1,tZ:1}}],
+              [{b:-1,d:1,tZ:-20}],
+              [{b:-1,d:1,tZ:20}],
+              [{b:-1,d:1,da:[460,2000]},{b:1200,d:1500,da:[760,2000],e:{da:1}}],
+              [{b:1200,d:500,o:0.4}],
+              [{b:1100,d:500,o:0.4}],
+              [{b:1000,d:500,o:0.7}],
+              [{b:0,d:1500,y:60,o:1,e:{y:1}}],
+              [{b:-1,d:1,ls:1},{b:0,d:1500,o:1,ls:0,e:{ls:1}}],
+              [{b:-1,d:1,da:[760,2000]},{b:1600,d:1500,da:[1040,2000],e:{da:1}}],
+              [{b:1600,d:500,o:0.4}],
+              [{b:1500,d:500,o:0.4}],
+              [{b:1400,d:500,o:0.7}],
+              [{b:-1,d:1,so:1},{b:0,d:1000,so:0,e:{so:1}}],
+              [{b:-1,d:1,rY:-20}],
+              [{b:-1,d:1,so:1},{b:1000,d:1000,so:0,e:{so:1}}],
+              [{b:-1,d:1,rY:-20}],
+              [{b:-1,d:1,ls:2},{b:0,d:2000,y:68,o:0.7,ls:0.12,e:{y:7,ls:1}}],
+              [{b:-1,d:1,ls:2},{b:0,d:2000,y:68,o:0.7,ls:0.12,e:{y:7,ls:1}}],
+              [{b:1100,d:1200,y:-40,o:1},{b:2300,d:1200,y:-80,o:0}],
+              [{b:1700,d:1200,y:-40,o:1},{b:2900,d:1200,y:-80,o:0}],
+              [{b:2300,d:1200,y:-40,o:1},{b:3500,d:1200,y:-80,o:0}],
+              [{b:2900,d:1200,y:-40,o:1},{b:4100,d:1200,y:-80,o:0}],
+              [{b:3500,d:1200,y:-40,o:1},{b:4700,d:1200,y:-80,o:0}],
+              [{b:4100,d:1200,y:-40,o:1},{b:5300,d:1200,y:-80,o:0}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions,
+                $Controls: [{r:1100,e:4700},{r:1700,e:5300},{r:2300,e:5900},{r:2900,e:6500},{r:3500,e:7100},{r:4100,e:7700}]
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider loading skin double-tail-spin css*/
+        .jssorl-004-double-tail-spin img {
+            animation-name: jssorl-004-double-tail-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-004-double-tail-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 031 css*/
+        .jssorb031 {position:absolute;}
+        .jssorb031 .i {position:absolute;cursor:pointer;}
+        .jssorb031 .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
+        .jssorb031 .i:hover .b {fill:#fff;fill-opacity:.7;stroke:#000;stroke-opacity:.5;}
+        .jssorb031 .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
+        .jssorb031 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 051 css*/
+        .jssora051 {display:block;position:absolute;cursor:pointer;}
+        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
+        .jssora051:hover {opacity:.8;}
+        .jssora051.jssora051dn {opacity:.5;}
+        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+    </style>
+    <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+        <defs>
+            <mask id="jssor_1_msk_1">
+                <image data-load="href" width="980" height="490" x="0" y="0" style="position:absolute;max-width:980px;" href="img/px-1612351-tree-mask.jpg"></image>
+            </mask>
+            <mask id="jssor_1_msk_2">
+                <image data-load="href" width="980" height="490" x="0" y="0" style="position:absolute;opacity:1;max-width:980px;" href="img/px-boat-clouds-dawn-2431419-mask.jpg"></image>
+            </mask>
+            <filter id="jssor_1_flt_3" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="2"></feGaussianBlur>
+            </filter>
+            <filter id="jssor_1_flt_4" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="2"></feGaussianBlur>
+            </filter>
+            <filter id="jssor_1_flt_7" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="15"></feGaussianBlur>
+            </filter>
+            <mask id="jssor_1_msk_8">
+                <path filter="url(#jssor_1_flt_7)" fill="#ffffff" d="M-52,115.5C-60,125.5 -34,230.5 -34,230.5L-52,262.5C-44,252.5 -20,263.5 -5,264.5C10,265.5 10,270.5 15,278.5C20,286.5 24,285.5 32,285.5C40,285.5 53,277.5 63,269.5C73,261.5 82.6,261.8 88,264.5C95,268 110,277 125,268.5C128.3,266.6 134.9,273.6 137.5,272.5C142.4,270.4 138.2,261 143.5,261C151.5,261 153.5,269.5 157.5,274.5C161.5,279.5 195.8,289.2 199,279.5C200.5,275 202.5,273 211,279.5C214.6,282.2 219,283.5 225,280.5C231,277.5 221,266.5 228,264.5C235,262.5 241,279.5 246,279.5C251,279.5 251,262.5 257,260.5C263,258.5 285,297.5 288,304.5C291,311.5 313,304.5 319,303.5C325,302.5 328,286.5 328,280.5C328,274.5 319,270.5 322,254.5C325,238.5 334,231.5 342,232.5C350,233.5 357,247.5 361,247.5C365,247.5 369,242.5 372,237.5C375,232.5 372,221.5 377,223.5C382,225.5 396,245.5 396,245.5C396,245.5 398,227.5 400,219.5C402,211.5 411,214.5 416,214.5C421,214.5 429,230.5 433,230.5C437,230.5 437,211.5 441,210.5C445,209.5 459,234.5 463,236.5C467,238.5 471,221.5 471,221.5L486,236.5C486,236.5 488,219.5 503,216.5C511.8,214.7 520,246.5 520,256.5L546,254.5C547,248.5 549,228 546,212C543,196 545,173.5 540,166.5C535,159.5 529.8,133.9 524,126.5C520.5,122 520,112.5 520,102.5C520,92.5 511.8,60.7 503,62.5C488,65.5 486,82.5 486,82.5L471,67.5C471,67.5 467,84.5 463,82.5C459,80.5 445,55.5 441,56.5C437,57.5 437,76.5 433,76.5C429,76.5 421,60.5 416,60.5C411,60.5 402,57.5 400,65.5C398,73.5 396,91.5 396,91.5C396,91.5 382,71.5 377,69.5C372,67.5 375,78.5 372,83.5C369,88.5 365,93.5 361,93.5C357,93.5 350,79.5 342,78.5C334,77.5 325,84.5 322,100.5C319,116.5 328,120.5 328,126.5C328,132.5 325,148.5 319,149.5C313,150.5 291,157.5 288,150.5C285,143.5 263,104.5 257,106.5C251,108.5 251,125.5 246,125.5C241,125.5 235,108.5 228,110.5C221,112.5 231,123.5 225,126.5C219,129.5 214.6,128.2 211,125.5C202.5,119 200.5,121 199,125.5C195.8,135.2 161.5,125.5 157.5,120.5C153.5,115.5 151.5,107 143.5,107C138.2,107 142.4,116.4 137.5,118.5C134.9,119.6 128.3,112.6 125,114.5C110,123 95,114 88,110.5C82.6,107.8 73,107.5 63,115.5C53,123.5 40,131.5 32,131.5C24,131.5 20,132.5 15,124.5C10,116.5 10,111.5 -5,110.5C-20,109.5 -44,105.5 -52,115.5Z" x="-54" y="75" style="position:absolute;overflow:visible;"></path>
+            </mask>
+            <filter id="jssor_1_flt_9" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="15"></feGaussianBlur>
+            </filter>
+            <mask id="jssor_1_msk_10">
+                <path filter="url(#jssor_1_flt_9)" fill="#ffffff" d="M-32,191.5C-9,195.5 4,206.5 41,216.5C78,226.5 110,214.5 120,217.5C130,220.5 132,234.5 149,232.5C166,230.5 201,214.5 213,214.5C225,214.5 233,216.5 241,201.5C249,186.5 244,173.5 252,179.5C260,185.5 276,191.5 284,191.5C292,191.5 316,198.5 337,195.5C358,192.5 378,178.5 389,180.5C400,182.5 419,182.5 430,190.5C441,198.5 449,218.5 459,222.5C469,226.5 495,232.5 497,228.5C499,224.5 501,210.5 506,205.5C511,200.5 514,187.5 518,187.5C522,187.5 529,189.5 535,203.5C541,217.5 547,221.5 548,215.5C549,209.5 551,189 548,173C545,157 547,134.5 542,127.5C537,120.5 531.8,94.9 526,87.5C522.5,83 522,73.5 522,63.5C522,53.5 513.8,21.7 505,23.5C490,26.5 488,43.5 488,43.5L473,28.5C473,28.5 469,45.5 465,43.5C461,41.5 447,16.5 443,17.5C439,18.5 439,37.5 435,37.5C431,37.5 423,21.5 418,21.5C413,21.5 404,18.5 402,26.5C400,34.5 398,52.5 398,52.5C398,52.5 384,32.5 379,30.5C374,28.5 377,39.5 374,44.5C371,49.5 367,54.5 363,54.5C359,54.5 352,40.5 344,39.5C336,38.5 327,45.5 324,61.5C321,77.5 330,81.5 330,87.5C330,93.5 327,109.5 321,110.5C315,111.5 293,118.5 290,111.5C287,104.5 265,65.5 259,67.5C253,69.5 253,86.5 248,86.5C243,86.5 237,69.5 230,71.5C223,73.5 233,84.5 227,87.5C221,90.5 216.6,89.2 213,86.5C204.5,80 202.5,82 201,86.5C197.8,96.2 163.5,86.5 159.5,81.5C155.5,76.5 153.5,68 145.5,68C140.2,68 144.4,77.4 139.5,79.5C136.9,80.6 130.3,73.6 127,75.5C112,84 97,75 90,71.5C84.6,68.8 75,68.5 65,76.5C55,84.5 42,92.5 34,92.5C26,92.5 22,93.5 17,85.5C12,77.5 12,72.5 -3,71.5C-18,70.5 -42,66.5 -50,76.5C-58,86.5 -32,191.5 -32,191.5Z" x="-52" y="36" style="position:absolute;overflow:visible;"></path>
+            </mask>
+        </defs>
+    </svg>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:490px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:490px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/px-1612351-village-travel-original.jpg" />
+                <img data-t="0" style="left:0px;top:0px;width:980px;height:490px;position:absolute;opacity:0;max-width:980px;" src="img/px-1612351-village-travel-dark.jpg" />
+                <svg viewbox="0 0 980 490" data-ts="preserve-3d" width="980" height="490" data-tchd="jssor_1_msk_1" style="left:0px;top:0px;display:block;position:absolute;overflow:hidden;">
+                    <g mask="url(#jssor_1_msk_1)">
+                        <text data-to="614px 157px" stroke="#cca48f" stroke-width="1.6" text-anchor="middle" x="614" y="182" data-t="1" style="position:absolute;font-size:48px;overflow:visible;">Village Tour
+                        </text>
+                    </g>
+                </svg>
+                <div style="left:88px;top:189px;width:275px;height:345px;position:absolute;">
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="6,9" fill="none" stroke="#664d3d" stroke-width="2" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77"></path>
+                    </svg>
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="0,2000" fill="none" stroke="#b35a24" stroke-width="3" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77" data-t="2"></path>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:-12px;top:94px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" data-t="3" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" data-t="4" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" data-t="5" style="position:absolute;opacity:0;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div data-ts="flat" data-p="221" data-po="55% 60%" data-t="6" style="left:0px;top:0px;width:980px;height:490px;position:absolute;opacity:0;">
+                    <div data-to="50% 50%" data-ts="preserve-3d" data-t="7" style="left:519px;top:334px;width:320px;height:160px;position:absolute;">
+                        <div data-to="50% 50%" data-t="8" style="left:0px;top:44px;width:320px;height:40px;position:absolute;color:#8585a6;font-size:32px;line-height:1.2;text-align:center;">DAY 1</div>
+                        <div data-to="50% 50%" data-t="9" style="left:0px;top:82px;width:320px;height:40px;position:absolute;color:#8585a6;font-size:32px;line-height:1.2;text-align:center;">LAKESIDE CABIN</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/px-boat-clouds-dawn-2431419-origin.jpg" />
+                <div style="left:88px;top:189px;width:275px;height:345px;position:absolute;">
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="6,9" fill="none" stroke="#595450" stroke-width="2" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77"></path>
+                    </svg>
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="460,2000" fill="none" stroke="#e6d7cf" stroke-width="3" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77" data-t="10"></path>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:-12px;top:94px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" style="position:absolute;opacity:0.7;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:132px;top:18px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" data-t="11" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" data-t="12" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" data-t="13" style="position:absolute;opacity:0;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                </div>
+                <svg viewbox="0 0 980 490" data-ts="preserve-3d" width="980" height="490" data-tchd="jssor_1_msk_2" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_2)">
+                        <text data-to="530px 135px" fill="#e6edfa" x="430" y="160" data-t="14" style="position:absolute;opacity:0;font-size:40px;letter-spacing:0.02em;overflow:visible;">DAY 2
+                        </text>
+                        <text fill="#e6edfa" x="430" y="270" data-t="15" style="position:absolute;opacity:0;font-size:40px;letter-spacing:1em;overflow:visible;">LAKE AND MOUNTAIN
+                        </text>
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <img data-u="image" src="img/px-colorful-colourful-forest-33109-blur.jpg" />
+                <div style="left:88px;top:189px;width:275px;height:345px;position:absolute;">
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="6,9" fill="none" stroke="#ffe8c7" stroke-width="2" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77"></path>
+                    </svg>
+                    <svg viewbox="0 0 250 319" width="250" height="319" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                        <path stroke-dasharray="760,2000" fill="none" stroke="#dbb784" stroke-width="3" stroke-linecap="round" d="M117.5,326.07C116.71,308.15 122.23,305.43 117.5,286.08C112.77,266.72 99.35,243.78 103.3,233.03C107.24,222.28 110.14,220.1 111.03,208.66C111.62,200.86 110.1,196.15 104.81,192.27C100.45,189.08 92.55,188.58 81.04,196.91C73.76,202.16 77.46,209.3 68.59,213.68C59.56,218.13 22.88,150.77 27.62,145.74C38.08,134.64 66.63,187.64 71.36,164.7C76.1,141.76 93.56,145.51 97.51,131.89C101.46,118.27 11.53,140.02 7.77,112.21C3.92,83.78 96.24,52.21 107.21,44.62C123.12,33.6 57.8,35.27 63.32,25.95C66.77,20.14 101.92-0.05 127.34,6.63C142.69,10.67 146.11,40.81 160.66,43.51C199.31,50.67 235.48,9.28 233.28,36.8C231.93,53.69 177.73,85.35 191.46,93.08C201.84,98.92 214.94,90.84 227.13,97.55C240.98,105.15 196.32,123.29 212.01,135.3C223.99,144.47 250.71,177.67 240.28,184.88C230.89,191.36 222.26,165.6 215.14,169.86C204.92,175.98 201.89,178.55 203.47,189.3C205.05,200.06 233.34,212.08 227.92,228.73C224.82,238.31 213.73,251.67 203.47,255.25C193.22,258.84 169.55,258.12 158.51,253.82C147.47,249.52 141.16,238.05 133.27,240.92C125.38,243.78 112.45,265.72 115.99,280.77" data-t="16"></path>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:-12px;top:94px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" style="position:absolute;opacity:0.7;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:132px;top:18px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" style="position:absolute;opacity:0.4;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" style="position:absolute;opacity:0.7;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                    <svg viewbox="0 0 44 44" width="44" height="44" style="left:208px;top:133px;display:block;position:absolute;overflow:hidden;">
+                        <g>
+                            <path fill="#a3a3d9" d="M33,22C33,28.05 28.05,33 22,33C15.95,33 11,28.05 11,22C11,15.95 15.95,11 22,11C28.05,11 33,15.95 33,22Z" x="11" y="11" data-t="17" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M29,22C29,25.88889 25.88889,29 22,29C18.11111,29 15,25.88889 15,22C15,18.11111 18.11111,15 22,15C25.88889,15 29,18.11111 29,22Z" x="15" y="15" data-t="18" style="position:absolute;opacity:0;overflow:visible;"></path>
+                            <path fill="#a3a3d9" d="M18,21.912C18,19.752 19.752,18 21.912,18C24.072,18 25.824,19.752 25.824,21.912C25.824,24.072 24.072,25.824 21.912,25.824C19.752,25.824 18,24.072 18,21.912Z" x="18" y="18" data-t="19" style="position:absolute;opacity:0;overflow:visible;"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div data-ts="flat" data-p="184" data-po="50% 80%" style="left:0px;top:0px;width:980px;height:490px;position:absolute;">
+                    <svg viewbox="0 0 360 210" data-to="50% 50%" width="360" height="210" data-t="21" style="left:354px;top:318px;display:block;position:absolute;font-size:32px;overflow:visible;">
+                        <g fill="#fff7eb">
+                            <path id="jssor_1_pt_3" fill="none" d="M26,3C117,6 357.3,17.16 359.71,106.97C361.31,166.58 304.83,211.11 270,230"></path>
+                            <text filter="url(#jssor_1_flt_3)" x="0">
+                                <textPath href="#jssor_1_pt_3" startoffset="100%" data-t="20">DAY 3
+                                </textPath>
+                            </text>
+                        </g>
+                    </svg>
+                    <svg viewbox="0 0 360 210" data-to="50% 50%" width="360" height="210" data-t="23" style="left:354px;top:318px;display:block;position:absolute;font-size:32px;overflow:visible;">
+                        <g fill="#fff7eb">
+                            <path id="jssor_1_pt_4" fill="none" d="M27,48C114,48 319.98,53.14 321.71,115.97C322.78,154.56 281.83,171.11 247,190"></path>
+                            <text filter="url(#jssor_1_flt_4)" x="0">
+                                <textPath href="#jssor_1_pt_4" startoffset="100%" data-t="22">FOREST ADVENTURE
+                                </textPath>
+                            </text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/px-clouds-conifers-fir-trees-158672-origin.jpg" />
+                <svg viewbox="0 0 590 280" data-ts="preserve-3d" width="590" height="280" data-tchd="jssor_1_msk_8" style="left:90px;top:17px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_8)">
+                        <svg viewbox="0 0 472 100" x="70" y="13" width="472" height="100" style="position:absolute;font-size:40px;overflow:visible;">
+                            <g data-to="306px 63px" fill="#ffffff" data-t="24" style="opacity:0;letter-spacing:2em;">
+                                <path id="jssor_1_pt_5" fill="none" d="M12,87L462,27"></path>
+                                <text text-anchor="middle" x="236">
+                                    <textPath href="#jssor_1_pt_5">DAY 4
+                                    </textPath>
+                                </text>
+                            </g>
+                        </svg>
+                        <svg viewbox="0 0 472 100" x="90" y="127" width="472" height="100" style="position:absolute;font-size:36px;overflow:visible;">
+                            <g data-to="326px 177px" fill="#ffffff" data-t="25" style="opacity:0;letter-spacing:2em;">
+                                <path id="jssor_1_pt_6" fill="none" d="M12,87L462,27"></path>
+                                <text text-anchor="middle" x="236">
+                                    <textPath href="#jssor_1_pt_6">TREES IN THE SKY
+                                    </textPath>
+                                </text>
+                            </g>
+                        </svg>
+                    </g>
+                </svg>
+                <svg viewbox="0 0 590 280" data-ts="preserve-3d" width="590" height="280" data-tchd="jssor_1_msk_10" style="left:0px;top:210px;display:block;position:absolute;mix-blend-mode:overlay;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_10)">
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="26" data-c="0" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="27" data-c="1" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="28" data-c="2" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="29" data-c="3" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="30" data-c="4" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                        <image data-load="href" width="570" height="280" data-to="285px 180px" x="0" y="40" data-t="31" data-c="5" style="position:absolute;opacity:0;max-width:570px;" href="img/px-clouds-conifers-fir-trees-158672-cloud.png"></image>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb031" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
+    <!-- #endregion Jssor Slider End -->
+</body>
+</html>

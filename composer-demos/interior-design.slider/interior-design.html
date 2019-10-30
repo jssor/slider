@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+    <!-- #region Jssor Slider Begin -->
+    <!-- Generator: Jssor Slider Composer -->
+    <!-- Source: https://www.jssor.com/premium/interior-design/interior-design.slider/=edit -->
+    <script src="../../js/jssor.slider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function() {
+
+            var jssor_1_SlideoTransitions = [
+              [{b:500,d:4000,pt:{d:"M180.1,301.7C196.2,281.8 214,264.4 241.8,256.3C276,246.3 313.6,254.5 347.1,242C409.5,218.8 411,181.6 464.9,159.5C512,140 527.7,163.8 590,173C618.1,177.1 712,182.7 735,205C761.9,231.1 793.6,302.4 792,347.7C791,377.5 757.8,390.5 746,415C736.1,435.5 740.4,460.7 723,477.7C703.7,496.6 660,475 636.7,472.5C588.6,467.5 539.1,468.9 491.3,476.9C453.5,483.2 415.6,479 377.9,477.6C340.5,476.1 299.6,500.6 263.1,492.2C213.8,481 155,469 129,420C117.2,397.7 124.7,370.7 139.2,352.7C152.9,335.7 166.4,318.6 180.1,301.7Z"},e:{pt:1}}],
+              [{b:500,d:4000,rp:1}],
+              [{b:-1,d:1,y:8,rY:10,tZ:8,p:{y:{o:4,r:0.25,c:8},tZ:{d:1,dO:68,c:68}}},{b:0,d:700,o:1,tZ:4,e:{tZ:4},p:{o:{o:4},tZ:{dl:0,o:4,d:1,c:68}}}],
+              [{b:-1,d:1,y:8,tZ:8,p:{y:{o:4,r:0.2,c:68},tZ:{d:1,dO:68,c:68}}},{b:700,d:800,o:1,tZ:4,e:{tZ:4},p:{o:{o:4},tZ:{dl:0,o:4,d:1,c:68}}}],
+              [{b:500,d:4000,pt:{d:"M267,148.5C267,57.64 340.64-16 431.5-16C522.36-16 596,57.64 596,148.5C596,239.36 522.36,313 431.5,313C340.64,313 267,239.36 267,148.5Z"},e:{pt:7}}],
+              [{b:500,d:4000,rp:1}],
+              [{b:-1,d:1,y:-30},{b:0,d:1000,y:0,o:1,e:{y:4}}],
+              [{b:-1,d:1,ls:-0.04},{b:1000,d:2000,ls:0.1,e:{ls:1}}],
+              [{b:3000,d:2800,o:1,e:{o:1}}],
+              [{b:1000,d:2800,o:1,e:{o:1}}],
+              [{b:2000,d:2800,o:1,e:{o:1}}],
+              [{b:3000,d:2800,o:1,e:{o:1}}],
+              [{b:2000,d:2800,o:1,e:{o:1}}],
+              [{b:1000,d:2800,o:1,e:{o:1}}],
+              [{b:1000,d:4800,rp:1}],
+              [{b:-1,d:1,da:[0,200]},{b:0,d:2000,da:[200]}]
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider loading skin double-tail-spin css*/
+        .jssorl-004-double-tail-spin img {
+            animation-name: jssorl-004-double-tail-spin;
+            animation-duration: 1.6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        @keyframes jssorl-004-double-tail-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /*jssor slider bullet skin 031 css*/
+        .jssorb031 {position:absolute;}
+        .jssorb031 .i {position:absolute;cursor:pointer;}
+        .jssorb031 .i .b {fill:#000;fill-opacity:0.5;stroke:#fff;stroke-width:1200;stroke-miterlimit:10;stroke-opacity:0.3;}
+        .jssorb031 .i:hover .b {fill:#fff;fill-opacity:.7;stroke:#000;stroke-opacity:.5;}
+        .jssorb031 .iav .b {fill:#fff;stroke:#000;fill-opacity:1;}
+        .jssorb031 .i.idn {opacity:.3;}
+
+        /*jssor slider arrow skin 052 css*/
+        .jssora052 {display:block;position:absolute;cursor:pointer;}
+        .jssora052 .a {fill:none;stroke:#000;stroke-width:360;stroke-miterlimit:10;}
+        .jssora052:hover {opacity:.8;}
+        .jssora052.jssora052dn {opacity:.5;}
+        .jssora052.jssora052ds {opacity:.3;pointer-events:none;}
+    </style>
+    <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+        <defs>
+            <filter id="jssor_1_flt_1" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage x="0" y="0" width="980" height="490" data-load="href" result="r1" href="img/px-architecture-bed-bedroom-1454806-sketch.jpg"></feImage>
+                <feDisplacementMap in="SourceGraphic" in2="r1" scale="50" xchannelselector="R" ychannelselector="G" result="r2"></feDisplacementMap>
+            </filter>
+            <mask id="jssor_1_msk_2">
+                <svg viewbox="0 0 980 490" id="jssor_1_lyr_1" x="0" y="0" width="980" height="490" style="position:absolute;overflow:visible;">
+                    <g filter="url(#jssor_1_flt_1)">
+                        <path fill="#ffffff" d="M423.73,360.04C423.76,359.25 424.44,358.61 425.29,358.2C426.15,357.79 427.13,357.69 428.08,357.69C428.53,357.69 428.99,357.66 429.44,357.69C429.96,357.74 430.46,358.01 430.65,358.5C431.05,359.55 429.95,360.15 429.12,360.51C427.84,361.07 426.56,361.67 425.11,361.67C424.68,361.67 424.31,361.4 424.07,361.06C423.83,360.7 423.73,360.36 423.73,360.04Z" x="0" y="0" data-t="0" style="position:absolute;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </mask>
+            <filter id="jssor_1_flt_3" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage x="0" y="0" width="980" height="490" data-load="href" result="r1" href="img/px-architecture-bed-bedroom-1454806-sketch.jpg"></feImage>
+                <feDisplacementMap in="SourceGraphic" in2="r1" scale="15" xchannelselector="R" ychannelselector="G" result="r2"></feDisplacementMap>
+            </filter>
+            <filter id="jssor_1_flt_4" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="20" result="r1"></feGaussianBlur>
+                <feComposite operator="arithmetic" in="r1" in2="r1" k1="10" k2="0" k3="0" k4="0" result="r2"></feComposite>
+                <feComposite operator="in" in="r2" in2="r2" result="r3"></feComposite>
+            </filter>
+            <mask id="jssor_1_msk_5">
+                <svg viewbox="0 0 980 490" id="jssor_1_lyr_4" x="0" y="0" width="980" height="490" style="position:absolute;overflow:visible;">
+                    <g filter="url(#jssor_1_flt_4)">
+                        <path fill="#ffffff" d="M391,148.5C391,126.13 409.13,108 431.5,108C453.87,108 472,126.13 472,148.5C472,170.87 453.87,189 431.5,189C409.13,189 391,170.87 391,148.5Z" x="0" y="0" data-t="4" style="position:absolute;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </mask>
+            <filter id="jssor_1_flt_6" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="3" result="r1"></feGaussianBlur>
+                <feComposite operator="arithmetic" in="r1" in2="r1" k1="3" k2="0" k3="0" k4="0" result="r2"></feComposite>
+                <feComposite operator="in" in="r2" in2="r2" result="r3"></feComposite>
+            </filter>
+            <filter id="jssor_1_flt_7" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stddeviation="40" result="r1"></feGaussianBlur>
+                <feColorMatrix in="r1" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="r2"></feColorMatrix>
+            </filter>
+            <mask id="jssor_1_msk_8">
+                <svg viewbox="0 0 980 490" id="jssor_1_lyr_7" x="0" y="0" width="980" height="490" style="position:absolute;overflow:visible;">
+                    <g filter="url(#jssor_1_flt_7)">
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.11" d="M587,288.5C587,257.84781 611.84781,233 642.5,233C673.15219,233 698,257.84781 698,288.5C698,319.15219 673.15219,344 642.5,344C611.84781,344 587,319.15219 587,288.5Z" x="587" y="233" data-t="8" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.11" d="M121,350.5C121,319.84781 145.84781,295 176.5,295C207.15219,295 232,319.84781 232,350.5C232,381.15219 207.15219,406 176.5,406C145.84781,406 121,381.15219 121,350.5Z" x="121" y="295" data-t="9" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.37" d="M583,90.5C583,52.66598 613.66598,22 651.5,22C689.33402,22 720,52.66598 720,90.5C720,128.33402 689.33402,159 651.5,159C613.66598,159 583,128.33402 583,90.5Z" x="583" y="22" data-t="10" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.75" d="M243,386C243,337.3993 282.18141,298 330.5,298C378.81859,298 418,337.3993 418,386C418,434.6007 378.81859,474 330.5,474C282.18141,474 243,434.6007 243,386Z" x="243" y="298" data-t="11" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.15" d="M450,413.5C450,381.74 475.74,356 507.5,356C539.26,356 565,381.74 565,413.5C565,445.26 539.26,471 507.5,471C475.74,471 450,445.26 450,413.5Z" x="450" y="356" data-t="12" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                        <path fill="#ffffff" stroke="#000000" stroke-width="1.26" d="M586,406C586,371.21 614.21,343 649,343C683.79,343 712,371.21 712,406C712,440.79 683.79,469 649,469C614.21,469 586,440.79 586,406Z" x="586" y="343" data-t="13" style="position:absolute;opacity:0.5;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </mask>
+            <filter id="jssor_1_flt_9" x="-50%" y="-50%" width="200%" height="200%">
+                <feImage x="0" y="0" width="980" height="490" data-load="href" result="r1" href="img/px-architecture-backyard-boating-534171-sketch.jpg"></feImage>
+                <feDisplacementMap in="SourceGraphic" in2="r1" scale="6" xchannelselector="R" ychannelselector="G" result="r2"></feDisplacementMap>
+            </filter>
+        </defs>
+    </svg>
+    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:490px;overflow:hidden;visibility:hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" class="jssorl-004-double-tail-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/double-tail-spin.svg" />
+        </div>
+        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:980px;height:490px;overflow:hidden;">
+            <div>
+                <img data-u="image" src="img/px-architecture-bed-bedroom-1454806-sketch.jpg" />
+                <svg viewbox="0 0 980 490" width="980" height="490" data-t="1" data-tchd="jssor_1_msk_2" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_2)">
+                        <image data-load="href" width="980" height="490" x="0" y="0" style="position:absolute;max-width:980px;" href="img/px-architecture-bed-bedroom-1454806-origin.jpg"></image>
+                    </g>
+                </svg>
+                <div data-ts="flat" data-p="170" data-po="0% 20%" style="filter:url('#jssor_1_flt_3');left:0px;top:0px;width:980px;height:380px;position:absolute;overflow:hidden;">
+                    <div data-ts="preserve-3d" style="left:89px;top:33px;width:330px;height:150px;position:absolute;">
+                        <div data-to="50% 50%" data-arr="2" style="left:89px;top:0px;width:260px;height:68px;position:absolute;opacity:0;color:#fb87c4;font-family:'Long Cang',cursive;font-size:60px;line-height:1.2;letter-spacing:0.12em;text-align:center;">Interior</div>
+                        <div data-to="50% 50%" data-arr="3" style="left:-28px;top:58px;width:260px;height:68px;position:absolute;opacity:0;color:#fb87c4;font-family:'Long Cang',cursive;font-size:60px;line-height:1.2;letter-spacing:0.12em;text-align:center;">Design</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/px-comfort-curtain-cushion-2029663-sketch.jpg" />
+                <svg viewbox="0 0 980 490" width="980" height="490" data-t="5" data-tchd="jssor_1_msk_5" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_5)">
+                        <image data-load="href" width="980" height="490" x="0" y="0" style="position:absolute;max-width:980px;" href="img/px-comfort-curtain-cushion-2029663-origin.jpg"></image>
+                    </g>
+                </svg>
+                <div data-ts="preserve-3d" style="filter:url('#jssor_1_flt_6');left:0px;top:0px;width:980px;height:380px;position:absolute;">
+                    <div data-to="50% 50%" data-t="7" data-arr="6" style="left:-16px;top:100px;width:600px;height:80px;position:absolute;opacity:0;color:#ffb5ba;font-family:'Gloria Hallelujah',cursive;font-size:48px;font-weight:700;line-height:1.2;letter-spacing:-0.04em;text-align:center;">Interior Design</div>
+                </div>
+            </div>
+            <div>
+                <img data-u="image" src="img/px-architecture-backyard-boating-534171-sketch.jpg" />
+                <svg viewbox="0 0 980 490" width="980" height="490" data-t="14" data-tchd="jssor_1_msk_8" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g mask="url(#jssor_1_msk_8)">
+                        <image data-load="href" width="980" height="490" x="0" y="0" style="position:absolute;max-width:980px;" href="img/px-architecture-backyard-boating-534171-origin.jpg"></image>
+                    </g>
+                </svg>
+                <svg viewbox="0 0 980 490" width="980" height="490" style="left:0px;top:0px;display:block;position:absolute;overflow:visible;">
+                    <g filter="url(#jssor_1_flt_9)">
+                        <path stroke-dasharray="0,200" fill="none" stroke="#d64390" stroke-width="2.5" d="M129.9,74.1C134.1,74 137.7,70.3 139.7,68.8C141.7,67.3 154.4,55.1 159.6,49C165.9,41.6 178.9,20.7 179.5,19.5C180.6,17.1 179.5,14.4 177,15.7C175.6,16.6 165.3,28.4 164.3,30C161.6,34.2 156.6,42.6 157.6,46.8C158.2,49.6 163.9,46 166.9,44.4C171.4,42.1 174.5,41.1 175.9,39.7C177.8,37.7 170.5,58.9 166.5,64.1C161.7,70.3 159.4,72.1 141.2,72.1C132.5,72.1 129.8,63.9 129.4,62.2C129.1,60.5 132.5,57.1 132.5,57.1M195.8,56.2C192.4,52.6 185.1,56.6 180.9,60.7C178.2,63.4 176,70.5 177.8,72.3C179.1,73.6 179.9,73.3 182.1,72.6C184.3,71.9 187,69.4 189.5,66.5C193.2,62.1 197.1,53.9 195.9,56.7C194.7,59.5 190.9,66.9 192,69.9C192.8,71.9 194.7,73.2 197.4,72.7C201.1,72 202.2,71.2 203.4,70.3M231.2,71.8C229.1,72.7 223.4,74.2 221.6,73.2C219.8,72.2 219,68.9 219.8,67.1C221.6,63.5 224.3,58.7 224.7,56.5C225.3,53.2 221.8,47.7 221.8,47.7C221.8,51.7 206,68.3 201.5,70.7M253.8,55C250.2,52.9 247.3,52.1 242.4,54.1C237.5,56.1 232.5,61.7 231.4,64.4C230.6,66.4 229.8,70.2 231.7,71.8C233.6,73.4 237,72.2 237,72.2C237,72.2 244,67.4 247.5,63.8C251,60.2 256.3,53.2 259.1,48.3C261.9,43.4 269,30.7 269,30.7C269,30.7 260,42.5 257.7,47.6C255.4,52.7 249.6,61.7 250.6,65.6C251.6,69.5 251.9,69.7 254.1,70.6C256.3,71.5 261.6,70 261.6,70M400.4,66.7C403.5,66.3 409.2,62.8 410.5,60.1C411.8,57.4 411.9,56.2 410.8,55.2C409.7,54.2 405.3,55.8 403.2,58.2C401.1,60.6 400.1,61.7 399.2,65.7C398.7,67.8 399.3,70.3 400.7,71.3C403.2,73.1 405.2,73.2 408.6,73.1C411.9,73 421.1,70.5 421.1,70.5M265.7,66.7C268.8,66.3 274.5,62.8 275.8,60.1C277.1,57.4 277.2,56.2 276.1,55.2C275,54.2 270.6,55.8 268.5,58.2C266.4,60.6 265.4,61.7 264.5,65.7C264,67.8 264.6,70.3 266,71.3C268.5,73.1 270.5,73.2 273.9,73.1C277.2,73 286.4,70.5 286.4,70.5M299.2,54.4L287.9,73C287.9,73 297.3,58.5 299.2,57.1C301.1,55.7 306.3,53.7 307.6,54.8C308.9,55.9 308.1,58.2 307.6,60.3C307.1,62.4 304.8,67 304.6,68.8C304.3,71.1 306.9,72.7 309.2,72.2C311.3,71.8 315.5,69.9 315.5,69.9M511.2,54.4L499.9,73C499.9,73 509.3,58.5 511.2,57.1C513.1,55.7 518.3,53.7 519.6,54.8C520.9,55.9 520.1,58.2 519.6,60.3C519.1,62.4 516.8,67 516.6,68.8C516.3,71.1 518.9,72.7 521.2,72.2C523.3,71.8 527.5,69.9 527.5,69.9M371.9,35.7L350.8,73.7C350.8,73.7 348.8,72.9 349.3,71.8C349.8,70.7 355.7,63.9 357.7,63.5C359.7,63.1 361.1,61.9 363.6,63C366.1,64.1 370.5,69.5 371.7,70.3C372.9,71.1 374.6,72.1 377,71.4C379.4,70.7 380.9,69.5 382,68C383.1,66.5 385.8,63 387,60.1C388.2,57.2 390.3,52.3 391.6,47.1C392.9,41.9 395.7,33.5 394.6,29.7C393.5,25.9 391.7,23.2 389.8,23.4C387.9,23.6 384.4,24.7 382.4,29.2C380.4,33.7 377.9,39.8 377.4,43.9C376.9,48 376.6,51.5 377,53.4C377.6,56.2 378.1,57.2 379.1,58.5M422,65C422,65 421.7,68.1 422.3,69.5C422.9,70.9 423.9,71.9 425.3,72.8C427.8,74.4 435.4,72 438.1,70.5C440.8,69 443.7,64.2 444.1,61.7C444.5,59.2 443.5,57.5 442,55.7C440.6,54 438.7,54.9 437.7,54.2C436.8,53.5 437,53 437.8,52.4C439.6,50.9 443.1,49.8 448.8,47.9M466.1,48.8C466.1,48.5 466.1,48 465.4,46.6M463.3,54.2C463.3,54.2 454,66.4 453.5,70.6C453.3,72.4 454.8,72.9 456.3,73.2C457.8,73.5 459.3,73.3 461.9,73C463.9,72.8 466.7,71.2 466.7,71.2M497.4,67.4C497.4,67.4 493.8,71.8 492.2,73.4C489.5,76.2 466.3,93.4 464.4,94.9C462.5,96.4 458.6,101.6 457.6,103.2C456.7,104.9 455.8,108.7 456.2,111.8C456.5,114.9 458.5,116.1 459.8,116.6C461.1,117.1 462.1,116.9 464.9,115.5C467.5,114.2 473.1,106.2 475.5,101.7C478.5,95.9 484.8,78.7 485.8,75.9C486.7,73.1 490.4,55.8 490.4,55.8C491.1,58.5 489,62.4 487.1,64.5C484.7,67.2 479,69.8 476.3,71C473.6,72.3 469.9,72.5 469.2,71.3C468.5,70 468.5,67.7 469.5,65.5C470.8,63 477.7,56.6 482.4,54.7C487.2,52.8 488.2,53.4 489.8,55.3" x="129" y="15" data-t="15" style="position:absolute;overflow:visible;"></path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb031" style="position:absolute;bottom:12px;right:12px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:16px;height:16px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow Navigator -->
+        <div data-u="arrowleft" class="jssora052" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+            </svg>
+        </div>
+        <div data-u="arrowright" class="jssora052" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+            </svg>
+        </div>
+    </div>
+    <script type="text/javascript">jssor_1_slider_init();
+    </script>
+    <!-- #endregion Jssor Slider End -->
+</body>
+</html>

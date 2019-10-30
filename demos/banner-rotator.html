@@ -11,29 +11,29 @@
     <!-- Source: https://www.jssor.com -->
     <script src="../js/jssor.slider.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        jssor_1_slider_init = function() {
+        jssor_1_slider_init = function () {
 
             var jssor_1_SlideshowTransitions = [
-              {$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2049,$Easing:$Jease$.$OutQuad},
-              {$Duration:500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Easing:$Jease$.$OutQuad},
-              {$Duration:1000,x:-0.2,$Delay:40,$Cols:12,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:260,$Easing:{$Left:$Jease$.$InOutExpo,$Opacity:$Jease$.$InOutQuad},$Opacity:2,$Outside:true,$Round:{$Top:0.5}},
-              {$Duration:2000,y:-1,$Delay:60,$Cols:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:$Jease$.$OutJump,$Round:{$Top:1.5}},
-              {$Duration:1200,x:0.2,y:-0.1,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$Jease$.$InWave,$Top:$Jease$.$InWave,$Clip:$Jease$.$OutQuad},$Round:{$Left:1.3,$Top:2.5}}
+                {$Duration:500,$Delay:30,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2049,$Easing:$Jease$.$OutQuad},
+                {$Duration:500,$Delay:80,$Cols:8,$Rows:4,$Clip:15,$SlideOut:true,$Easing:$Jease$.$OutQuad},
+                {$Duration:1000,x:-0.2,$Delay:40,$Cols:12,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Assembly:260,$Easing:{$Left:$Jease$.$InOutExpo,$Opacity:$Jease$.$InOutQuad},$Opacity:2,$Outside:true,$Round:{$Top:0.5}},
+                {$Duration:2000,y:-1,$Delay:60,$Cols:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraight,$Easing:$Jease$.$OutJump,$Round:{$Top:1.5}},
+                {$Duration:1200,x:0.2,y:-0.1,$Delay:20,$Cols:8,$Rows:4,$Clip:15,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$Jease$.$InWave,$Top:$Jease$.$InWave,$Clip:$Jease$.$OutQuad},$Round:{$Left:1.3,$Top:2.5}}
             ];
 
             var jssor_1_options = {
-              $AutoPlay: 1,
-              $SlideshowOptions: {
-                $Class: $JssorSlideshowRunner$,
-                $Transitions: jssor_1_SlideshowTransitions,
-                $TransitionsOrder: 1
-              },
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$
-              }
+                $AutoPlay: 1,
+                $SlideshowOptions: {
+                    $Class: $JssorSlideshowRunner$,
+                    $Transitions: jssor_1_SlideshowTransitions,
+                    $TransitionsOrder: 1
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$
+                }
             };
 
             var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
@@ -85,18 +85,60 @@
         }
 
 
-        .jssorb053 .i {position:absolute;cursor:pointer;}
-        .jssorb053 .i .b {fill:#fff;fill-opacity:0.5;}
-        .jssorb053 .i:hover .b {fill-opacity:.7;}
-        .jssorb053 .iav .b {fill-opacity: 1;}
-        .jssorb053 .i.idn {opacity:.3;}
+        .jssorb053 .i {
+            position: absolute;
+            cursor: pointer;
+        }
 
-        .jssora093 {display:block;position:absolute;cursor:pointer;}
-        .jssora093 .c {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
-        .jssora093 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
-        .jssora093:hover {opacity:.8;}
-        .jssora093.jssora093dn {opacity:.6;}
-        .jssora093.jssora093ds {opacity:.3;pointer-events:none;}
+            .jssorb053 .i .b {
+                fill: #fff;
+                fill-opacity: 0.5;
+            }
+
+            .jssorb053 .i:hover .b {
+                fill-opacity: .7;
+            }
+
+        .jssorb053 .iav .b {
+            fill-opacity: 1;
+        }
+
+        .jssorb053 .i.idn {
+            opacity: .3;
+        }
+
+        .jssora093 {
+            display: block;
+            position: absolute;
+            cursor: pointer;
+        }
+
+            .jssora093 .c {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 400;
+                stroke-miterlimit: 10;
+            }
+
+            .jssora093 .a {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 400;
+                stroke-miterlimit: 10;
+            }
+
+            .jssora093:hover {
+                opacity: .8;
+            }
+
+            .jssora093.jssora093dn {
+                opacity: .6;
+            }
+
+            .jssora093.jssora093ds {
+                opacity: .3;
+                pointer-events: none;
+            }
     </style>
     <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:980px;height:380px;overflow:hidden;visibility:hidden;">
         <!-- Loading Screen -->
@@ -123,7 +165,8 @@
                 <img data-u="image" src="../img/gallery/980x380/016.jpg" />
             </div>
             <div style="background-color:#ff7c28;">
-                <div style="position:absolute;top:50px;left:50px;width:450px;height:62px;z-index:0;font-size:16px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">Photos in this slider are to demostrate jssor slider,<br />
+                <div style="position:absolute;top:50px;left:50px;width:450px;height:62px;z-index:0;font-size:16px;color:#000000;line-height:24px;text-align:left;padding:5px;box-sizing:border-box;">
+                    Photos in this slider are to demostrate jssor slider,<br />
                     which are not licensed for any other purpose.
                 </div>
             </div>

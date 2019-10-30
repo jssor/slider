@@ -1,5 +1,5 @@
 ﻿
-jQuery(document).ready(function ($) {
+$(document).ready(function ($) {
 
     var jssor_1_SlideshowTransitions = [
       { $Duration: 500, $Delay: 30, $Cols: 8, $Rows: 4, $Clip: 15, $SlideOut: true, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 2049, $Easing: $Jease$.$OutQuad },

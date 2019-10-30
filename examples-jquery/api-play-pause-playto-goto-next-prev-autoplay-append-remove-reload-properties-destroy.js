@@ -1,5 +1,5 @@
 ﻿
-jQuery(document).ready(function ($) {
+$(document).ready(function ($) {
 
     var jssor_1_options = {
         $AutoPlay: 0,
